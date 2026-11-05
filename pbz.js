@@ -24,6 +24,8 @@ function parseArgs(argv) {
     switch (a) {
       case '-w': case '--watch': o.watch = true; break;
       case '--show': o.show = true; break;
+      case '--exact': o.exact = true; break;
+      case '--no-timeline': o.noTimeline = true; break;
       case '--lang': o.lang = val().toLowerCase(); break;
       case '--names': o.names = val(); break;
       case '--rules': o.rules = val(); break;

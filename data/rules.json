@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-05.3",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
+  "rulesVersion": "2026-11-05.5",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
     "game8": {
@@ -150,6 +150,13 @@
         "tr": "Bai Chilian'ı yenmek",
         "en": "Defeating Bai Chilian"
       },
+      "whereExact": {
+        "tr": "Kızıl Orman'ın son boss'u Bai Chilian'a girmeden önce (oyun uyarmaz; bağlı görevler sessizce kapanır)",
+        "en": "Before the Crimson Forest's last boss, Bai Chilian (the game gives no warning; linked quests fail silently)"
+      },
+      "exactWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
       "passedWhen": {
         "bossKilled": "ChiLian"
       },
@@ -174,6 +181,13 @@
       "label": {
         "tr": "Mirage Estate'e girmek (Green Serpent House kapısı)",
         "en": "Entering Mirage Estate (Green Serpent House gate)"
+      },
+      "whereExact": {
+        "tr": "Pangzhen'deki Green Serpent House kapısından Mirage Estate'e geçmeden önce (tartışmalı: oyun eksik görev varsa sorabilir; güvenli tarafta kal)",
+        "en": "Before going through the Green Serpent House gate in Pangzhen into Mirage Estate (disputed: the game may ask if quests are unfinished; stay on the safe side)"
+      },
+      "exactWhen": {
+        "unknown": "region code not known yet"
       },
       "passedWhen": {
         "unknown": "bölge kodu henüz bilinmiyor"
@@ -201,6 +215,13 @@
       "label": {
         "tr": "Last Chance çanı (Crusher & Saw sonrası)",
         "en": "The Last Chance bell (after the Crusher and the Saw)"
+      },
+      "whereExact": {
+        "tr": "The Crusher and the Saw dövüşünden sonraki \"Last Chance\" çanında, oyun seni açıkça uyardığında, onaylamadan önce",
+        "en": "At the \"Last Chance\" bell after the Crusher and the Saw, when the game explicitly warns you, before confirming"
+      },
+      "exactWhen": {
+        "unknown": "region code not known yet"
       },
       "passedWhen": {
         "unknown": "son bölüm kodu henüz bilinmiyor"
@@ -248,6 +269,20 @@
         "tr": "Jing Ye'yi yenmek",
         "en": "Defeating Jing Ye"
       },
+      "whereExact": {
+        "tr": "Haydut Jing Ye'ye karşı dövüşten önce",
+        "en": "Before the fight against Jing Ye, the outlaw"
+      },
+      "exactWhen": {
+        "any": [
+          {
+            "mapUnlocked": "XiGu"
+          },
+          {
+            "mapUnlocked": "FuJiZhiLin"
+          }
+        ]
+      },
       "passedWhen": {
         "bossKilled": "BP_Monster_JingYe"
       },
@@ -268,6 +303,13 @@
         "tr": "Wu Lengshuang sonrası ceset incelemesi (Yubi'den önce)",
         "en": "Inspecting the body after Wu Lengshuang (before Yubi)"
       },
+      "whereExact": {
+        "tr": "Ferman Ordugâhı'nda Wu Lengshuang dövüşünden sonra, ilerlemeden ve bir çana dokunmadan, dinlenmeden ya da kaydetmeden önce",
+        "en": "In the Mandate Encampment, after the Wu Lengshuang fight and before moving on or touching a bell, resting or saving"
+      },
+      "exactWhen": {
+        "levelVisited": "Zhengdaodaying"
+      },
       "passedWhen": {
         "unknown": "kayıttan algılanamıyor"
       },
@@ -287,6 +329,13 @@
       "label": {
         "tr": "Village of Lu asansörü (Mu Xiaokui sonrası)",
         "en": "Village of Lu lift (after Mu Xiaokui)"
+      },
+      "whereExact": {
+        "tr": "Lu Köyü'nde Mu Xiaokui'nin arenasındaki dövüşten sonra asansörle ayrılmadan önce",
+        "en": "After the fight in Mu Xiaokui's arena in the Village of Lu, before leaving by the lift"
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
       },
       "passedWhen": {
         "questDone": "MainCh1-ShiXinCun"
@@ -311,6 +360,13 @@
         "tr": "Smuggler's Tunnel'ı açmak",
         "en": "Opening the Smuggler's Tunnel"
       },
+      "whereExact": {
+        "tr": "Lu Köyü'nde Smuggler's Tunnel'ı açmadan önce (Old Man Gen ile Genç Efendi Lan'ın görevleri)",
+        "en": "Before opening the Smuggler's Tunnel in the Village of Lu (Old Man Gen's and Young Master Lan's quests)"
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
       "passedWhen": {
         "unknown": "kayıttan algılanamıyor"
       },
@@ -331,6 +387,13 @@
       "label": {
         "tr": "Weeping Creek Valley'den çıkmak",
         "en": "Leaving Weeping Creek Valley"
+      },
+      "whereExact": {
+        "tr": "Ağlayan Dere Vadisi'nden bir sonraki bölgeye geçmeden önce",
+        "en": "Before leaving Weeping Creek Valley for the next area"
+      },
+      "exactWhen": {
+        "mapUnlocked": "XiGu"
       },
       "passedWhen": {
         "mapUnlocked": "FuJiZhiLin"

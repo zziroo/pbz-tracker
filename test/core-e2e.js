@@ -112,7 +112,8 @@ async function main() {
     const text = render({ st, result, names, build: { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) }, data: dataInfo,
       color: false, show: !!v.show, changes: diff(null, statusMap(result)), hiddenKey: false });
 
-    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--game', gameDir, '--save', save, ...v.args],
+    // --no-timeline: the test must not write pbz-tracker.timeline.json (it does not change the output).
+    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--no-timeline', '--game', gameDir, '--save', save, ...v.args],
       { encoding: 'utf8', env, cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
     const same = cli === `${text}\n`;
     check(same, `report [${v.args.join(' ') || 'default'}] equals the CLI output (${slots.length} slots, latest ${latest.name}; patches ${patches.map((p) => p.name).join(', ') || '-'} in ${patchMs.toFixed(0)} ms; decode ${decMs.toFixed(0)} ms)`);
@@ -121,6 +122,149 @@ async function main() {
       const k = a.findIndex((l, i) => l !== b[i]);
       console.log(`      first difference at line ${k + 1}:\n      cli:  ${JSON.stringify(a[k])}\n      core: ${JSON.stringify(b[k])}`);
     }
+  }
+
+  // ---- exact mode, diagnostics and timeline on the real save (browser sandbox) ----
+  {
+    const os = require('os');
+    const sb = loadSandbox();
+    const core = sb.require('./lib/core');
+    const i18n = sb.require('./lib/i18n');
+    const { extract } = sb.require('./lib/state');
+    const { build } = sb.require('./lib/report');
+    const { collectDiagnostics, formatDiagnostics } = sb.require('./lib/diagnostics');
+    const { createTimeline, exportTimeline } = sb.require('./lib/timeline');
+    i18n.setLang('en');
+    const rules = rulesInfo.rules;
+    const { latest } = await core.decodeSave(saveBytes, key);
+    const st = extract(latest.data);
+    const names = core.createNamesFrom({ uiLang: 'en', tables: nameTables.tables });
+
+    // Exact mode: whereExact only where exactWhen is true; the default build is unchanged.
+    const plain = build(st, rules, names);
+    const exact = build(st, rules, names, { exact: true });
+    const pickEn = (v) => (typeof v === 'string' ? v : v?.en);
+    const cutoffOf = (where) => Object.entries(rules.cutoffs).find(([, c]) => pickEn(c.where) === where || pickEn(c.whereExact) === where);
+    check(plain.warnings.every((w) => cutoffOf(w.where) && pickEn(cutoffOf(w.where)[1].where) === w.where), 'default build: every warning uses the vague `where` text');
+    let named = 0, vague = 0;
+    for (const w of exact.warnings) {
+      const [id, c] = cutoffOf(w.where) || [];
+      const reached = !!c?.whereExact && c.exactWhen && !('unknown' in c.exactWhen);
+      if (pickEn(c?.whereExact) === w.where) named++; else vague++;
+      if (id === 'final' || id === 'mirage') check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (region code unknown)`);
+      else if (reached && id) console.log(`      exact: ${id} → ${w.where}`);
+    }
+    check(named > 0, `exact mode names ${named} warning(s), ${vague} stay vague`);
+
+    // Diagnostics: no personal data, even with hostile inputs (full paths where only names belong).
+    const user = (() => { try { return os.userInfo().username; } catch { return process.env.USERNAME || ''; } })();
+    const needles = [os.homedir(), gameDir, save, path.dirname(save), exe, '7656119', user].filter((s) => s && s.length >= 3);
+    const d = collectDiagnostics({
+      mode: 'window', version: '0.0.0-test', uiLang: 'en', exact: true,
+      rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'sidecar' },
+      keyMap: require('../data/names.json'),
+      namesSource: path.join(paksDir, 'ProjectPBZ-Windows_C.pak'),
+      nameFiles: [path.join(path.dirname(save), 'names.xx.json')],
+      patches: [path.join(paksDir, 'ProjectPBZ-Windows_C.pak')],
+      build: { id: buildId, tested: true },
+      st, result: { ...exact, unmatched: [...exact.unmatched, { id: save, folder: path.dirname(save), completion: os.homedir() }] },
+      ok: true,
+      timeline: { enabled: true, count: 3, error: `EACCES ${os.homedir()}` },
+    });
+    const text = formatDiagnostics(d);
+    const blob = `${text}\n${JSON.stringify(d)}`.toLowerCase();
+    const leaks = needles.filter((n) => blob.includes(n.toLowerCase()) || blob.includes(n.toLowerCase().replace(/\\/g, '/')) || blob.includes(JSON.stringify(n).slice(1, -1).toLowerCase()));
+    check(leaks.length === 0, `diagnostics report has no personal data (checked: home dir, game path, save path, exe, '7656119', OS user)${leaks.length ? ` — LEAK: ${leaks.length}` : ''}`);
+    check(/text patch: ProjectPBZ-Windows_C\.pak/.test(text) && /date \d{4}-\d{2}-\d{2} /.test(text) && !/\d{2}\.\d{2}\.\d{2}\b/.test(text.split('\n').find((l) => l.startsWith('save:')) || ''),
+      'diagnostics keep the pak file name and only the date of the save');
+    const real = collectDiagnostics({ mode: 'window', version: '0.0.0-test', uiLang: 'en', rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'embedded' },
+      keyMap: require('../data/names.json'), namesSource: names.source, patches: [], build: { id: buildId, tested: true }, st, result: plain, ok: true, timeline: null });
+    console.log(formatDiagnostics(real).trimEnd().split('\n').map((l) => `      | ${l}`).join('\n'));
+
+    // Timeline: baseline, no duplicates on a re-read, one record for one change, the cap.
+    let stored = null;
+    const tl = createTimeline({ load: () => stored, save: (x) => { stored = JSON.parse(JSON.stringify(x)); } });
+    const first = await tl.record(st, '2026-01-01T00:00:00.000Z');
+    const again = await tl.record(st, '2026-01-01T00:01:00.000Z');
+    const st2 = { ...st, dateTime: 'later', quests: new Map([...st.quests].map(([k, q]) => [k, { ...q, branches: { ...q.branches } }])) };
+    const q0 = [...st2.quests.values()].find((q) => q.completion === 'Started');
+    q0.completion = 'Succeded';
+    const third = await tl.record(st2, '2026-01-01T00:02:00.000Z');
+    const tl2 = createTimeline({ load: () => stored, save: () => {} }); // "restart": the stored snapshot is used
+    const afterRestart = await tl2.record(st2, '2026-01-01T00:03:00.000Z');
+    check(first.length === st.quests.size && again.length === 0 && third.length === 1 && third[0].from === 'Started' && third[0].to === 'Succeded' && afterRestart.length === 0,
+      `timeline: baseline ${first.length}, re-read 0, one change → ${third.length} record, restart → ${afterRestart.length}`);
+    let capStore = null;
+    const capped = createTimeline({ load: () => null, save: (x) => { capStore = x; }, cap: 5 });
+    await capped.record(st, 'x');
+    check(capStore.records.length === 5 && capStore.records[4].questId === [...st.quests.keys()].pop(), 'timeline: capped, oldest records dropped');
+    let warned = 0;
+    const failing = createTimeline({ load: () => null, save: () => { throw Object.assign(new Error('nope'), { code: 'EACCES' }); }, warn: () => { warned++; } });
+    const r1 = await failing.record(st, 'x'); await failing.record(st2, 'y');
+    check(r1.length === st.quests.size && warned === 1 && (await failing.status()).error === 'EACCES', 'timeline: a failing write never throws and warns once');
+    const broken = createTimeline({ load: () => { throw new SyntaxError('bad json'); }, save: () => { throw new Error('must not overwrite'); }, warn: () => {} });
+    check((await broken.record(st, 'x')).length === 0 && (await broken.status()).error === 'SyntaxError', 'timeline: an unreadable stored timeline is never overwritten');
+    const ex = exportTimeline(stored.records, '0.0.0-test');
+    console.log(`      timeline sample: ${JSON.stringify(third[0])}`);
+    check(ex.count === stored.records.length && Array.isArray(ex.records), 'timeline export shape');
+
+    // A quest that disappears (an older save loaded) gets one record with to: null.
+    const st3 = { ...st2, dateTime: 'older', quests: new Map([...st2.quests].filter(([k]) => k !== q0.id)) };
+    const gone = await tl.record(st3, '2026-01-01T00:04:00.000Z');
+    check(gone.length === 1 && gone[0].questId === q0.id && gone[0].from === 'Succeded' && gone[0].to === null && (await tl.record(st3, 'z')).length === 0,
+      `timeline: a quest no longer in the save → one record with to: null (${gone.length})`);
+    // A stored file over the cap is trimmed on load, not only on the next write.
+    const big = { version: 1, snapshot: null, records: Array.from({ length: 12 }, (_, i) => ({ questId: `q${i}` })) };
+    const loadedBig = createTimeline({ load: () => big, save: () => {}, cap: 5 });
+    const kept = await loadedBig.records();
+    check(kept.length === 5 && kept[0].questId === 'q7' && (await loadedBig.count()) === 5, 'timeline: an oversized stored file is trimmed to the cap on load');
+    // Delete: remove() runs, the memory is reset, the next read is a fresh baseline.
+    let removed = 0;
+    let delStore = null;
+    const del = createTimeline({ load: () => delStore, save: (x) => { delStore = x; }, remove: () => { removed++; delStore = null; } });
+    await del.record(st, 'a');
+    await del.clear();
+    const afterClear = await del.count();
+    const rebase = await del.record(st, 'b');
+    let clearFailed = false;
+    const delFail = createTimeline({ load: () => null, save: () => {}, remove: () => { throw new Error('busy'); } });
+    await delFail.record(st, 'a');
+    try { await delFail.clear(); } catch { clearFailed = true; }
+    check(removed === 1 && afterClear === 0 && rebase.length === st.quests.size && clearFailed && (await delFail.count()) === st.quests.size,
+      'timeline: clear() removes the stored copy and resets; a failed remove keeps the records');
+  }
+
+  // ---- save-independent checks (synthetic state, rules file only) ----
+  {
+    const sb = loadSandbox();
+    const i18n = sb.require('./lib/i18n');
+    const { makeEval, whereText, build } = sb.require('./lib/report');
+    const { validateRules } = sb.require('./lib/rules-schema');
+    const rules = rulesInfo.rules;
+    // Nothing reached: exact mode must never name anything.
+    const empty = { dateTime: '', playSeconds: 0, currentLevel: '', cycle: 0, finished: false, maps: new Set(), bells: new Set(), levels: new Set(), bosses: new Map(), quests: new Map() };
+    let same = 0, differ = [];
+    for (const lang of ['tr', 'en']) {
+      i18n.setLang(lang);
+      const ev = makeEval(empty, rules);
+      for (const [id, c] of Object.entries(rules.cutoffs)) {
+        const vague = i18n.pick(c.where);
+        if (whereText(c, ev, true) === vague) same++; else differ.push(`${lang}:${id}`);
+      }
+    }
+    const names = { quest: () => null, region: () => null, missable: () => null, known: () => true, notice: null };
+    const b = build(empty, rules, names, { exact: true });
+    check(differ.length === 0 && b.warnings.every((w) => Object.values(rules.cutoffs).some((c) => i18n.pick(c.where) === w.where)),
+      `exact mode with nothing reached: every cutoff keeps its vague text (${same} checked${differ.length ? `; named: ${differ.join(', ')}` : ''})`);
+    // An empty exact text falls back to the vague one.
+    const ev0 = makeEval({ ...empty, maps: new Set(['X']) }, rules);
+    check(whereText({ where: { en: 'vague', tr: 'vague' }, whereExact: { en: '', tr: '' }, exactWhen: { mapUnlocked: 'X' } }, ev0, true) === 'vague', 'an empty whereExact falls back to `where`');
+    // Load-time checks: unknown condition key (also nested) and an empty whereExact are rejected.
+    const withCut = (patch) => { const r = JSON.parse(JSON.stringify(rules)); Object.assign(r.cutoffs.chilian, patch); return r; };
+    const rejects = (r) => { try { validateRules(r, 'test.json'); return false; } catch { return true; } };
+    check(rejects(withCut({ exactWhen: { any: [{ mapUnlocked: 'A' }, { mapUnlokced: 'B' }] } })) && rejects(withCut({ exactWhen: { not: { bosKilled: 'x' } } }))
+      && rejects(withCut({ whereExact: { tr: '', en: ' ' } })) && !rejects(withCut({ exactWhen: { questBranch: 'Q', branch: '1', state: 'Completed' } })) && !rejects(rules),
+      'rules schema: unknown exactWhen keys (nested) and empty whereExact are rejected at load');
   }
 
   // TransientError for a truncated file, from the core directly.

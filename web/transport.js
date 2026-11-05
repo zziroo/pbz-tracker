@@ -13,6 +13,7 @@
 // Handles are remembered in IndexedDB (web/store.js) and need a read permission once per visit (a
 // "Continue with …" button: the prompt needs a click). Files are for this visit only.
 // Strictly read-only: handles are opened with mode 'read' and only getFile()/listing is used.
+// The quest timeline (lib/timeline.js) is kept in IndexedDB too (key 'timeline'), never in a file.
 // No network: nothing here calls fetch, XHR, WebSocket or sendBeacon.
 const core = require('../lib/core');
 const i18n = require('../lib/i18n');
@@ -22,7 +23,9 @@ const { build, statusMap, diff } = require('../lib/report');
 const { toState } = require('../lib/viewmodel');
 const { VERSION, TESTED_BUILDS, REPO_URL, LICENSE } = require('../lib/version');
 const { LINKS, allowedUrls } = require('../lib/links');
-const { validateRules } = require('../lib/rules-schema');
+const { validateRules, SCHEMA_VERSION } = require('../lib/rules-schema');
+const { createTimeline, exportTimeline } = require('../lib/timeline');
+const { collectDiagnostics, formatDiagnostics } = require('../lib/diagnostics');
 const NAMES = require('../data/names.json');
 const store = require('./store');
 const gamefs = require('./gamefs');
@@ -45,7 +48,7 @@ const sigOf = (f) => `${f.lastModified}:${f.size}`;
 const endsWith = (name, ext) => String(name || '').toLowerCase().endsWith(ext);
 
 function createTransport() {
-  let cfg = {};                 // persisted settings: uiLang?, names?, interval?, mode?, account?
+  let cfg = {};                 // persisted settings: uiLang?, names?, interval?, mode?, account?, exact?, timeline?
   const slots = {};             // what → { kind: 'handle'|'file'|'files', handle?, file?, files?, name, how, persisted }
   let ctx = {};                 // what the last load resolved (for Settings)
   let names = null, gameBuild = null, patches = [];
@@ -57,6 +60,14 @@ function createTransport() {
   let pending = null;           // slot waiting for a permission prompt ("Continue with …")
   const listeners = new Set();
   let current = null;
+  // Quest timeline in this browser's storage. store.set() keeps the value in memory when IndexedDB
+  // refuses it; that is reported as an error code in the diagnostics (never thrown into the read).
+  const timeline = createTimeline({
+    load: () => store.get('timeline'),
+    remove: () => store.del('timeline'),
+    save: async (d) => { if (!(await store.set('timeline', d))) { const e = new Error('not stored'); e.name = 'NotStored'; throw e; } },
+  });
+  const timelineOn = () => cfg.timeline !== false;
 
   const mode = () => (pickers.hasFsAccess() && cfg.mode !== 'files' ? 'fs' : 'files');
   const interval = () => (Number.isFinite(cfg.interval) ? clampInterval(cfg.interval) : DEFAULT_INTERVAL);
@@ -151,7 +162,7 @@ function createTransport() {
   // build() + change list; again=true re-evaluates the same read (new language / names) without
   // advancing the "previous read" (lib/session.js evaluate()).
   function evaluate(st, { again = false } = {}) {
-    const result = build(st, RULES, names);
+    const result = build(st, RULES, names, { exact: cfg.exact === true });
     const now = statusMap(result);
     if (!again) before = last;
     last = now;
@@ -196,9 +207,11 @@ function createTransport() {
   function startWatch(my, src, key, rememberedKey) {
     let have = false, lastSig = '', reading = false, again = false;
     const sigNow = async () => { try { return sigOf(await src.handle.getFile()); } catch { return ''; } };
-    const onRead = (r) => {
+    const onRead = async (r) => {
       const st = extract(r.latest.data);
       const { result, changes } = evaluate(st);
+      if (timelineOn()) await timeline.record(st); // never rejects
+      if (my !== gen) return;
       view = { st, result, changes, names, build: gameBuild, data: DATA_INFO };
       readAt = new Date().toISOString(); ok = true; error = null; errorKind = null; actions = [];
       push();
@@ -220,7 +233,7 @@ function createTransport() {
         if (my !== gen) return;
         have = true;
         lastSig = r.sig;          // signature of the bytes actually decoded
-        onRead(r);
+        await onRead(r);
       } catch (e) {
         lastSig = sig;            // retry only when the file changes again
         if (my === gen && e && e.name === 'NotAllowedError' && src.handle) {
@@ -558,6 +571,9 @@ function createTransport() {
       names: { current: cfg.names || '', options: nameOptions() },
       interval: interval(),
       intervalHint: w('intervalHint'),
+      exact: cfg.exact === true,
+      timeline: timelineOn(),
+      timelineHint: w('timelineHint'),
       rules: { source: 'embedded', file: null, version: RULES.rulesVersion },
       configPath: w('storage'),
       configLabel: w('storageLabel'),
@@ -586,6 +602,8 @@ function createTransport() {
       if (typeof body.account !== 'string' || !(ctx.accounts || []).some((a) => a.id === body.account)) throw new Error('account');
       patch.account = body.account;
     }
+    if (has('exact')) { if (typeof body.exact !== 'boolean') throw new Error('exact'); patch.exact = body.exact; }
+    if (has('timeline')) { if (typeof body.timeline !== 'boolean') throw new Error('timeline'); patch.timeline = body.timeline; }
     if (has('mode')) {
       if (body.mode !== 'fs' && body.mode !== 'files') throw new Error('mode');
       if (body.mode === 'fs' && !pickers.hasFsAccess()) throw new Error('mode');
@@ -597,10 +615,13 @@ function createTransport() {
     if (patch.interval && patch.interval !== interval()) { cfg.interval = patch.interval; watch?.setInterval(patch.interval); changed = true; }
     if (patch.account && patch.account !== ctx.account) { cfg.account = patch.account; again = true; }
     if (patch.mode && patch.mode !== mode()) { cfg.mode = patch.mode; again = true; }
+    let exactChanged = false;
+    if (has('exact') && patch.exact !== (cfg.exact === true)) { cfg.exact = patch.exact; exactChanged = true; }
+    if (has('timeline')) cfg.timeline = patch.timeline; // takes effect with the next read
     if (Object.keys(patch).length) await saveCfg();
     // Every pushed state re-blurs the journal in the page: push only when something actually changed.
     if (again) await reload();
-    else if (texts) await (queue = queue.then(relocalize, relocalize));
+    else if (texts || exactChanged) await (queue = queue.then(relocalize, relocalize));
     else if (changed) push();
     return settings();
   }
@@ -611,8 +632,27 @@ function createTransport() {
     for (const s of list) { delete slots[s]; await store.del(`h.${s}`); }
     if (what === 'exe' || what === 'all') await store.del('key'); // the derived key goes with the exe
     if (what === 'game' || what === 'all') { delete cfg.account; await saveCfg(); }
+    if (what === 'all') await timeline.clear(); // "forget everything" includes the quest timeline
     await reload();
     return settings();
+  }
+
+  // Diagnostics (lib/diagnostics.js: no paths, account ids or user names) + the plain-text report.
+  async function diagnostics() {
+    await restored;
+    const tl = await timeline.status();
+    const d = collectDiagnostics({
+      mode: 'web', version: VERSION, uiLang: i18n.getLang(), exact: cfg.exact === true,
+      rules: { version: RULES.rulesVersion, schemaVersion: SCHEMA_VERSION, source: 'embedded' },
+      keyMap: NAMES,
+      namesSource: names ? names.source : null,
+      nameFiles: [],
+      patches: ctx.patches || [],
+      build: gameBuild,
+      st: view ? view.st : null, result: view ? view.result : null, ok,
+      timeline: { enabled: timelineOn(), count: await timeline.count(), error: tl.error },
+    });
+    return { ...d, report: formatDiagnostics(d) };
   }
 
   const about = () => ({
@@ -680,6 +720,10 @@ function createTransport() {
     forget,
     openUrl,
     getAbout: async () => about(),
+    getDiagnostics: diagnostics,
+    getTimeline: async () => exportTimeline(await timeline.records(), VERSION),
+    // "Delete timeline" in Diagnostics (turning the switch off only stops recording).
+    deleteTimeline: async () => { await timeline.clear(); return { ok: true, count: 0 }; },
     action,
   };
 

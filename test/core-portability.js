@@ -2,7 +2,8 @@
 'use strict';
 // Proves the engine core is browser-safe.
 //   1. Static check: every file under lib/core/**, plus everything those files (and the shared pure
-//      modules lib/state.js, lib/report.js, lib/viewmodel.js) pull in through relative requires, must not
+//      modules lib/state.js, lib/report.js, lib/viewmodel.js, lib/diagnostics.js, lib/timeline.js) pull
+//      in through relative requires, must not
 //      reference Node built-ins or Node globals: no non-relative or dynamic require, no Buffer, no bare
 //      process, no __dirname / __filename, no global., no dynamic import(). Feature detection through
 //      globalThis (e.g. globalThis.process?.env) is allowed.
@@ -17,7 +18,7 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const CORE = path.join(ROOT, 'lib', 'core');
-const SHARED = ['lib/state.js', 'lib/report.js', 'lib/viewmodel.js'].map((f) => path.join(ROOT, f));
+const SHARED = ['lib/state.js', 'lib/report.js', 'lib/viewmodel.js', 'lib/diagnostics.js', 'lib/timeline.js'].map((f) => path.join(ROOT, f));
 
 const RULES = [
   { re: /\brequire\s*\(\s*(?!['"]\.\.?\/)/, why: 'non-relative or dynamic require' },

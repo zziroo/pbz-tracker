@@ -86,6 +86,51 @@
       'about.keys': 'Kısayollar',
       'about.keysText': '1–4: sekmeler · Esc: günlüğü yeniden gizle',
       'about.readOnly': 'Salt okunur: save dosyasına, oyuna ya da yamalara hiçbir şey yazmaz.',
+      'set.exact': 'Uyarılarda yer ve boss adlarını göster',
+      'set.exactHint': 'Ulaştığın bölgelerde yer ve boss adlarını yazar.',
+      'diag.title': 'Tanılama',
+      'diag.countTitle': 'Eşleşmemiş görev sayısı',
+      'diag.loadFailed': 'Tanılama bilgisi alınamadı.',
+      'diag.note': 'Hata bildirimi için. Görev ve kural kimlikleri spoiler içerebilir. Rapor yol, Steam hesap kimliği ya da kullanıcı adı içermez.',
+      'diag.tool': 'Araç',
+      'diag.uiLang': 'Arayüz dili',
+      'diag.rules': 'Kurallar',
+      'diag.schema': 'biçim {v}',
+      'diag.names': 'Ad tablosu',
+      'diag.namesQuests': 'names.json: {n} görev',
+      'diag.nameSource': 'Ad kaynağı',
+      'diag.srcPatch': 'yama: {name}',
+      'diag.srcTable': 'ad tablosu: {name}',
+      'diag.patch': 'Metin yaması',
+      'diag.none': 'yok',
+      'diag.build': 'Oyun build',
+      'diag.buildUnknown': 'bilinmiyor',
+      'diag.tested': 'doğrulandı',
+      'diag.untested': 'doğrulanmadı',
+      'diag.save': 'Save',
+      'diag.saveDate': 'tarih {d} · bölge {l} · {n} görev',
+      'diag.saveNone': 'okunmadı',
+      'diag.unmatched': 'Eşleşmemiş görevler ({n})',
+      'diag.unmatchedHint': 'Save\'de olup ad tablosunun tanımadığı görevler (ör. oyun güncellemesiyle gelen yeni bir yan görev). Bunlara bağlı kurallar "belirsiz" görünebilir.',
+      'diag.undetectable': 'Bu save\'in menzilindeki, algılanamayan kurallar ({n})',
+      'diag.reason.detectFalse': 'save\'den okunamıyor',
+      'diag.reason.noQuestId': 'görev kimliği bilinmiyor',
+      'diag.copy': 'Raporu kopyala',
+      'diag.copied': 'Kopyalandı.',
+      'diag.copyFailed': 'Kopyalanamadı.',
+      'diag.timeline': 'Zaman çizelgesi',
+      'diag.timelineOn': 'Görev zaman çizelgesini kaydet',
+      'diag.timelineHint': 'Her okumada görev durum değişikliklerini bu bilgisayarda pbz-tracker.timeline.json dosyasına yazar (en çok 2000 kayıt). Oyun bittikten sonra kuralları doğrulamak için. Dışa aktarılan dosya oynama zamanlarını (save saatlerini) içerir.',
+      'diag.notRecording': 'Kaydedilmiyor: araç oyun klasörünün içinde; exe\'yi başka bir klasöre taşı.',
+      'diag.deleteTimeline': 'Zaman çizelgesini sil',
+      'diag.deleteConfirm': 'Zaman çizelgesindeki bütün kayıtlar silinecek. Geri alınamaz. Devam edilsin mi?',
+      'diag.deleted': 'Zaman çizelgesi silindi.',
+      'diag.deleteFailed': 'Zaman çizelgesi silinemedi.',
+      'diag.timelineCount': '{n} kayıt',
+      'diag.timelineError': 'kaydedilemiyor ({code})',
+      'diag.export': 'Zaman çizelgesini indir',
+      'diag.copyTimeline': 'Zaman çizelgesini kopyala',
+      'diag.exportFailed': 'Zaman çizelgesi alınamadı.',
     },
     en: {
       'tab.warnings': 'Warnings',
@@ -164,6 +209,51 @@
       'about.keys': 'Shortcuts',
       'about.keysText': '1–4: tabs · Esc: hide the journal again',
       'about.readOnly': 'Read-only: never writes to your save, the game or any patch.',
+      'set.exact': 'Show place and boss names in warnings',
+      'set.exactHint': 'Names places and bosses only in areas you have reached.',
+      'diag.title': 'Diagnostics',
+      'diag.countTitle': 'Unmatched quests',
+      'diag.loadFailed': 'Could not load the diagnostics.',
+      'diag.note': 'For bug reports. Quest and rule ids may contain spoilers. The report contains no paths, Steam account ids or user names.',
+      'diag.tool': 'Tool',
+      'diag.uiLang': 'Interface language',
+      'diag.rules': 'Rules',
+      'diag.schema': 'format {v}',
+      'diag.names': 'Name table',
+      'diag.namesQuests': 'names.json: {n} quests',
+      'diag.nameSource': 'Name source',
+      'diag.srcPatch': 'patch: {name}',
+      'diag.srcTable': 'name table: {name}',
+      'diag.patch': 'Text patch',
+      'diag.none': 'none',
+      'diag.build': 'Game build',
+      'diag.buildUnknown': 'unknown',
+      'diag.tested': 'tested',
+      'diag.untested': 'not tested',
+      'diag.save': 'Save',
+      'diag.saveDate': 'date {d} · level {l} · {n} quests',
+      'diag.saveNone': 'not read',
+      'diag.unmatched': 'Unmatched quests ({n})',
+      'diag.unmatchedHint': 'Quests in your save that the name table does not know (e.g. a new side quest after a game update). Rules tied to them may show as "unknown".',
+      'diag.undetectable': 'Undetectable rules in range for this save ({n})',
+      'diag.reason.detectFalse': 'not readable from the save',
+      'diag.reason.noQuestId': 'quest id not known',
+      'diag.copy': 'Copy report',
+      'diag.copied': 'Copied.',
+      'diag.copyFailed': 'Could not copy.',
+      'diag.timeline': 'Timeline',
+      'diag.timelineOn': 'Record the quest timeline',
+      'diag.timelineHint': 'On every read, quest state changes are written to pbz-tracker.timeline.json on this computer (at most 2000 records). For checking the rules after the game. An export contains your play times (save timestamps).',
+      'diag.notRecording': 'Not recording: the tool is inside the game folder; move the exe to another folder.',
+      'diag.deleteTimeline': 'Delete timeline',
+      'diag.deleteConfirm': 'This deletes every record of the timeline. It cannot be undone. Continue?',
+      'diag.deleted': 'Timeline deleted.',
+      'diag.deleteFailed': 'Could not delete the timeline.',
+      'diag.timelineCount': '{n} records',
+      'diag.timelineError': 'cannot be saved ({code})',
+      'diag.export': 'Export timeline',
+      'diag.copyTimeline': 'Copy timeline',
+      'diag.exportFailed': 'Could not get the timeline.',
     },
   };
 
@@ -182,6 +272,10 @@
     picking: null,          // 'game' | 'save' while the server-side dialog is open
     pickMsg: null,          // { what, kind: 'ok'|'muted'|'error', text }
     settingsMsg: null,      // { kind, text }
+    diag: null,             // diagnostics object (docs/ui-api.md), loaded with the settings
+    diagError: false,
+    diagOpen: false,        // the collapsible panel survives re-renders
+    diagMsg: null,          // { kind, key }
     sseOk: true,
     fetchOk: true,
   };
@@ -258,6 +352,9 @@
       forget: (what) => api('POST', '/api/forget', { what }),
       openUrl: (url) => api('POST', '/api/open-url', { url }),
       getAbout: () => api('GET', '/api/about'),
+      getDiagnostics: () => api('GET', '/api/diagnostics'),
+      getTimeline: () => api('GET', '/api/timeline'),
+      deleteTimeline: () => api('POST', '/api/timeline/delete', {}),
       heartbeat: () => api('POST', '/api/heartbeat', {}),
     };
   }
@@ -335,6 +432,7 @@
       if (app.about || app.tab === 'about') loadAbout();
     }
     // Settings may have changed on the server (pick/forget/settings); refresh them unless the user is editing.
+    // (loadSettings also refreshes the diagnostics: unmatched quests and the timeline count follow the save.)
     if (app.tab === 'settings' && !isEditingSettings()) loadSettings();
   }
 
@@ -348,13 +446,26 @@
   }
 
   async function loadSettings() {
+    const diag = loadDiagnostics(false);
     try {
       app.settings = await T.getSettings();
       app.settingsError = false;
     } catch {
       app.settingsError = !app.settings;
     }
+    await diag;
     renderSettings();
+  }
+
+  async function loadDiagnostics(render) {
+    if (typeof T.getDiagnostics !== 'function') return;
+    try {
+      app.diag = await T.getDiagnostics();
+      app.diagError = false;
+    } catch {
+      app.diagError = !app.diag;
+    }
+    if (render) renderSettings();
   }
 
   async function loadAbout() {
@@ -707,6 +818,11 @@
       on: { change: onIntervalChange, keydown: (e) => { if (e.key === 'Enter') e.target.blur(); } },
     });
 
+    // Exact mode (off by default): place and boss names in the warnings, only for areas already reached.
+    const exact = typeof s.exact === 'boolean'
+      ? h('div', { class: 'field-check' }, checkRow('set-exact', t('set.exact'), t('set.exactHint'), s.exact, (v) => saveField({ exact: v })))
+      : null;
+
     const general = h('section', { class: 'set-card' },
       h('h2', { class: 'set-title', text: t('set.general') }),
       h('div', { class: 'field' }, h('label', { class: 'field-label', attrs: { for: 'set-uilang' }, text: t('set.uiLang') }), langSel),
@@ -714,6 +830,7 @@
       h('div', { class: 'field' },
         h('label', { class: 'field-label', attrs: { for: 'set-interval' }, text: t('set.interval') }),
         h('div', { class: 'field-stack' }, interval, h('p', { class: 'hint', attrs: { id: 'set-interval-hint' }, text: s.intervalHint || t('set.intervalHint') }))),
+      exact,
       app.settingsMsg ? h('p', { class: 'status-line ' + app.settingsMsg.kind, attrs: { role: 'status' }, text: t(app.settingsMsg.key) }) : null);
 
     // Rules (read-only)
@@ -727,11 +844,143 @@
         h('dt', { text: t('set.rulesVersion') }), h('dd', { class: 'mono', text: r.version !== undefined && r.version !== null ? String(r.version) : '—' })),
       h('p', { class: 'config-path' }, (s.configLabel || t('set.config')) + ': ', h('span', { class: 'mono break', text: s.configPath || '—' })));
 
-    p.replaceChildren(h('div', { class: 'set-grid' }, paths, general, rules));
+    p.replaceChildren(h('div', { class: 'set-grid' }, paths, general, rules), renderDiagnostics(s));
     if (focusId) {
       const el = document.getElementById(focusId);
       if (el && !el.disabled) el.focus();
     }
+  }
+
+  // <label> with a checkbox, a label line and a hint line.
+  function checkRow(id, label, hint, checked, onChange) {
+    return h('label', { class: 'check-row', attrs: { for: id } },
+      h('input', { attrs: { id, type: 'checkbox', checked: !!checked, 'aria-describedby': id + '-hint' }, on: { change: (e) => onChange(e.target.checked) } }),
+      h('span', { class: 'check-text' },
+        h('span', { class: 'check-label', text: label }),
+        h('span', { class: 'hint', attrs: { id: id + '-hint' }, text: hint })));
+  }
+
+  // ---- Diagnostics (collapsible, bottom of Settings) ----
+  function renderDiagnostics(s) {
+    if (typeof T.getDiagnostics !== 'function') return null;
+    const d = app.diag;
+    const unmatched = d && Array.isArray(d.unmatched) ? d.unmatched : [];
+    const undet = d && Array.isArray(d.undetectable) ? d.undetectable : [];
+    const count = h('span', { class: 'diag-count' + (unmatched.length ? ' warn' : ''), attrs: { title: t('diag.countTitle'), 'aria-label': t('diag.countTitle') + ': ' + unmatched.length }, text: d ? String(unmatched.length) : '–' });
+    const summary = h('summary', { class: 'diag-summary' }, h('span', { text: t('diag.title') }), count);
+    const details = h('details', { class: 'set-card diag', attrs: { id: 'diag', open: app.diagOpen } }, summary);
+    details.addEventListener('toggle', () => { app.diagOpen = details.open; });
+    if (!d) {
+      details.append(h('div', { class: 'diag-body' }, h('p', { class: app.diagError ? 'error-inline' : 'loading', text: app.diagError ? t('diag.loadFailed') : t('loading') })));
+      return details;
+    }
+    const str = (v) => (v === null || v === undefined || v === '' ? '—' : String(v));
+    const tool = d.tool || {}, rules = d.rules || {}, names = d.names || {}, build = d.build || {}, save = d.save || {}, tl = d.timeline;
+    const src = names.source === 'patch' ? t('diag.srcPatch', { name: names.sourceName })
+      : names.source === 'table' ? t('diag.srcTable', { name: names.sourceName }) : '—';
+    const patches = Array.isArray(d.patches) ? d.patches : [];
+    const kv = h('dl', { class: 'kv' },
+      h('dt', { text: t('diag.tool') }), h('dd', { class: 'mono', text: str(tool.version) + ' (' + str(tool.mode) + ')' }),
+      h('dt', { text: t('diag.uiLang') }), h('dd', { class: 'mono', text: str(tool.uiLang) }),
+      h('dt', { text: t('diag.rules') }), h('dd', { class: 'mono', text: str(rules.version) + ' · ' + t('diag.schema', { v: str(rules.schemaVersion) }) }),
+      h('dt', { text: t('diag.names') }), h('dd', { text: t('diag.namesQuests', { n: str(names.keyMapQuests) }) + (Array.isArray(names.sidecars) && names.sidecars.length ? ' · ' + names.sidecars.join(', ') : '') }),
+      h('dt', { text: t('diag.nameSource') }), h('dd', { class: 'break', text: src }),
+      h('dt', { text: t('diag.patch') }), h('dd', { class: 'mono break', text: patches.length ? patches.join(', ') : t('diag.none') }),
+      h('dt', { text: t('diag.build') }), h('dd', { class: 'mono', text: build.id ? build.id + ' · ' + t(build.tested ? 'diag.tested' : 'diag.untested') : t('diag.buildUnknown') }),
+      h('dt', { text: t('diag.save') }), h('dd', { class: 'mono', text: save.date || save.read ? t('diag.saveDate', { d: str(save.date), l: str(save.level), n: str(save.quests) }) : t('diag.saveNone') }));
+
+    const list = (items, fmt) => (items.length ? h('ul', { class: 'diag-list mono' }, ...items.map((x) => h('li', { text: fmt(x) }))) : h('p', { class: 'muted', text: t('diag.none') }));
+    const body = h('div', { class: 'diag-body' },
+      h('p', { class: 'hint', text: t('diag.note') }),
+      kv,
+      h('h3', { class: 'diag-sub', text: t('diag.unmatched', { n: unmatched.length }) }),
+      list(unmatched, (q) => q.id + ' — ' + str(q.folder) + ' · ' + str(q.completion)),
+      h('p', { class: 'hint', text: t('diag.unmatchedHint') }),
+      h('h3', { class: 'diag-sub', text: t('diag.undetectable', { n: undet.length }) }),
+      list(undet, (r) => r.id + ' — ' + str(r.cutoff) + ' · ' + (r.reason === 'detectFalse' || r.reason === 'noQuestId' ? t('diag.reason.' + r.reason) : str(r.reason)) + (r.status ? ' · ' + r.status : '')),
+      h('div', { class: 'diag-actions' },
+        h('button', { class: 'btn', attrs: { type: 'button', id: 'diag-copy' }, text: t('diag.copy'), on: { click: () => copyReport() } })));
+
+    if (tl && typeof s.timeline === 'boolean') {
+      const hasTimeline = typeof T.getTimeline === 'function';
+      body.append(
+        h('h3', { class: 'diag-sub', text: t('diag.timeline') }),
+        checkRow('set-timeline', t('diag.timelineOn'), s.timelineHint || t('diag.timelineHint'), s.timeline, (v) => saveField({ timeline: v }).then(() => loadDiagnostics(true))),
+        h('p', { class: 'hint mono', text: t('diag.timelineCount', { n: str(tl.count) }) + (tl.error ? ' · ' + t('diag.timelineError', { code: tl.error }) : '') }),
+        // Window only: switched on, but the tool sits inside the game/save folder, so nothing is written.
+        tl.enabled === false && s.timeline === true ? h('p', { class: 'status-line error', text: t('diag.notRecording') }) : null,
+        hasTimeline ? h('div', { class: 'diag-actions' },
+          h('button', { class: 'btn', attrs: { type: 'button', id: 'diag-export', disabled: !tl.count }, text: t('diag.export'), on: { click: () => exportTimeline() } }),
+          h('button', { class: 'btn btn-quiet', attrs: { type: 'button', id: 'diag-copy-timeline', disabled: !tl.count }, text: t('diag.copyTimeline'), on: { click: () => copyTimeline() } }),
+          typeof T.deleteTimeline === 'function'
+            ? h('button', { class: 'btn btn-quiet', attrs: { type: 'button', id: 'diag-delete-timeline', disabled: !tl.count }, text: t('diag.deleteTimeline'), on: { click: () => deleteTimeline() } })
+            : null) : null);
+    }
+    if (app.diagMsg) body.append(h('p', { class: 'status-line ' + app.diagMsg.kind, attrs: { role: 'status' }, text: t(app.diagMsg.key) }));
+    details.append(body);
+    return details;
+  }
+
+  let diagMsgTimer = 0;
+  function setDiagMsg(kind, key) {
+    app.diagMsg = { kind, key };
+    renderSettings();
+    clearTimeout(diagMsgTimer);
+    diagMsgTimer = setTimeout(() => { app.diagMsg = null; if (!isEditingSettings()) renderSettings(); }, 4000);
+  }
+
+  // Clipboard: the async API (needs a secure context such as 127.0.0.1 or https), else a hidden textarea.
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') { await navigator.clipboard.writeText(text); return true; }
+    } catch { /* fall back */ }
+    const ta = h('textarea', { class: 'copy-buffer', attrs: { readonly: true, 'aria-hidden': 'true', tabindex: '-1' } });
+    ta.value = text;
+    document.body.append(ta);
+    let ok = false;
+    try { ta.select(); ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  }
+
+  async function copyReport() {
+    await loadDiagnostics(false); // the latest read
+    const text = app.diag && typeof app.diag.report === 'string' ? app.diag.report : '';
+    const ok = text ? await copyText(text) : false;
+    setDiagMsg(ok ? 'ok' : 'error', ok ? 'diag.copied' : 'diag.copyFailed');
+  }
+
+  async function timelineText() {
+    const data = await T.getTimeline();
+    return JSON.stringify(data, null, 1) + '\n';
+  }
+
+  async function exportTimeline() {
+    let text;
+    try { text = await timelineText(); } catch { setDiagMsg('error', 'diag.exportFailed'); return; }
+    // A Blob URL and a detached <a download>: no navigation, no inline script, nothing leaves the machine.
+    const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pbz-tracker-timeline.json';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }
+
+  // Deleting is the only way to remove records; the switch above only stops recording.
+  async function deleteTimeline() {
+    if (!window.confirm(t('diag.deleteConfirm'))) return;
+    let ok = false;
+    try { const r = await T.deleteTimeline(); ok = !!(r && r.ok); } catch { ok = false; }
+    await loadDiagnostics(false);
+    setDiagMsg(ok ? 'ok' : 'error', ok ? 'diag.deleted' : 'diag.deleteFailed');
+  }
+
+  async function copyTimeline() {
+    let text;
+    try { text = await timelineText(); } catch { setDiagMsg('error', 'diag.exportFailed'); return; }
+    const ok = await copyText(text);
+    setDiagMsg(ok ? 'ok' : 'error', ok ? 'diag.copied' : 'diag.copyFailed');
   }
 
   async function saveField(patch) {

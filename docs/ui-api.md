@@ -35,8 +35,10 @@ localized** from the server in the current UI language. The page only holds its 
 ### `POST /api/heartbeat` → `204`
 
 ### `GET /api/settings` → `Settings`
-### `POST /api/settings` body `{ "uiLang"?: "tr"|"en", "names"?: string, "interval"?: number }` → `Settings`
-Persists to `pbz-tracker.config.json`, re-reads, pushes a new `state` event.
+### `POST /api/settings` body `{ "uiLang"?: "tr"|"en", "names"?: string, "interval"?: number, "exact"?: boolean, "timeline"?: boolean }` → `Settings`
+Persists to `pbz-tracker.config.json`, re-reads, pushes a new `state` event. `exact` re-evaluates the last read
+(warnings name places and bosses for areas already reached; `exactWhen` in `data/rules.json`) and pushes a new
+state; `timeline` takes effect with the next read and pushes nothing.
 
 ### `POST /api/pick` body `{ "what": "game" | "save" }` → `{ "ok": boolean, "path": string|null, "error": string|null }`
 Opens the native picker **on the server side** (the existing PowerShell dialog), validates, stores in the
@@ -49,6 +51,20 @@ Opens the URL in the **system default browser** (not the app window). Only URLs 
 (the repository URL and the guide/tech URLs listed in `About.links`) are accepted.
 
 ### `GET /api/about` → `About`
+
+### `GET /api/diagnostics` → `Diagnostics`
+Built by `lib/diagnostics.js` (shared with the web version). No personal data: no paths, no Steam account ids or
+folder names, no user names, no key material; of the save time only the date. `report` is the same as plain text
+(English) for a GitHub issue.
+
+### `GET /api/timeline` → `TimelineExport` (`Content-Disposition: attachment; filename="pbz-tracker-timeline.json"`)
+The quest timeline (`pbz-tracker.timeline.json`). Needs the token header like every `/api/*` call (403 without);
+the page fetches it and saves it through a Blob URL.
+
+### `POST /api/timeline/delete` body `{}` → `{ ok: boolean, count: number }`
+Deletes `pbz-tracker.timeline.json` (and a leftover `.tmp`) and resets the in-memory snapshot, so the next read
+records a fresh baseline. Refused (`ok: false`) when the tool sits inside the game or save folder. Turning the
+`timeline` setting off only stops recording; it never deletes.
 
 ## Types
 
@@ -97,6 +113,29 @@ interface Settings {
   interval: number;            // seconds, poll fallback (2..3600)
   rules: { source: 'embedded' | 'sidecar' | 'explicit'; file: string | null; version: string | number };
   configPath: string;
+  exact: boolean;              // "Show place and boss names in warnings" (default false; --exact)
+  timeline: boolean;           // record the quest timeline (default true; --no-timeline)
+}
+
+interface Diagnostics {
+  tool: { version: string; mode: 'window' | 'web' | 'cli'; uiLang: 'tr' | 'en'; exact: boolean };
+  rules: { version: string; schemaVersion: string; source: 'embedded' | 'sidecar' | 'explicit' | '?' };
+  names: { keyMapQuests: number; source: 'patch' | 'table' | null; sourceName: string | null; sidecars: string[] };
+  patches: string[];           // text patch file names (no folders)
+  build: { id: string | null; tested: boolean };
+  save: { read: boolean; date: string | null; level: string | null; quests: number | null };  // date "YYYY-MM-DD"
+  unmatched: Array<{ id: string; folder: string; completion: string | null }>;   // quests the name table does not know
+  undetectable: Array<{ id: string; cutoff: string | null; reason: 'detectFalse' | 'noQuestId'; status: Status | null }>;  // undetectable rules in range for this save
+  timeline: { enabled: boolean; count: number; error: string | null } | null;     // error: a short code only
+  report: string;              // plain text of all of the above
+}
+
+interface TimelineExport {
+  tool: 'pbz-tracker'; version: string; format: 1; exportedAt: string; count: number;
+  records: Array<{ t: string; readAt: string; questId: string; folder: string; from: string | null; to: string | null;
+                   branches: Record<string, string>; progress: string | null; level: string | null }>;
+  // from: null = the quest appeared; to: null = the quest is no longer in the save (e.g. an older save was loaded).
+  // t is the save's own date and time: an export contains play times.
 }
 
 interface About {
@@ -112,7 +151,8 @@ interface About {
 ## Transport seam and the web version (v0.5)
 
 `ui/app.js` talks to its backend through one object:
-`{ needsToken, getState(), subscribe(onState), getSettings(), postSettings(patch), pick(what), forget(what), openUrl(url), getAbout(), heartbeat?(), action?(id) }`.
+`{ needsToken, getState(), subscribe(onState), getSettings(), postSettings(patch), pick(what), forget(what), openUrl(url), getAbout(), getDiagnostics?(), getTimeline?(), deleteTimeline?(), heartbeat?(), action?(id) }`.
+Without `getDiagnostics` the Settings tab has no Diagnostics panel.
 By default it is the HTTP transport above (`fetch` + `EventSource`, token, heartbeat). The static web version
 (`node build/build.js --web` → `web/dist/`) loads `web.js` before `app.js`; it sets `window.PBZ_TRANSPORT`
 (`web/transport.js`), which implements the same calls in the browser (File System Access handles or plain
@@ -125,11 +165,15 @@ Optional fields only the web transport sends (the local server never does, so th
 - `State.header.build.quiet: true` → an unknown build is shown without the "untested" colour.
 - `Settings.paths: Array<{ what, label, value, source, sourceText?, warn?, canForget? }>` → replaces the two default path rows (`what`: `game | save | exe | paks | steam`; Choose/Forget call `pick(what)` / `forget(what)`).
 - `Settings.extraFields: Array<{ id, label, value, options, hint? }>` → selects in the paths card (`account`, `mode`); a change posts `{ [id]: value }`.
-- `Settings.pathsNote`, `Settings.configLabel`, `Settings.intervalHint`, `About.linksHint` → replace the corresponding fixed texts.
+- `Settings.pathsNote`, `Settings.configLabel`, `Settings.intervalHint`, `Settings.timelineHint`, `About.linksHint` → replace the corresponding fixed texts.
+- The web version keeps the quest timeline in IndexedDB (key `timeline`); `getTimeline()` returns the same `TimelineExport`, `deleteTimeline()` removes it, and so does `forget('all')`.
 
 ## Page behaviour (summary)
 
 - Tabs: **Warnings** (default), **Journal**, **Settings**, **About**. Keys `1`-`4` switch tabs, `Esc` re-blurs the journal.
+- Settings: General has the "exact names" checkbox; a collapsible **Diagnostics** panel at the bottom (count of unmatched
+  quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
+  Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.
 - Journal rows: names blurred by default (`filter: blur`), status badges never blurred. Click a row → that row
   unblurs. "Show all" asks for confirmation. Leaving the tab or any new `state` re-blurs everything.
 - Language toggle (TR/EN) top right.

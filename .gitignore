@@ -22,3 +22,6 @@ ManualSave*.json
 /names.*.json
 # Seçilen oyun/save yolları (kullanıcıya özel)
 pbz-tracker.config.json
+# Lokal görev zaman çizelgesi (kullanıcıya özel)
+pbz-tracker.timeline.json
+pbz-tracker.timeline.json.tmp
