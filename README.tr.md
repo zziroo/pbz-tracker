@@ -1,5 +1,9 @@
 # pbz-tracker
 
+**▶ Web sürümünü aç: https://zziroo.github.io/pbz-tracker/**
+
+**⬇ Exe'yi indir (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0**
+
 **Phantom Blade Zero** (PC, Steam) için yerel, **salt okunur**, spoilersız kaçırılabilir takipçisi. Save'ini okur ve yalnız bir şeyi kalıcı olarak kaçırmak üzereysen uyarır. Geri kalanı, sen isteyene kadar gizli kalır.
 
 *English: [README.md](README.md)*
@@ -14,7 +18,7 @@
 
 ## Kurulum
 
-Releases sayfasından `pbz-tracker-v0.4.0.exe`'yi indir. Tek dosya, kurulum gerekmez.
+Releases sayfasından `pbz-tracker-v0.5.0.exe`'yi indir. Tek dosya, kurulum gerekmez.
 
 Exe kod imzalı olmadığı için Windows SmartScreen ilk çalıştırmada uyarabilir. "Ek bilgi → Yine de çalıştır" de, ya da exe'yi kaynaktan kendin derle (aşağıda).
 
@@ -22,14 +26,14 @@ Exe kod imzalı olmadığı için Windows SmartScreen ilk çalıştırmada uyara
 
 **Çift tıkla; bir pencere açılır.** Save dosyanı exe'nin üstüne de bırakabilirsin. Pencere, oyun her kaydettiğinde kendiliğinden yenilenir; oyunun yanında açık bırakabilirsin.
 
-![Uyarılar sekmesi](docs/screenshots/ui-warnings.png)
+![Uyarılar sekmesi](docs/screenshots/web-tr-warnings.png)
 
 - **Uyarılar** (varsayılan sekme): yalnız kaçırmak üzere olduğun şeyler, ya da "Şu an kaçırma riski yok."
 - **Günlük**: günlüğündeki görevlerin durumu, aşama sayaçları, kaçanlar ve mor görev sayımı. Adlar bulanıktır, bir satıra tıklayınca açılır; her yenilemede yeniden bulanıklaşır.
 - **Ayarlar**: dil (TR/EN), ad kaynağı, yenileme aralığı, oyun klasörü / save dosyası (seç ya da unut).
 - **Hakkında**: sürüm, doğrulanan oyun build'i, lisans, rehber bağlantıları.
 
-![Günlük sekmesi, bulanık](docs/screenshots/ui-journal.png)
+![Günlük sekmesi, bulanık](docs/screenshots/web-tr-journal.png)
 
 Pencere, uygulama modunda açılan Microsoft Edge'dir (ya da Chrome); sekme ve adres çubuğu yoktur. Edge ya da Chrome yoksa sayfa varsayılan tarayıcında açılır. Pencereyi kapatınca araç yaklaşık 10 saniye içinde kapanır. Exe'nin üstüne `PBZSaveGame.sav` dosyasını, `SaveGames\Steam` altındaki hesap klasörünü, oyun klasörünü ya da `PBZ.exe`'yi bırakabilirsin.
 
@@ -38,16 +42,16 @@ Pencere, uygulama modunda açılan Microsoft Edge'dir (ya da Chrome); sekme ve a
 v0.3'ün terminal modu duruyor. `--cli` tek başına save'i konsolda izler (G gizli bölümleri açar/kapatır, Q çıkar). `--show`, `--watch`, `--dump`, `--save` gibi terminal seçenekleri de terminalde çalışır:
 
 ```
-pbz-tracker-v0.4.0.exe --cli         # konsolda izle; G = gizli bölümler, Q = çık
-pbz-tracker-v0.4.0.exe --no-color    # bir kez oku ve yaz
-pbz-tracker-v0.4.0.exe --watch       # oyun kaydettikçe yenile
-pbz-tracker-v0.4.0.exe --show        # gizli bölümleri de yaz
-pbz-tracker-v0.4.0.exe --lang tr     # arayüz dili: tr ya da en (varsayılan: İngilizce; sistem dili Türkçe ve Türkçe yama kuruluysa Türkçe)
-pbz-tracker-v0.4.0.exe --names en    # ad kaynağı: bulunan bir metin yaması ya da ad tablosu
-pbz-tracker-v0.4.0.exe --dump        # en yeni save slotunu JSON olarak .\out klasörüne yaz (hata ayıklama)
-pbz-tracker-v0.4.0.exe --ui          # pencereyi terminalden aç (--no-edge: varsayılan tarayıcı)
-pbz-tracker-v0.4.0.exe --version
-pbz-tracker-v0.4.0.exe --help
+pbz-tracker-v0.5.0.exe --cli         # konsolda izle; G = gizli bölümler, Q = çık
+pbz-tracker-v0.5.0.exe --no-color    # bir kez oku ve yaz
+pbz-tracker-v0.5.0.exe --watch       # oyun kaydettikçe yenile
+pbz-tracker-v0.5.0.exe --show        # gizli bölümleri de yaz
+pbz-tracker-v0.5.0.exe --lang tr     # arayüz dili: tr ya da en (varsayılan: İngilizce; sistem dili Türkçe ve Türkçe yama kuruluysa Türkçe)
+pbz-tracker-v0.5.0.exe --names en    # ad kaynağı: bulunan bir metin yaması ya da ad tablosu
+pbz-tracker-v0.5.0.exe --dump        # en yeni save slotunu JSON olarak .\out klasörüne yaz (hata ayıklama)
+pbz-tracker-v0.5.0.exe --ui          # pencereyi terminalden aç (--no-edge: varsayılan tarayıcı)
+pbz-tracker-v0.5.0.exe --version
+pbz-tracker-v0.5.0.exe --help
 ```
 
 `--dump`, save'inin çözülmüş tam dökümünü yazar (`out\latest.json`). Oynama geçmişin gibi kişisel veri içerebilir; paylaşma. Oyun ya da save klasörüne yazmayı reddeder.
@@ -85,7 +89,7 @@ Steam build **26367565** üzerinde doğrulandı. Başlık satırı kurulu build'
 Kurallar (`data/rules.json`) ve ad tabloları exe'ye gömülüdür, ama **exe'nin yanına** konan dosyalar önceliklidir:
 
 1. Bu depodaki güncel `data/rules.json`'ı indir (Raw → `rules.json` olarak kaydet).
-2. `pbz-tracker-v0.4.0.exe` ile aynı klasöre koy.
+2. `pbz-tracker-v0.5.0.exe` ile aynı klasöre koy.
 3. Aracı çalıştır. Başlıkta `Kurallar: yanındaki rules.json (sürüm …)` yazar.
 
 Ad tabloları da aynı şekilde çalışır: exe'nin yanındaki `names.<dil>.json` o dili değiştirir ya da ekler. Kural dosyası `--rules <yol>` ile açıkça da verilebilir. Bozuk bir dosya ya da başka bir kural biçimi (`schemaVersion`) için yazılmış dosya, gömülü kopyaya sessizce düşmek yerine aracı hatayla durdurur. Gömülü kurallara dönmek için dosyayı sil. Aracın kendisi hiçbir şey indirmez.

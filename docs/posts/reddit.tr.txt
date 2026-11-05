@@ -1,16 +1,17 @@
-Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok)
+Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok, tarayıcıda çalışıyor)
 
 Rehber okumadan oynamak istedim ama "yan görevi atladın, gerçek son gitti" riskini de almak istemedim. Araç rehber değil: save dosyanı salt okunur açıyor, geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan kaçırılabilir görev/eşya varsa önceden uyarıyor. Yoksa sadece şu an bir şey kaçırma riski yok diyor.
 
-Uyarılar sadece nerede duracağını söylüyor ("bu bölgenin son dövüşünden önce" gibi); boss adı, ileriki bölge, hikâye yok. Görev adları sadece zaten günlüğündeyse çıkıyor. Türkçe yama kuruluysa otomatik algılıyor, görev adlarını yamadan okuyor.
+Uyarılar sadece nerede duracağını söylüyor ("bu bölgenin son dövüşünden önce" gibi); boss adı, ileriki bölge, hikâye yok. Görev adları sadece zaten günlüğündeyse çıkıyor. Günlük sekmesi bulanık, bir satır ancak tıklayınca açılıyor; yanlışlıkla bir şey görmüyorsun. Türkçe yama kuruluysa otomatik algılıyor, görev adlarını yamadan okuyor; arayüzde TR/EN geçişi var.
 
-Tek exe, kurulum yok, oyun açıkken çalışıyor, --watch ile her kayıtta yenileniyor. Save'e ve oyun klasörüne hiç yazmıyor, internete çıkmıyor, oyuna dokunmuyor. İmzasız olduğu için SmartScreen söylenir; kaynak açık, istersen kendin derle.
+Artık bir web sayfası: bağlantıya tıkla, oyun klasörünü seç, bitti. Hiçbir şey indirilmiyor, hiçbir dosya yüklenmiyor, her şey tarayıcında çalışıyor ve oyun her kaydettiğinde kendiliğinden yenileniyor. Klasör erişimi için Chrome ya da Edge gerekiyor; Firefox/Safari'de save'i sürükleyip bırakabilirsin, sadece otomatik yenileme olmuyor. Yerel uygulama istersen aynı şeyi kendi penceresinde açan bir Windows exe'si de var (imzasız olduğu için SmartScreen söylenir; kaynak açık, istersen kendin derle). İkisi de save'e ve oyun klasörüne yazmıyor, oyuna dokunmuyor.
 
-Kusursuz değil: v0.3.0, oyunun sonlarındaki iki geri dönüşü olmayan nokta henüz yok, bazı eşleştirmeler tahmin (* ile işaretli), bir aksesuar save'den okunamıyor. Yanlış bir şey görürseniz yazın, düzelteyim.
+Kusursuz değil: v0.5.0, ileriki bazı kesim noktaları save'den henüz algılanamıyor, bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor ve kurallar rehberlerden ve oyuncu raporlarından geliyor. Yanlış bir şey görürseniz yazın, düzelteyim.
 
-Kurallar Game8/Maxroll/PowerPyx/allthings.how rehberlerinden, repoda kaynak var.
+Kurallar Game8/PowerPyx/DTGRE rehberlerinden, Steam Topluluğu rehberlerinden ve Steam forumlarındaki oyuncu raporlarından; repoda kaynak var.
 
 [OPTIONAL: AI line] Kodun çoğu yapay zekâ yardımıyla (Claude Code) yazıldı.
 
-İndirme: [RELEASE_LINK]
-Kaynak / hata bildirimi: [GITHUB_REPO]
+Web sürümü: https://zziroo.github.io/pbz-tracker/
+Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
+Kaynak / hata bildirimi: https://github.com/zziroo/pbz-tracker

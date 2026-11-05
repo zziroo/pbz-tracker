@@ -1,18 +1,19 @@
-I wanted to play blind without losing the true ending, so I made a tool that warns you before a point of no return (no spoilers, free, open source)
+I wanted to play blind without losing the true ending, so I made a tool that warns you before a point of no return (no spoilers, free, open source, runs in your browser)
 
 Quick background: I didn't want to read a missables guide because that spoils the whole thing, but I also didn't want to find out at the end that some side quest locked me out of the true ending.
 
 So, pbz-tracker. It's not a guide. It reads your save (read-only) and if you're about to hit a point of no return while a missable quest or item is still open, it warns you. Otherwise it just says "No risk of missing anything right now."
 
-The warnings only tell you where to stop ("before this area's final fight"), never boss names, future areas or story stuff. Quest names show only if the quest is already in your journal. Everything beyond where you are stays hidden unless you press G.
+The warnings only tell you where to stop ("before this area's final fight"), never boss names, future areas or story stuff. Quest names show only if the quest is already in your journal. The Journal tab is blurred and a row opens only when you click it, so nothing slips out by accident. If a community text patch (e.g. the Turkish one) is installed, quest names come from it automatically; the UI has a TR/EN switch.
 
-Single Windows exe, no install, runs alongside the game and rechecks on every save with --watch. Never writes to your save or game folder, no network, doesn't touch the game process. Unsigned, so SmartScreen will nag; source is public if you'd rather build it.
+It's a web page now: click the link, choose your game folder, done. Nothing is downloaded, no file is uploaded, everything runs in your browser, and it refreshes on its own every time the game saves. Needs Chrome or Edge for the folder access; in Firefox/Safari you can drag & drop the save, just without the auto-refresh. If you'd rather have a local app, there's also a Windows exe that opens the same thing in its own window (unsigned, so SmartScreen will nag; source is public if you'd rather build it). Neither one writes to your save or game folder or touches the game.
 
-It's v0.3.0 and not perfect: two late-game cutoffs aren't in yet, a few quest mappings are guesses (marked with *), one accessory can't be read from the save. If it gets something wrong, tell me and I'll fix it.
+It's v0.5.0 and not perfect: some later cutoffs can't be detected from the save yet, a few quest mappings are guesses (marked with *), a few items can't be read from the save at all, and the rules come from guides and player reports. If it gets something wrong, tell me and I'll fix it.
 
-Rules are based on Game8 / Maxroll / PowerPyx / allthings.how, credited in the repo.
+Rules are based on Game8 / PowerPyx / DTGRE, the Steam Community guides and player reports from the Steam forums, credited in the repo.
 
 [OPTIONAL: AI line] Built with a lot of AI help (Claude Code), figured I should say so.
 
-Download: [RELEASE_LINK]
-Source / issues: [GITHUB_REPO]
+Web version: https://zziroo.github.io/pbz-tracker/
+Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
+Source / issues: https://github.com/zziroo/pbz-tracker

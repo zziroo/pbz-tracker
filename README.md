@@ -1,5 +1,9 @@
 # pbz-tracker
 
+**▶ Open the web version: https://zziroo.github.io/pbz-tracker/**
+
+**⬇ Download the exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0**
+
 A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero** (PC, Steam). It reads your save and warns you only when you are about to lose something for good. Everything else stays hidden until you ask for it.
 
 *Türkçe: [README.tr.md](README.tr.md)*
@@ -14,7 +18,7 @@ A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero*
 
 ## Install
 
-Download `pbz-tracker-v0.4.0.exe` from the Releases page. It is a single file with nothing to install.
+Download `pbz-tracker-v0.5.0.exe` from the Releases page. It is a single file with nothing to install.
 
 Windows SmartScreen may warn on first run because the exe is not code-signed. Choose "More info → Run anyway", or build it yourself from source (see below).
 
@@ -22,14 +26,14 @@ Windows SmartScreen may warn on first run because the exe is not code-signed. Ch
 
 **Double-click the exe; a window opens.** You can also drop your save file onto it. The window refreshes on its own whenever the game saves, so you can keep it open next to the game.
 
-![Warnings tab](docs/screenshots/ui-warnings.png)
+![Warnings tab](docs/screenshots/web-warnings.png)
 
 - **Warnings** (default tab): only what you are about to lose, or "No risk of missing anything right now."
 - **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Names are blurred until you click a row; any refresh blurs them again.
 - **Settings**: language (TR/EN), name source, refresh interval, and the game folder / save file (choose or forget).
 - **About**: version, tested game build, license, guide links.
 
-![Journal tab, blurred](docs/screenshots/ui-journal.png)
+![Journal tab, blurred](docs/screenshots/web-journal.png)
 
 The window is Microsoft Edge (or Chrome) in app mode, without tabs or an address bar. Without Edge or Chrome the page opens in your default browser. Closing the window ends the tool within about 10 seconds. You can drop `PBZSaveGame.sav`, your account folder under `SaveGames\Steam`, the game folder or `PBZ.exe` onto the exe.
 
@@ -38,16 +42,16 @@ The window is Microsoft Edge (or Chrome) in app mode, without tabs or an address
 The v0.3 terminal mode is still there. `--cli` alone watches the save in the console (G toggles the hidden sections, Q quits). Any terminal option such as `--show`, `--watch`, `--dump` or `--save` also runs in the terminal:
 
 ```
-pbz-tracker-v0.4.0.exe --cli         # watch in the console; G = toggle hidden sections, Q = quit
-pbz-tracker-v0.4.0.exe --no-color    # read once and print
-pbz-tracker-v0.4.0.exe --watch       # refresh whenever the game saves
-pbz-tracker-v0.4.0.exe --show        # also print the hidden sections
-pbz-tracker-v0.4.0.exe --lang en     # UI language: en or tr (default: English; Turkish when the system language is Turkish and the Turkish fan patch is installed)
-pbz-tracker-v0.4.0.exe --names en    # name source: a detected text patch or a name table
-pbz-tracker-v0.4.0.exe --dump        # write the newest save slot as JSON to .\out (debugging)
-pbz-tracker-v0.4.0.exe --ui          # open the window from a terminal (--no-edge: default browser)
-pbz-tracker-v0.4.0.exe --version
-pbz-tracker-v0.4.0.exe --help
+pbz-tracker-v0.5.0.exe --cli         # watch in the console; G = toggle hidden sections, Q = quit
+pbz-tracker-v0.5.0.exe --no-color    # read once and print
+pbz-tracker-v0.5.0.exe --watch       # refresh whenever the game saves
+pbz-tracker-v0.5.0.exe --show        # also print the hidden sections
+pbz-tracker-v0.5.0.exe --lang en     # UI language: en or tr (default: English; Turkish when the system language is Turkish and the Turkish fan patch is installed)
+pbz-tracker-v0.5.0.exe --names en    # name source: a detected text patch or a name table
+pbz-tracker-v0.5.0.exe --dump        # write the newest save slot as JSON to .\out (debugging)
+pbz-tracker-v0.5.0.exe --ui          # open the window from a terminal (--no-edge: default browser)
+pbz-tracker-v0.5.0.exe --version
+pbz-tracker-v0.5.0.exe --help
 ```
 
 `--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
@@ -85,7 +89,7 @@ Verified on Steam build **26367565**. The header shows the installed build. On a
 The rules (`data/rules.json`) and name tables are built into the exe, but files placed **next to the exe** take precedence:
 
 1. Download the latest `data/rules.json` from this repository (Raw → save as `rules.json`).
-2. Put it in the same folder as `pbz-tracker-v0.4.0.exe`.
+2. Put it in the same folder as `pbz-tracker-v0.5.0.exe`.
 3. Run the tool. The header says `Rules: rules.json next to the app (version …)`.
 
 Name tables work the same way: a `names.<lang>.json` next to the exe replaces or adds that language. You can also pass a rules file explicitly with `--rules <path>`. A broken file, or one written for a different rules format (`schemaVersion`), stops the tool with an error instead of silently using the built-in copy. Delete the file to go back to the built-in rules. The tool itself never downloads anything.

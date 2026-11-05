@@ -1,0 +1,92 @@
+BAŞLIK (birini seç, bkz. docs/posts/titles.txt):
+Rehber değil, emniyet kemeri gibi: geri dönüşü olmayan noktadan önce uyaran ücretsiz bir araç (spoiler yok)
+
+KATEGORİ: Modding or Configuration   DİL: Türkçe
+GÖRSELLER: docs/screenshots/web-tr-warnings.png, web-tr-journal.png, web-setup.png ve window-tr-warnings.png dosyalarını rehber editöründe yükle (Insert image), sonra dört [GÖRSEL ...] satırını editörün verdiği [img] etiketleriyle değiştir. (Gerekirse ham kopyalar: https://raw.githubusercontent.com/zziroo/pbz-tracker/main/docs/screenshots/<dosya>)
+İngilizce sürüm: docs/steam-guide.bbcode.txt (ayrı bir rehber, dil English). İkisini de yayınladıktan sonra aşağıdaki [STEAM_GUIDE_EN_URL] yerine İngilizce rehberin adresini yaz.
+Diğer bütün bağlantılar dolu. OPTIONAL ile işaretli tek satırı tut ya da sil.
+--------------------------------------------------------------------------------
+
+English guide: [STEAM_GUIDE_EN_URL]
+
+[h1]Rehber değil. Emniyet kemeri.[/h1]
+[b]pbz-tracker[/b] Phantom Blade Zero save dosyanı salt okunur açıyor ve geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan kaçırılabilir bir görev ya da eşya varsa seni oraya girmeden [b]önce[/b] uyarıyor. Risk yoksa tek satırla [i]"Şu an kaçırma riski yok."[/i] diyor, oyuna dönüyorsun.
+
+Oyunu kör oynamak istiyordum ama gerçek sonu da kaçırmak istemiyordum. Bu ikisi pek bir arada gitmiyor; benim bulduğum orta yol bu: gerçekten bir şeyi kaybetmek üzere olana kadar sesini çıkarmayan bir araç.
+
+[b][url=https://zziroo.github.io/pbz-tracker/]Web sürümünü aç[/url][/b]: bağlantıya tıkla, oyun klasörünü seç, bitti. Hiçbir şey indirilmiyor, hiçbir dosya yüklenmiyor.
+
+[GÖRSEL docs/screenshots/web-tr-warnings.png  — Uyarılar sekmesi, web sürümü, Türkçe]
+
+[hr][/hr]
+
+[h2]Türkçe yama kullananlar için[/h2]
+Türkçe yama kuruluysa araç bunu [b]kendisi algılıyor[/b] ve görev adlarını doğrudan kurulu yamadan okuyor; ayar yapmana gerek yok. Böylece adlar oyunda gördüğün Türkçe adlarla aynı oluyor. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi).
+
+[hr][/hr]
+
+[h2]Ne değildir[/h2]
+Bu bir [b]rehber değil[/b]. Rehberin işe yaraması için ilerde ne olduğunu söylemesi gerekir; kör oynayan biri için sorun da tam olarak bu. Bu araç tersini yapıyor: bir şeyi kendine kapatmak üzere olduğun ana kadar susuyor, o anda da sadece [i]nerede[/i] durman gerektiğini söylüyor.
+
+[h2]Spoiler politikası[/h2]
+[list]
+[*]Uyarılar ilerde ne olduğunu değil, [b]nerede[/b] durman gerektiğini söylüyor: [i]"bu bölgenin son dövüşünden önce"[/i], [i]"ana hikâyede bir sonraki büyük bölgeye geçmeden önce"[/i].
+[*]Boss adı yok, ileriki bölge adı yok, hikâye yok.
+[*]Görev adı yalnız o görev zaten günlüğündeyse görünüyor.
+[*]Geri kalanı [b]Günlük[/b] sekmesinde, bulanık duruyor. Bir satır ancak tıklayınca açılıyor. Kör oynuyorsan tıklama.
+[*]Bulunduğun yerin ötesi hiç gösterilmiyor.
+[/list]
+
+[GÖRSEL docs/screenshots/web-tr-journal.png  — Günlük sekmesi, satıra tıklayana kadar adlar bulanık]
+
+[hr][/hr]
+
+[h2]Nasıl kullanılır (web sürümü, önerilen)[/h2]
+[olist]
+[*][url=https://zziroo.github.io/pbz-tracker/]Web sürümünü[/url] [b]Chrome[/b] ya da [b]Edge[/b] ile aç.
+[*][b]Oyun klasörünü seç[/b]'e tıkla ve oyun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni ister; izin ver. Sonraki seferde tek tık yeter: [b]PBZ ile devam et[/b].
+[*]Oyunun yanında açık bırak (ikinci ekran, ya da arada bir alt-tab; istersen uygulama olarak yükleyip ayrı pencerede de tutabilirsin). Oyun her kaydettiğinde (çanda dinlenince, otomatik kayıtta) kendiliğinden yenileniyor.
+[*]Sekmeler: [b]Uyarılar[/b] (varsayılan; yalnız kaçırmak üzere olduğun şeyler), [b]Günlük[/b] (görev durumları, aşama sayaçları, kaçanlar; bulanık), [b]Ayarlar[/b] (dil, yenileme aralığı, oyun klasörü) ve [b]Hakkında[/b].
+[*][b]Firefox ya da Safari:[/b] save'ini (ve bir kez PBZ.exe'yi) sayfaya sürükleyip bırak. Çalışıyor ama otomatik yenileme yok; oyun kaydettikten sonra save'i yeniden bırak.
+[/olist]
+
+[GÖRSEL docs/screenshots/web-setup.png  — ilk açılış: oyun klasörünü seç]
+
+[h2]Exe (alternatif)[/h2]
+[olist]
+[*][b]pbz-tracker-v0.5.0.exe[/b]'yi [url=https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0]release sayfasından[/url] indir ve istediğin yere koy. Node gömülü olduğu için yaklaşık 89 MB; kurulum yok.
+[*]Exe imzasız olduğu için Windows SmartScreen uyarı verir. [b]Ek bilgi[/b]'ye, sonra [b]Yine de çalıştır[/b]'a tıkla. Tanımadığın bir exe'ye güvenmek istemezsen kaynak kodu [url=https://github.com/zziroo/pbz-tracker]GitHub'da[/url], kendin derleyebilirsin.
+[*]Çift tıkla. Aynı sekmelerle bir pencere açılıyor. Steam kurulumunu kendisi buluyor; bulamazsa oyun klasörünü Ayarlar'dan seçiyorsun.
+[/olist]
+
+[GÖRSEL docs/screenshots/window-tr-warnings.png  — exe penceresi, Türkçe]
+
+[hr][/hr]
+
+[h2]Güvenli mi?[/h2]
+Elimden geldiği kadar evet:
+[list]
+[*][b]Salt okunur.[/b] Save'ine, yedeklerine, oyun klasörüne ya da yamaya asla yazmıyor.
+[*][b]Web sürümü:[/b] her şey tarayıcında çalışıyor. Hiçbir dosya yüklenmiyor ve sayfadan hiçbir istek çıkmıyor (DevTools → Network'te kontrol edebilirsin). Şifre çözme anahtarı [i]senin[/i] PBZ.exe'nden türetiliyor ve yalnız o tarayıcıda tutuluyor.
+[*][b]Exe:[/b] internete çıkmıyor. Pencere yalnız aracın kendisiyle, 127.0.0.1 üzerinde (bu bilgisayarda) konuşuyor. Exe'de anahtar, SteamID ya da kişisel veri yok (derleme bunu kendisi tarıyor); anahtar çalışırken [i]senin[/i] PBZ.exe'nden türetiliyor.
+[*]Çalışan oyuna dokunmuyor.
+[*]Test edildiği oyun sürümünü ([b]26367565[/b]) gösteriyor, seninki daha yeniyse uyarıyor.
+[/list]
+
+[h2]Bilinen sınırlar (v0.5.0, lütfen oku)[/h2]
+[list]
+[*]İleriki bazı hikâye kesim noktaları save'den henüz algılanamıyor; oralarda uyarılar yalnız görev durumuna dayanıyor.
+[*]Bazı görev eşleştirmeleri tahmin, [b]*[/b] ile işaretli.
+[*]Birkaç eşya save'den hiç okunamıyor.
+[*]Kurallar rehberlerden ve oyuncu raporlarından geliyor; bunlar her zaman aynı şeyi söylemiyor.
+[*]Hızlı yazıldı ve yeni, pürüzleri olabilir. Kusursuz değil. Yanlış uyarı verirse ya da bir şeyi kaçırırsa bana yaz.
+[/list]
+
+[h2]Kurallar nereden geliyor[/h2]
+Neyin kaçırılabilir olduğu ve kesim noktalarının nerede olduğu herkese açık rehberlerden ve oyunculardan geliyor: Game8, PowerPyx, [url=https://www.dtgre.com]DTGRE[/url], [url=https://steamcommunity.com/app/4115450/guides/]Steam Topluluğu rehberleri[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/]geri dönüşü olmayan nokta üzerine forum başlığı[/url] ve Steam forumlarındaki oyuncu raporları. Repoda kaynak gösterdim. Save açma kodu, Powzix'in ooz projesinin (Oodle) bir uyarlaması.
+Kurallar kodun yanında bir JSON dosyasında duruyor; bir rehber ya da oyuncu raporu bir şeyi düzeltince dosya da düzeltiliyor. Web sürümü her kural düzeltmesinde kendiliğinden yeniden derlenip yayınlanıyor; exe için depodaki güncel [b]rules.json[/b]'ı (data/rules.json) exe'nin yanına koyman yeterli, yeni sürüm gerekmiyor.
+
+[h2]Geri bildirim[/h2]
+Yanlış uyarı, kaçan görev, hatalı eşleştirme: [url=https://github.com/zziroo/pbz-tracker]GitHub'da[/url] bir issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
+
+[OPTIONAL] [i]Kodun büyük kısmını yapay zekâ yardımıyla (Claude Code) yazdım; asıl derdim aracın var olmasıydı.[/i]
