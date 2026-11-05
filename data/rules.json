@@ -1,5 +1,5 @@
 {
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. Koşul dili: README.md.",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. Koşul dili: README.md.",
   "bosses": {
     "ChiLian": {
       "keys": [
@@ -181,11 +181,15 @@
         "levelVisited": "Zhengdaodaying"
       },
       "warn": {
-        "tr": "Bu kampta Red'i öldürme; zincirle kaç.",
-        "en": "In this camp, don't kill Red; escape with the chain."
+        "tr": "Bu kampta yaralı bir kadınla dövüş başlarsa onu öldürme; yakındaki zincirle kaç.",
+        "en": "If a fight starts with a wounded woman in this camp, do not kill her; escape using the nearby chain."
       },
       "activeWhen": {
         "currentLevel": "Zhengdaodaying"
+      },
+      "warnNamed": {
+        "tr": "Ferman Ordugâhı: Red'i öldürme; zincirle kaç.",
+        "en": "Mandate Encampment: don't kill Red; escape with the chain."
       }
     },
     {
@@ -198,8 +202,61 @@
     }
   ],
   "trueEnding": {
-    "_comment": "Mor görevler: Branch klasörü (locres anahtarları QuestMaze_*).",
-    "questFolder": "Branch",
-    "cutoff": "final"
+    "_comment": "Gerçek son şartı olan mor görevler (günlükte 'Hikâye' sekmesi, mor ikon). Klasöre göre değil, bu listeye göre sayılır: Branch klasöründe mor olmayanlar da var (XueRouHua, SanMianHunDun 'Öyküler' sekmesinde). Kaynak: gerçek son rehberleri (Game8, Maxroll, PowerPyx). quest=null: pinyin kodu bilinmiyor; kayıtta tanınamadığı için hiç gösterilmez.",
+    "cutoff": "final",
+    "quests": [
+      {
+        "quest": "HuXinMiMi",
+        "en": "Secrets at the Heart of the Lake"
+      },
+      {
+        "quest": "XueMaiJueXing",
+        "en": "Bloodline Awakening"
+      },
+      {
+        "quest": null,
+        "en": "Quick Hand's Request",
+        "guess": true
+      },
+      {
+        "quest": "QiShengHeLai",
+        "en": "Whence the Weeping"
+      },
+      {
+        "quest": "XiGuShenChu",
+        "en": "Deep in the Valley"
+      },
+      {
+        "quest": "XuKongHuanXiang",
+        "en": "Illusion of Inanis"
+      },
+      {
+        "quest": null,
+        "en": "Sha-Chi Powered Boat",
+        "guess": true
+      },
+      {
+        "quest": null,
+        "en": "Allure of Vanity",
+        "guess": true
+      },
+      {
+        "quest": "HuanShuPiPa",
+        "en": "Illusory Pipa"
+      },
+      {
+        "quest": "KunLunSanJie",
+        "en": "Pillars of Kunlun"
+      },
+      {
+        "quest": null,
+        "en": "The Herald's Illusion",
+        "guess": true
+      },
+      {
+        "quest": "HongFangZi",
+        "en": "Crimson Manor"
+      }
+    ]
   }
 }

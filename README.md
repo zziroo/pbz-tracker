@@ -45,7 +45,8 @@ Terminal seçildi, HTML/blur değil: tek exe, dosya yazmıyor, G tuşu yetiyor.
 
 - `cutoffs`: kesim noktaları. `where` {tr,en} konumla anlatım (varsayılan görünüm), `label` adıyla (yalnız gizli bölümde, geçildikten sonra), `passedWhen` geçildi mi.
 - `missables`: `quest` (pinyin; bilinmiyorsa `null`), `cutoff`, `visibleWhen`, isteğe bağlı `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (kayıttan algılanamayan eşya vb.). `type: "info"` yalnız uyarıdır; `activeWhen` doğruyken varsayılan görünümde durur.
-- `trueEnding`: bir klasördeki tüm görevler (`Branch` = mor görevler, locres `QuestMaze_*`).
+- `trueEnding`: gerçek son şartı olan mor görevlerin açık listesi (`quests[]`: `quest` pinyin ya da `null`, `en`, `guess`). Klasöre göre sayılmaz: `Branch` klasöründe mor olmayan görevler de var. Pinyin kodu bilinmeyenler kayıtta tanınamadığı için gösterilmez.
+- `type: "info"` kurallarında `warn` adsız metindir (varsayılan görünüm), `warnNamed` adlı metindir (yalnız gizli bölüm).
 
 Koşullar üç değerlidir (doğru / yanlış / bilinmiyor): `mapUnlocked`, `levelVisited`, `currentLevel`, `bellPrefix`, `bossKilled`, `bossSeen`, `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`), `any`, `all`, `not`, `unknown`.
 
