@@ -9,7 +9,7 @@ A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero*
 - Reads your save, finds missable quests that are still open, and tells you which point you must not pass yet: "Before this area's final fight", not a boss name.
 - **Never writes** to your save, its backups, the game folder or any patch (the only file it can write is the optional `--dump` output). The save is read with shared access, so the game can stay open.
 - **No network access.** No telemetry, no update check.
-- **Contains no key and no personal data.** The save key is derived on each run from *your own* `PBZ.exe` and kept in memory only. The exe contains no SteamID, save data or key.
+- **Contains no key and no personal data.** The save key is derived on each run from *your own* `PBZ.exe` and kept in memory only. The exe contains no SteamID, save data or key; the build fails and deletes the exe if it finds the builder's home path, user name or a SteamID64 in it (`node build/build.js --check <exe>` runs the same scan).
 - Does not attach to the game process and does not read its memory.
 
 ## Install

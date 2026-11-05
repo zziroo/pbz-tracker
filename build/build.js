@@ -4,6 +4,7 @@
 // Build-time only: needs `npx postject` (nodejs/postject) to inject the blob into a copy of node.exe.
 // The bundle contains no key, save data or user paths; the key is derived from the runner's own PBZ.exe.
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { execFileSync, execSync } = require('child_process');
 
@@ -56,10 +57,12 @@ function main() {
   console.log(`bundle: ${files.length} modules → ${path.relative(ROOT, bundlePath)} (${(code.length / 1024).toFixed(0)} KB)`);
   if (process.argv.includes('--bundle-only')) return;
 
+  // Paths in the SEA config are RELATIVE and resolved from cwd = dist/: Node stores `main` verbatim in
+  // the blob, so an absolute path would ship the builder's home folder (user name) inside the exe.
   const blob = path.join(DIST, 'sea-prep.blob');
   const cfg = path.join(DIST, 'sea-config.json');
-  fs.writeFileSync(cfg, JSON.stringify({ main: bundlePath, output: blob, disableExperimentalSEAWarning: true, useCodeCache: false, useSnapshot: false }));
-  execFileSync(process.execPath, ['--experimental-sea-config', cfg], { stdio: 'inherit' });
+  fs.writeFileSync(cfg, JSON.stringify({ main: path.basename(bundlePath), output: path.basename(blob), disableExperimentalSEAWarning: true, useCodeCache: false, useSnapshot: false }));
+  execFileSync(process.execPath, ['--experimental-sea-config', path.basename(cfg)], { stdio: 'inherit', cwd: DIST });
 
   const exe = path.join(DIST, `pbz-tracker-v${VERSION}.exe`);
   const tmpExe = `${exe}.tmp`; // build next to the target, swap at the end (the target may be running)
@@ -85,7 +88,51 @@ function main() {
   }
   fs.rmSync(blob, { force: true });
   fs.rmSync(cfg, { force: true });
-  console.log(`exe: ${path.relative(ROOT, exe)} (${(fs.statSync(exe).size / 1048576).toFixed(0)} MB)`);
+  const hits = scanPersonal(exe);
+  if (hits.length) {
+    fs.rmSync(exe, { force: true });
+    throw new Error(`personal data found in the exe, build deleted:\n${formatHits(hits)}`);
+  }
+  console.log(`exe: ${path.relative(ROOT, exe)} (${(fs.statSync(exe).size / 1048576).toFixed(0)} MB), personal-data scan clean`);
 }
 
-main();
+// ---- personal-data scan ----------------------------------------------------
+// Strings that must never ship: the builder's home folder, the project root, "Users\<name>",
+// and the SteamID64 prefix. Each is searched case-insensitively-ish (as-is, lower case, both
+// slash styles) in both 8-bit and UTF-16LE encodings.
+function personalNeedles() {
+  const user = (() => { try { return os.userInfo().username; } catch { return process.env.USERNAME || ''; } })();
+  const base = [os.homedir(), ROOT, process.cwd(), user ? `Users\\${user}` : null].filter(Boolean);
+  const out = new Set();
+  for (const s of base) {
+    for (const v of [s, s.toLowerCase(), s.replace(/\\/g, '/'), s.toLowerCase().replace(/\\/g, '/')]) out.add(v);
+  }
+  out.add('7656119');
+  return [...out].filter((s) => s.length >= 4);
+}
+
+function scanPersonal(file) {
+  const buf = fs.readFileSync(file);
+  const hits = [];
+  for (const s of personalNeedles()) {
+    for (const enc of ['latin1', 'utf16le']) {
+      const at = buf.indexOf(Buffer.from(s, enc));
+      if (at >= 0) hits.push({ s, enc, at });
+    }
+  }
+  return hits;
+}
+
+const formatHits = (hits) => hits.map((h) => `  "${h.s}" (${h.enc}) at offset ${h.at} (0x${h.at.toString(16)})`).join('\n');
+
+// `node build/build.js --check <exe>`: scan an existing exe without building (exit 1 if anything is found).
+const checkIdx = process.argv.indexOf('--check');
+if (checkIdx > 0) {
+  const file = process.argv[checkIdx + 1];
+  if (!file) { console.error('usage: node build/build.js --check <exe>'); process.exit(2); }
+  const hits = scanPersonal(file);
+  if (hits.length) { console.error(`personal data found in ${path.basename(file)}:\n${formatHits(hits)}`); process.exit(1); }
+  console.log(`${path.basename(file)}: personal-data scan clean`);
+} else {
+  try { main(); } catch (e) { console.error(`build failed: ${e.message}`); process.exit(1); }
+}

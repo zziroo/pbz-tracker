@@ -9,7 +9,7 @@
 - Save'ini okur, hâlâ açık kaçırılabilir görevleri bulur ve hangi noktayı henüz geçmemen gerektiğini söyler. Bunu adla değil konumla yapar: "Bu bölgenin son dövüşüne girmeden önce".
 - Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz** (yazabildiği tek dosya isteğe bağlı `--dump` çıktısı). Save paylaşımlı okumayla okunur, oyun açık kalabilir.
 - **Ağa çıkmaz.** Telemetri ya da güncelleme kontrolü yok.
-- **Anahtar ve kişisel veri içermez.** Save anahtarı her çalıştırmada *senin* `PBZ.exe`'nden türetilir ve yalnız bellekte tutulur. Exe'de SteamID, save verisi ya da anahtar yoktur.
+- **Anahtar ve kişisel veri içermez.** Save anahtarı her çalıştırmada *senin* `PBZ.exe`'nden türetilir ve yalnız bellekte tutulur. Exe'de SteamID, save verisi ya da anahtar yoktur; derleme, exe'de derleyenin ev klasörü yolunu, kullanıcı adını ya da bir SteamID64 bulursa hata verip exe'yi siler (`node build/build.js --check <exe>` aynı taramayı yapar).
 - Oyun sürecine bağlanmaz, belleğini okumaz.
 
 ## Kurulum
