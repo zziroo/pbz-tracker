@@ -1,24 +1,20 @@
 #!/usr/bin/env node
 'use strict';
 // Phantom Blade Zero missables tracker. Strictly read-only: never writes to the save, its backups or game files.
-const fs = require('fs');
+// Two front ends over the same engine (lib/session.js):
+//   window   (default: double-click, dropped paths, --ui) → lib/server.js on 127.0.0.1 + lib/browser.js
+//   terminal (--cli, or any terminal option such as --show, --watch, --dump, --save) → lib/report.js render
+const { spawn } = require('child_process');
 const path = require('path');
 const i18n = require('./lib/i18n');
 const { t } = i18n;
-const { deriveKey } = require('./lib/key');
-const { loadSave } = require('./lib/savefile');
-const { findGameDir, findExe, findSave, findBuildId, classifyPath, gameFromPath } = require('./lib/paths');
-const { VERSION, TESTED_BUILDS } = require('./lib/version');
-const { extract } = require('./lib/state');
-const { build, render, statusMap, diff } = require('./lib/report');
-const { createNames, EMBEDDED_TABLES } = require('./lib/names');
-const { loadRules, loadNameTables, isSea } = require('./lib/datafiles');
-const { readConfig, writeConfig, forgetConfig } = require('./lib/config');
-const { pickFolder, pickFile } = require('./lib/picker');
-const EMBEDDED_RULES = require('./data/rules.json');
-const NAMES = require('./data/names.json');
-
-const DEBOUNCE_MS = 1500;
+const { classifyPath } = require('./lib/paths');
+const { VERSION } = require('./lib/version');
+const { render } = require('./lib/report');
+const { isSea } = require('./lib/datafiles');
+const { readConfig, forgetConfig } = require('./lib/config');
+const { createSession } = require('./lib/session');
+const { watchSave } = require('./lib/watch');
 
 function parseArgs(argv) {
   const o = { watch: false, show: false, dump: null, color: !!process.stdout.isTTY && !process.env.NO_COLOR, interval: 5, lang: null };
@@ -39,8 +35,12 @@ function parseArgs(argv) {
       case '--pick': o.pick = true; break;
       case '--forget': o.forget = true; break;
       case '--no-dialog': o.noDialog = true; break;
-      case '--interval': o.interval = Math.min(3600, Math.max(2, Number(val()) || 5)); break;
+      case '--interval': o.interval = Math.min(3600, Math.max(2, Number(val()) || 5)); o.intervalSet = true; break;
       case '--no-color': o.color = false; break;
+      case '--ui': o.ui = true; break;
+      case '--ui-child': o.ui = true; o.uiChild = true; break;
+      case '--no-edge': o.noEdge = true; break;
+      case '--cli': o.cli = true; break;
       case '-h': case '--help': o.help = true; break;
       case '-v': case '--version': o.version = true; break;
       default: {
@@ -57,29 +57,17 @@ function parseArgs(argv) {
   return o;
 }
 
-// Resolve through junctions/symlinks using the deepest existing ancestor.
-function realish(p) {
-  let cur = path.resolve(p), rest = [];
-  for (;;) {
-    try { return path.join(fs.realpathSync.native(cur), ...rest).toLowerCase(); } catch { /* go up */ }
-    const up = path.dirname(cur);
-    if (up === cur) return path.resolve(p).toLowerCase();
-    rest.unshift(path.basename(cur)); cur = up;
-  }
-}
-const inside = (child, parent) => child === parent || child.startsWith(parent.endsWith(path.sep) ? parent : parent + path.sep);
-
-// Decrypted JSON must never land in the game folder or next to the save/backups.
-function safeDumpDir(dir, protectedDirs) {
-  const d = realish(dir);
-  for (const p of protectedDirs) if (inside(d, realish(p))) throw new Error(t('err.dumpInGame'));
-  return path.resolve(dir);
-}
-
-// Started by double-click (no arguments) or by dropping files on the exe (only paths, no flags):
-// watch by default and keep the window open on errors.
+// ---- mode ----
+// Window (UI): no arguments (double-click), only dropped paths (single exe), or --ui / --no-edge / --ui-child.
+// Terminal (CLI): --cli, or any other option (as in v0.3). `--cli` alone (or with only paths in the
+// single exe) is the v0.3 double-click behaviour: watch mode, window stays open on errors.
 const RAW_ARGS = process.argv.slice(2);
-const INTERACTIVE = RAW_ARGS.length === 0 || (isSea() && RAW_ARGS.every((a) => !a.startsWith('-')));
+const isPathArg = (a) => !a.startsWith('-');
+const UI_FLAGS = new Set(['--ui', '--ui-child', '--no-edge']);
+const NO_FLAGS = RAW_ARGS.length === 0 || (isSea() && RAW_ARGS.every(isPathArg));
+const UI_MODE = !RAW_ARGS.includes('--cli') && (NO_FLAGS || RAW_ARGS.some((a) => UI_FLAGS.has(a)));
+const CLI_ARGS = RAW_ARGS.filter((a) => a !== '--cli');
+const INTERACTIVE = UI_MODE ? NO_FLAGS : CLI_ARGS.length === 0 || (isSea() && CLI_ARGS.every(isPathArg));
 
 function waitForKey() {
   if (!process.stdin.isTTY) return Promise.resolve();
@@ -91,12 +79,46 @@ function waitForKey() {
   });
 }
 
-async function main() {
-  // Language first, so argument errors are already localised.
-  const langIdx = process.argv.indexOf('--lang');
-  if (langIdx > 0 && process.argv[langIdx + 1]) i18n.setLang(process.argv[langIdx + 1].toLowerCase());
-  const opt = parseArgs(RAW_ARGS);
-  if (opt.lang) i18n.setLang(opt.lang);
+// ---- window mode ----
+async function mainUi(opt) {
+  // Double-clicking a console exe gives it its own console window, which would stay open (empty) next to
+  // the app window for as long as the server runs. So the single exe started by double-click / drop
+  // re-launches itself detached (DETACHED_PROCESS: no console at all, windowsHide) with --ui-child and
+  // exits; Windows then closes the console window. Not under `node pbz.js` (development: keep the
+  // console for logs), not when --ui was typed in a terminal, and never twice (--ui-child).
+  if (isSea() && INTERACTIVE && !opt.uiChild) {
+    const started = await new Promise((resolve) => {
+      try {
+        const child = spawn(process.execPath, [...RAW_ARGS, '--ui', '--ui-child'], { detached: true, windowsHide: true, stdio: 'ignore' });
+        child.once('spawn', () => { child.unref(); resolve(true); });
+        child.once('error', () => resolve(false));
+      } catch { resolve(false); }
+    });
+    if (started) process.exit(0);
+    // Could not re-launch: carry on in this process (the console stays visible, nothing is lost).
+  }
+  if (opt.uiChild) {
+    // No console in the child: show fatal errors in a message box instead of losing them.
+    process.on('uncaughtException', (e) => { fatalBox(e); process.exit(1); });
+  }
+  const { startServer } = require('./lib/server');
+  const { openWindow } = require('./lib/browser');
+  const srv = await startServer({ ...opt, dump: null, pick: false }, { onExit: () => process.exit(0) });
+  console.log(t('ui.address', { url: srv.url }));
+  if (process.env.PBZ_NO_BROWSER === '1') return; // test hook: serve only, open nothing
+  const w = openWindow(srv.url, { noEdge: opt.noEdge });
+  if (w.kind === 'edge' || w.kind === 'chrome') console.log(t('ui.openedApp', { browser: w.kind === 'edge' ? 'Microsoft Edge' : 'Google Chrome' }));
+  else if (w.kind === 'default') console.log(t('ui.openedDefault'));
+  else console.log(t('ui.openManually', { url: srv.url }));
+}
+
+function fatalBox(e) {
+  const { showError } = require('./lib/picker');
+  showError('pbz-tracker', t('ui.startFail', { msg: e && e.message ? e.message : String(e) }));
+}
+
+// ---- terminal mode ----
+async function mainCli(opt) {
   if (INTERACTIVE) opt.watch = true;
   if (opt.version) { console.log(`pbz-tracker ${VERSION}`); return; }
   if (opt.help) { process.stdout.write(t('help')); return; }
@@ -106,98 +128,18 @@ async function main() {
   // Pickers: on request (--pick), or when nothing was given by flag (double-click, dropped paths,
   // plain run in a terminal). Never with --game/--save/--exe or --no-dialog.
   const dialogs = opt.pick || (!opt.noDialog && !opt.explicitPaths && (INTERACTIVE || !!process.stdin.isTTY));
-  const exists = (p, dir) => { try { const s = fs.statSync(p); return dir ? s.isDirectory() : s.isFile(); } catch { return false; } };
+  const s = await createSession(opt, { dialogs, cfg });
 
-  // Game folder: explicit / derived from a given path → --pick → remembered → Steam + common folders → picker.
-  const hint = opt.game || (opt.exe && gameFromPath(path.dirname(opt.exe))) || (opt.save && gameFromPath(path.dirname(opt.save))) || undefined;
-  const pickGame = () => {
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const picked = pickFolder(t('pick.game'), cfg.gameDir);
-      if (!picked) throw new Error(t('pick.cancelled'));
-      const g = gameFromPath(picked);
-      if (g) { writeConfig({ gameDir: g }); return g; }
-      console.error(t('pick.notGame', { p: picked }));
-    }
-    throw new Error(t('err.noGame'));
-  };
-  let gameDir;
-  if (hint) {
-    gameDir = findGameDir(hint);
-  } else if (opt.pick) {
-    gameDir = pickGame();
-  } else if (cfg.gameDir && exists(cfg.gameDir, true) && gameFromPath(cfg.gameDir)) {
-    gameDir = gameFromPath(cfg.gameDir);
-  } else {
-    try {
-      gameDir = findGameDir();
-    } catch (e) {
-      if (!dialogs) throw new Error(opt.save ? t('err.noGameForSave') : e.message);
-      gameDir = pickGame();
-    }
-  }
-  const exe = findExe(gameDir, opt.exe);
-
-  // Save: explicit → remembered → automatic → picker.
-  let savePath;
-  if (opt.save) {
-    savePath = await findSave(gameDir, { explicit: opt.save });
-  } else if (!opt.pick && cfg.savePath && exists(cfg.savePath, false)) {
-    savePath = cfg.savePath;
-  } else {
-    try {
-      savePath = await findSave(gameDir, { steamId: opt.steamId });
-    } catch (e) {
-      if (!dialogs) throw e;
-      const picked = pickFile(t('pick.save'), t('pick.saveFilter'), path.join(gameDir, 'ProjectPBZ', 'Saved', 'SaveGames'));
-      if (!picked) throw new Error(t('pick.cancelled'));
-      savePath = picked;
-      writeConfig({ savePath });
-    }
-  }
-  const buildId = findBuildId(gameDir);
-  const gameBuild = { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) };
-  let key;
-  try {
-    key = deriveKey(exe); // kept in memory only, never written
-  } catch (e) {
-    throw new Error(`${e.message} ${t('err.keyBuild', { build: buildId || '?', tested: TESTED_BUILDS.join(', ') })}`);
-  }
-  const rulesInfo = loadRules({ explicit: opt.rules, embedded: EMBEDDED_RULES });
-  const RULES = rulesInfo.rules;
-  const nameTables = loadNameTables(EMBEDDED_TABLES);
-  const dataInfo = { rules: rulesInfo, nameFiles: nameTables.files };
-  const n = createNames({ gameDir, uiLang: i18n.getLang(), names: opt.names, tables: nameTables.tables });
-  const names = {
-    quest: (id) => n.quest(id),
-    region: (code) => (code ? n.region(code) : null),
-    missable: (id) => n.missable(id),
-    known: (id) => !!NAMES.quests?.[id],
-    get notice() { return n.notice; },
-  };
-  const protectedDirs = [gameDir, path.dirname(savePath), path.dirname(exe)];
-
-  let prev = null;
   const read = async () => {
-    const save = await loadSave({ savePath, key });
-    const st = extract(save.latest.data);
-    const result = build(st, RULES, names);
-    const now = statusMap(result);
-    const changes = diff(prev, now);
-    prev = now;
-    if (opt.dump) {
-      const dir = safeDumpDir(opt.dump, protectedDirs);
-      fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, 'latest.json'), JSON.stringify(save.latest.data, null, 1));
-    }
-    return { sig: save.sig, view: (show) => render({ st, result, names, build: gameBuild, data: dataInfo, color: opt.color, show, changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
+    const r = await s.read();
+    return { sig: r.sig, view: (show) => render({ st: r.st, result: r.result, names: s.names, build: s.gameBuild, data: s.dataInfo, color: opt.color, show, changes: r.changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
   };
 
   if (!opt.watch) { console.log((await read()).view(opt.show)); return; }
 
   // ---- watch mode ----
   const tty = !!process.stdin.isTTY;
-  let last = null, show = opt.show, lastSig = '', busy = false, pending = false, timer = null, statusLine = '';
-  const sig = () => { try { const s = fs.statSync(savePath); return `${s.mtimeMs}:${s.size}`; } catch { return ''; } };
+  let last = null, show = opt.show, statusLine = '';
   const paint = () => {
     if (!last) return;
     if (opt.color) process.stdout.write('\x1b[2J\x1b[H');
@@ -205,35 +147,19 @@ async function main() {
     console.log(`\n${statusLine}`);
   };
   const stamp = () => new Date().toLocaleTimeString(i18n.getLang() === 'tr' ? 'tr-TR' : 'en-GB');
-  const refresh = async () => {
-    timer = null;
-    if (busy) { pending = true; return; }
-    const before = sig();
-    if (last && before === lastSig) return; // already showing these bytes
-    busy = true;
-    try {
-      last = await read();
-      lastSig = last.sig;           // signature of the bytes actually decoded
+  const w = watchSave({
+    savePath: s.savePath,
+    interval: opt.interval,
+    read,
+    onRead: (r) => {
+      last = r;
       show = opt.show;              // hidden sections close again on every refresh
       statusLine = t('watching', { time: stamp(), keys: tty ? t('watchKeys') : t('watchKeysNoTty') });
       paint();
-    } catch (e) {
-      lastSig = before;             // retry only when the file changes again
-      console.error(`\n${t('readFail', { time: stamp(), msg: e.message })}`);
-    } finally {
-      busy = false;
-      if (pending || sig() !== lastSig) { pending = false; schedule(); }
-    }
-  };
-  const schedule = () => { clearTimeout(timer); timer = setTimeout(refresh, DEBOUNCE_MS); };
-
-  await refresh();
-  const base = path.basename(savePath).toLowerCase();
-  try {
-    fs.watch(path.dirname(savePath), (ev, file) => { if (!file || file.toLowerCase() === base) schedule(); })
-      .on('error', () => { /* folder vanished: polling keeps working */ });
-  } catch { /* polling below still works */ }
-  setInterval(() => { if (!busy && !timer && sig() !== lastSig) schedule(); }, opt.interval * 1000);
+    },
+    onError: (e) => console.error(`\n${t('readFail', { time: stamp(), msg: e.message })}`),
+  });
+  await w.start();
 
   if (tty) {
     process.stdin.setRawMode(true);
@@ -246,7 +172,22 @@ async function main() {
   }
 }
 
+let OPT = null;
+async function main() {
+  // Language first, so argument errors are already localised. The window mode also honours the
+  // language chosen in its settings (pbz-tracker.config.json) unless --lang is given.
+  const langIdx = process.argv.indexOf('--lang');
+  if (langIdx > 0 && process.argv[langIdx + 1]) i18n.setLang(process.argv[langIdx + 1].toLowerCase());
+  else if (UI_MODE) { const l = readConfig().uiLang; if (l === 'tr' || l === 'en') i18n.setLang(l); }
+  const opt = parseArgs(RAW_ARGS);
+  OPT = opt;
+  if (opt.lang) i18n.setLang(opt.lang);
+  if (UI_MODE && !opt.help && !opt.version) return mainUi(opt);
+  return mainCli(opt);
+}
+
 main().catch(async (e) => {
+  if (OPT?.uiChild || RAW_ARGS.includes('--ui-child')) { fatalBox(e); process.exit(1); }
   console.error(t('err.prefix', { msg: e.message }));
   if (INTERACTIVE) await waitForKey();
   process.exit(1);
