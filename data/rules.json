@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-05.1",
+  "rulesVersion": "2026-11-05.2",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer.",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
@@ -31,6 +31,14 @@
     "dtgre-purple": {
       "name": "DTGRE — True ending: purple quests & Mirage Estate warning",
       "url": "https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html"
+    },
+    "steam-guides": {
+      "name": "Steam Community — Phantom Blade Zero guides",
+      "url": "https://steamcommunity.com/app/4115450/guides/"
+    },
+    "steam-mirage-discussion": {
+      "name": "Steam Community discussion — is Mirage Estate the point of no return?",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/"
     }
   },
   "bosses": {
@@ -78,10 +86,12 @@
       "source": {
         "ids": [
           "allthings",
-          "dtgre-purple"
+          "dtgre-purple",
+          "steam-mirage-discussion"
         ],
-        "checked": "search-snippet"
-      }
+        "checked": "unverified"
+      },
+      "note": "Conflicting sources: DTGRE / allthings.how say entering Mirage Estate (bridge from the Pangzhen backstreet) closes the lake quests and some shrine steps; a Steam discussion reply says Mirage Estate only changes Crimson Forest and the real point of no return comes near the end with an explicit warning. Kept as a guess; verify from the save when the area is reached."
     },
     "final": {
       "where": {
@@ -315,10 +325,12 @@
       },
       "source": {
         "ids": [
-          "allthings"
+          "allthings",
+          "steam-guides"
         ],
-        "checked": "search-snippet"
-      }
+        "checked": "unverified"
+      },
+      "note": "Unverified detail: one Steam missables guide (since removed) refers to Red as \"him\" and places the fight on top of the Dovecote tower, while the anonymous warning text says \"a wounded woman\". Check in game and fix the wording if needed."
     },
     {
       "id": "bloodline-awakening",
@@ -397,9 +409,11 @@
       "ids": [
         "maxroll",
         "powerpyx",
-        "dtgre-purple"
+        "dtgre-purple",
+        "steam-guides"
       ],
       "checked": "unverified"
-    }
+    },
+    "note": "Some guides (a Steam 100% achievements guide, since removed from the Steam community; a true-ending checklist) also list defeating two optional blade-master bosses as a true-ending requirement. Unverified and not tracked yet; verify from the save when those areas are reached."
   }
 }

@@ -17,6 +17,7 @@
       'tabs.label': 'Bölümler',
       'lang.group': 'Arayüz dili',
       'conn.lost': 'Bağlantı koptu — pencereyi kapatıp aracı yeniden aç.',
+      'conn.close': 'Kapat',
       'conn.noToken': 'Bu sayfa erişim anahtarı olmadan açıldı. Aracı yeniden başlat.',
       'loading': 'Yükleniyor…',
       'refresh.label': 'Son yenileme: {ago}',
@@ -94,6 +95,7 @@
       'tabs.label': 'Sections',
       'lang.group': 'Interface language',
       'conn.lost': 'Connection lost — close the window and start the tool again.',
+      'conn.close': 'Close',
       'conn.noToken': 'This page was opened without its access key. Start the tool again.',
       'loading': 'Loading…',
       'refresh.label': 'Last refresh: {ago}',
@@ -410,7 +412,17 @@
       return;
     }
     const lost = !app.sseOk || !app.fetchOk;
-    b.textContent = lost ? t('conn.lost') : '';
+    b.textContent = '';
+    if (lost) {
+      const msg = document.createElement('span');
+      msg.textContent = t('conn.lost');
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'btn conn-close';
+      close.textContent = t('conn.close');
+      close.addEventListener('click', () => { window.close(); });
+      b.append(msg, close);
+    }
     b.hidden = !lost;
   }
 

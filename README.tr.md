@@ -115,6 +115,13 @@ Koşullar üç değerlidir (doğru / yanlış / bilinmiyor): `mapUnlocked`, `lev
 
 `research/` ilk keşif betikleridir, araç değil.
 
+## Bilinen sınırlar
+
+- İleriki bazı kesim noktaları save'den henüz algılanamıyor; uyarıları görev durumuna ve konumla anlatıma dayanıyor.
+- Rehberler bir hikâye kesim noktasında anlaşamıyor: bazıları ileriki bir hikâye bölgesine girmenin göl çevresindeki bazı görevleri kapattığını söylüyor; Steam forumundaki oyuncular ise asıl geri dönüşü olmayan noktanın oyunun sonuna yakın, açık bir uyarıyla geldiğini söylüyor. Araç save'den kontrol edilene kadar daha sıkı kuralı "tahmin" olarak tutuyor.
+- Bazı rehberler iki isteğe bağlı boss dövüşünü de gerçek son şartı sayıyor. Bunlar henüz izlenmiyor (doğrulanmadı).
+- Birkaç görev adı eşleşmesi anlamdan çıkarıldı ve `*` ile işaretli; bir uyarının (kamp uyarısı) ifadesi doğrulanmadı.
+
 ## Lisans
 
 GPL-3.0-or-later; tam metin `LICENSE` dosyasında. `lib/oodle/` altındaki save açma kodu, Powzix'in GPL-3.0 lisanslı [ooz](https://github.com/powzix/ooz) projesinden (`kraken.cpp`) JavaScript'e uyarlanmış türev bir çalışmadır; bu yüzden projenin tamamı GPL-3.0 altındadır. Derlenmiş exe paylaşılırken kaynak kodu da (bu depo) alıcıya sunulmalıdır.
@@ -126,6 +133,7 @@ Kaçırılabilir kuralları herkese açık rehberlerden derlendi:
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
 - DTGRE (https://www.dtgre.com) — kaçırılabilir görevler ve gerçek son rehberleri. Sayfa adresleri yalnız `data/rules.json` içinde, çünkü adreslerin kendisi spoiler içeriyor.
+- Steam Topluluğu — Phantom Blade Zero rehberleri: https://steamcommunity.com/app/4115450/guides/ ve geri dönüşü olmayan nokta üzerine forum başlığı: https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/
 - Maxroll (gerçek son), allthings.how (missables), Showgamer (missables): adresleri eklenecek.
 
 Teknik:

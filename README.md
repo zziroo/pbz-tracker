@@ -107,6 +107,13 @@ Test against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another g
 
 Conditions are three-valued (true / false / unknown): `mapUnlocked`, `levelVisited`, `currentLevel`, `bellPrefix`, `bossKilled`, `bossSeen`, `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`), `any`, `all`, `not`, `unknown`.
 
+## Known limits
+
+- Some later cutoffs cannot be detected from the save yet; their warnings rely on quest state and positional wording.
+- Guides disagree on one story cutoff: some say entering a later story area closes certain lake-side quests, while players on the Steam forum report that the real point of no return comes near the end, with an explicit in-game warning. The tool keeps the stricter rule, marked as a guess, until it can be checked from a save.
+- Some guides also list two optional boss fights as true-ending requirements. They are not tracked yet (unverified).
+- A few quest-name mappings are inferred and marked `*`; one warning's wording (the camp warning) is unverified.
+
 ## License
 
 GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). When you share the exe, make the source (this repository) available too.
@@ -118,6 +125,7 @@ Missable rules were compiled from public guides. Each rule's `source` in `data/r
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
 - DTGRE (https://www.dtgre.com) — missable quests and true ending guides. Exact page URLs are only in `data/rules.json`, because the addresses themselves contain spoilers.
+- Steam Community — Phantom Blade Zero guides: https://steamcommunity.com/app/4115450/guides/ and the forum thread on the point of no return: https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/
 - Maxroll (true ending), allthings.how (missables), Showgamer (missables): URLs to be added.
 
 Technical:
