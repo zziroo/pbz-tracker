@@ -11,8 +11,9 @@ const { findGameDir, findExe, findSave, findBuildId } = require('./lib/paths');
 const { VERSION, TESTED_BUILDS } = require('./lib/version');
 const { extract } = require('./lib/state');
 const { build, render, statusMap, diff } = require('./lib/report');
-const { createNames } = require('./lib/names');
-const RULES = require('./data/rules.json');
+const { createNames, EMBEDDED_TABLES } = require('./lib/names');
+const { loadRules, loadNameTables } = require('./lib/datafiles');
+const EMBEDDED_RULES = require('./data/rules.json');
 const NAMES = require('./data/names.json');
 
 const DEBOUNCE_MS = 1500;
@@ -27,6 +28,7 @@ function parseArgs(argv) {
       case '--show': o.show = true; break;
       case '--lang': o.lang = val().toLowerCase(); break;
       case '--names': o.names = val(); break;
+      case '--rules': o.rules = val(); break;
       case '--steamid': o.steamId = val(); break;
       case '--dump': o.dump = argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : path.join(process.cwd(), 'out'); break;
       case '--save': o.save = val(); break;
@@ -81,7 +83,11 @@ async function main() {
   } catch (e) {
     throw new Error(`${e.message} ${t('err.keyBuild', { build: buildId || '?', tested: TESTED_BUILDS.join(', ') })}`);
   }
-  const n = createNames({ gameDir, uiLang: i18n.getLang(), names: opt.names });
+  const rulesInfo = loadRules({ explicit: opt.rules, embedded: EMBEDDED_RULES });
+  const RULES = rulesInfo.rules;
+  const nameTables = loadNameTables(EMBEDDED_TABLES);
+  const dataInfo = { rules: rulesInfo, nameFiles: nameTables.files };
+  const n = createNames({ gameDir, uiLang: i18n.getLang(), names: opt.names, tables: nameTables.tables });
   const names = {
     quest: (id) => n.quest(id),
     region: (code) => (code ? n.region(code) : null),
@@ -104,7 +110,7 @@ async function main() {
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'latest.json'), JSON.stringify(save.latest.data, null, 1));
     }
-    return { sig: save.sig, view: (show) => render({ st, result, names, build: gameBuild, color: opt.color, show, changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
+    return { sig: save.sig, view: (show) => render({ st, result, names, build: gameBuild, data: dataInfo, color: opt.color, show, changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
   };
 
   if (!opt.watch) { console.log((await read()).view(opt.show)); return; }

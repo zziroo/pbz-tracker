@@ -17,3 +17,6 @@ latest.json
 AutoSave*.json
 ManualSave*.json
 *.bin
+# Sidecar kural/ad dosyaları (deneme kopyaları) kökte depoya girmez
+/rules.json
+/names.*.json

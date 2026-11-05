@@ -47,6 +47,16 @@ Görünüm terminalde. HTML ya da bulanıklaştırma yok: tek exe, save'e, oyun 
 
 Steam build **26367565** üzerinde doğrulandı. Başlık satırı kurulu build'i gösterir; doğrulanmamış bir build'de tek satırlık bir uyarı çıkar. Oyun güncellemesi save anahtarını değiştirdiyse araç, build numarasını da yazan açık bir hatayla durur.
 
+## Kuralları exe'yi değiştirmeden güncelleme
+
+Kurallar (`data/rules.json`) ve ad tabloları exe'ye gömülüdür, ama **exe'nin yanına** konan dosyalar önceliklidir:
+
+1. Bu depodaki güncel `data/rules.json`'ı indir (Raw → `rules.json` olarak kaydet).
+2. `pbz-tracker-v0.3.0.exe` ile aynı klasöre koy.
+3. Aracı çalıştır. Başlıkta `Kurallar: yanındaki rules.json (sürüm …)` yazar.
+
+Ad tabloları da aynı şekilde çalışır: exe'nin yanındaki `names.<dil>.json` o dili değiştirir ya da ekler. Kural dosyası `--rules <yol>` ile açıkça da verilebilir. Bozuk bir dosya ya da başka bir kural biçimi (`schemaVersion`) için yazılmış dosya, gömülü kopyaya sessizce düşmek yerine aracı hatayla durdurur. Gömülü kurallara dönmek için dosyayı sil. Aracın kendisi hiçbir şey indirmez.
+
 ## Adlar ve diller
 
 Arayüz dili (`--lang`) ve ad kaynağı (`--names`) ayrı seçilir.
@@ -72,6 +82,7 @@ Oodle DLL'ine karşı test (başka bir oyundan `oo2core_8_win64.dll` gerekir): `
 
 ## Kural tablosu (`data/rules.json`, oyunun tamamı için SPOILER içerir)
 
+- `schemaVersion`: dosya biçimi (araç uyuşmazsa reddeder). `rulesVersion`: kural içeriğinin sürümü; her düzeltmede artır, başlıkta görünür.
 - `sources`: rehberler. Her kuralda `source: {ids, checked}` alanı var; `checked: "unverified"` = kural-kaynak eşleşmesi sayfada tek tek kontrol edilmedi.
 - `cutoffs`: kesim noktaları. `where` {tr,en} konumla anlatım (varsayılan görünüm), `label` adıyla (yalnız gizli bölümde, nokta geçildikten sonra), `passedWhen` geçildi mi.
 - `missables`: `quest` (pinyin; bilinmiyorsa `null`), `cutoff`, `visibleWhen`, isteğe bağlı `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (save'den algılanamayan eşya vb.). `type: "info"` yalnız uyarıdır: `warn` adsız metin (varsayılan görünüm), `warnNamed` adlı metin (gizli bölüm); `activeWhen` doğruyken varsayılan görünümde durur.

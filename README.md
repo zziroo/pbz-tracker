@@ -45,6 +45,16 @@ The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` �
 
 Verified on Steam build **26367565**. The header shows the installed build. On an untested build it shows a one-line warning. If the game update changed the save key, the tool stops with a clear error that names the build.
 
+## Updating the rules without a new exe
+
+The rules (`data/rules.json`) and name tables are built into the exe, but files placed **next to the exe** take precedence:
+
+1. Download the latest `data/rules.json` from this repository (Raw → save as `rules.json`).
+2. Put it in the same folder as `pbz-tracker-v0.3.0.exe`.
+3. Run the tool. The header says `Rules: rules.json next to the app (version …)`.
+
+Name tables work the same way: a `names.<lang>.json` next to the exe replaces or adds that language. You can also pass a rules file explicitly with `--rules <path>`. A broken file, or one written for a different rules format (`schemaVersion`), stops the tool with an error instead of silently using the built-in copy. Delete the file to go back to the built-in rules. The tool itself never downloads anything.
+
 ## Names and languages
 
 - UI language (`--lang`) and name source (`--names`) are independent.
@@ -64,6 +74,7 @@ Test against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another g
 
 ### Rule syntax (`data/rules.json`)
 
+- `schemaVersion`: file format (the tool refuses a mismatch). `rulesVersion`: version of the rule content; bump it on every fix, it is shown in the header.
 - `sources`: guide registry. Each rule has `source: {ids, checked}`; `checked: "unverified"` means the rule-to-guide mapping was not checked page by page.
 - `cutoffs`: points of no return. `where` {tr,en} describes the point by position (default view); `label` names it (hidden section only, after the point is passed); `passedWhen` is the condition for "passed".
 - `missables`: `quest` (pinyin id from the save, or `null`), `cutoff`, `visibleWhen`, optional `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (cannot be read from the save). `type: "info"` rules are plain warnings: `warn` is the anonymous text (default view), `warnNamed` the named one (hidden section), `activeWhen` keeps them in the default view.
