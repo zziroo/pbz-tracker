@@ -31,7 +31,7 @@ It's not a guide. A guide has to tell you what's ahead to be of any use, and tha
 [previewimg=48488277;sizeOriginal,inline;][/previewimg]
 
 [h1]How to use[/h1]
-[h1]Web version (recommended)[/h1]
+[h1]Web version[/h1]
 [olist]
 [*]Open https://zziroo.github.io/pbz-tracker/ in Chrome or Edge.
 [*]Click Choose game folder and pick the game folder (or your whole Steam library folder, that works too). The browser asks for read access, allow it. Next time it's one click, "Continue with PBZ".
@@ -47,7 +47,7 @@ English and Turkish (TR/EN switch). If you have a community text patch installed
 [h1]Is it safe?[/h1]
 [list]
 [*]Read-only. It never writes to your save, backups, game folder or patch.
-[*]Web: everything runs in your browser. No file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The decryption key is derived from YOUR OWN PBZ.exe and stays in that browser.
+[*]Everything runs in your browser. No file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The decryption key is derived from YOUR OWN PBZ.exe and stays in that browser.
 [*]It doesn't touch the running game process.
 [*]It shows the game build it was tested on (26367565) and warns you if yours is newer.
 [/list]

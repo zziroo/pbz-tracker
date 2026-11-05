@@ -43,7 +43,7 @@ Rehber değil. Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak 
 Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlarını doğrudan yamadan okuyor; yani adlar oyunda gördüğünle birebir aynı oluyor, ayar yapmana gerek yok. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi var).
 
 [h1]Nasıl kullanılır?[/h1]
-[h1]Web sürümü (önerilen)[/h1]
+[h1]Web sürümü[/h1]
 [olist]
 [*]https://zziroo.github.io/pbz-tracker/ adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
@@ -58,7 +58,7 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [h1]Güvenli mi?[/h1]
 [list]
 [*]Sadece okuyor. Save'e, yedeklere, oyun klasörüne ya da yamaya hiçbir şey yazmıyor.
-[*]Web: her şey senin tarayıcında çalışıyor. Dosya yüklenmiyor, sayfadan dışarı tek bir istek çıkmıyor (DevTools → Network'ten bakabilirsin). Şifre çözme anahtarı SENİN PBZ.exe'nden türetiliyor ve sadece o tarayıcıda kalıyor.
+[*]Her şey senin tarayıcında çalışıyor. Dosya yüklenmiyor, sayfadan dışarı tek bir istek çıkmıyor (DevTools → Network'ten bakabilirsin). Şifre çözme anahtarı SENİN PBZ.exe'nden türetiliyor ve sadece o tarayıcıda kalıyor.
 [*]Çalışan oyun sürecine dokunmuyor.
 [*]Test edildiği oyun build'ini (26367565) gösteriyor; seninki daha yeniyse uyarıyor.
 [/list]
