@@ -1,0 +1,24 @@
+I wanted to play blind, but I also didn't want to get to the end and find out I locked myself out of the true ending because of some side quest I never heard of. Reading a full missables guide kind of defeats the point of going in blind, though.
+
+So I made a small tool: pbz-tracker. Not a guide, more like a seatbelt. A guide tells you what's coming; this only tells you where to stop.
+
+It reads your save (read-only), checks it against the known missables, and warns you BEFORE a point of no return if a quest or item is still open. By default it shows only the warnings that matter right now. If nothing is at risk, it just says "No risk of missing anything right now." and you go back to the game.
+
+The spoiler part was the whole point. Warnings only tell you WHERE to stop ("before this area's final fight", "before the story moves you to the next major area"). No boss names, no future regions, no story events. Quest names show up only if the quest is already in your journal. Anything past where you are is never displayed; the rest is hidden behind a key (G) unless you ask for it.
+
+Practical stuff:
+- Free, open source (GPL-3.0), single Windows exe, no install
+- Runs while the game is open; with --watch it rechecks on every save (bells/autosave)
+- Read-only: never writes to your save, backups or game folder. No network. Doesn't touch the running game
+- UI in English and Turkish; if you have a community text patch installed, quest names come from it automatically
+- It shows the game build it was tested on (26367565) and warns if yours is newer
+- The exe is unsigned, so SmartScreen will complain ("More info -> Run anyway"). Source is public if you'd rather build it yourself
+
+Being honest: this is v0.3.0 and I built it fast. Two late-game cutoffs aren't detected yet (I'll add them when I get there), a few quest-ID mappings are educated guesses (marked with *), and one accessory can't be read from the save at all. It's not perfect. If it flags something wrong or misses something, tell me and I'll fix it.
+
+The missables rules come from public guides (Game8, Maxroll, PowerPyx, allthings.how), credited in the repo.
+
+[OPTIONAL: AI line] Full disclosure: I wrote a lot of this with AI assistance (Claude Code); I just wanted the thing to exist.
+
+Download: [RELEASE_LINK]
+Source / bug reports: [GITHUB_REPO]

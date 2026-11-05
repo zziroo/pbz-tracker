@@ -1,0 +1,11 @@
+EN:
+1. Not a guide, more like a seatbelt: a free tool that warns you before a point of no return (no spoilers)
+2. Not a guide, a tracker: it reads your PBZ save and warns you before a point of no return (no spoilers)
+3. I wanted to play PBZ blind without losing the true ending, so I made a little save-reader that taps you on the shoulder
+4. I made a "missables alarm" for PBZ so I could stop reading guides mid-playthrough (free, open source, no spoilers)
+5. [Tool] pbz-tracker v0.3: spoiler-free missable warnings straight from your save file
+
+TR:
+1. Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok)
+2. Rehber değil, emniyet kemeri gibi: geri dönüşü olmayan noktadan önce uyaran ücretsiz bir araç (spoiler yok)
+3. PBZ için "bir şey kaçırıyor muyum?" kontrolü: save'ini okuyor, sadece nerede duracağını söylüyor

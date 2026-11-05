@@ -1,0 +1,74 @@
+TITLE (pick one, see docs/posts/titles.txt):
+Not a guide, more like a seatbelt: a free tool that warns you before a point of no return (no spoilers)
+
+CATEGORY: Modding or Configuration   LANGUAGE: English
+IMAGES: upload docs/screenshots/en.png, en-show.png, tr.png in the guide editor (Insert image), then replace the three [IMAGE ...] lines with the [img] tags the editor gives you.
+Replace [RELEASE_LINK] and [GITHUB_REPO]. Keep or delete the one line marked OPTIONAL.
+--------------------------------------------------------------------------------
+
+[h1]Not a guide. A seatbelt.[/h1]
+[b]pbz-tracker[/b] reads your Phantom Blade Zero save (read-only) and warns you [b]before[/b] a point of no return when a missable quest or item is still open. If nothing is at risk, it says [i]"No risk of missing anything right now."[/i] and you keep playing.
+
+I made it because I wanted to play blind and still get the true ending. Those two things don't go together very well; this is my compromise: a tool that stays quiet until you're actually about to lose something.
+
+[IMAGE docs/screenshots/en.png  — default view, English]
+
+[hr][/hr]
+
+[h2]What it is not[/h2]
+It is [b]not a guide[/b]. A guide has to tell you what's ahead to be useful, and that's exactly the problem for a blind playthrough. This goes the other way: it stays silent until the moment you're about to lock yourself out of something, and then it only tells you [i]where[/i] to stop.
+
+[h2]Spoiler policy[/h2]
+[list]
+[*]Warnings describe [b]where[/b] to stop, not what's coming: [i]"before this area's final fight"[/i], [i]"before the story moves you on to the next major area"[/i].
+[*]No boss names, no future regions, no story events.
+[*]A quest name appears only if that quest is already in your journal.
+[*]Everything else sits behind a key ([b]G[/b]) or the [b]--show[/b] flag. Don't press it if you're playing blind.
+[*]Content beyond where you are is never shown.
+[/list]
+
+[IMAGE docs/screenshots/en-show.png  — the hidden view (names blurred in this screenshot on purpose)]
+
+[hr][/hr]
+
+[h2]How to use[/h2]
+[olist]
+[*]Download the exe from [url=[RELEASE_LINK]]the release page[/url] and put it anywhere. It's about 89 MB because it embeds Node; nothing to install.
+[*]Windows SmartScreen will warn you because the exe is unsigned. Click [b]More info[/b], then [b]Run anyway[/b]. If you'd rather not trust a random exe, the source is on [url=[GITHUB_REPO]]GitHub[/url] and you can build it yourself.
+[*]Double-click it with the game open (or run [b]pbz-tracker-v0.3.0.exe --watch[/b] from a terminal). It finds your Steam install on its own; if it can't, it asks you for the game folder. You can also drop your save file or game folder onto the exe.
+[*]Leave it open next to the game (second monitor, or alt-tab now and then). Every save (bells/autosave) refreshes it.
+[*]Press [b]G[/b] only if you deliberately want the full list. [b]Q[/b] quits.
+[/olist]
+
+[h2]Languages[/h2]
+The tool itself speaks English and Turkish. If a community text patch (for example the Turkish patch) is installed, quest names are read from it automatically; otherwise English name tables are used. Other languages can be added through a JSON table; contributions welcome.
+
+[IMAGE docs/screenshots/tr.png  — same view with the Turkish patch detected]
+
+[hr][/hr]
+
+[h2]Is it safe?[/h2]
+Yes, as far as I can make it:
+[list]
+[*][b]Read-only.[/b] It never writes to your save, backups, game folder or patch.
+[*][b]No network[/b] at all.
+[*]It doesn't touch the running game process.
+[*]The exe contains no key, SteamID or personal data (the build scans itself for this). The decryption key is derived from [i]your own[/i] PBZ.exe at runtime.
+[*]It shows the game build it was tested on ([b]26367565[/b]) and warns if your game is newer.
+[/list]
+
+[h2]Known limits (v0.3.0, please read)[/h2]
+[list]
+[*]Two late-game cutoffs aren't detected yet. I'll add them once I reach them myself.
+[*]Some quest-ID mappings are educated guesses, marked with [b]*[/b].
+[*]One accessory can't be detected from the save at all.
+[*]Built fast and new, so expect rough edges. It's not perfect. If it flags something wrong or misses something, tell me.
+[/list]
+
+[h2]Where the rules come from[/h2]
+What's missable and where the cutoffs are comes from public guides: Game8, Maxroll, PowerPyx, allthings.how. Credited in the repo. The rules live in a JSON file next to the code; when a guide gets corrected, the file gets corrected, and you can drop the updated [b]rules.json[/b] next to the exe without waiting for a new release.
+
+[h2]Feedback[/h2]
+Wrong warning, missed quest, bad mapping: open an issue at [url=[GITHUB_REPO]]GitHub[/url]. Mapping corrections are especially welcome. Free and open source (GPL-3.0).
+
+[OPTIONAL] [i]A good chunk of the code was written with AI assistance (Claude Code); I mostly wanted the tool to exist.[/i]

@@ -1,0 +1,39 @@
+Description
+
+pbz-tracker reads your Phantom Blade Zero save (read-only) and warns you BEFORE a point of no return when a missable quest or item is still open. By default it shows only actionable warnings; if nothing is at risk you get one line: "No risk of missing anything right now."
+
+I made it because I wanted to play blind without losing the true ending, and reading a full missables guide would have ruined the blind part. It is not a guide; think of it as a safety net for a blind playthrough.
+
+Spoiler-safe by design. Warnings say WHERE to stop ("before this area's final fight", "before the story moves you to the next major area"), never boss names, future regions or story events. Quest names appear only if the quest is already in your journal. Everything else is hidden behind a key (G) or the --show flag. Content beyond where you are is never shown.
+
+Runs while the game is open. In --watch mode it refreshes on every save (bells/autosave). Tool UI in English and Turkish. If a community text patch (e.g. the Turkish patch) is installed, quest names are read from it automatically; otherwise English name tables are used. Other languages can be added via a JSON table.
+
+Shows the game build it was tested on (26367565) and warns if your game is newer.
+
+Requirements
+
+- Windows
+- Phantom Blade Zero installed (the decryption key is derived from your own PBZ.exe at runtime; nothing is bundled)
+- Nothing else. Node is embedded in the exe, which is why it's ~89 MB.
+
+Installation
+
+1. Download the exe and put it anywhere. No install.
+2. SmartScreen will warn because the exe is unsigned: "More info" -> "Run anyway". Source is public at [GITHUB_REPO] if you prefer to build it yourself; releases are mirrored at [RELEASE_LINK].
+3. Run it with the game open. Add --watch to keep it live next to the game.
+
+Safety: read-only. It never writes to your save, backups or game folder. No network. Doesn't touch the running game. The exe contains no key, SteamID or personal data (the build scans itself).
+
+Known issues (v0.3.0)
+
+- New and built fast; it's not perfect. Expect rough edges.
+- Two late-game cutoffs are not detected yet; they'll be added once I reach them.
+- Some quest-ID mappings are educated guesses, marked with *.
+- One accessory can't be detected from the save.
+- If it flags something wrong, open an issue on GitHub: [GITHUB_REPO]
+
+Permissions and credits
+
+Free and open source under GPL-3.0; source at [GITHUB_REPO]. Missable rules are based on public guides by Game8, Maxroll, PowerPyx and allthings.how, credited in the repo. Rules live in a JSON file; a planned feature lets you drop an updated rules.json next to the exe without a new release.
+
+[OPTIONAL: AI line] Built with heavy AI assistance (Claude Code). Mentioning it because I'd rather you hear it from me.

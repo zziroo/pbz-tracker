@@ -1,0 +1,16 @@
+Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok)
+
+Rehber okumadan oynamak istedim ama "yan görevi atladın, gerçek son gitti" riskini de almak istemedim. Araç rehber değil: save dosyanı salt okunur açıyor, geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan kaçırılabilir görev/eşya varsa önceden uyarıyor. Yoksa sadece şu an bir şey kaçırma riski yok diyor.
+
+Uyarılar sadece nerede duracağını söylüyor ("bu bölgenin son dövüşünden önce" gibi); boss adı, ileriki bölge, hikâye yok. Görev adları sadece zaten günlüğündeyse çıkıyor. Türkçe yama kuruluysa otomatik algılıyor, görev adlarını yamadan okuyor.
+
+Tek exe, kurulum yok, oyun açıkken çalışıyor, --watch ile her kayıtta yenileniyor. Save'e ve oyun klasörüne hiç yazmıyor, internete çıkmıyor, oyuna dokunmuyor. İmzasız olduğu için SmartScreen söylenir; kaynak açık, istersen kendin derle.
+
+Kusursuz değil: v0.3.0, oyunun sonlarındaki iki geri dönüşü olmayan nokta henüz yok, bazı eşleştirmeler tahmin (* ile işaretli), bir aksesuar save'den okunamıyor. Yanlış bir şey görürseniz yazın, düzelteyim.
+
+Kurallar Game8/Maxroll/PowerPyx/allthings.how rehberlerinden, repoda kaynak var.
+
+[OPTIONAL: AI line] Kodun çoğu yapay zekâ yardımıyla (Claude Code) yazıldı.
+
+İndirme: [RELEASE_LINK]
+Kaynak / hata bildirimi: [GITHUB_REPO]

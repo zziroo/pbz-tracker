@@ -1,0 +1,20 @@
+Oyunu hiçbir şey bilmeden, kör oynamak istiyordum ama sonunda "şu yan görevi yapmadın, gerçek son gitti" durumuna düşmek de istemiyordum. Kaçırılabilir eşya rehberi okumak da zaten kör oynamanın anlamını öldürüyor.
+
+Ben de kendime küçük bir araç yazdım: pbz-tracker. Rehber değil, emniyet kemeri gibi bir şey. Rehber ilerde ne olduğunu söyler; bu sadece nerede duracağını söylüyor.
+
+Save dosyanı salt okunur açıyor, bilinen kaçırılabilir görev/eşya listesiyle karşılaştırıyor ve geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan bir şey varsa sen oraya girmeden önce uyarıyor. Varsayılan ekranda sadece şu an aksiyon gerektiren uyarılar var; sorun yoksa tek satırla "şu an bir şey kaçırma riski yok" diyor (İngilizce arayüzde "No risk of missing anything right now."), oyuna dönüyorsun.
+
+Spoiler konusu işin özü: uyarılar sadece nerede durman gerektiğini söylüyor ("bu bölgenin son dövüşünden önce" gibi). Boss adı yok, ileriki bölge adı yok, hikâye yok. Görev adları sadece zaten günlüğündeyse görünüyor. Bulunduğun yerin ötesi hiç gösterilmiyor; tam liste G tuşunun arkasında, kör oynuyorsan basma.
+
+Türkçe oynayanlar için: Türkçe yama kuruluysa araç bunu kendisi algılıyor ve görev adlarını yamadan okuyor, ayar yapmana gerek yok. Arayüz de Türkçe ve İngilizce.
+
+Pratik kısım: tek exe, kurulum yok, ücretsiz ve açık kaynak (GPL-3.0). Oyun açıkken çalışıyor, --watch ile her kayıtta (çan/otomatik kayıt) kendini yeniliyor. Save'e, yedeklere, oyun klasörüne hiç yazmıyor, internete çıkmıyor, çalışan oyuna dokunmuyor. Test edildiği oyun sürümünü (26367565) gösteriyor, seninki daha yeniyse uyarıyor. Exe imzasız olduğu için SmartScreen uyarı verir ("Daha fazla bilgi -> Yine de çalıştır"); güvenmek istemezsen kaynak kodu açık, kendin derleyebilirsin.
+
+Dürüst olayım: v0.3.0, hızlı yazıldı, kusursuz değil. Oyunun sonlarındaki iki geri dönüşü olmayan nokta henüz algılanmıyor (ben oraya gelince ekleyeceğim), bazı görev eşleştirmeleri tahmin (* ile işaretli), bir aksesuar save'den hiç okunamıyor. Yanlış uyarı verirse ya da bir şeyi kaçırırsa yazın, düzelteyim.
+
+Kurallar Game8, Maxroll, PowerPyx ve allthings.how rehberlerinden; repoda kaynak gösterdim.
+
+[OPTIONAL: AI line] Kodun büyük kısmını yapay zekâ yardımıyla (Claude Code) yazdım, saklamanın anlamı yok.
+
+İndirme: [RELEASE_LINK]
+Kaynak / hata bildirimi: [GITHUB_REPO]
