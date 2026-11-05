@@ -1,0 +1,100 @@
+# pbz-tracker
+
+**Phantom Blade Zero** (PC, Steam) için yerel, **salt okunur**, spoilersız kaçırılabilir takipçisi. Save'ini okur ve yalnız bir şeyi kalıcı olarak kaçırmak üzereysen uyarır. Geri kalanı, sen isteyene kadar gizli kalır.
+
+*English: [README.md](README.md)*
+
+## Ne yapar / ne yapmaz
+
+- Save'ini okur, hâlâ açık kaçırılabilir görevleri bulur ve hangi noktayı henüz geçmemen gerektiğini söyler. Bunu adla değil konumla yapar: "Bu bölgenin son dövüşüne girmeden önce".
+- Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz**. Save paylaşımlı okumayla okunur, oyun açık kalabilir.
+- **Ağa çıkmaz.** Telemetri ya da güncelleme kontrolü yok.
+- **Anahtar ve kişisel veri içermez.** Save anahtarı her çalıştırmada *senin* `PBZ.exe`'nden türetilir ve yalnız bellekte tutulur. Exe'de SteamID, save verisi ya da anahtar yoktur.
+- Oyun sürecine bağlanmaz, belleğini okumaz.
+
+## Kurulum
+
+Releases sayfasından `pbz-tracker-v0.3.0.exe`'yi indir. Tek dosya, kurulum gerekmez; bir terminalden çalıştır (Windows Terminal, PowerShell ya da cmd).
+
+Exe kod imzalı olmadığı için Windows SmartScreen ilk çalıştırmada uyarabilir. "Ek bilgi → Yine de çalıştır" de, ya da exe'yi kaynaktan kendin derle (aşağıda).
+
+## Kullanım
+
+```
+pbz-tracker-v0.3.0.exe             # bir kez oku
+pbz-tracker-v0.3.0.exe --watch     # oyun kaydettikçe yenile; G = gizli bölümler, Q = çık
+pbz-tracker-v0.3.0.exe --show      # gizli bölümleri de yaz
+pbz-tracker-v0.3.0.exe --lang tr   # arayüz dili: tr ya da en (varsayılan: sistem dili)
+pbz-tracker-v0.3.0.exe --names en  # ad kaynağı: bulunan bir metin yaması ya da ad tablosu
+pbz-tracker-v0.3.0.exe --version
+pbz-tracker-v0.3.0.exe --help
+```
+
+Oyun Steam üzerinden bulunur: kayıt defterindeki `SteamPath` → `libraryfolders.vdf` → AppID 4115450. Birden fazla Steam hesabının kaydı varsa hangisinin kullanılacağını sorar; `--steamid` ile de seçilir.
+
+## Spoiler politikası
+
+1. **Varsayılan görünüm:** yalnız eyleme dönük uyarılar, yani önünde bir kesim noktası olan ve hâlâ açık bir kaçırılabilir. Kesim noktası adıyla değil konumuyla anlatılır. Görev adı yalnız görev günlüğünde zaten başlamışsa yazılır; başlamamışsa yalnız konum ipucu verilir. Uyarı yoksa: "Şu an kaçırma riski yok."
+2. **Gizli (`--show` ya da watch'ta G):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Watch modunda her yenilemede yeniden kapanır.
+3. **Hiç gösterilmez:** save'e göre henüz ulaşılmamış her şey. Sınır her zaman aracı çalıştıranın kendi save'ine göre çizilir.
+
+Görünüm terminalde. HTML ya da bulanıklaştırma yok: tek exe, dosya yazmıyor, G tuşu yetiyor.
+
+## Desteklenen oyun sürümü
+
+Steam build **26367565** üzerinde doğrulandı. Başlık satırı kurulu build'i gösterir; doğrulanmamış bir build'de tek satırlık bir uyarı çıkar. Oyun güncellemesi save anahtarını değiştirdiyse araç, build numarasını da yazan açık bir hatayla durur.
+
+## Adlar ve diller
+
+Arayüz dili (`--lang`) ve ad kaynağı (`--names`) ayrı seçilir.
+
+- **Metin yaması:** `ProjectPBZ\Content\Paks` içindeki şifresiz ve `Game.locres` içeren her `.pak` aday sayılır (ör. Türkçe yama `ProjectPBZ-Windows_C.pak`). Bulunursa adlar çalışma anında oradan okunur (salt okunur) ve çıktı bunu bir kez söyler. Birden fazlaysa `--names <pak adı>` ile seçilir. Resmi oyun pak'ları şifreli olduğu için atlanır.
+- **Ad tabloları:** yama yoksa `data/names.<dil>.json` kullanılır (arayüz dilinde). `names.en.json` resmi İngilizce adları içerir. Eksik ad İngilizceye düşer ve çıktı bunu bir kez söyler.
+- `data/names.json`: pinyin görev kodu → yamadaki locres anahtarı (dile bağlı değil).
+
+### Ad tablosuna katkı
+
+1. `data/names.en.json`'u `data/names.<dil>.json` olarak kopyala (ör. `names.de.json`) ve değerleri çevir. Anahtarlara dokunma: `quests` = save'deki pinyin görev kodu, `regions` = harita/seviye kodu, `missables` = `data/rules.json` içindeki kural kimliği.
+2. `lib/names.js` içindeki `TABLES` listesine bir satır ekle: `de: require('../data/names.de.json'),`.
+3. Bilmediğin adları sil; araç onları İngilizce gösterir.
+4. Adları oyunun kendi arayüzünden yaz; rehber sitelerden metin kopyalama.
+
+## Kaynaktan derleme
+
+Node 18+ yeterli, bağımlılık yok: `node pbz.js [seçenekler]`.
+
+Tek exe: `node build/build.js` komutu `dist/pbz-tracker-v<sürüm>.exe` dosyasını üretir. Önce kaynakları tek betikte paketler, sonra Node SEA ile exe yapar. Exe'ye gömme için `npx postject` kullanır; bu yalnız derleme sırasında gerekir.
+
+Oodle DLL'ine karşı test (başka bir oyundan `oo2core_8_win64.dll` gerekir): `node test/oodle-compare.js --game <PBZ klasörü> --dll <dll>`.
+
+## Kural tablosu (`data/rules.json`, oyunun tamamı için SPOILER içerir)
+
+- `sources`: rehberler. Her kuralda `source: {ids, checked}` alanı var; `checked: "unverified"` = kural-kaynak eşleşmesi sayfada tek tek kontrol edilmedi.
+- `cutoffs`: kesim noktaları. `where` {tr,en} konumla anlatım (varsayılan görünüm), `label` adıyla (yalnız gizli bölümde, nokta geçildikten sonra), `passedWhen` geçildi mi.
+- `missables`: `quest` (pinyin; bilinmiyorsa `null`), `cutoff`, `visibleWhen`, isteğe bağlı `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (save'den algılanamayan eşya vb.). `type: "info"` yalnız uyarıdır: `warn` adsız metin (varsayılan görünüm), `warnNamed` adlı metin (gizli bölüm); `activeWhen` doğruyken varsayılan görünümde durur.
+- `trueEnding`: gerçek son şartı olan mor görevlerin açık listesi. Klasöre göre sayılmaz; pinyin kodu bilinmeyenler gösterilmez.
+
+Koşullar üç değerlidir (doğru / yanlış / bilinmiyor): `mapUnlocked`, `levelVisited`, `currentLevel`, `bellPrefix`, `bossKilled`, `bossSeen`, `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`), `any`, `all`, `not`, `unknown`.
+
+`research/` ilk keşif betikleridir, araç değil.
+
+## Lisans
+
+GPL-3.0-or-later; tam metin `LICENSE` dosyasında. `lib/oodle/` altındaki save açma kodu, Powzix'in GPL-3.0 lisanslı [ooz](https://github.com/powzix/ooz) projesinden (`kraken.cpp`) JavaScript'e uyarlanmış türev bir çalışmadır; bu yüzden projenin tamamı GPL-3.0 altındadır. Derlenmiş exe paylaşılırken kaynak kodu da (bu depo) alıcıya sunulmalıdır.
+
+## Kaynaklar ve teşekkür
+
+Kaçırılabilir kuralları herkese açık rehberlerden derlendi:
+
+- Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
+- PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
+- DTGRE — Bai Chilian missables: https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
+- DTGRE — true ending, purple quests: https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+- Maxroll (gerçek son), allthings.how (missables), Showgamer (missables): adresleri eklenecek.
+
+Teknik:
+
+- Powzix'in [ooz](https://github.com/powzix/ooz) projesi (Oodle açma).
+- Save formatı yazıları: phantombladezerosaves.com/save-file-format ve bir dev.to yazısı (adresi eklenecek).
+
+S-GAME ile bağlantısı yoktur. Phantom Blade Zero sahiplerinin ticari markasıdır.

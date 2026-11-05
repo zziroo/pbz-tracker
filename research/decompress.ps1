@@ -1,7 +1,7 @@
 # Decompress Oodle-compressed PBZ save slots (*.cmp written by slots.js) into JSON.
 # Usage: powershell -File decompress.ps1 -OutDir <dir with index.json + *.cmp> -Dll <path to oo2core_8_win64.dll>
-# The DLL is NOT shipped with PBZ (Oodle is statically linked). On this PC one copy is at:
-#   D:\SteamLibrary\steamapps\common\Jedi Fallen Order\Engine\Binaries\ThirdParty\Oodle\Win64\oo2core_8_win64.dll
+# The DLL is NOT shipped with PBZ (Oodle is statically linked). A copy usually ships with other Unreal Engine games, e.g.:
+#   <Steam library>\steamapps\common\<another UE game>\Engine\Binaries\ThirdParty\Oodle\Win64\oo2core_8_win64.dll
 param([Parameter(Mandatory)][string]$OutDir, [Parameter(Mandatory)][string]$Dll)
 
 Add-Type -TypeDefinition @"

@@ -1,5 +1,5 @@
 'use strict';
-// Builds dist/pbz-tracker.exe: bundles pbz.js + lib/ + data/ into one script (tiny CommonJS bundler,
+// Builds dist/pbz-tracker-v<version>.exe: bundles pbz.js + lib/ + data/ into one script (tiny CommonJS bundler,
 // no npm deps), then wraps it in a Node single executable application (SEA).
 // Build-time only: needs `npx postject` (nodejs/postject) to inject the blob into a copy of node.exe.
 // The bundle contains no key, save data or user paths; the key is derived from the runner's own PBZ.exe.
@@ -10,6 +10,7 @@ const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const ENTRY = path.join(ROOT, 'pbz.js');
+const { VERSION } = require('../lib/version');
 
 function resolveLocal(from, spec) {
   const base = path.resolve(path.dirname(from), spec);
@@ -60,7 +61,7 @@ function main() {
   fs.writeFileSync(cfg, JSON.stringify({ main: bundlePath, output: blob, disableExperimentalSEAWarning: true, useCodeCache: false, useSnapshot: false }));
   execFileSync(process.execPath, ['--experimental-sea-config', cfg], { stdio: 'inherit' });
 
-  const exe = path.join(DIST, 'pbz-tracker.exe');
+  const exe = path.join(DIST, `pbz-tracker-v${VERSION}.exe`);
   fs.copyFileSync(process.execPath, exe);
   const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
   execFileSync(npx, ['--yes', 'postject@1.0.0-alpha.6', exe, 'NODE_SEA_BLOB', blob,
