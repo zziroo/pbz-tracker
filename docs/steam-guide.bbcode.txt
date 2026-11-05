@@ -40,13 +40,6 @@ It's not a guide. A guide has to tell you what's ahead to be of any use, and tha
 [*]Firefox/Safari: drag and drop your save onto the page (and PBZ.exe, once). Works, but there's no auto refresh, so you have to drop the save again after the game saves.
 [/olist]
 [previewimg=48488278;sizeOriginal,inline;][/previewimg]
-[h1]The exe (alternative)[/h1]
-[olist]
-[*]Grab pbz-tracker-v0.5.0.exe from https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 and put it anywhere. It's ~89 MB because Node is embedded in it. Nothing to install.
-[*]Windows SmartScreen will complain because it's unsigned. More info, then Run anyway.
-[*]If you'd rather not run a random exe from the internet, the source is at https://github.com/zziroo/pbz-tracker and you can build it yourself.
-[*]Double-click, a window opens with the same tabs. It finds your Steam install on its own; if it doesn't, choose the game folder in Settings.
-[/olist]
 [h1]Languages[/h1]
 English and Turkish (TR/EN switch). If you have a community text patch installed (the Turkish one for example), quest names get read from it automatically, otherwise it falls back to the English name tables. Other languages can be added with a JSON table, contributions welcome.
 
@@ -55,11 +48,10 @@ English and Turkish (TR/EN switch). If you have a community text patch installed
 [list]
 [*]Read-only. It never writes to your save, backups, game folder or patch.
 [*]Web: everything runs in your browser. No file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The decryption key is derived from YOUR OWN PBZ.exe and stays in that browser.
-[*]Exe: no internet at all. The window only talks to the tool itself on 127.0.0.1. There's no key, SteamID or personal data baked into the exe (the build scans itself to make sure), the key is derived from your own PBZ.exe when it runs.
 [*]It doesn't touch the running game process.
 [*]It shows the game build it was tested on (26367565) and warns you if yours is newer.
 [/list]
-[h1]Known limits (v0.5.0)[/h1]
+[h1]Known limits (v0.6.0)[/h1]
 [list]
 [*]Some of the later story cutoffs can't be detected from the save yet. Warnings there go by quest state only.
 [*]Some quest-ID mappings are educated guesses. Those are marked with *.
@@ -69,7 +61,7 @@ English and Turkish (TR/EN switch). If you have a community text patch installed
 [/list]
 [h1]Where the rules come from[/h1]
 Public guides and players: Game8, PowerPyx, DTGRE (https://www.dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. All credited in the repo. Save decompression is a port of ooz by Powzix (Oodle).
-The rules sit in one JSON file. When a guide or a player report corrects something, I correct the file. The web version rebuilds itself on every rule fix. For the exe, drop the repo's latest rules.json (data/rules.json) next to it, no new release needed.
+The rules sit in one JSON file. When a guide or a player report corrects something, I correct the file. The web version rebuilds itself on every rule fix.
 [h1]Feedback[/h1]
 Wrong warning, missed quest, bad mapping: open an issue at https://github.com/zziroo/pbz-tracker. Mapping corrections are especially welcome. Free and open source (GPL-3.0-or-later).
 [i]A good chunk of the code was written with AI help (Claude Code), I mostly wanted the tool to exist.[/i]

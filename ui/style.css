@@ -1,4 +1,4 @@
-/* pbz-tracker v0.4 window UI. Dark, ink-and-paper, no external resources. */
+/* pbz-tracker page (web version). Dark, ink-and-paper, no external resources. */
 
 :root {
   color-scheme: dark;
@@ -149,23 +149,6 @@ button, input, select { font: inherit; color: inherit; }
 .lang-btn:hover { color: var(--text); }
 .lang-btn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
 .lang-btn:focus-visible { outline-offset: -2px; border-radius: 0; }
-
-/* ---- Connection banner ---- */
-.conn-banner {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px var(--gutter);
-  background: var(--red-soft);
-  border-bottom: 1px solid rgba(236, 117, 99, 0.4);
-  color: #f3b0a4;
-  font-size: 14px;
-}
-
-.conn-banner[hidden] { display: none; }
-.conn-close { flex: none; }
 
 /* ---- Content ---- */
 .content {

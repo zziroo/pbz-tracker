@@ -10,7 +10,7 @@ research/*.json
 # Oodle DLL'i başka oyunun klasöründen yerinde kullanılır, kopyalanmaz
 *.dll
 node_modules/
-# Derleme çıktısı (exe paylaşılır ama depoya girmez)
+# Derleme çıktısı: web/dist/ (node build/build.js) ve v0.5 ve öncesinin exe klasörü dist/
 dist/
 # Herhangi bir yere düşmüş save dökümleri
 latest.json
@@ -20,8 +20,8 @@ ManualSave*.json
 # Sidecar kural/ad dosyaları (deneme kopyaları) kökte depoya girmez
 /rules.json
 /names.*.json
-# Seçilen oyun/save yolları (kullanıcıya özel)
+# Hatırlanan oyun/save yolları (terminal sürümü; kullanıcıya özel)
 pbz-tracker.config.json
-# Lokal görev zaman çizelgesi (kullanıcıya özel)
+# v0.5 ve öncesinin lokal görev zaman çizelgesi: artık yazılmıyor, eski kopyalar depoya girmesin
 pbz-tracker.timeline.json
 pbz-tracker.timeline.json.tmp

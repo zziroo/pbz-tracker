@@ -23,22 +23,15 @@ How to use (web version, recommended)
 5. Firefox or Safari: drag & drop your save (and PBZ.exe, once) onto the page. It works, but there's no auto refresh, so drop the save again after the game saves.
 6. Languages: the UI is in English and Turkish (TR/EN switch). If you have a community text patch installed (the Turkish one for example), quest names get read from it automatically. Otherwise it falls back to the English name tables. Other languages can be added with a JSON table, contributions welcome.
 
-The exe (alternative)
-
-1. Grab pbz-tracker-v0.5.0.exe from https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 and put it anywhere. It's ~89 MB because Node is embedded in it. Nothing to install.
-2. Windows SmartScreen will complain because it's unsigned. "More info", then "Run anyway". If you'd rather not run a random exe from the internet, the source is at https://github.com/zziroo/pbz-tracker and you can build it yourself.
-3. Double-click it and a window opens with the same tabs. It finds your Steam install on its own. If it doesn't, choose the game folder in Settings.
-
 Is it safe?
 
 As far as I can make it, yes.
 - Read-only. It never writes to your save, backups or game folder.
 - Web: everything runs in your browser. No file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The decryption key is derived from your own PBZ.exe and stays in that browser.
-- Exe: no internet at all. The window only talks to the tool itself on 127.0.0.1 (your own PC). There's no key, SteamID or personal data baked into the exe (the build scans itself to make sure). The key is derived from your own PBZ.exe when it runs.
 - It doesn't touch the running game process.
 - It shows the game build it was tested on (26367565) and warns you if yours is newer.
 
-Known limits (v0.5.0, please read)
+Known limits (v0.6.0, please read)
 
 - Some of the later story cutoffs can't be detected from the save yet. Warnings there go by quest state only.
 - Some quest-ID mappings are educated guesses. Those are marked with *.
@@ -48,7 +41,7 @@ Known limits (v0.5.0, please read)
 
 Where the rules come from
 
-What's missable and where the cutoffs are comes from public guides and players: Game8, PowerPyx, DTGRE (https://www.dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. All credited in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version rebuilds and republishes itself. For the exe, drop the repo's latest data/rules.json next to it, no new release needed.
+What's missable and where the cutoffs are comes from public guides and players: Game8, PowerPyx, DTGRE (https://www.dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. All credited in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version rebuilds and republishes itself.
 
 Feedback
 

@@ -18,10 +18,9 @@ The practical stuff:
 - Read-only. It never writes to your save, backups or game folder, and it doesn't touch the running game.
 - The UI is in English and Turkish (TR/EN switch). If you have a community text patch installed, quest names come from it automatically.
 - It shows the game build it was tested on (26367565) and warns you if yours is newer.
-- If you'd rather have a local app, there's a Windows exe too. Double-click it and a window opens. Local only, no internet. It's unsigned, so SmartScreen will complain (More info, then Run anyway). The source is public if you'd rather build it yourself.
-- Rule fixes: the web version updates itself. For the exe, drop the repo's latest data/rules.json next to it.
+- Rule fixes: the web version updates itself.
 
-To be honest, this is v0.5.0 and I built it fast. Some later story cutoffs can't be detected from the save yet, so warnings there go by quest state only. A few quest-ID mappings are educated guesses (marked with *). A few items can't be read from the save at all. And the rules come from guides and player reports, which don't always agree with each other. So it's not perfect. If it flags something wrong or misses something, tell me and I'll fix it.
+To be honest, this is v0.6.0 and I built it fast. Some later story cutoffs can't be detected from the save yet, so warnings there go by quest state only. A few quest-ID mappings are educated guesses (marked with *). A few items can't be read from the save at all. And the rules come from guides and player reports, which don't always agree with each other. So it's not perfect. If it flags something wrong or misses something, tell me and I'll fix it.
 
 The rules come from public guides (Game8, PowerPyx, DTGRE, the Steam Community guides at https://steamcommunity.com/app/4115450/guides/ ), this forum's point-of-no-return thread (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) and player reports from the Steam forums. All credited in the repo. Thanks to everyone who posted what they found.
 
@@ -29,5 +28,4 @@ The rules come from public guides (Game8, PowerPyx, DTGRE, the Steam Community g
 
 Web version: https://zziroo.github.io/pbz-tracker/
 Steam guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
-Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
 Source / bug reports: https://github.com/zziroo/pbz-tracker

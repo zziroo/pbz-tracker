@@ -112,8 +112,7 @@ async function main() {
     const text = render({ st, result, names, build: { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) }, data: dataInfo,
       color: false, show: !!v.show, changes: diff(null, statusMap(result)), hiddenKey: false });
 
-    // --no-timeline: the test must not write pbz-tracker.timeline.json (it does not change the output).
-    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--no-timeline', '--game', gameDir, '--save', save, ...v.args],
+    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--game', gameDir, '--save', save, ...v.args],
       { encoding: 'utf8', env, cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
     const same = cli === `${text}\n`;
     check(same, `report [${v.args.join(' ') || 'default'}] equals the CLI output (${slots.length} slots, latest ${latest.name}; patches ${patches.map((p) => p.name).join(', ') || '-'} in ${patchMs.toFixed(0)} ms; decode ${decMs.toFixed(0)} ms)`);
@@ -160,7 +159,7 @@ async function main() {
     const user = (() => { try { return os.userInfo().username; } catch { return process.env.USERNAME || ''; } })();
     const needles = [os.homedir(), gameDir, save, path.dirname(save), exe, '7656119', user].filter((s) => s && s.length >= 3);
     const d = collectDiagnostics({
-      mode: 'window', version: '0.0.0-test', uiLang: 'en', exact: true,
+      mode: 'web', version: '0.0.0-test', uiLang: 'en', exact: true,
       rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'sidecar' },
       keyMap: require('../data/names.json'),
       namesSource: path.join(paksDir, 'ProjectPBZ-Windows_C.pak'),
@@ -177,7 +176,7 @@ async function main() {
     check(leaks.length === 0, `diagnostics report has no personal data (checked: home dir, game path, save path, exe, '7656119', OS user)${leaks.length ? ` — LEAK: ${leaks.length}` : ''}`);
     check(/text patch: ProjectPBZ-Windows_C\.pak/.test(text) && /date \d{4}-\d{2}-\d{2} /.test(text) && !/\d{2}\.\d{2}\.\d{2}\b/.test(text.split('\n').find((l) => l.startsWith('save:')) || ''),
       'diagnostics keep the pak file name and only the date of the save');
-    const real = collectDiagnostics({ mode: 'window', version: '0.0.0-test', uiLang: 'en', rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'embedded' },
+    const real = collectDiagnostics({ mode: 'web', version: '0.0.0-test', uiLang: 'en', rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'embedded' },
       keyMap: require('../data/names.json'), namesSource: names.source, patches: [], build: { id: buildId, tested: true }, st, result: plain, ok: true, timeline: null });
     console.log(formatDiagnostics(real).trimEnd().split('\n').map((l) => `      | ${l}`).join('\n'));
 

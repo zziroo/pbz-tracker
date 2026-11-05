@@ -6,9 +6,9 @@ Ben de pbz-tracker'ı yaptım. Rehber değil. Save dosyanı okuyor (sadece okuyo
 
 Uyarılar sadece nerede durman gerektiğini söylüyor ("bu bölgenin son dövüşünden önce" gibi). Boss adı yok, ileriki bölge yok, hikâye yok. Görev adı sadece o görev zaten günlüğündeyse çıkıyor. Günlük sekmesi bulanık, satır ancak tıklayınca açılıyor. Yani yanlışlıkla bir şey görmüyorsun. Türkçe yama kuruluysa araç bunu kendi fark ediyor, görev adlarını yamadan okuyor. Arayüzde TR/EN geçişi var.
 
-Artık bir web sayfası: linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor. Her şey tarayıcında çalışıyor, oyun her kayıt yaptığında da kendi kendine yenileniyor. Klasör erişimi için Chrome ya da Edge lazım. Firefox/Safari'de save'i sürükleyip bırakabilirsin, sadece otomatik yenileme yok. Yerel uygulama istersen aynı şeyi kendi penceresinde açan bir Windows exe'si de var. İmzasız olduğu için SmartScreen söyleniyor; kaynak kodu açık, istersen kendin derle. İkisi de save'e ya da oyun klasörüne bir şey yazmıyor, oyuna dokunmuyor.
+Artık bir web sayfası: linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor. Her şey tarayıcında çalışıyor, oyun her kayıt yaptığında da kendi kendine yenileniyor. Klasör erişimi için Chrome ya da Edge lazım. Firefox/Safari'de save'i sürükleyip bırakabilirsin, sadece otomatik yenileme yok. Save'e ya da oyun klasörüne bir şey yazmıyor, oyuna dokunmuyor.
 
-Kusursuz değil, daha v0.5.0. İleriki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor, kurallar da rehberlerden ve oyuncu raporlarından geliyor. Yanlış bir şey görürsen yaz, düzelteyim.
+Kusursuz değil, daha v0.6.0. İleriki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor, kurallar da rehberlerden ve oyuncu raporlarından geliyor. Yanlış bir şey görürsen yaz, düzelteyim.
 
 Kurallar Game8, PowerPyx ve DTGRE'den, Steam Topluluğu rehberlerinden ve Steam forumlarındaki oyuncu raporlarından geliyor. Hepsi repoda kaynak olarak yazıyor.
 
@@ -16,5 +16,4 @@ Kurallar Game8, PowerPyx ve DTGRE'den, Steam Topluluğu rehberlerinden ve Steam 
 
 Web sürümü: https://zziroo.github.io/pbz-tracker/
 Steam rehberi: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
-Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
 Kaynak / hata bildirimi: https://github.com/zziroo/pbz-tracker

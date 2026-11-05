@@ -3,7 +3,7 @@ EN:
 2. Not a guide, just a tracker that reads your PBZ save and warns you before a point of no return (no spoilers)
 3. I wanted to play PBZ blind and still get the true ending, so I made a little save reader that taps you on the shoulder
 4. Made a missables alarm for PBZ so I could stop checking guides mid-playthrough (free, open source, no spoilers)
-5. [Tool] pbz-tracker v0.5 now runs in your browser (spoiler-free missable warnings from your save)
+5. [Tool] pbz-tracker v0.6 now runs in your browser (spoiler-free missable warnings from your save)
 6. Pick your game folder and it warns you before a point of no return. Free missables tracker in the browser, no spoilers
 
 TR:

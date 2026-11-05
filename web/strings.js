@@ -1,6 +1,7 @@
 'use strict';
 // Texts that only the web version needs (setup messages, picker rows, privacy note), in the current UI
-// language of lib/i18n.js. Everything else (report, errors, chrome) is shared with the local window.
+// language of lib/i18n.js. Everything else (report, errors) comes from lib/i18n.js, shared with the
+// terminal version; the page's own chrome strings are in ui/app.js.
 const i18n = require('../lib/i18n');
 
 const STRINGS = {

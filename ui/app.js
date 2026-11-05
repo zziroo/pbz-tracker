@@ -1,13 +1,11 @@
 'use strict';
-// pbz-tracker v0.4 window UI. Contract: docs/ui-api.md.
-// Strict CSP: no inline scripts/styles, no style attributes. All server strings go through textContent.
+// pbz-tracker page (web version). Contract with its backend (window.PBZ_TRANSPORT): docs/ui-api.md.
+// Strict CSP: no inline scripts/styles, no style attributes. All transport strings go through textContent.
 
 (() => {
-  const TOKEN = new URLSearchParams(location.search).get('t') || '';
   const TABS = ['warnings', 'journal', 'settings', 'about'];
-  const HEARTBEAT_MS = 3000;
 
-  // ---- Chrome strings (content strings come localized from the server) ----
+  // ---- Chrome strings (content strings come localized from the transport) ----
   const I18N = {
     tr: {
       'tab.warnings': 'Uyarılar',
@@ -16,9 +14,6 @@
       'tab.about': 'Hakkında',
       'tabs.label': 'Bölümler',
       'lang.group': 'Arayüz dili',
-      'conn.lost': 'Bağlantı koptu — pencereyi kapatıp aracı yeniden aç.',
-      'conn.close': 'Kapat',
-      'conn.noToken': 'Bu sayfa erişim anahtarı olmadan açıldı. Aracı yeniden başlat.',
       'loading': 'Yükleniyor…',
       'refresh.label': 'Son yenileme: {ago}',
       'refresh.never': 'Son yenileme: —',
@@ -42,8 +37,6 @@
       'journal.empty': 'Günlükte gösterilecek bir şey yok.',
       'journal.escHint': 'Esc: hepsini yeniden gizle',
       'set.paths': 'Oyun ve save',
-      'set.game': 'Oyun klasörü',
-      'set.save': 'Save dosyası',
       'set.pick': 'Seç…',
       'set.forget': 'Unut',
       'set.forgetHint': 'Yalnız kaydedilmiş bir seçim unutulabilir.',
@@ -54,13 +47,11 @@
       'set.pickFailed': 'Seçim yapılamadı.',
       'src.config': 'kayıtlı seçim',
       'src.auto': 'otomatik bulundu',
-      'src.arg': 'komut satırından',
       'src.none': 'bulunamadı',
       'set.general': 'Genel',
       'set.uiLang': 'Arayüz dili',
       'set.names': 'Ad kaynağı',
       'set.interval': 'Yoklama aralığı (sn)',
-      'set.intervalHint': '2–3600 sn. Save değişince araç zaten yeniler; bu yalnız yedek yoklama.',
       'set.intervalBad': 'Aralık 2 ile 3600 sn arasında bir tam sayı olmalı.',
       'set.saved': 'Kaydedildi.',
       'set.saveFailed': 'Kaydedilemedi.',
@@ -80,7 +71,6 @@
       'about.license': 'Lisans',
       'about.repo': 'Kaynak kod',
       'about.links': 'Bağlantılar',
-      'about.linksHint': 'Bağlantılar varsayılan tarayıcında açılır.',
       'about.openFailed': 'Bağlantı açılamadı.',
       'about.loadFailed': 'Bilgiler alınamadı.',
       'about.keys': 'Kısayollar',
@@ -120,8 +110,6 @@
       'diag.copyFailed': 'Kopyalanamadı.',
       'diag.timeline': 'Zaman çizelgesi',
       'diag.timelineOn': 'Görev zaman çizelgesini kaydet',
-      'diag.timelineHint': 'Her okumada görev durum değişikliklerini bu bilgisayarda pbz-tracker.timeline.json dosyasına yazar (en çok 2000 kayıt). Oyun bittikten sonra kuralları doğrulamak için. Dışa aktarılan dosya oynama zamanlarını (save saatlerini) içerir.',
-      'diag.notRecording': 'Kaydedilmiyor: araç oyun klasörünün içinde; exe\'yi başka bir klasöre taşı.',
       'diag.deleteTimeline': 'Zaman çizelgesini sil',
       'diag.deleteConfirm': 'Zaman çizelgesindeki bütün kayıtlar silinecek. Geri alınamaz. Devam edilsin mi?',
       'diag.deleted': 'Zaman çizelgesi silindi.',
@@ -139,9 +127,6 @@
       'tab.about': 'About',
       'tabs.label': 'Sections',
       'lang.group': 'Interface language',
-      'conn.lost': 'Connection lost — close the window and start the tool again.',
-      'conn.close': 'Close',
-      'conn.noToken': 'This page was opened without its access key. Start the tool again.',
       'loading': 'Loading…',
       'refresh.label': 'Last refresh: {ago}',
       'refresh.never': 'Last refresh: —',
@@ -165,8 +150,6 @@
       'journal.empty': 'Nothing to show in the journal.',
       'journal.escHint': 'Esc: hide everything again',
       'set.paths': 'Game and save',
-      'set.game': 'Game folder',
-      'set.save': 'Save file',
       'set.pick': 'Choose…',
       'set.forget': 'Forget',
       'set.forgetHint': 'Only a saved choice can be forgotten.',
@@ -177,13 +160,11 @@
       'set.pickFailed': 'Could not make the selection.',
       'src.config': 'saved choice',
       'src.auto': 'found automatically',
-      'src.arg': 'from the command line',
       'src.none': 'not found',
       'set.general': 'General',
       'set.uiLang': 'Interface language',
       'set.names': 'Name source',
       'set.interval': 'Polling interval (s)',
-      'set.intervalHint': '2–3600 s. The tool refreshes when the save changes anyway; this is only a fallback.',
       'set.intervalBad': 'The interval must be a whole number from 2 to 3600 s.',
       'set.saved': 'Saved.',
       'set.saveFailed': 'Could not save.',
@@ -203,7 +184,6 @@
       'about.license': 'License',
       'about.repo': 'Source code',
       'about.links': 'Links',
-      'about.linksHint': 'Links open in your default browser.',
       'about.openFailed': 'Could not open the link.',
       'about.loadFailed': 'Could not load this page.',
       'about.keys': 'Shortcuts',
@@ -243,8 +223,6 @@
       'diag.copyFailed': 'Could not copy.',
       'diag.timeline': 'Timeline',
       'diag.timelineOn': 'Record the quest timeline',
-      'diag.timelineHint': 'On every read, quest state changes are written to pbz-tracker.timeline.json on this computer (at most 2000 records). For checking the rules after the game. An export contains your play times (save timestamps).',
-      'diag.notRecording': 'Not recording: the tool is inside the game folder; move the exe to another folder.',
       'diag.deleteTimeline': 'Delete timeline',
       'diag.deleteConfirm': 'This deletes every record of the timeline. It cannot be undone. Continue?',
       'diag.deleted': 'Timeline deleted.',
@@ -260,7 +238,7 @@
   const STATUSES = new Set(['open', 'notStarted', 'done', 'missed', 'unknown']);
 
   const app = {
-    lang: 'en', // until the first state arrives (the server decides: English by default)
+    lang: 'en', // until the first state arrives (the transport decides: English by default)
     tab: 'warnings',
     state: null,
     settings: null,
@@ -269,15 +247,13 @@
     aboutLang: null,
     aboutError: false,
     aboutMsg: null,
-    picking: null,          // 'game' | 'save' while the server-side dialog is open
+    picking: null,          // a path row's id while the transport's picker is open
     pickMsg: null,          // { what, kind: 'ok'|'muted'|'error', text }
     settingsMsg: null,      // { kind, text }
     diag: null,             // diagnostics object (docs/ui-api.md), loaded with the settings
     diagError: false,
     diagOpen: false,        // the collapsible panel survives re-renders
     diagMsg: null,          // { kind, key }
-    sseOk: true,
-    fetchOk: true,
   };
 
   function t(key, vars) {
@@ -336,84 +312,10 @@
   const panel = (name) => document.getElementById('panel-' + name);
 
   // ---- Transport ----
-  // Everything the page needs from its backend goes through one small object (docs/ui-api.md):
-  //   needsToken, getState(), subscribe(onState), getSettings(), postSettings(patch), pick(what),
-  //   forget(what), openUrl(url), getAbout(), heartbeat?(), action?(id)
-  // The local window (lib/server.js) uses the HTTP transport below. The static web version installs
-  // window.PBZ_TRANSPORT (web/transport.js) before this file runs.
-  function httpTransport() {
-    return {
-      needsToken: true,
-      getState: () => api('GET', '/api/state'),
-      subscribe: (onState) => connectEvents(onState),
-      getSettings: () => api('GET', '/api/settings'),
-      postSettings: (patch) => api('POST', '/api/settings', patch),
-      pick: (what) => api('POST', '/api/pick', { what }),
-      forget: (what) => api('POST', '/api/forget', { what }),
-      openUrl: (url) => api('POST', '/api/open-url', { url }),
-      getAbout: () => api('GET', '/api/about'),
-      getDiagnostics: () => api('GET', '/api/diagnostics'),
-      getTimeline: () => api('GET', '/api/timeline'),
-      deleteTimeline: () => api('POST', '/api/timeline/delete', {}),
-      heartbeat: () => api('POST', '/api/heartbeat', {}),
-    };
-  }
-  const T = window.PBZ_TRANSPORT || httpTransport();
-
-  // ---- Network ----
-  function setFetchOk(ok) {
-    if (app.fetchOk !== ok) { app.fetchOk = ok; renderBanner(); }
-  }
-  function setSseOk(ok) {
-    if (app.sseOk !== ok) { app.sseOk = ok; renderBanner(); }
-  }
-
-  async function api(method, path, body) {
-    const headers = { 'X-PBZ-Token': TOKEN };
-    const init = { method, headers, cache: 'no-store', credentials: 'same-origin' };
-    if (body !== undefined) {
-      headers['Content-Type'] = 'application/json';
-      init.body = JSON.stringify(body);
-    }
-    let res;
-    try {
-      res = await fetch(path, init);
-    } catch (e) {
-      setFetchOk(false);
-      throw e;
-    }
-    setFetchOk(true);
-    if (!res.ok) {
-      const err = new Error('HTTP ' + res.status);
-      err.status = res.status;
-      throw err;
-    }
-    if (res.status === 204) return null;
-    const text = await res.text();
-    return text ? JSON.parse(text) : null;
-  }
-
-  function heartbeat() {
-    Promise.resolve(T.heartbeat()).catch(() => { /* banner handled in api() */ });
-  }
-
-  let es = null;
-  function connectEvents(onState) {
-    if (es) es.close();
-    es = new EventSource('/events?t=' + encodeURIComponent(TOKEN));
-    es.addEventListener('open', () => setSseOk(true));
-    es.addEventListener('state', (ev) => {
-      setSseOk(true);
-      let s;
-      try { s = JSON.parse(ev.data); } catch { return; }
-      onState(s);
-    });
-    es.addEventListener('error', () => {
-      setSseOk(false);
-      // The browser retries on its own while CONNECTING; a CLOSED stream (e.g. non-200) does not, so retry here.
-      if (es.readyState === EventSource.CLOSED) setTimeout(() => connectEvents(onState), 3000);
-    });
-  }
+  // Everything the page needs from its backend goes through one object that the web version installs as
+  // window.PBZ_TRANSPORT (web/transport.js, loaded before this file). Interface: docs/ui-api.md.
+  const T = window.PBZ_TRANSPORT;
+  if (!T) throw new Error('pbz-tracker: window.PBZ_TRANSPORT is missing (web.js must load before app.js)');
 
   // ---- State ----
   function applyState(s) {
@@ -431,7 +333,7 @@
       renderAbout();
       if (app.about || app.tab === 'about') loadAbout();
     }
-    // Settings may have changed on the server (pick/forget/settings); refresh them unless the user is editing.
+    // Settings may have changed in the transport (pick/forget/settings); refresh them unless the user is editing.
     // (loadSettings also refreshes the diagnostics: unmatched quests and the timeline count follow the save.)
     if (app.tab === 'settings' && !isEditingSettings()) loadSettings();
   }
@@ -442,7 +344,7 @@
   }
 
   async function loadState() {
-    try { applyState(await T.getState()); } catch { /* SSE will deliver it */ }
+    try { applyState(await T.getState()); } catch { /* subscribe() will deliver it */ }
   }
 
   async function loadSettings() {
@@ -534,29 +436,6 @@
       b.setAttribute('aria-pressed', b.dataset.lang === app.lang ? 'true' : 'false');
       b.setAttribute('title', t('lang.' + b.dataset.lang));
     }
-    renderBanner();
-  }
-
-  function renderBanner() {
-    const b = $('#conn-banner');
-    if (T.needsToken && !TOKEN) {
-      b.textContent = t('conn.noToken');
-      b.hidden = false;
-      return;
-    }
-    const lost = !app.sseOk || !app.fetchOk;
-    b.textContent = '';
-    if (lost) {
-      const msg = document.createElement('span');
-      msg.textContent = t('conn.lost');
-      const close = document.createElement('button');
-      close.type = 'button';
-      close.className = 'btn conn-close';
-      close.textContent = t('conn.close');
-      close.addEventListener('click', () => { window.close(); });
-      b.append(msg, close);
-    }
-    b.hidden = !lost;
   }
 
   function agoText(ms) {
@@ -581,8 +460,8 @@
     const out = [];
 
     if (s.ok === false) {
-      // Optional (web version): buttons offered by the transport, and a calmer "setup" look for the
-      // first-visit / permission messages. The local window never sends either.
+      // Optional: buttons offered by the transport, and a calmer "setup" look for the first-visit /
+      // permission messages.
       const actions = Array.isArray(s.actions) && typeof T.action === 'function' ? s.actions : [];
       const setup = s.errorKind === 'setup' || s.errorKind === 'busy';
       const settingsBtn = h('button', { class: 'btn' + (actions.length ? '' : ' btn-primary'), attrs: { type: 'button' }, text: t('err.openSettings'), on: { click: () => setTab('settings', true) } });
@@ -651,7 +530,7 @@
     if (first.childNodes.length) box.append(first);
     if (hd.location) box.append(h('p', { class: 'hdr-line' }, t('hdr.location') + ': ', h('span', { class: 'hdr-strong', text: hd.location })));
     if (hd.build && hd.build.text) {
-      // build.quiet (web version only): an unknown build is not an "untested" warning there.
+      // build.quiet: an unknown build is not an "untested" warning.
       box.append(h('p', { class: 'hdr-line' + (hd.build.tested === false && !hd.build.quiet ? ' hdr-untested' : ''), text: hd.build.text }));
     }
     for (const n of Array.isArray(hd.notices) ? hd.notices : []) box.append(h('p', { class: 'hdr-line hdr-notice', text: n }));
@@ -754,7 +633,7 @@
 
   // ---- Rendering: Settings ----
   function srcLabel(src) {
-    return src === 'config' || src === 'auto' || src === 'arg' ? t('src.' + src) : t('src.none');
+    return src === 'config' || src === 'auto' ? t('src.' + src) : t('src.none');
   }
 
   function renderSettings() {
@@ -767,7 +646,7 @@
     const focusId = document.activeElement && p.contains(document.activeElement) ? document.activeElement.id : null;
     const busy = !!app.picking;
 
-    // extra (web version only): { sourceText, warn, canForget } override the chip and the Forget button.
+    // extra: { sourceText, warn, canForget } override the chip and the Forget button.
     const pathRow = (what, label, value, source, extra) => {
       const canForget = extra && extra.canForget !== undefined ? !!extra.canForget : source === 'config';
       const warn = extra && extra.warn !== undefined ? !!extra.warn : !source;
@@ -785,10 +664,8 @@
         !waiting && msg ? h('p', { class: 'status-line ' + msg.kind, attrs: { role: 'status' }, text: msg.key ? t(msg.key) : msg.text }) : null);
     };
 
-    // Optional (web version): its own list of path rows, extra selects (account, file access) and a note.
-    const rows = Array.isArray(s.paths)
-      ? s.paths.map((r) => pathRow(r.what, r.label || '', r.value, r.source, r))
-      : [pathRow('game', t('set.game'), s.gameDir, s.gameDirSource), pathRow('save', t('set.save'), s.savePath, s.savePathSource)];
+    // The transport's path rows, extra selects (account, file access) and a note.
+    const rows = (Array.isArray(s.paths) ? s.paths : []).map((r) => pathRow(r.what, r.label || '', r.value, r.source, r));
     const extraFields = (Array.isArray(s.extraFields) ? s.extraFields : []).map((f) => {
       const id = 'set-x-' + f.id;
       const opts = Array.isArray(f.options) ? f.options : [];
@@ -829,7 +706,7 @@
       h('div', { class: 'field' }, h('label', { class: 'field-label', attrs: { for: 'set-names' }, text: t('set.names') }), namesSel),
       h('div', { class: 'field' },
         h('label', { class: 'field-label', attrs: { for: 'set-interval' }, text: t('set.interval') }),
-        h('div', { class: 'field-stack' }, interval, h('p', { class: 'hint', attrs: { id: 'set-interval-hint' }, text: s.intervalHint || t('set.intervalHint') }))),
+        h('div', { class: 'field-stack' }, interval, h('p', { class: 'hint', attrs: { id: 'set-interval-hint' }, text: s.intervalHint || '' }))),
       exact,
       app.settingsMsg ? h('p', { class: 'status-line ' + app.settingsMsg.kind, attrs: { role: 'status' }, text: t(app.settingsMsg.key) }) : null);
 
@@ -905,10 +782,8 @@
       const hasTimeline = typeof T.getTimeline === 'function';
       body.append(
         h('h3', { class: 'diag-sub', text: t('diag.timeline') }),
-        checkRow('set-timeline', t('diag.timelineOn'), s.timelineHint || t('diag.timelineHint'), s.timeline, (v) => saveField({ timeline: v }).then(() => loadDiagnostics(true))),
+        checkRow('set-timeline', t('diag.timelineOn'), s.timelineHint || '', s.timeline, (v) => saveField({ timeline: v }).then(() => loadDiagnostics(true))),
         h('p', { class: 'hint mono', text: t('diag.timelineCount', { n: str(tl.count) }) + (tl.error ? ' · ' + t('diag.timelineError', { code: tl.error }) : '') }),
-        // Window only: switched on, but the tool sits inside the game/save folder, so nothing is written.
-        tl.enabled === false && s.timeline === true ? h('p', { class: 'status-line error', text: t('diag.notRecording') }) : null,
         hasTimeline ? h('div', { class: 'diag-actions' },
           h('button', { class: 'btn', attrs: { type: 'button', id: 'diag-export', disabled: !tl.count }, text: t('diag.export'), on: { click: () => exportTimeline() } }),
           h('button', { class: 'btn btn-quiet', attrs: { type: 'button', id: 'diag-copy-timeline', disabled: !tl.count }, text: t('diag.copyTimeline'), on: { click: () => copyTimeline() } }),
@@ -929,7 +804,7 @@
     diagMsgTimer = setTimeout(() => { app.diagMsg = null; if (!isEditingSettings()) renderSettings(); }, 4000);
   }
 
-  // Clipboard: the async API (needs a secure context such as 127.0.0.1 or https), else a hidden textarea.
+  // Clipboard: the async API (needs a secure context: https, or localhost while testing), else a hidden textarea.
   async function copyText(text) {
     try {
       if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') { await navigator.clipboard.writeText(text); return true; }
@@ -1076,7 +951,7 @@
     const card2 = links.length ? h('section', { class: 'set-card' },
       h('h2', { class: 'set-title', text: t('about.links') }),
       linkList,
-      h('p', { class: 'hint', text: a.linksHint || t('about.linksHint') }),
+      a.linksHint ? h('p', { class: 'hint', text: a.linksHint }) : null,
       app.aboutMsg ? h('p', { class: 'status-line error', attrs: { role: 'status' }, text: t(app.aboutMsg) }) : null) : null;
 
     const card3 = h('section', { class: 'set-card' },
@@ -1129,7 +1004,7 @@
       b.addEventListener('click', () => { if (b.dataset.lang !== app.lang) postSettings({ uiLang: b.dataset.lang }); });
     }
     document.addEventListener('keydown', onKeyDown);
-    // Never let the app window navigate away (dropped files, stray links).
+    // Never let the page navigate away (dropped files, stray links).
     window.addEventListener('dragover', (e) => e.preventDefault());
     window.addEventListener('drop', (e) => e.preventDefault());
     document.addEventListener('click', (e) => {
@@ -1143,14 +1018,9 @@
     renderSettings();
     renderAbout();
     renderRefresh();
-    if (T.needsToken && !TOKEN) return;
 
     loadState();
     T.subscribe(applyState);
-    if (typeof T.heartbeat === 'function') {
-      heartbeat();
-      setInterval(heartbeat, HEARTBEAT_MS);
-    }
     setInterval(renderRefresh, 1000);
   }
 

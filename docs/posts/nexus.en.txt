@@ -17,20 +17,14 @@ Requirements
 
 - Phantom Blade Zero installed. The decryption key is derived from your own PBZ.exe, nothing is bundled.
 - Web version: desktop Chrome or Edge for folder access and live refresh. Firefox and Safari work too if you drag & drop your save (and PBZ.exe once), but there's no auto refresh.
-- Exe (alternative): Windows. Node is embedded in it, that's why it's ~89 MB.
 
 Installation
 
 Web: open https://zziroo.github.io/pbz-tracker/ , click "Choose game folder", pick the game folder (or your Steam library folder) and allow read access. After that it's one click. You can also install it as an app if you want it in its own window.
 
-Exe, if you'd rather have a local app:
-1. Download pbz-tracker-v0.5.0.exe from https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 and put it anywhere. Nothing to install.
-2. It's unsigned, so SmartScreen will warn you. "More info", then "Run anyway". The source is at https://github.com/zziroo/pbz-tracker if you'd rather build it yourself.
-3. Double-click it. A window opens with the same tabs. It finds the game by itself, or asks you for the game folder.
+Safety: it's read-only. It never writes to your save, backups or game folder, and it doesn't touch the running game. Web: no file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The key comes from your own PBZ.exe and stays in that browser.
 
-Safety: it's read-only. It never writes to your save, backups or game folder, and it doesn't touch the running game. Web: no file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The key comes from your own PBZ.exe and stays in that browser. Exe: no internet. The window only talks to the tool itself on 127.0.0.1 (your own PC). There's no key, SteamID or personal data in the exe, the build scans itself to make sure.
-
-Known issues (v0.5.0)
+Known issues (v0.6.0)
 
 - It's new and I built it fast, so expect rough edges.
 - Some later story cutoffs can't be detected from the save yet. Warnings there go by quest state only.
@@ -41,6 +35,6 @@ Known issues (v0.5.0)
 
 Permissions and credits
 
-Free and open source, GPL-3.0-or-later. Source: https://github.com/zziroo/pbz-tracker. The missable rules come from Game8, PowerPyx, DTGRE (dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the Steam forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. Details are in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version rebuilds and republishes itself. For the exe, drop the repo's latest data/rules.json next to it, no new release needed.
+Free and open source, GPL-3.0-or-later. Source: https://github.com/zziroo/pbz-tracker. The missable rules come from Game8, PowerPyx, DTGRE (dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the Steam forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. Details are in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version rebuilds and republishes itself.
 
 [OPTIONAL: AI line] A lot of this was written with AI help (Claude Code). I'd rather you hear it from me.

@@ -1,8 +1,8 @@
 'use strict';
 // The web version's backend: implements the page transport of docs/ui-api.md (ui/app.js) entirely in
-// the browser, on the same engine as the local tool (lib/core + the pure report modules). Mirrors
-// lib/session.js (resolve inputs → key → names → evaluate/diff), lib/watch.js (re-read on change,
-// retry a mid-write file) and lib/server.js (settings, about, link allow-list).
+// the browser, on the same engine as the terminal version (lib/core + the pure report modules). Mirrors
+// lib/session.js (resolve inputs → key → names → evaluate/diff) and lib/watch.js (re-read on change,
+// retry a mid-write file); it also serves the settings, the About data and the link allow-list.
 //
 // Inputs ("slots"), each chosen in Settings, by a setup button or by drag and drop:
 //   game  folder handle: the game folder or a Steam library (→ exe, Paks, saves, build id)
@@ -711,7 +711,6 @@ function createTransport() {
   const ready = restored.then(reload).catch(() => {});
 
   const transport = {
-    needsToken: false,
     getState: async () => current,
     subscribe: (fn) => { listeners.add(fn); },
     getSettings: async () => { await restored; return settings(); },

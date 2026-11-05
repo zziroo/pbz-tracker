@@ -1,127 +1,114 @@
 # pbz-tracker
 
-**▶ Open the web version: https://zziroo.github.io/pbz-tracker/**
+**▶ Open it: https://zziroo.github.io/pbz-tracker/**
 
-**⬇ Download the exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0**
-
-A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero** (PC, Steam). It reads your save and warns you only when you are about to lose something for good. Everything else stays hidden until you ask for it.
+A **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero** (PC, Steam) that runs in your browser. It reads your save and warns you only when you are about to lose something for good. Everything else stays hidden until you ask for it.
 
 *Türkçe: [README.tr.md](README.tr.md)*
 
 ## What it does / does not do
 
 - Reads your save, finds missable quests that are still open, and tells you which point you must not pass yet: "Before this area's final fight", not a boss name.
-- **Never writes** to your save, its backups, the game folder or any patch. It writes only `pbz-tracker.config.json` next to the exe (paths you chose in a picker, and the window's settings), `pbz-tracker.timeline.json` next to it (the local quest timeline, see Diagnostics; `--no-timeline` turns it off) and the optional `--dump` output. The save is read with shared access, so the game can stay open.
-- **No internet access.** No telemetry, no update check. The window talks to a small server inside the tool that listens on `127.0.0.1` only (this computer), on a random port, with a random key per start. Nothing else on the network can reach it, and the tool itself makes no internet connections. Links in the About tab open in your normal browser only when you click them.
-- **Contains no key and no personal data.** The save key is derived on each run from *your own* `PBZ.exe` and kept in memory only. The exe contains no SteamID, save data or key; the build fails and deletes the exe if it finds the builder's home path, user name or a SteamID64 in it (`node build/build.js --check <exe>` runs the same scan).
+- **Never writes** to your save, its backups, the game folder or any patch. The browser only gets read access. What the page remembers (the derived key, the chosen folders, the settings and the quest timeline) stays in that browser's storage for the site (IndexedDB). The game can stay open while it reads the save.
+- **Runs entirely in your browser.** No file is uploaded and no request leaves the page; you can check this in DevTools → Network. No telemetry, no update check. It is a static page with no server side: the site only serves its own files. After the first visit it also works offline. Links in the About tab open only when you click them.
+- **Contains no key and no personal data.** The save key is derived in your browser from *your own* `PBZ.exe` (read in chunks, never as a whole). The page contains no SteamID, save data or key.
 - Does not attach to the game process and does not read its memory.
 
 ## Install
 
-Download `pbz-tracker-v0.5.0.exe` from the Releases page. It is a single file with nothing to install.
+Nothing to download: open **https://zziroo.github.io/pbz-tracker/**.
 
-Windows SmartScreen may warn on first run because the exe is not code-signed. Choose "More info → Run anyway", or build it yourself from source (see below).
+- **Chrome or Edge on the desktop** (File System Access API): click **Choose game folder** and pick the game folder (`…\steamapps\common\PBZ`) or your Steam library folder (`…\SteamLibrary`; the library also gives the game build for the header). The browser asks for read access. You can also drag the folder onto the page. On the next visit one click, **Continue with PBZ**, is enough (the browser asks again for read access once per visit unless you let it remember).
+- **Install it as an app** to keep it in its own window next to the game: browser menu → Install (or the install icon in the address bar; in Edge: Apps → Install this site as an app).
+- **Firefox, Safari, or if Chrome refuses the folder** (it blocks some system folders, such as a Steam library under `C:\Program Files (x86)`): switch Settings → File access to **Single files**, then choose or drop `PBZSaveGame.sav` and, once, `PBZ.exe` (the key is then remembered). Optionally choose the `Paks` folder for names from a text patch (the browser may call this an "upload"; nothing leaves the page). In this mode the page cannot refresh by itself: after the game saves, choose or drop the save again.
+- Phones and tablets are not supported.
+
+**Privacy.** The key is remembered in this browser's storage for the site (IndexedDB), looked up by the size and date of `PBZ.exe`, so a game update triggers a new derivation. The chosen folders, the settings and the quest timeline are stored there too, and only there. **Forget** in Settings removes a chosen folder or file (and, for PBZ.exe, the key); clearing the site data in the browser removes everything. Note: on GitHub Pages every project of the same user shares one origin (`<user>.github.io`), so that browser storage is visible to the publisher's other Pages projects; a dedicated custom domain avoids this. Nothing is written to disk outside the browser's own storage, and nothing is ever written to the game, the save or its backups.
 
 ## Usage
 
-**Double-click the exe; a window opens.** You can also drop your save file onto it. The window refreshes on its own whenever the game saves, so you can keep it open next to the game.
+Leave the page open next to the game. It checks the save every 3 seconds (Settings: 2–3600 s) and refreshes whenever the game saves. In a background tab the browser may slow these checks down to about once a minute; switching back to the tab refreshes at once.
 
 ![Warnings tab](docs/screenshots/web-warnings.png)
 
 - **Warnings** (default tab): only what you are about to lose, or "No risk of missing anything right now."
 - **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Names are blurred until you click a row; any refresh blurs them again.
-- **Settings**: language (TR/EN), name source, refresh interval, and the game folder / save file (choose or forget).
+- **Settings**: language (TR/EN), name source, refresh interval, file access, and the game folder / save file (choose or forget).
 - **About**: version, tested game build, license, guide links.
 
 ![Journal tab, blurred](docs/screenshots/web-journal.png)
 
-The window is Microsoft Edge (or Chrome) in app mode, without tabs or an address bar. Without Edge or Chrome the page opens in your default browser. Closing the window ends the tool within about 10 seconds. You can drop `PBZSaveGame.sav`, your account folder under `SaveGames\Steam`, the game folder or `PBZ.exe` onto the exe.
-
-### Terminal (`--cli`)
-
-The v0.3 terminal mode is still there. `--cli` alone watches the save in the console (G toggles the hidden sections, Q quits). Any terminal option such as `--show`, `--watch`, `--dump` or `--save` also runs in the terminal:
-
-```
-pbz-tracker-v0.5.0.exe --cli         # watch in the console; G = toggle hidden sections, Q = quit
-pbz-tracker-v0.5.0.exe --no-color    # read once and print
-pbz-tracker-v0.5.0.exe --watch       # refresh whenever the game saves
-pbz-tracker-v0.5.0.exe --show        # also print the hidden sections
-pbz-tracker-v0.5.0.exe --exact       # name places and bosses in the warnings (only in areas you have reached)
-pbz-tracker-v0.5.0.exe --no-timeline # do not record the quest timeline
-pbz-tracker-v0.5.0.exe --lang en     # UI language: en or tr (default: English; Turkish when the system language is Turkish and the Turkish fan patch is installed)
-pbz-tracker-v0.5.0.exe --names en    # name source: a detected text patch or a name table
-pbz-tracker-v0.5.0.exe --dump        # write the newest save slot as JSON to .\out (debugging)
-pbz-tracker-v0.5.0.exe --ui          # open the window from a terminal (--no-edge: default browser)
-pbz-tracker-v0.5.0.exe --version
-pbz-tracker-v0.5.0.exe --help
-```
-
-`--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
-
-The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450), then in common folders (`<drive>:\SteamLibrary`, `Program Files\Steam`, `<drive>:\Games\PBZ`). If saves from several Steam accounts exist, the tool asks which one to use, or you can pass `--steamid`.
-
-**First run:** the tool finds the game on its own. If it cannot, the window says so and you choose the game folder (or `PBZSaveGame.sav`) in Settings. In the terminal it opens a folder picker ("select the Phantom Blade Zero install folder"), and, if the save is not found either, a file picker for `PBZSaveGame.sav`. The choice is remembered in `pbz-tracker.config.json` next to the exe. The window's settings (language, name source, refresh interval, exact names, timeline on/off) are stored in the same file. Apart from it the tool writes only the quest timeline (`pbz-tracker.timeline.json`, next to it) and the optional `--dump` output. `--pick` opens the picker on purpose, `--forget` deletes the file, and `--no-dialog` never opens a picker. A remembered path that no longer exists is ignored. Runs with `--game` / `--save` never open a picker.
-
-**Installed elsewhere, or not through Steam?** Drop the game folder or the save onto the exe, or pass `--game <PBZ folder>` (plus `--save` if needed). Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
-
-## Web version (nothing to download)
-
-The same tracker also runs as a web page: **https://zziroo.github.io/pbz-tracker/** (GitHub Pages). Same engine, same tabs, same spoiler layers; your save gives the same warnings as in the exe.
-
-- **Runs entirely in your browser.** No file is uploaded and no request leaves the page; you can check this in DevTools → Network. It is a static page with no server side: the site only serves its own files. After the first visit it also works offline.
-- **Chrome or Edge on the desktop** (File System Access API): click **Choose game folder** and pick the game folder (`…\steamapps\common\PBZ`) or your Steam library folder (`…\SteamLibrary`; the library also gives the game build for the header). The browser asks for read access. You can also drag the folder onto the page. On the next visit one click, **Continue with PBZ**, is enough (the browser asks again for read access once per visit unless you let it remember).
-- It checks the save every 3 seconds (Settings: 2–3600 s) and refreshes when the game saves. In a background tab the browser may slow these checks down to about once a minute; switching back to the tab refreshes at once. Install it as an app (the install icon in the address bar, or Edge → Apps → Install this site as an app) to keep it in its own window next to the game.
 - Several Steam accounts: choose the account in Settings. A save stored elsewhere (for example under `%LOCALAPPDATA%\ProjectPBZ\Saved\SaveGames`): choose the save file in Settings.
-- The key is derived from your own `PBZ.exe` in the browser (read in chunks, never as a whole). It is remembered in this browser's storage for the site (IndexedDB), looked up by the exe's size and date, so a game update triggers a new derivation. The chosen folders, the settings and the quest timeline are stored there too. **Forget** in Settings removes a chosen folder or file (and, for PBZ.exe, the key); clearing the site data in the browser removes everything. Note: on GitHub Pages every project of the same user shares one origin (`<user>.github.io`), so that browser storage is visible to the publisher's other Pages projects; a dedicated custom domain avoids this. Nothing is written to disk outside the browser's own storage, and nothing is ever written to the game, the save or its backups.
-- **Firefox, Safari, or if Chrome refuses the folder** (it blocks some system folders, such as a Steam library under `C:\Program Files (x86)`): switch Settings → File access to **Single files**, then choose or drop `PBZSaveGame.sav` and, once, `PBZ.exe` (the key is then remembered). Optionally choose the `Paks` folder for names from a text patch (the browser may call this an "upload"; nothing leaves the page). In this mode the page cannot refresh by itself: after the game saves, choose or drop the save again.
-- What it cannot do: no rules or name tables next to the app (the rules are built in; rule updates ship by rebuilding the page), no `--dump`, no terminal mode. Phones and tablets are not supported.
+- Not installed through Steam? Choose the game folder itself. Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
 
 ## Spoiler policy
 
 1. **Default view:** only actionable warnings, meaning a cutoff ahead of you with something still open. Cutoffs are described by position, never by name. A quest is named only if it already appears in your journal; otherwise you get a location hint. With nothing at risk you see: "No risk of missing anything right now."
-2. **Hidden (Journal tab; `--show` or G in the terminal):** journal status, step counters, missed items, purple-quest tally. In the window, quest names (with their counters and notes) are blurred until you click a row; status badges and section titles with their counts stay visible. Everything is blurred again on every refresh.
+2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quest names (with their counters and notes) are blurred until you click a row; status badges and section titles with their counts stay visible. Everything is blurred again on every refresh.
 3. **Never shown:** anything your save says you have not reached. The line is always drawn from the save of the person running the tool.
 
-**Exact names (opt-in, off by default):** Settings → "Show place and boss names in warnings" (terminal: `--exact`) writes the cutoff with its place and boss names, but only for areas your save shows you have reached; every other cutoff keeps its positional wording.
+**Exact names (opt-in, off by default):** Settings → "Show place and boss names in warnings" writes the cutoff with its place and boss names, but only for areas your save shows you have reached; every other cutoff keeps its positional wording.
 
 ### Diagnostics and the quest timeline
 
 At the bottom of Settings, **Diagnostics** (collapsed) lists quests in your save that the name table does not know (their count is shown on the panel header), undetectable rules in range for this save, the rules and name-table versions, the text patch found, the game build and the tool version. **Copy report** copies the same as plain text for a GitHub issue; it contains no paths, Steam account ids or user names, and of the save time only the date.
 
-The tool also keeps a local **quest timeline**: on every read, quests that appeared or changed state are appended (save time, quest id, folder, old and new state, changed branches, step counter, level code), at most 2000 records. A quest that is no longer in the save gets one record with no new state. It is meant for checking the rules after a playthrough; an export contains your play times (save timestamps). The exe and `node pbz.js` store it in `pbz-tracker.timeline.json` next to `pbz-tracker.config.json`; the web version in the browser's storage for the site. **Export timeline** / **Copy timeline** in Diagnostics give it as JSON. Turn it off there or with `--no-timeline` (this only stops recording); **Delete timeline** removes it (in the web version, so does forgetting everything). It never goes anywhere by itself.
+The tool also keeps a local **quest timeline**: on every read, quests that appeared or changed state are appended (save time, quest id, folder, old and new state, changed branches, step counter, level code), at most 2000 records. A quest that is no longer in the save gets one record with no new state. It is meant for checking the rules after a playthrough; an export contains your play times (save timestamps). It is stored in the browser's storage for the site (IndexedDB). **Export timeline** / **Copy timeline** in Diagnostics give it as JSON. Turn it off there (this only stops recording); **Delete timeline** removes it, and so does forgetting everything. It never goes anywhere by itself.
 
 ## Supported game build
 
 Verified on Steam build **26367565**. The header shows the installed build. On an untested build it shows a one-line warning. If the game update changed the save key, the tool stops with a clear error that names the build.
 
-## Updating the rules without a new exe
+## Rule updates
 
-The rules (`data/rules.json`) and name tables are built into the exe, but files placed **next to the exe** take precedence:
-
-1. Download the latest `data/rules.json` from this repository (Raw → save as `rules.json`).
-2. Put it in the same folder as `pbz-tracker-v0.5.0.exe`.
-3. Run the tool. The header says `Rules: rules.json next to the app (version …)`.
-
-Name tables work the same way: a `names.<lang>.json` next to the exe replaces or adds that language. You can also pass a rules file explicitly with `--rules <path>`. A broken file, or one written for a different rules format (`schemaVersion`), stops the tool with an error instead of silently using the built-in copy. Delete the file to go back to the built-in rules. The tool itself never downloads anything.
+The rules (`data/rules.json`) and name tables are built into the page. Rule fixes ship by republishing the web version: when the rules change, the site is rebuilt, and the next visit picks up the new rules. The header shows the rules version. The tool itself never downloads anything else.
 
 ## Names and languages
 
-- UI language (`--lang`) and name source (`--names`) are independent. Default: English UI with the official English names. When the system language is Turkish and the Turkish fan patch is installed, the tool starts in Turkish and reads Turkish names from the patch. An explicit `--lang` or the language chosen in the window always wins.
-- A text patch in `ProjectPBZ\Content\Paks` (an unencrypted `.pak` carrying `Localization/Game/<culture>/Game.locres`, for example a fan translation) is detected and used for names at runtime, read-only. Supported: paks with a legacy index (v1–v9), or small (≤ 32 MB) uncompressed paks of any version. The official game paks (v12) are skipped.
+- UI language and name source are independent. Default: English UI with the official English names. When the browser language is Turkish and the chosen folder has the Turkish fan patch, the page starts in Turkish and reads Turkish names from the patch. The language chosen in Settings always wins.
+- A text patch in `ProjectPBZ\Content\Paks` (an unencrypted `.pak` carrying `Localization/Game/<culture>/Game.locres`, for example a fan translation) is detected in the chosen folder and used for names at runtime, read-only. Supported: paks with a legacy index (v1–v9), or small (≤ 32 MB) uncompressed paks of any version. The official game paks (v12) are skipped.
 - Without a patch, names come from `data/names.<lang>.json`. English is complete; missing names fall back to English with a one-line notice.
-- To contribute a name table, see the Turkish README section "Ad tablosuna katkı". In short: copy `data/names.en.json` to `names.<lang>.json`, translate the values, and add one line to `TABLES` in `lib/names.js`.
+- To contribute a name table, see the Turkish README section "Ad tablosuna katkı". In short: copy `data/names.en.json` to `names.<lang>.json`, translate the values, and add one line to `EMBEDDED_TABLES` in `lib/core/names.js`.
 
-## Build from source
+## For developers
 
-Node 18+ with no dependencies: `node pbz.js` opens the window (the page is read from `ui/`), `node pbz.js --cli [options]` runs in the terminal.
+Node 18+ with no dependencies.
 
-Single exe: `node build/build.js` writes `dist/pbz-tracker-v<version>.exe`. It bundles the sources and the page files in `ui/` into one script, then makes a Node single executable application. `node build/build.js --bundle-only` writes only the script (`dist/pbz-tracker.js`).
+### Terminal (`node pbz.js --cli`)
 
-Web version: `node build/build.js --web` writes the static site to `web/dist/` (`index.html`, the unchanged `ui/app.js` and `ui/style.css`, `web.js` = the engine plus `web/*.js` bundled for the browser, `sw.js`, `manifest.webmanifest`, `icon.svg`). The page talks to `web/transport.js` instead of the local server (same contract, `docs/ui-api.md`). The build fails if a Node built-in ends up in the browser bundle. `.github/workflows/pages.yml` builds and publishes it on GitHub Pages (see `docs/publish.md`). To try it locally, serve `web/dist/` over `http://127.0.0.1` (any static server); a page opened as a `file://` URL cannot use folder access or the service worker.
+A terminal tool for development and analysis: the same engine as the page, reading the save **read-only**. It prints the same report as the Warnings and Journal tabs. The terminal is its only mode, so `--cli` may be left out.
 
-How the window works: `lib/server.js` serves `ui/` and a JSON API (contract: `docs/ui-api.md`) on `127.0.0.1` with a random port and a per-start token; `lib/browser.js` opens Edge or Chrome with `--app`. The exe started by double-click re-launches itself without a console, so no empty console window stays open. The build step uses `npx postject`; this happens at build time only.
+```
+node pbz.js --cli                  # read once and print
+node pbz.js --cli --watch          # refresh whenever the game saves (G = toggle hidden sections, Q = quit)
+node pbz.js --cli --interval 5     # poll interval in watch mode, seconds (2–3600)
+node pbz.js --cli --show           # also print the hidden sections
+node pbz.js --cli --exact          # name places and bosses in the warnings (only in areas you have reached)
+node pbz.js --cli --dump [folder]  # write the newest save slot as JSON (default .\out; debugging)
+node pbz.js --cli --lang en        # UI language: en or tr
+node pbz.js --cli --names en       # name source: a detected text patch (e.g. ProjectPBZ-Windows_C) or a table language
+node pbz.js --cli --rules <path>   # use another rules file instead of data/rules.json
+node pbz.js --cli --save <path>    # save file; --game <PBZ folder>, --exe <PBZ.exe> likewise
+node pbz.js --cli --steamid <id>   # which Steam account, if there are several
+node pbz.js --cli --forget         # delete pbz-tracker.config.json (remembered game/save path)
+node pbz.js --cli --no-color       # no colours
+node pbz.js --help
+node pbz.js --version
+```
 
-Test against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another game): `node test/oodle-compare.js --game <PBZ folder> --dll <dll>`.
+`--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
+
+The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450), then in common folders (`<drive>:\SteamLibrary`, `Program Files\Steam`, `<drive>:\Games\PBZ`). If several Steam accounts have saves, pass `--steamid`. An optional `pbz-tracker.config.json` next to `pbz.js` (`{ "gameDir": …, "savePath": … }`, written by hand) is used before that detection; `--forget` deletes it. A `rules.json` or `names.<lang>.json` next to `pbz.js` overrides the one in `data/`. A broken rules file, or one written for a different rules format (`schemaVersion`), stops the tool with an error instead of silently using the built-in copy. Apart from `--forget` and the optional `--dump` output, the CLI writes nothing.
+
+### Web build
+
+`node build/build.js` writes the static site to `web/dist/` (`index.html`, the unchanged `ui/app.js` and `ui/style.css`, `web.js` = the engine plus `web/*.js` bundled for the browser, `sw.js`, `manifest.webmanifest`, `icon.svg`). The page talks to `web/transport.js` (contract: `docs/ui-api.md`). The build fails if a Node built-in ends up in the browser bundle. `.github/workflows/pages.yml` builds and publishes it on GitHub Pages on every push to `main` (see `docs/publish.md`). To try it locally, serve `web/dist/` over `http://localhost` (any static server); a page opened as a `file://` URL cannot use folder access or the service worker.
+
+### Tests
+
+- `node test/core-portability.js`: proves the engine core is browser-safe (no Node built-ins, runs in a browser-style sandbox).
+- `node test/core-e2e.js [--game <PBZ folder>] [--save <PBZSaveGame.sav>]`: runs the portable core against a real game folder and save, and checks its report equals `node pbz.js --cli --no-color`. Read-only.
+- `node test/oodle-compare.js --game <PBZ folder> --dll <dll>`: compares the save decompressor against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another game).
 
 `data/rules.json` contains spoilers for the whole game.
 
@@ -144,7 +131,7 @@ Conditions are three-valued (true / false / unknown): `mapUnlocked`, `levelVisit
 
 ## License
 
-GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/core/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). When you share the exe, make the source (this repository) available too.
+GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/core/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). If you redistribute the tool, make the source (this repository) available too.
 
 ## Sources and thanks
 

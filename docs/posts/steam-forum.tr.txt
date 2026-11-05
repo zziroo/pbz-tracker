@@ -19,10 +19,9 @@ Pratik kısım:
 - Her şey tarayıcıda çalışıyor. Anahtar senin PBZ.exe'nden türetiliyor ve sadece o tarayıcıda kalıyor.
 - Sadece okuyor. Save'e, yedeklere ya da oyun klasörüne hiçbir şey yazmıyor, çalışan oyuna dokunmuyor.
 - Test edildiği oyun build'ini (26367565) gösteriyor, seninki daha yeniyse uyarıyor.
-- Yerel uygulama istersen bir Windows exe'si de var. Çift tıkla, bir pencere açılıyor. Sadece bu bilgisayarda çalışıyor, internete çıkmıyor. İmzasız olduğu için SmartScreen uyarı veriyor ("Ek bilgi", sonra "Yine de çalıştır"). Güvenmiyorsan kaynak kodu açık, kendin derleyebilirsin.
-- Kural düzeltmeleri: web sürümü kendini güncelliyor. Exe için repodaki güncel data/rules.json'ı exe'nin yanına atman yetiyor.
+- Kural düzeltmeleri: web sürümü kendini güncelliyor.
 
-Dürüst olayım: daha v0.5.0 ve hızlı yaptım. Hikâyenin ileri kısımlarındaki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, oralarda uyarılar sadece görev durumuna bakıyor. Bazı görev ID eşleştirmeleri tahmine dayalı (* ile işaretli). Birkaç eşya save'den hiç okunamıyor. Kurallar da rehberlerden ve oyuncu raporlarından geliyor, bunlar her zaman birbirini tutmuyor. Yani kusursuz değil. Yanlış uyarı verirse ya da bir şeyi atlarsa yaz, düzelteyim.
+Dürüst olayım: daha v0.6.0 ve hızlı yaptım. Hikâyenin ileri kısımlarındaki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, oralarda uyarılar sadece görev durumuna bakıyor. Bazı görev ID eşleştirmeleri tahmine dayalı (* ile işaretli). Birkaç eşya save'den hiç okunamıyor. Kurallar da rehberlerden ve oyuncu raporlarından geliyor, bunlar her zaman birbirini tutmuyor. Yani kusursuz değil. Yanlış uyarı verirse ya da bir şeyi atlarsa yaz, düzelteyim.
 
 Kurallar herkese açık rehberlerden (Game8, PowerPyx, DTGRE, Steam Topluluğu rehberleri: https://steamcommunity.com/app/4115450/guides/ ), bu forumdaki geri dönüşü olmayan nokta başlığından ( https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) ve Steam forumlarındaki oyuncu raporlarından geliyor. Hepsi repoda kaynak olarak yazıyor. Bulduklarını paylaşan herkese teşekkürler.
 
@@ -30,5 +29,4 @@ Kurallar herkese açık rehberlerden (Game8, PowerPyx, DTGRE, Steam Topluluğu r
 
 Web sürümü: https://zziroo.github.io/pbz-tracker/
 Steam rehberi: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
-Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
 Kaynak / hata bildirimi: https://github.com/zziroo/pbz-tracker

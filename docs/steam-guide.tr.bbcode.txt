@@ -6,7 +6,6 @@
 #   IMG1 = previewimg 48488383 (docs/screenshots/web-tr-warnings.png)
 #   IMG2 = previewimg 48488384 (docs/screenshots/web-tr-journal.png)
 #   IMG3 = previewimg 48488385 (docs/screenshots/web-setup.png)
-#   IMG4 = previewimg 48488386 (docs/screenshots/window-tr-warnings.png)
 # Title alternatives:
 #   pbz-tracker: kör oynarken görev kaçırmamak için
 #   pbz-tracker: spoiler yemeden görev kaçırma uyarısı
@@ -55,27 +54,16 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 
 [previewimg=48488385;sizeOriginal,inline;][/previewimg]
 
-[h1]Exe (alternatif)[/h1]
-[olist]
-[*]https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 adresinden pbz-tracker-v0.5.0.exe'yi indir, istediğin yere koy. Node'u içinde taşıdığı için ~89 MB; kurulum gerektirmiyor.
-[*]İmzasız olduğu için Windows SmartScreen uyarı veriyor: "Ek bilgi", sonra "Yine de çalıştır".
-[*]Rastgele bir exe'ye güvenmek istemiyorsan kaynak kodu https://github.com/zziroo/pbz-tracker adresinde, kendin derleyebilirsin.
-[*]Çift tıkla; aynı sekmelerle bir pencere açılıyor. Steam kurulumunu kendi buluyor, bulamazsa Ayarlar'dan oyun klasörünü seç.
-[/olist]
-
-[previewimg=48488386;sizeOriginal,inline;][/previewimg]
-
 [h1]Güvenli mi? Bilinen eksikler, kaynaklar, geri bildirim[/h1]
 [h1]Güvenli mi?[/h1]
 [list]
 [*]Sadece okuyor. Save'e, yedeklere, oyun klasörüne ya da yamaya hiçbir şey yazmıyor.
 [*]Web: her şey senin tarayıcında çalışıyor. Dosya yüklenmiyor, sayfadan dışarı tek bir istek çıkmıyor (DevTools → Network'ten bakabilirsin). Şifre çözme anahtarı SENİN PBZ.exe'nden türetiliyor ve sadece o tarayıcıda kalıyor.
-[*]Exe: internete çıkmıyor; pencere sadece 127.0.0.1 üzerinden aracın kendisiyle konuşuyor. Exe'nin içinde anahtar, SteamID ya da kişisel veri yok (build kendini tarıyor); anahtar çalışma anında senin PBZ.exe'nden türetiliyor.
 [*]Çalışan oyun sürecine dokunmuyor.
 [*]Test edildiği oyun build'ini (26367565) gösteriyor; seninki daha yeniyse uyarıyor.
 [/list]
 
-[h1]Bilinen eksikler (v0.5.0)[/h1]
+[h1]Bilinen eksikler (v0.6.0)[/h1]
 [list]
 [*]Hikâyenin ileri kısımlarındaki bazı geri dönüşsüz noktalar save'den henüz tespit edilemiyor; oralardaki uyarılar sadece görev durumuna dayanıyor.
 [*]Bazı görev ID eşleştirmeleri tahmine dayalı; bunlar * ile işaretli.
@@ -87,7 +75,7 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [h1]Kurallar nereden geliyor?[/h1]
 Herkese açık rehberler ve oyuncular: Game8, PowerPyx, DTGRE (https://www.dtgre.com), Steam Topluluğu rehberleri (https://steamcommunity.com/app/4115450/guides/), dönüşü olmayan noktayla ilgili forum başlığı (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) ve Steam forumlarındaki oyuncu raporları. Hepsi repoda kaynak olarak belirtildi. Save açma (decompression) kısmı Powzix'in ooz'unun (Oodle) bir portu.
 
-Kurallar bir JSON dosyasında duruyor. Bir rehber ya da oyuncu raporu bir şeyi düzelttiğinde dosya da düzeltiliyor; web sürümü her kural düzeltmesinde otomatik olarak yeniden derleniyor. Exe için repodaki güncel rules.json'ı (data/rules.json) exe'nin yanına atman yetiyor, yeni sürüm beklemene gerek yok.
+Kurallar bir JSON dosyasında duruyor. Bir rehber ya da oyuncu raporu bir şeyi düzelttiğinde dosya da düzeltiliyor; web sürümü her kural düzeltmesinde otomatik olarak yeniden derleniyor.
 
 [h1]Geri bildirim[/h1]
 Yanlış uyarı, kaçırılan görev, hatalı eşleştirme: https://github.com/zziroo/pbz-tracker adresinde issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
