@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Byte-for-byte comparison of the pure-JS Oodle decoder (lib/oodle) against the oo2core DLL
+// Byte-for-byte comparison of the pure-JS Oodle decoder (lib/core/oodle) against the oo2core DLL
 // (via test/oodle-dll.ps1) on every compressed slot of the real save and all of its backups,
 // plus robustness checks on truncated/garbled input and a DLL compress -> JS decompress
 // round trip on synthetic data to cover entropy modes the saves don't use.
@@ -17,7 +17,7 @@ const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { Worker } = require('worker_threads');
 const { deriveKey } = require('../lib/key');
-const { decompress, OodleError } = require('../lib/oodle');
+const { decompress, OodleError } = require('../lib/core/oodle');
 
 const arg = (name, def) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : def; };
 // Paths come from flags or env vars (no user-specific defaults in the repo).
@@ -28,7 +28,7 @@ const EXE = path.join(GAME, 'platform', 'steam', 'PBZ.exe');
 const SAVE_ROOT = path.join(GAME, 'ProjectPBZ', 'Saved', 'SaveGames', 'Steam');
 const PS1 = path.join(__dirname, 'oodle-dll.ps1');
 
-// ---- container + AES-GCM (copied from lib/savefile.js, which does not export it) ----
+// ---- container + AES-GCM (Node crypto twin of lib/core/container.js, kept independent on purpose) ----
 function openBlock(key, blk) {
   if (blk.length < 36 || blk.toString('latin1', 0, 4) !== 'PBZS') throw new Error('sealed block header bad/short');
   const d = crypto.createDecipheriv('aes-256-gcm', key, blk.subarray(8, 20));
@@ -130,7 +130,7 @@ parentPort.postMessage(r);
 `;
 function runCasesInWorker(cases, timeoutMs) {
   return new Promise((resolve) => {
-    const w = new Worker(WORKER_SRC, { eval: true, workerData: { lib: path.join(__dirname, '..', 'lib', 'oodle'), cases } });
+    const w = new Worker(WORKER_SRC, { eval: true, workerData: { lib: path.join(__dirname, '..', 'lib', 'core', 'oodle'), cases } });
     const timer = setTimeout(() => { w.terminate(); resolve({ timeout: true }); }, timeoutMs);
     w.once('message', (m) => { clearTimeout(timer); w.terminate(); resolve({ results: m }); });
     w.once('error', (e) => { clearTimeout(timer); resolve({ crash: String(e && e.stack) }); });
@@ -259,7 +259,7 @@ function syntheticInputs() {
 
 function roundTripTests() {
   console.log('\n== DLL round-trip coverage (synthetic data) ==');
-  const { decodeBytes } = require('../lib/oodle/entropy');
+  const { decodeBytes } = require('../lib/core/oodle/entropy');
   const inputs = syntheticInputs();
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pbz-oodle-rt-'));
   let failures = 0;
@@ -289,7 +289,7 @@ function roundTripTests() {
       if (j.comps === 'lz') {
         lzN++;
         try {
-          if (decompress(c, raw.length).equals(raw)) lzOk++;
+          if (raw.equals(decompress(c, raw.length))) lzOk++;
           else { failures++; console.log(`FAIL  ${j.out}: output differs`); }
         } catch (e) { failures++; console.log(`FAIL  ${j.out}: ${e.message}`); }
         continue;
@@ -322,7 +322,7 @@ function roundTripTests() {
 }
 
 async function main() {
-  const key = deriveKey(EXE);
+  const key = Buffer.from(await deriveKey(EXE));
   const saves = findSaves();
   if (saves.length === 0) throw new Error(`no saves under ${SAVE_ROOT}`);
   if (!fs.existsSync(DLL)) throw new Error(`Oodle DLL not found: ${DLL}`);

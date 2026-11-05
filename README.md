@@ -116,7 +116,7 @@ Conditions are three-valued (true / false / unknown): `mapUnlocked`, `levelVisit
 
 ## License
 
-GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). When you share the exe, make the source (this repository) available too.
+GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/core/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). When you share the exe, make the source (this repository) available too.
 
 ## Sources and thanks
 
