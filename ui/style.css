@@ -241,6 +241,14 @@ button, input, select { font: inherit; color: inherit; }
   color: var(--red);
 }
 .error-body { flex: 1; min-width: 0; }
+/* Web version: first-visit / permission / busy messages and their buttons. */
+.error-box.setup-box {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+.error-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.spinner.spinner-lg { width: 24px; height: 24px; border-width: 3px; margin-top: 2px; }
 .error-text { margin: 2px 0 14px; color: var(--text); font-size: 17px; overflow-wrap: anywhere; }
 .error-inline { color: var(--red); }
 
@@ -429,6 +437,8 @@ button, input, select { font: inherit; color: inherit; }
 .path-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
 .path-value { margin-bottom: 10px; color: var(--text-soft); overflow-wrap: anywhere; font-size: 13px; }
 .path-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.field-extra { margin: 4px 0 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+.paths-note { margin-top: 10px; }
 
 .chip {
   padding: 0 8px;

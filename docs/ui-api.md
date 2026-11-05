@@ -109,6 +109,24 @@ interface About {
 }
 ```
 
+## Transport seam and the web version (v0.5)
+
+`ui/app.js` talks to its backend through one object:
+`{ needsToken, getState(), subscribe(onState), getSettings(), postSettings(patch), pick(what), forget(what), openUrl(url), getAbout(), heartbeat?(), action?(id) }`.
+By default it is the HTTP transport above (`fetch` + `EventSource`, token, heartbeat). The static web version
+(`node build/build.js --web` → `web/dist/`) loads `web.js` before `app.js`; it sets `window.PBZ_TRANSPORT`
+(`web/transport.js`), which implements the same calls in the browser (File System Access handles or plain
+`File`s, IndexedDB for settings, handles and the key cache; no network, no token, no heartbeat).
+
+Optional fields only the web transport sends (the local server never does, so the window is unchanged):
+
+- `State.errorKind`: `'setup' | 'busy' | null` → calmer accent box (setup) or a spinner without buttons (busy) instead of the red error box.
+- `State.actions: Array<{ id, label, primary? }>` → buttons in that box; a click calls `transport.action(id)` (`pickGame`, `pickSave`, `pickExe`, `useFiles`, `resume`). They run inside the click, because browser pickers and permission prompts need a user gesture.
+- `State.header.build.quiet: true` → an unknown build is shown without the "untested" colour.
+- `Settings.paths: Array<{ what, label, value, source, sourceText?, warn?, canForget? }>` → replaces the two default path rows (`what`: `game | save | exe | paks | steam`; Choose/Forget call `pick(what)` / `forget(what)`).
+- `Settings.extraFields: Array<{ id, label, value, options, hint? }>` → selects in the paths card (`account`, `mode`); a change posts `{ [id]: value }`.
+- `Settings.pathsNote`, `Settings.configLabel`, `Settings.intervalHint`, `About.linksHint` → replace the corresponding fixed texts.
+
 ## Page behaviour (summary)
 
 - Tabs: **Warnings** (default), **Journal**, **Settings**, **About**. Keys `1`-`4` switch tabs, `Esc` re-blurs the journal.

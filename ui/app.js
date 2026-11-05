@@ -241,6 +241,28 @@
   const $ = (sel) => document.querySelector(sel);
   const panel = (name) => document.getElementById('panel-' + name);
 
+  // ---- Transport ----
+  // Everything the page needs from its backend goes through one small object (docs/ui-api.md):
+  //   needsToken, getState(), subscribe(onState), getSettings(), postSettings(patch), pick(what),
+  //   forget(what), openUrl(url), getAbout(), heartbeat?(), action?(id)
+  // The local window (lib/server.js) uses the HTTP transport below. The static web version installs
+  // window.PBZ_TRANSPORT (web/transport.js) before this file runs.
+  function httpTransport() {
+    return {
+      needsToken: true,
+      getState: () => api('GET', '/api/state'),
+      subscribe: (onState) => connectEvents(onState),
+      getSettings: () => api('GET', '/api/settings'),
+      postSettings: (patch) => api('POST', '/api/settings', patch),
+      pick: (what) => api('POST', '/api/pick', { what }),
+      forget: (what) => api('POST', '/api/forget', { what }),
+      openUrl: (url) => api('POST', '/api/open-url', { url }),
+      getAbout: () => api('GET', '/api/about'),
+      heartbeat: () => api('POST', '/api/heartbeat', {}),
+    };
+  }
+  const T = window.PBZ_TRANSPORT || httpTransport();
+
   // ---- Network ----
   function setFetchOk(ok) {
     if (app.fetchOk !== ok) { app.fetchOk = ok; renderBanner(); }
@@ -275,11 +297,11 @@
   }
 
   function heartbeat() {
-    api('POST', '/api/heartbeat', {}).catch(() => { /* banner handled in api() */ });
+    Promise.resolve(T.heartbeat()).catch(() => { /* banner handled in api() */ });
   }
 
   let es = null;
-  function connectEvents() {
+  function connectEvents(onState) {
     if (es) es.close();
     es = new EventSource('/events?t=' + encodeURIComponent(TOKEN));
     es.addEventListener('open', () => setSseOk(true));
@@ -287,12 +309,12 @@
       setSseOk(true);
       let s;
       try { s = JSON.parse(ev.data); } catch { return; }
-      applyState(s);
+      onState(s);
     });
     es.addEventListener('error', () => {
       setSseOk(false);
       // The browser retries on its own while CONNECTING; a CLOSED stream (e.g. non-200) does not, so retry here.
-      if (es.readyState === EventSource.CLOSED) setTimeout(connectEvents, 3000);
+      if (es.readyState === EventSource.CLOSED) setTimeout(() => connectEvents(onState), 3000);
     });
   }
 
@@ -322,12 +344,12 @@
   }
 
   async function loadState() {
-    try { applyState(await api('GET', '/api/state')); } catch { /* SSE will deliver it */ }
+    try { applyState(await T.getState()); } catch { /* SSE will deliver it */ }
   }
 
   async function loadSettings() {
     try {
-      app.settings = await api('GET', '/api/settings');
+      app.settings = await T.getSettings();
       app.settingsError = false;
     } catch {
       app.settingsError = !app.settings;
@@ -338,7 +360,7 @@
   async function loadAbout() {
     const lang = app.lang;
     try {
-      app.about = await api('GET', '/api/about');
+      app.about = await T.getAbout();
       app.aboutLang = lang;
       app.aboutError = false;
     } catch {
@@ -349,7 +371,7 @@
 
   async function postSettings(patch) {
     try {
-      const s = await api('POST', '/api/settings', patch);
+      const s = await T.postSettings(patch);
       if (s && typeof s === 'object') {
         app.settings = s;
         if (s.uiLang === 'tr' || s.uiLang === 'en') {
@@ -406,7 +428,7 @@
 
   function renderBanner() {
     const b = $('#conn-banner');
-    if (!TOKEN) {
+    if (T.needsToken && !TOKEN) {
       b.textContent = t('conn.noToken');
       b.hidden = false;
       return;
@@ -448,11 +470,25 @@
     const out = [];
 
     if (s.ok === false) {
-      out.push(h('div', { class: 'error-box', attrs: { role: 'alert' } },
-        icon('error', 'icon-lg'),
+      // Optional (web version): buttons offered by the transport, and a calmer "setup" look for the
+      // first-visit / permission messages. The local window never sends either.
+      const actions = Array.isArray(s.actions) && typeof T.action === 'function' ? s.actions : [];
+      const setup = s.errorKind === 'setup' || s.errorKind === 'busy';
+      const settingsBtn = h('button', { class: 'btn' + (actions.length ? '' : ' btn-primary'), attrs: { type: 'button' }, text: t('err.openSettings'), on: { click: () => setTab('settings', true) } });
+      let controls = settingsBtn;
+      if (actions.length) {
+        controls = h('div', { class: 'error-actions' },
+          ...actions.map((a) => h('button', {
+            class: 'btn' + (a.primary ? ' btn-primary' : ''), attrs: { type: 'button' }, text: a.label || '',
+            on: { click: () => { Promise.resolve(T.action(a.id)).catch(() => {}); } },
+          })),
+          settingsBtn);
+      }
+      out.push(h('div', { class: 'error-box' + (setup ? ' setup-box' : ''), attrs: { role: setup ? 'status' : 'alert' } },
+        s.errorKind === 'busy' ? h('span', { class: 'spinner spinner-lg', attrs: { 'aria-hidden': 'true' } }) : icon(setup ? 'info' : 'error', 'icon-lg'),
         h('div', { class: 'error-body' },
           h('p', { class: 'error-text', text: s.error || '' }),
-          h('button', { class: 'btn btn-primary', attrs: { type: 'button' }, text: t('err.openSettings'), on: { click: () => setTab('settings', true) } }))));
+          s.errorKind === 'busy' ? null : controls)));
     }
 
     if (s.header) out.push(renderHeader(s.header));
@@ -504,7 +540,8 @@
     if (first.childNodes.length) box.append(first);
     if (hd.location) box.append(h('p', { class: 'hdr-line' }, t('hdr.location') + ': ', h('span', { class: 'hdr-strong', text: hd.location })));
     if (hd.build && hd.build.text) {
-      box.append(h('p', { class: 'hdr-line' + (hd.build.tested === false ? ' hdr-untested' : ''), text: hd.build.text }));
+      // build.quiet (web version only): an unknown build is not an "untested" warning there.
+      box.append(h('p', { class: 'hdr-line' + (hd.build.tested === false && !hd.build.quiet ? ' hdr-untested' : ''), text: hd.build.text }));
     }
     for (const n of Array.isArray(hd.notices) ? hd.notices : []) box.append(h('p', { class: 'hdr-line hdr-notice', text: n }));
     return box;
@@ -619,14 +656,16 @@
     const focusId = document.activeElement && p.contains(document.activeElement) ? document.activeElement.id : null;
     const busy = !!app.picking;
 
-    const pathRow = (what, label, value, source) => {
-      const canForget = source === 'config';
+    // extra (web version only): { sourceText, warn, canForget } override the chip and the Forget button.
+    const pathRow = (what, label, value, source, extra) => {
+      const canForget = extra && extra.canForget !== undefined ? !!extra.canForget : source === 'config';
+      const warn = extra && extra.warn !== undefined ? !!extra.warn : !source;
       const msg = app.pickMsg && app.pickMsg.what === what ? app.pickMsg : null;
       const waiting = app.picking === what;
       return h('div', { class: 'path-row' },
         h('div', { class: 'path-head' },
           h('span', { class: 'field-label', text: label }),
-          h('span', { class: 'chip' + (source ? '' : ' chip-warn'), text: srcLabel(source) })),
+          h('span', { class: 'chip' + (warn ? ' chip-warn' : ''), text: extra && extra.sourceText ? extra.sourceText : srcLabel(source) })),
         h('div', { class: 'path-value mono' + (value ? '' : ' muted'), text: value || t('set.notSet') }),
         h('div', { class: 'path-actions' },
           h('button', { class: 'btn', attrs: { type: 'button', id: 'pick-' + what, disabled: busy }, text: t('set.pick'), on: { click: () => pick(what) } }),
@@ -635,10 +674,25 @@
         !waiting && msg ? h('p', { class: 'status-line ' + msg.kind, attrs: { role: 'status' }, text: msg.key ? t(msg.key) : msg.text }) : null);
     };
 
+    // Optional (web version): its own list of path rows, extra selects (account, file access) and a note.
+    const rows = Array.isArray(s.paths)
+      ? s.paths.map((r) => pathRow(r.what, r.label || '', r.value, r.source, r))
+      : [pathRow('game', t('set.game'), s.gameDir, s.gameDirSource), pathRow('save', t('set.save'), s.savePath, s.savePathSource)];
+    const extraFields = (Array.isArray(s.extraFields) ? s.extraFields : []).map((f) => {
+      const id = 'set-x-' + f.id;
+      const opts = Array.isArray(f.options) ? f.options : [];
+      return h('div', { class: 'field field-extra' },
+        h('label', { class: 'field-label', attrs: { for: id }, text: f.label || '' }),
+        h('div', { class: 'field-stack' },
+          h('select', { attrs: { id, disabled: busy || opts.length < 2 }, on: { change: (e) => saveField({ [f.id]: e.target.value }) } },
+            ...opts.map((o) => h('option', { attrs: { value: o.value, selected: f.value === o.value }, text: o.label }))),
+          f.hint ? h('p', { class: 'hint', text: f.hint }) : null));
+    });
     const paths = h('section', { class: 'set-card' },
       h('h2', { class: 'set-title', text: t('set.paths') }),
-      pathRow('game', t('set.game'), s.gameDir, s.gameDirSource),
-      pathRow('save', t('set.save'), s.savePath, s.savePathSource));
+      ...rows,
+      ...extraFields,
+      s.pathsNote ? h('p', { class: 'hint paths-note', text: s.pathsNote }) : null);
 
     // General
     const langSel = h('select', { attrs: { id: 'set-uilang' }, on: { change: (e) => saveField({ uiLang: e.target.value }) } },
@@ -659,7 +713,7 @@
       h('div', { class: 'field' }, h('label', { class: 'field-label', attrs: { for: 'set-names' }, text: t('set.names') }), namesSel),
       h('div', { class: 'field' },
         h('label', { class: 'field-label', attrs: { for: 'set-interval' }, text: t('set.interval') }),
-        h('div', { class: 'field-stack' }, interval, h('p', { class: 'hint', attrs: { id: 'set-interval-hint' }, text: t('set.intervalHint') }))),
+        h('div', { class: 'field-stack' }, interval, h('p', { class: 'hint', attrs: { id: 'set-interval-hint' }, text: s.intervalHint || t('set.intervalHint') }))),
       app.settingsMsg ? h('p', { class: 'status-line ' + app.settingsMsg.kind, attrs: { role: 'status' }, text: t(app.settingsMsg.key) }) : null);
 
     // Rules (read-only)
@@ -671,7 +725,7 @@
         h('dt', { text: t('set.rulesSource') }), h('dd', { text: rulesSrc }),
         r.file ? h('dt', { text: t('set.rulesFile') }) : null, r.file ? h('dd', { class: 'mono break', text: r.file }) : null,
         h('dt', { text: t('set.rulesVersion') }), h('dd', { class: 'mono', text: r.version !== undefined && r.version !== null ? String(r.version) : '—' })),
-      h('p', { class: 'config-path' }, t('set.config') + ': ', h('span', { class: 'mono break', text: s.configPath || '—' })));
+      h('p', { class: 'config-path' }, (s.configLabel || t('set.config')) + ': ', h('span', { class: 'mono break', text: s.configPath || '—' })));
 
     p.replaceChildren(h('div', { class: 'set-grid' }, paths, general, rules));
     if (focusId) {
@@ -712,7 +766,7 @@
     renderSettings();
     let msg;
     try {
-      const r = await api('POST', '/api/pick', { what });
+      const r = await T.pick(what);
       if (r && r.ok) msg = { what, kind: 'ok', key: 'set.picked' };
       else if (r && r.error) msg = { what, kind: 'error', text: r.error };
       else msg = { what, kind: 'muted', key: 'set.cancelled' };
@@ -729,7 +783,7 @@
   async function forget(what) {
     if (app.picking) return;
     try {
-      const s = await api('POST', '/api/forget', { what });
+      const s = await T.forget(what);
       if (s && typeof s === 'object') app.settings = s;
       app.pickMsg = null;
     } catch {
@@ -773,7 +827,7 @@
     const card2 = links.length ? h('section', { class: 'set-card' },
       h('h2', { class: 'set-title', text: t('about.links') }),
       linkList,
-      h('p', { class: 'hint', text: t('about.linksHint') }),
+      h('p', { class: 'hint', text: a.linksHint || t('about.linksHint') }),
       app.aboutMsg ? h('p', { class: 'status-line error', attrs: { role: 'status' }, text: t(app.aboutMsg) }) : null) : null;
 
     const card3 = h('section', { class: 'set-card' },
@@ -786,7 +840,7 @@
   async function openUrl(url) {
     app.aboutMsg = null;
     try {
-      await api('POST', '/api/open-url', { url });
+      await T.openUrl(url);
     } catch {
       app.aboutMsg = 'about.openFailed';
     }
@@ -840,12 +894,14 @@
     renderSettings();
     renderAbout();
     renderRefresh();
-    if (!TOKEN) return;
+    if (T.needsToken && !TOKEN) return;
 
     loadState();
-    connectEvents();
-    heartbeat();
-    setInterval(heartbeat, HEARTBEAT_MS);
+    T.subscribe(applyState);
+    if (typeof T.heartbeat === 'function') {
+      heartbeat();
+      setInterval(heartbeat, HEARTBEAT_MS);
+    }
     setInterval(renderRefresh, 1000);
   }
 
