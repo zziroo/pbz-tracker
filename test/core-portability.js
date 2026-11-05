@@ -46,7 +46,7 @@ function resolveLocal(from, spec) {
 }
 
 // Core files + shared pure modules + their relative-require closure.
-function moduleSet() {
+function moduleSet(roots) {
   const seen = new Set();
   const visit = (file) => {
     if (seen.has(file)) return;
@@ -55,7 +55,7 @@ function moduleSet() {
     const src = fs.readFileSync(file, 'utf8');
     for (const m of src.matchAll(/\brequire\s*\(\s*(['"])(\.\.?\/[^'"]+)\1\s*\)/g)) visit(resolveLocal(file, m[2]));
   };
-  for (const f of [...walk(CORE), ...SHARED]) visit(f);
+  for (const f of roots || [...walk(CORE), ...SHARED]) visit(f);
   return [...seen].sort();
 }
 
@@ -116,6 +116,18 @@ function main() {
     console.log(`\nFAIL static check: ${problems.length} problem(s)`);
     for (const p of problems) console.log(`  ${p}`);
   } else console.log('\nstatic check: OK (no Node built-ins or Node globals)');
+
+  // The web bundle (web/*.js and everything it requires) gets the same static check; it needs browser
+  // globals (window, indexedDB, caches) to load, so it is not run in the sandbox.
+  const WEB = path.join(ROOT, 'web');
+  const webRoots = fs.existsSync(WEB) ? fs.readdirSync(WEB).filter((f) => f.endsWith('.js')).map((f) => path.join(WEB, f)) : [];
+  const webFiles = moduleSet(webRoots).filter((f) => !files.includes(f));
+  const webProblems = staticCheck(webFiles);
+  if (webProblems.length) {
+    console.log(`\nFAIL web static check: ${webProblems.length} problem(s)`);
+    for (const p of webProblems) console.log(`  ${p}`);
+    problems.push(...webProblems);
+  } else console.log(`web static check: OK (${webFiles.length} more modules)`);
 
   let loadFail = 0;
   const sb = loadSandbox();

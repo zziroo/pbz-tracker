@@ -1,0 +1,53 @@
+# Builds the static web version (node build/build.js --web → web/dist) and publishes it on GitHub Pages.
+# One-time setup by the repository owner: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# See docs/publish.md. The site has no server side: it only serves the page's own files.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'ui/**'
+      - 'lib/**'
+      - 'data/**'
+      - 'build/build.js'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Engine core is browser-safe
+        run: node test/core-portability.js
+      - name: Build web/dist
+        run: node build/build.js --web
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
