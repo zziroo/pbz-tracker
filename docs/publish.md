@@ -24,6 +24,12 @@ git ls-files | findstr /i /r "\.sav$ \.bin$ \.key$ \.cmp$ latest\.json AutoSave 
 
 Bu karar push'tan önce verilmeli; push'tan sonra geri almak zor.
 
+## Depo adresini araca yaz (yayından önce)
+
+`lib/version.js` içindeki `REPO_URL`'i deponun adresiyle doldur (ör. `https://github.com/<kullanıcı>/pbz-tracker`) ve commit et. Böylece pencerenin ve web sürümünün Hakkında sekmesi kaynak koda bağlantı verir (adres izin listesine de girer). Web sürümünün adresi README'lerde `https://zziroo.github.io/pbz-tracker/` olarak yazılı; depo adı ya da kullanıcı farklıysa onu da düzelt.
+
+GitHub Pages'te aynı kullanıcının bütün projeleri tek kökeni (`<kullanıcı>.github.io`) paylaşır; web sürümünün tarayıcı deposu (klasör erişimleri, anahtar) o kökendeki diğer projelerce okunabilir. Aynı hesapta üçüncü taraf betik çalıştıran başka Pages siteleri varsa ayrı bir alan adı kullanmak daha güvenli.
+
 ## 1. Exe'yi derle
 
 ```
@@ -61,7 +67,25 @@ GPL gereği kaynak kod depoda ve release'in otomatik kaynak arşivinde zaten var
 - Steam: Topluluk Merkezi → Rehberler → Rehber Oluştur.
 - Nexus: oyunun sayfası → Upload. Exe'yi Nexus'a ayrıca yüklemek yerine GitHub release'e bağlantı vermek de bir seçenek.
 
-## 5. Sonraki sürüm
+## 5. Web sürümü (GitHub Pages)
+
+Web sürümü statik bir sitedir: `node build/build.js --web` → `web/dist/` (depoya girmez; `.gitignore`'daki `dist/` kuralı bunu da kapsar). Yayını `.github/workflows/pages.yml` yapar: `main`'e her push'ta (yalnız `web/`, `ui/`, `lib/`, `data/`, `build/build.js` ya da iş akışının kendisi değişince) ve elle tetiklenince siteyi derler ve GitHub Pages'e yükler. Resmi `actions/upload-pages-artifact@v3` ve `actions/deploy-pages@v4` kullanılır; derlemeden önce `test/core-portability.js` çalışır.
+
+Bunları sen yaparsın (hiçbiri otomatik yapılmadı):
+
+1. Önce yerelde dene:
+   ```
+   node build/build.js --web
+   ```
+   `web/dist/` klasörünü `http://127.0.0.1:<port>/` üzerinden herhangi bir statik sunucuyla aç (Chrome ya da Edge). `file://` ile açarsan klasör erişimi ve service worker çalışmaz.
+2. Depo GitHub'da olmalı (2. adım) ve iş akışı dosyası `main`'de bulunmalı.
+3. GitHub → depo → **Settings → Pages → Build and deployment → Source: GitHub Actions**. (Depo herkese açık değilse Pages ücretli plan ister.)
+4. İlk yayın: ya `main`'e bir push yap, ya da **Actions → Pages → Run workflow** ile elle başlat. `build` ve `deploy` işleri yeşil olunca site `https://<kullanıcı>.github.io/pbz-tracker/` adresindedir (bu depoda: `https://zziroo.github.io/pbz-tracker/`). Adres README'lerdeki "Web version / Web sürümü" bölümünde yazılı; depo adı ya da kullanıcı farklıysa oradaki adresi düzelt.
+5. Kontrol: sayfayı aç, DevTools → Network'te yalnız sitenin kendi dosyalarının (index.html, app.js, style.css, web.js, sw.js, manifest.webmanifest, icon.svg) yüklendiğini gör; oyun klasörünü seç, uyarıların exe ile aynı olduğunu kontrol et.
+
+Kural güncellemesi: `data/rules.json`'ı düzelt, `rulesVersion`'ı artır, push et; iş akışı siteyi yeniden derler. Service worker yeni sürümü bir sonraki açılışta kullanır (dosya özetine göre önbelleği yeniler). Web sürümünde yanına konan kural dosyası yoktur.
+
+## 6. Sonraki sürüm
 
 - `lib/version.js`: `VERSION` değerini artır. Yeni bir oyun build'inde test ettiysen `TESTED_BUILDS`'e ekle.
 - `docs/release-notes/v<sürüm>.md` yaz, sonra 1 ve 3. adımları tekrarla.

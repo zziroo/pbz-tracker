@@ -58,6 +58,18 @@ The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` �
 
 **Installed elsewhere, or not through Steam?** Drop the game folder or the save onto the exe, or pass `--game <PBZ folder>` (plus `--save` if needed). Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
 
+## Web version (nothing to download)
+
+The same tracker also runs as a web page: **https://zziroo.github.io/pbz-tracker/** (GitHub Pages). Same engine, same tabs, same spoiler layers; your save gives the same warnings as in the exe.
+
+- **Runs entirely in your browser.** No file is uploaded and no request leaves the page; you can check this in DevTools → Network. It is a static page with no server side: the site only serves its own files. After the first visit it also works offline.
+- **Chrome or Edge on the desktop** (File System Access API): click **Choose game folder** and pick the game folder (`…\steamapps\common\PBZ`) or your Steam library folder (`…\SteamLibrary`; the library also gives the game build for the header). The browser asks for read access. You can also drag the folder onto the page. On the next visit one click, **Continue with PBZ**, is enough (the browser asks again for read access once per visit unless you let it remember).
+- It checks the save every 3 seconds (Settings: 2–3600 s) and refreshes when the game saves. In a background tab the browser may slow these checks down to about once a minute; switching back to the tab refreshes at once. Install it as an app (the install icon in the address bar, or Edge → Apps → Install this site as an app) to keep it in its own window next to the game.
+- Several Steam accounts: choose the account in Settings. A save stored elsewhere (for example under `%LOCALAPPDATA%\ProjectPBZ\Saved\SaveGames`): choose the save file in Settings.
+- The key is derived from your own `PBZ.exe` in the browser (read in chunks, never as a whole). It is remembered in this browser's storage for the site (IndexedDB), looked up by the exe's size and date, so a game update triggers a new derivation. The chosen folders and the settings are stored there too. **Forget** in Settings removes a chosen folder or file (and, for PBZ.exe, the key); clearing the site data in the browser removes everything. Note: on GitHub Pages every project of the same user shares one origin (`<user>.github.io`), so that browser storage is visible to the publisher's other Pages projects; a dedicated custom domain avoids this. Nothing is written to disk outside the browser's own storage, and nothing is ever written to the game, the save or its backups.
+- **Firefox, Safari, or if Chrome refuses the folder** (it blocks some system folders, such as a Steam library under `C:\Program Files (x86)`): switch Settings → File access to **Single files**, then choose or drop `PBZSaveGame.sav` and, once, `PBZ.exe` (the key is then remembered). Optionally choose the `Paks` folder for names from a text patch (the browser may call this an "upload"; nothing leaves the page). In this mode the page cannot refresh by itself: after the game saves, choose or drop the save again.
+- What it cannot do: no rules or name tables next to the app (the rules are built in; rule updates ship by rebuilding the page), no `--dump`, no terminal mode. Phones and tablets are not supported.
+
 ## Spoiler policy
 
 1. **Default view:** only actionable warnings, meaning a cutoff ahead of you with something still open. Cutoffs are described by position, never by name. A quest is named only if it already appears in your journal; otherwise you get a location hint. With nothing at risk you see: "No risk of missing anything right now."
@@ -90,6 +102,8 @@ Name tables work the same way: a `names.<lang>.json` next to the exe replaces or
 Node 18+ with no dependencies: `node pbz.js` opens the window (the page is read from `ui/`), `node pbz.js --cli [options]` runs in the terminal.
 
 Single exe: `node build/build.js` writes `dist/pbz-tracker-v<version>.exe`. It bundles the sources and the page files in `ui/` into one script, then makes a Node single executable application. `node build/build.js --bundle-only` writes only the script (`dist/pbz-tracker.js`).
+
+Web version: `node build/build.js --web` writes the static site to `web/dist/` (`index.html`, the unchanged `ui/app.js` and `ui/style.css`, `web.js` = the engine plus `web/*.js` bundled for the browser, `sw.js`, `manifest.webmanifest`, `icon.svg`). The page talks to `web/transport.js` instead of the local server (same contract, `docs/ui-api.md`). The build fails if a Node built-in ends up in the browser bundle. `.github/workflows/pages.yml` builds and publishes it on GitHub Pages (see `docs/publish.md`). To try it locally, serve `web/dist/` over `http://127.0.0.1` (any static server); a page opened as a `file://` URL cannot use folder access or the service worker.
 
 How the window works: `lib/server.js` serves `ui/` and a JSON API (contract: `docs/ui-api.md`) on `127.0.0.1` with a random port and a per-start token; `lib/browser.js` opens Edge or Chrome with `--app`. The exe started by double-click re-launches itself without a console, so no empty console window stays open. The build step uses `npx postject`; this happens at build time only.
 

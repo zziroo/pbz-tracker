@@ -58,6 +58,18 @@ Oyun Steam üzerinden bulunur (kayıt defterindeki `SteamPath` → `libraryfolde
 
 **Başka bir klasöre ya da Steam dışından mı kurulu?** Oyun klasörünü ya da save'i exe'nin üstüne bırak, ya da `--game <PBZ klasörü>` ver (gerekirse `--save` ile birlikte). Steam manifesti yoksa oyun build'i "bilinmiyor" diye gösterilir; "doğrulanmadı" uyarısı çıkmaz.
 
+## Web sürümü (indirme yok)
+
+Aynı takipçi bir web sayfası olarak da çalışır: **https://zziroo.github.io/pbz-tracker/** (GitHub Pages). Motor, sekmeler ve spoiler katmanları aynı; save'in exe'dekiyle aynı uyarıları verir.
+
+- **Tamamen tarayıcında çalışır.** Hiçbir dosya yüklenmez ve sayfadan hiçbir istek çıkmaz; DevTools → Network sekmesinden kontrol edebilirsin. Sunucu tarafı olmayan statik bir sayfadır: site yalnız kendi dosyalarını sunar. İlk ziyaretten sonra çevrimdışı da çalışır.
+- **Masaüstünde Chrome ya da Edge** (File System Access API): **Oyun klasörünü seç**'e tıkla ve oyun klasörünü (`…\steamapps\common\PBZ`) ya da Steam kütüphane klasörünü (`…\SteamLibrary`; kütüphane, başlıktaki oyun build'ini de verir) seç. Tarayıcı okuma izni ister. Klasörü sayfanın üstüne sürükleyip bırakabilirsin de. Sonraki ziyarette tek tık yeter: **PBZ ile devam et** (hatırlamasına izin vermezsen tarayıcı her ziyarette okuma iznini bir kez yeniden sorar).
+- Save'i 3 saniyede bir kontrol eder (Ayarlar: 2–3600 sn) ve oyun kaydedince yenilenir. Arka plandaki bir sekmede tarayıcı bu kontrolleri dakikada bire kadar yavaşlatabilir; sekmeye dönünce hemen yenilenir. Oyunun yanında ayrı pencerede tutmak için uygulama olarak yükle (adres çubuğundaki yükle simgesi ya da Edge → Uygulamalar → Bu siteyi uygulama olarak yükle).
+- Birden fazla Steam hesabı: hesabı Ayarlar'dan seç. Başka yerde duran bir save (ör. `%LOCALAPPDATA%\ProjectPBZ\Saved\SaveGames` altında): save dosyasını Ayarlar'dan seç.
+- Anahtar tarayıcıda senin `PBZ.exe`'nden türetilir (parça parça okunur, asla bütünüyle değil). Bu tarayıcının siteye ait deposunda (IndexedDB) exe'nin boyutu ve tarihiyle eşlenerek hatırlanır; oyun güncellenince yeniden türetilir. Seçilen klasörler ve ayarlar da orada durur. Ayarlar'daki **Unut** seçilen bir klasörü ya da dosyayı (PBZ.exe için anahtarı da) siler; tarayıcıda site verilerini temizlemek her şeyi siler. Not: GitHub Pages'te aynı kullanıcının bütün projeleri tek bir kökeni (`<kullanıcı>.github.io`) paylaşır; bu tarayıcı deposu yayıncının diğer Pages projelerince de görülebilir. Ayrı bir alan adı bunu önler. Tarayıcının kendi deposu dışında diske hiçbir şey yazılmaz; oyuna, save'e ya da yedeklerine asla yazılmaz.
+- **Firefox, Safari ya da Chrome klasörü reddederse** (bazı sistem klasörlerini engeller, ör. `C:\Program Files (x86)` altındaki bir Steam kütüphanesi): Ayarlar → Dosya erişimi'ni **Tek tek dosyalar** yap, sonra `PBZSaveGame.sav`'ı ve bir kez `PBZ.exe`'yi seç ya da bırak (anahtar sonra hatırlanır). İstersen metin yamasındaki adlar için `Paks` klasörünü de seç (tarayıcı buna "yükleme" diyebilir; sayfadan hiçbir şey çıkmaz). Bu modda sayfa kendiliğinden yenilenemez: oyun kaydettikten sonra save'i yeniden seç ya da bırak.
+- Yapamadıkları: uygulamanın yanına konan kural ya da ad tablosu yok (kurallar gömülü; kural güncellemeleri sayfa yeniden derlenerek gelir), `--dump` yok, terminal modu yok. Telefon ve tablet desteklenmez.
+
 ## Spoiler politikası
 
 1. **Varsayılan görünüm:** yalnız eyleme dönük uyarılar, yani önünde bir kesim noktası olan ve hâlâ açık bir kaçırılabilir. Kesim noktası adıyla değil konumuyla anlatılır. Görev adı yalnız görev günlüğünde zaten başlamışsa yazılır; başlamamışsa yalnız konum ipucu verilir. Uyarı yoksa: "Şu an kaçırma riski yok."
@@ -98,6 +110,8 @@ Arayüz dili (`--lang`) ve ad kaynağı (`--names`) ayrı seçilir. Varsayılan:
 Node 18+ yeterli, bağımlılık yok: `node pbz.js` pencereyi açar (sayfa `ui/` klasöründen okunur), `node pbz.js --cli [seçenekler]` terminalde çalışır.
 
 Tek exe: `node build/build.js` komutu `dist/pbz-tracker-v<sürüm>.exe` dosyasını üretir. Önce kaynakları ve `ui/` içindeki sayfa dosyalarını tek betikte paketler, sonra Node SEA ile exe yapar. `node build/build.js --bundle-only` yalnız betiği (`dist/pbz-tracker.js`) yazar.
+
+Web sürümü: `node build/build.js --web` statik siteyi `web/dist/` klasörüne yazar (`index.html`, değişmeden `ui/app.js` ve `ui/style.css`, `web.js` = motor ve `web/*.js` tarayıcı için paketlenmiş, `sw.js`, `manifest.webmanifest`, `icon.svg`). Sayfa yerel sunucu yerine `web/transport.js` ile konuşur (aynı sözleşme, `docs/ui-api.md`). Tarayıcı paketine bir Node modülü girerse derleme başarısız olur. `.github/workflows/pages.yml` siteyi derleyip GitHub Pages'te yayınlar (bkz. `docs/publish.md`). Yerelde denemek için `web/dist/` klasörünü `http://127.0.0.1` üzerinden sun (herhangi bir statik sunucu); `file://` adresiyle açılan sayfa klasör erişimini ve service worker'ı kullanamaz.
 
 Pencere nasıl çalışır: `lib/server.js`, `ui/` dosyalarını ve bir JSON API'sini (sözleşme: `docs/ui-api.md`) `127.0.0.1` üzerinde, rastgele portta ve her açılışta değişen bir anahtarla sunar; `lib/browser.js` Edge'i ya da Chrome'u `--app` ile açar. Çift tıkla açılan exe kendini konsolsuz yeniden başlatır, böylece boş bir konsol penceresi açık kalmaz. Exe'ye gömme için `npx postject` kullanır; bu yalnız derleme sırasında gerekir.
 
