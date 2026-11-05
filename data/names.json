@@ -156,6 +156,11 @@
       "locres": "QuestRumor_009",
       "guessKey": false,
       "guessEn": true
+    },
+    "XiaoCui": {
+      "locres": "QuestRumor_018",
+      "guessKey": false,
+      "guessEn": false
     }
   },
   "regions": {

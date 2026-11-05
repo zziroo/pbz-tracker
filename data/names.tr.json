@@ -2,7 +2,8 @@
   "_comment": "Türkçe adlar. Boş bırakılabilir: Türkçe yama kuruluysa adlar çalışma anında yamadan okunur. Eksik ad İngilizceye düşer. Anahtarlar names.en.json ile aynı.",
   "quests": {
     "RenOuMuXin": "Bir Kuklanın Tahta Kalbi",
-    "DaHuang": "Dahuang"
+    "DaHuang": "Dahuang",
+    "XiaoCui": "Cui"
   },
   "regions": {},
   "missables": {},
