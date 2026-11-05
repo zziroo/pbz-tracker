@@ -1,0 +1,12 @@
+# Save'den çıkan veri ve anahtar materyali asla depoya girmez
+out/
+key.bin
+*.key
+dir.bin
+*.cmp
+*.sav
+research/out/
+research/*.json
+# Oodle DLL'i başka oyunun klasöründen yerinde kullanılır, kopyalanmaz
+*.dll
+node_modules/
