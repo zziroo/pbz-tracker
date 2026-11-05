@@ -7,7 +7,7 @@
 ## Ne yapar / ne yapmaz
 
 - Save'ini okur, hâlâ açık kaçırılabilir görevleri bulur ve hangi noktayı henüz geçmemen gerektiğini söyler. Bunu adla değil konumla yapar: "Bu bölgenin son dövüşüne girmeden önce".
-- Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz** (yazabildiği tek dosya isteğe bağlı `--dump` çıktısı). Save paylaşımlı okumayla okunur, oyun açık kalabilir.
+- Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz**. Yalnız exe'nin yanındaki `pbz-tracker.config.json` dosyasını (seçme penceresinde seçtiğin yollar) ve isteğe bağlı `--dump` çıktısını yazar. Save paylaşımlı okumayla okunur, oyun açık kalabilir.
 - **Ağa çıkmaz.** Telemetri ya da güncelleme kontrolü yok.
 - **Anahtar ve kişisel veri içermez.** Save anahtarı her çalıştırmada *senin* `PBZ.exe`'nden türetilir ve yalnız bellekte tutulur. Exe'de SteamID, save verisi ya da anahtar yoktur; derleme, exe'de derleyenin ev klasörü yolunu, kullanıcı adını ya da bir SteamID64 bulursa hata verip exe'yi siler (`node build/build.js --check <exe>` aynı taramayı yapar).
 - Oyun sürecine bağlanmaz, belleğini okumaz.
@@ -38,6 +38,8 @@ pbz-tracker-v0.3.0.exe --help
 `--dump`, save'inin çözülmüş tam dökümünü yazar (`out\latest.json`). Oynama geçmişin gibi kişisel veri içerebilir; paylaşma. Oyun ya da save klasörüne yazmayı reddeder.
 
 Oyun Steam üzerinden bulunur (kayıt defterindeki `SteamPath` → `libraryfolders.vdf` → AppID 4115450), sonra yaygın klasörlerde aranır (`<sürücü>:\SteamLibrary`, `Program Files\Steam`, `<sürücü>:\Games\PBZ`). Birden fazla Steam hesabının kaydı varsa hangisinin kullanılacağını sorar; `--steamid` ile de seçilir.
+
+**İlk açılış:** araç oyunu kendisi bulur. Bulamazsa bir klasör seçme penceresi açar ("Phantom Blade Zero kurulum klasörünü seç"); save de bulunamazsa `PBZSaveGame.sav` için dosya seçme penceresi açar. Seçim exe'nin yanındaki `pbz-tracker.config.json` dosyasında saklanır; bu, isteğe bağlı `--dump` çıktısı dışında aracın yazdığı tek dosyadır. `--pick` pencereyi isteyerek açar, `--forget` hatırlanan yolları siler, `--no-dialog` hiç pencere açmaz. Artık var olmayan bir yol yok sayılır. `--game` / `--save` ile çalıştırınca pencere açılmaz.
 
 **Başka bir klasöre ya da Steam dışından mı kurulu?** Oyun klasörünü ya da save'i exe'nin üstüne bırak, ya da `--game <PBZ klasörü>` ver (gerekirse `--save` ile birlikte). Steam manifesti yoksa oyun build'i "bilinmiyor" diye gösterilir; "doğrulanmadı" uyarısı çıkmaz.
 

@@ -13,6 +13,8 @@ const { extract } = require('./lib/state');
 const { build, render, statusMap, diff } = require('./lib/report');
 const { createNames, EMBEDDED_TABLES } = require('./lib/names');
 const { loadRules, loadNameTables, isSea } = require('./lib/datafiles');
+const { readConfig, writeConfig, forgetConfig } = require('./lib/config');
+const { pickFolder, pickFile } = require('./lib/picker');
 const EMBEDDED_RULES = require('./data/rules.json');
 const NAMES = require('./data/names.json');
 
@@ -31,9 +33,12 @@ function parseArgs(argv) {
       case '--rules': o.rules = val(); break;
       case '--steamid': o.steamId = val(); break;
       case '--dump': o.dump = argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : path.join(process.cwd(), 'out'); break;
-      case '--save': o.save = val(); break;
-      case '--game': o.game = val(); break;
-      case '--exe': o.exe = val(); break;
+      case '--save': o.save = val(); o.explicitPaths = true; break;
+      case '--game': o.game = val(); o.explicitPaths = true; break;
+      case '--exe': o.exe = val(); o.explicitPaths = true; break;
+      case '--pick': o.pick = true; break;
+      case '--forget': o.forget = true; break;
+      case '--no-dialog': o.noDialog = true; break;
       case '--interval': o.interval = Math.min(3600, Math.max(2, Number(val()) || 5)); break;
       case '--no-color': o.color = false; break;
       case '-h': case '--help': o.help = true; break;
@@ -96,17 +101,59 @@ async function main() {
   if (opt.version) { console.log(`pbz-tracker ${VERSION}`); return; }
   if (opt.help) { process.stdout.write(t('help')); return; }
 
-  // Game folder: explicit, else derived from a given exe / save path, else Steam and common folders.
+  if (opt.forget) { forgetConfig(); console.log(t('cfg.forgotten')); }
+  const cfg = opt.forget ? {} : readConfig();
+  // Pickers: on request (--pick), or when nothing was given by flag (double-click, dropped paths,
+  // plain run in a terminal). Never with --game/--save/--exe or --no-dialog.
+  const dialogs = opt.pick || (!opt.noDialog && !opt.explicitPaths && (INTERACTIVE || !!process.stdin.isTTY));
+  const exists = (p, dir) => { try { const s = fs.statSync(p); return dir ? s.isDirectory() : s.isFile(); } catch { return false; } };
+
+  // Game folder: explicit / derived from a given path → --pick → remembered → Steam + common folders → picker.
   const hint = opt.game || (opt.exe && gameFromPath(path.dirname(opt.exe))) || (opt.save && gameFromPath(path.dirname(opt.save))) || undefined;
+  const pickGame = () => {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const picked = pickFolder(t('pick.game'), cfg.gameDir);
+      if (!picked) throw new Error(t('pick.cancelled'));
+      const g = gameFromPath(picked);
+      if (g) { writeConfig({ gameDir: g }); return g; }
+      console.error(t('pick.notGame', { p: picked }));
+    }
+    throw new Error(t('err.noGame'));
+  };
   let gameDir;
-  try {
+  if (hint) {
     gameDir = findGameDir(hint);
-  } catch (e) {
-    if (opt.save && !opt.game) throw new Error(t('err.noGameForSave'));
-    throw e;
+  } else if (opt.pick) {
+    gameDir = pickGame();
+  } else if (cfg.gameDir && exists(cfg.gameDir, true) && gameFromPath(cfg.gameDir)) {
+    gameDir = gameFromPath(cfg.gameDir);
+  } else {
+    try {
+      gameDir = findGameDir();
+    } catch (e) {
+      if (!dialogs) throw new Error(opt.save ? t('err.noGameForSave') : e.message);
+      gameDir = pickGame();
+    }
   }
   const exe = findExe(gameDir, opt.exe);
-  const savePath = await findSave(gameDir, { explicit: opt.save, steamId: opt.steamId });
+
+  // Save: explicit → remembered → automatic → picker.
+  let savePath;
+  if (opt.save) {
+    savePath = await findSave(gameDir, { explicit: opt.save });
+  } else if (!opt.pick && cfg.savePath && exists(cfg.savePath, false)) {
+    savePath = cfg.savePath;
+  } else {
+    try {
+      savePath = await findSave(gameDir, { steamId: opt.steamId });
+    } catch (e) {
+      if (!dialogs) throw e;
+      const picked = pickFile(t('pick.save'), t('pick.saveFilter'), path.join(gameDir, 'ProjectPBZ', 'Saved', 'SaveGames'));
+      if (!picked) throw new Error(t('pick.cancelled'));
+      savePath = picked;
+      writeConfig({ savePath });
+    }
+  }
   const buildId = findBuildId(gameDir);
   const gameBuild = { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) };
   let key;

@@ -7,7 +7,7 @@ A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero*
 ## What it does / does not do
 
 - Reads your save, finds missable quests that are still open, and tells you which point you must not pass yet: "Before this area's final fight", not a boss name.
-- **Never writes** to your save, its backups, the game folder or any patch (the only file it can write is the optional `--dump` output). The save is read with shared access, so the game can stay open.
+- **Never writes** to your save, its backups, the game folder or any patch. It writes only `pbz-tracker.config.json` next to the exe (paths you chose in a picker) and the optional `--dump` output. The save is read with shared access, so the game can stay open.
 - **No network access.** No telemetry, no update check.
 - **Contains no key and no personal data.** The save key is derived on each run from *your own* `PBZ.exe` and kept in memory only. The exe contains no SteamID, save data or key; the build fails and deletes the exe if it finds the builder's home path, user name or a SteamID64 in it (`node build/build.js --check <exe>` runs the same scan).
 - Does not attach to the game process and does not read its memory.
@@ -38,6 +38,8 @@ pbz-tracker-v0.3.0.exe --help
 `--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
 
 The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450), then in common folders (`<drive>:\SteamLibrary`, `Program Files\Steam`, `<drive>:\Games\PBZ`). If saves from several Steam accounts exist, the tool asks which one to use, or you can pass `--steamid`.
+
+**First run:** the tool finds the game on its own. If it cannot, it opens a folder picker ("select the Phantom Blade Zero install folder"); if the save is not found either, a file picker for `PBZSaveGame.sav`. The choice is remembered in `pbz-tracker.config.json` next to the exe, the only file the tool writes apart from the optional `--dump` output. `--pick` opens the picker on purpose, `--forget` deletes the remembered paths, and `--no-dialog` never opens one. A remembered path that no longer exists is ignored. Runs with `--game` / `--save` never open a picker.
 
 **Installed elsewhere, or not through Steam?** Drop the game folder or the save onto the exe, or pass `--game <PBZ folder>` (plus `--save` if needed). Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
 

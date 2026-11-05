@@ -20,3 +20,5 @@ ManualSave*.json
 # Sidecar kural/ad dosyaları (deneme kopyaları) kökte depoya girmez
 /rules.json
 /names.*.json
+# Seçilen oyun/save yolları (kullanıcıya özel)
+pbz-tracker.config.json
