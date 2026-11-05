@@ -151,6 +151,11 @@
       "locres": "QuestRumor_028",
       "guessKey": false,
       "guessEn": false
+    },
+    "DaHuang": {
+      "locres": "QuestRumor_009",
+      "guessKey": false,
+      "guessEn": true
     }
   },
   "regions": {

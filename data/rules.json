@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-05.5",
+  "rulesVersion": "2026-11-06.1",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
@@ -130,6 +130,39 @@
     "steam-research-note": {
       "name": "Research note: docs/research/steam-oyuncu-raporlari.md",
       "url": null
+    },
+    "game8-choices": {
+      "name": "Game8 — All Choices and Consequences",
+      "url": "https://game8.co/games/Phantom-Blade-Zero/archives/636016"
+    },
+    "raiderking-missables": {
+      "name": "RaiderKing — Missables: every quest and item you can lock yourself out of",
+      "url": "https://raiderking.com/phantom-blade-zero-missables-every-quest-and-item-you-can-lock-yourself-out-of/",
+      "note": "Returned 403 on 2026-11-06; not used as evidence."
+    },
+    "allthings-missables": {
+      "name": "allthings.how — Phantom Blade Zero missables",
+      "url": "https://allthings.how/phantom-blade-zero-missables/"
+    },
+    "player-report": {
+      "name": "The player (in-game, 2026-11-06)",
+      "url": null
+    },
+    "allthings-choices": {
+      "name": "allthings.how — choices and consequences",
+      "url": "https://allthings.how/?p=320505"
+    },
+    "gameshorizon-leave-none": {
+      "name": "GamesHorizon — Leave None Alive",
+      "url": "https://gameshorizon.com/?p=81096"
+    },
+    "criticalhits-ju": {
+      "name": "Critical Hits — should you accuse Ju",
+      "url": "https://criticalhits.com.br/dicas/phantom-blade-zero-voce-deve-acusar-ju-de-matar-a-irma/"
+    },
+    "keengamer-tales": {
+      "name": "KeenGamer — all tales and side quests",
+      "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-33-tales-and-side-quests-walkthrough/"
     }
   },
   "bosses": {
@@ -604,7 +637,10 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified."
+      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified.",
+      "exactWhen": {
+        "levelVisited": "Zhengdaodaying"
+      }
     },
     {
       "id": "bloodline-awakening",
@@ -1027,6 +1063,319 @@
         ],
         "checked": "search-snippet"
       }
+    },
+    {
+      "id": "leave-none-alive-monk",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "questSeen": "YiGeBuLiu"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "questSeen": "YiGeBuLiu"
+          },
+          {
+            "not": {
+              "questDone": "YiGeBuLiu"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "warn": {
+        "tr": "Kimseyi Sağ Bırakma: bu görevde sana inancın sorulduğunda 'inanmıyorum' de; öbür cevap bir aksesuarı kalıcı olarak kaçırır.",
+        "en": "Leave None Alive: when this quest asks what you believe, answer 'I don't believe'; the other answer loses an accessory for good."
+      },
+      "warnNamed": {
+        "tr": "Kimseyi Sağ Bırakma (Lu Köyü): keşiş 'Lady of the Veil'e inanıyor musun?' diye sorunca 'inanmıyorum' de, sonra Huijue'nin Kalıntıları'nı Stately Monk'a götür. 'İnanıyorum' dersen keşiş taşlaşır ve Ödağacı Tespih (Agarwood Prayer Beads) kalıcı olarak kaçar.",
+        "en": "Leave None Alive (Village of Lu): when the monk asks 'Do you believe in the Lady of the Veil?', answer 'I don't believe', then bring Huijue's Remains to the Stately Monk. Answering 'I believe' turns the monk to stone and the Agarwood Prayer Beads are lost for good."
+      },
+      "note": "Dialogue choice. Confirmed by the player in game (2026-11-06); listed in choice/missable guides.",
+      "source": {
+        "ids": [
+          "player-report",
+          "game8-choices",
+          "gameshorizon-leave-none",
+          "allthings-missables"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "baishan-ju-choice",
+      "guess": true,
+      "visibleWhen": {
+        "questSeen": "BaiShanMiWen"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "questSeen": "BaiShanMiWen"
+          },
+          {
+            "not": {
+              "questDone": "BaiShanMiWen"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "warn": {
+        "tr": "Baishan Tarikatının Sırları: bu görevde bir konuşmada iki seçenek sunulursa suçlayan cevabı seç; diğeri bir aksesuarı kaçırabilir (kaynaklar tartışmalı).",
+        "en": "Secrets of the Baishan Sect: if a conversation in this quest offers two answers, pick the accusing one; the other may lose an accessory (sources disagree)."
+      },
+      "warnNamed": {
+        "tr": "Baishan Tarikatının Sırları (Kızıl Orman, Thieves' Camp yakınındaki köprü): Ju ile konuşmada \"It was you who killed her!\" diye suçla, sonra Ju'yu yen; \"Mourn, and let go\" seçeneği Seal of Dugu'yu kaçırabilir (bir kaynak yalnız dövüşü erteler diyor).",
+        "en": "Secrets of the Baishan Sect (Crimson Forest, bridge near the Thieves' Camp): accuse Ju (\"It was you who killed her!\") and defeat her; \"Mourn, and let go\" may lose the Seal of Dugu (one source says it only delays the fight)."
+      },
+      "note": "Disputed: criticalhits/xboxplay say mourning loses the Seal of Dugu for good; allthings says it only delays the fight until the Ambush Forest step.",
+      "source": {
+        "ids": [
+          "criticalhits-ju",
+          "allthings-choices",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "journey-home-start-choice",
+      "visibleWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "mapUnlocked": "LuJiaCun"
+          },
+          {
+            "not": {
+              "questSeen": "GuiTu"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "warn": {
+        "tr": "Bu köyde saklanan yaşlı bir adam yardım isterse iki soruda da kabul et; reddedersen sonra kaçan bir görev zinciri olabilir.",
+        "en": "If an old man hiding in this village asks for help, agree both times; refusing can cost a quest chain later."
+      },
+      "warnNamed": {
+        "tr": "Eve Yolculuk (Lu Köyü, Old Man Gen'in sığınağı): iki soruda da kabul et (Brass Key). Görev ilk adımındayken Pangzhen arka sokağına gidersen War Wagon Phantom Edge, Gen'in anı çiçeği ve Together Till the End başarımı kaçar.",
+        "en": "The Journey Home (Village of Lu, Old Man Gen's hideout): agree both times (Brass Key). Reaching the Pangzhen backstreet while the quest is on its first step loses the War Wagon Phantom Edge, Gen's memory flower and the Together Till the End achievement."
+      },
+      "source": {
+        "ids": [
+          "allthings-choices",
+          "powerpyx",
+          "keengamer-tales"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "young-master-lan-start-choice",
+      "guess": true,
+      "visibleWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "mapUnlocked": "LuJiaCun"
+          },
+          {
+            "not": {
+              "questSeen": "LanJiaGongZi"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "warn": {
+        "tr": "Bu köyde biri bir tüneli temizlemek için yardım isterse 'ilgileniyorum' de; reddedersen görev hiç başlamaz.",
+        "en": "If someone in this village asks for help clearing a tunnel, say you're interested; refusing means the quest never starts."
+      },
+      "warnNamed": {
+        "tr": "Genç Efendi Lan (Lu Köyü): Smuggler's Tunnel sorusuna 'Interested' de ve ilk adımı Pangzhen'den önce bitir; 'Not Interested' Lan Manor Key, Crimson Resolve ve A Wanderer's Honor başarımını kaçırır. Not: bir kaynağa göre bu görevde Lan ölüyor.",
+        "en": "Young Master Lan (Village of Lu): answer 'Interested' to the Smuggler's Tunnel question and finish the first step before Pangzhen; 'Not Interested' loses the Lan Manor Key, Crimson Resolve and the A Wanderer's Honor achievement. Note: one source says Lan dies in this quest."
+      },
+      "note": "The start choice is from Game8 only; the achievement and the Pangzhen cutoff are confirmed by PowerPyx and KeenGamer.",
+      "source": {
+        "ids": [
+          "game8-choices",
+          "powerpyx",
+          "keengamer-tales"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "mirage-bridge-choice",
+      "guess": true,
+      "visibleWhen": {
+        "questSeen": "HuXinMiMi"
+      },
+      "warn": {
+        "tr": "Bir sonraki büyük bölgeye geçerken oyun bir uyarıyla seçim sunarsa ve göl görevi bitmediyse geri dönmeyi seç.",
+        "en": "If the game warns you and offers a choice before the next major area while the lake quest is unfinished, choose to return."
+      },
+      "warnNamed": {
+        "tr": "Mirage Estate köprüsü (Pangzhen arka sokağı, Inanis'in uyarısı): Gölün Kalbindeki Sırlar bitmediyse \"Return later\" de; geçersen Kızıl Orman'daki bazı çanlar kapanır, Ağlayış Nereden Gelir'in iki adımı engellenir ve göl görevi yarım kalırsa gerçek olmayan son gelir.",
+        "en": "Mirage Estate bridge (Pangzhen backstreet, Inanis's warning): if Secrets at the Heart of the Lake is unfinished, choose \"Return later\"; crossing disables some Crimson Forest bells, blocks two Whence the Weeping steps, and an unfinished lake quest leads to the non-true ending."
+      },
+      "source": {
+        "ids": [
+          "allthings-choices",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "flesh-lily-give",
+      "guess": true,
+      "visibleWhen": {
+        "any": [
+          {
+            "questSeen": "XueRouHua"
+          },
+          {
+            "mapUnlocked": "XiGu"
+          }
+        ]
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "mapUnlocked": "XiGu"
+          },
+          {
+            "not": {
+              "questBranch": "XueRouHua",
+              "branch": "1"
+            }
+          },
+          {
+            "not": {
+              "bossKilled": "ChiLian"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "all": [
+          {
+            "mapUnlocked": "FuJiZhiLin"
+          },
+          {
+            "mapUnlocked": "LuJiaCun"
+          }
+        ]
+      },
+      "warn": {
+        "tr": "Vadideki genç şifacı nadir bir çiçeği isterse ona ver; karşılığında verdiği şey sonraki bir görevin iyi sonu için gerekiyor.",
+        "en": "If the young healer in the valley asks for a rare flower, give it to her; what she gives back is needed for a later good outcome."
+      },
+      "warnNamed": {
+        "tr": "Et Zambağı (Ağlayan Dere Vadisi): Flesh Lily'yi Yu'er'e ver, \"gerçek\" ikiz çiçeği geri verir. Onsuz Pangzhen'deki The Heart's Trail'de babası ölür ve Blessed Jade Pendant yerine Tarnished Jade Pendant alırsın. Teslim, Bai Chilian'dan önce yapılmalı.",
+        "en": "Flesh Lily (Weeping Creek Valley): give the Flesh Lily to Yu'er; she gives back the twin \"real\" one. Without it her father dies in The Heart's Trail (Pangzhen) and you get the Tarnished instead of the Blessed Jade Pendant. Hand it in before Bai Chilian."
+      },
+      "note": "Give option from Game8; the pendant outcome from allthings only (its pages partly contradict each other).",
+      "source": {
+        "ids": [
+          "game8-choices",
+          "allthings-choices"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "quick-hand-escape-choice",
+      "guess": true,
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "mapUnlocked": "FuJiZhiLin"
+          },
+          {
+            "not": {
+              "questSeen": "JiaoTuSanKu"
+            }
+          },
+          {
+            "not": {
+              "bossKilled": "ChiLian"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "warn": {
+        "tr": "Bu ormanda kafese kapatılmış biri kaçmak için yardım isterse kabul et; reddetmek bir dükkânı ve iki görev zincirini kaçırabilir.",
+        "en": "If someone caged in this forest asks for help escaping, agree; refusing may cost a shop and two quest chains."
+      },
+      "warnNamed": {
+        "tr": "Kurnaz Tavşanın Üç İni (Kızıl Orman, Trail of Cages): Quick Hand Zhang'ın kaçmasına yardım et; 'Leave' Quick Hand Pendant'ı, dükkânını ve iki görev zincirini kaçırabilir (sonradan dönülebilir mi bilinmiyor).",
+        "en": "The Wily Hare's Three Dens (Crimson Forest, Trail of Cages): help Quick Hand Zhang escape; 'Leave' may lose the Quick Hand Pendant, his shop and both questlines (unknown whether you can come back)."
+      },
+      "source": {
+        "ids": [
+          "game8-choices"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "cui-rootless-dew",
+      "guess": true,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "warn": {
+        "tr": "Kafesteki bir yaşlıyı ikinci kez kurtarırken bir dövüş alanında bulduğun çiyi ona ver.",
+        "en": "When freeing a caged old man a second time, give him the dew found in a fight arena."
+      },
+      "warnNamed": {
+        "tr": "Lu Sanqian / Cui (Mountain of Imprisonment): ikinci kafesten kurtarırken Rootless Dew'i ver (Bi Feng arenasındaki kırmızı köşk); vermezsen The Lady's Shrine'a ulaşmaz ve Crude Radiant Heart kaçar.",
+        "en": "Lu Sanqian / Cui (Mountain of Imprisonment): give the Rootless Dew when freeing him from the second cage (red gazebo in Bi Feng's arena); otherwise he never reaches The Lady's Shrine and the Crude Radiant Heart is lost."
+      },
+      "source": {
+        "ids": [
+          "allthings-choices"
+        ],
+        "checked": "search-snippet"
+      },
+      "note": "Placeholder: no save trigger known yet (visibleWhen unknown), so it never shows; fill in when the quest id / region is mapped."
     }
   ],
   "trueEnding": {
