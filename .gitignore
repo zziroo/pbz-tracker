@@ -10,3 +10,10 @@ research/*.json
 # Oodle DLL'i başka oyunun klasöründen yerinde kullanılır, kopyalanmaz
 *.dll
 node_modules/
+# Derleme çıktısı (exe paylaşılır ama depoya girmez)
+dist/
+# Herhangi bir yere düşmüş save dökümleri
+latest.json
+AutoSave*.json
+ManualSave*.json
+*.bin

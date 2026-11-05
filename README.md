@@ -1,38 +1,54 @@
 # pbz-tracker
 
-Phantom Blade Zero için yerel, **salt okunur** kaçırılabilir takipçisi. Save dosyasını çözer, ulaştığın yere kadar olan kaçırılabilir görevleri spoilersız gösterir.
+Phantom Blade Zero için yerel, **salt okunur** kaçırılabilir takipçisi (Türkçe / English). Save dosyanı okur ve yalnız bir şeyi kaçırmak üzereysen uyarır. Geri kalanı gizlidir.
+
+## Kullanım
+
+Tek exe, kurulum gerekmez (`dist/pbz-tracker.exe`, `node build/build.js` ile üretilir):
 
 ```
-node pbz.js            # bir kez oku
-node pbz.js --watch    # save değiştikçe yenile (oyun açıkken de çalışır)
-node pbz.js --help
+pbz-tracker.exe            # bir kez oku
+pbz-tracker.exe --watch    # save değiştikçe yenile (oyun açıkken de çalışır); G = gizli bölümler, Q = çık
+pbz-tracker.exe --show     # gizli bölümleri de göster
+pbz-tracker.exe --lang en  # English
+pbz-tracker.exe --help
 ```
 
-Gereken: Node 18+ (bağımlılık yok), Windows PowerShell, başka bir oyunun klasöründe `oo2core_*_win64.dll` (otomatik aranır; bulunamazsa `--oodle` ya da `PBZ_OODLE`).
+Geliştirirken: `node pbz.js [aynı seçenekler]` (Node 18+, bağımlılık yok).
+
+Oyun Steam'den bulunur (kayıt defterindeki SteamPath → `libraryfolders.vdf` → AppID 4115450). Birden fazla Steam hesabının kaydı varsa sorar (`--steamid` ile de seçilir).
+
+## Görünüm (spoiler politikası)
+
+1. **Varsayılan:** yalnız eyleme dönük uyarılar: önünde bir kesim noktası olan ve hâlâ açık bir kaçırılabilir. Kesim noktası konumuyla anlatılır ("Bu bölgenin son dövüşüne girmeden önce"), adıyla değil. Görev adı yalnız görev günlüğünde zaten başlamışsa yazılır; başlamamışsa yalnız konum ipucu verilir. Uyarı yoksa: "Şu an kaçırma riski yok."
+2. **Gizli (`--show` ya da watch'ta G):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Watch modunda her yenilemede yeniden gizlenir.
+3. **Hiç gösterilmez:** kayda göre henüz ulaşılmamış her şey. Sınır her zaman çalıştıranın kendi save'ine göre çizilir.
+
+Terminal seçildi, HTML/blur değil: tek exe, dosya yazmıyor, G tuşu yetiyor.
+
+## Adlar
+
+- Türkçe: çalışma anında Türkçe yamanın `ProjectPBZ\Content\Paks\ProjectPBZ-Windows_C.pak` içindeki `Game.locres` dosyasından okunur (salt okunur). Yama yoksa İngilizce'ye düşer ve bunu bir kez söyler.
+- İngilizce: `data/names.json` içindeki resmi adlar (Game8, Maxroll, PowerPyx vb. rehberler).
+- `data/names.json`: pinyin görev kodu → locres anahtarı + İngilizce ad. Türkçe metin depoda tutulmaz.
 
 ## Güvenlik kuralları
 
-- Save'e, yedeklerine ve oyun dosyalarına **asla yazmaz**. Save paylaşımlı okumayla belleğe alınır; okunurken değiştiyse, kısaysa ya da GCM doğrulaması tutmazsa kısa bekleyip yeniden dener.
-- Exe yalnız okunur: anahtar her çalıştırmada exe'deki işaret dizesinden türetilir, SHA-256 öneki doğrulanır, yalnız bellekte tutulur.
+- Save'e, yedeklerine, yamaya ve oyun dosyalarına **asla yazmaz**. Save paylaşımlı okumayla belleğe alınır; okunurken değiştiyse, kısaysa ya da şifre doğrulaması tutmazsa kısa bekleyip yeniden dener.
+- Anahtar her çalıştırmada çalıştıranın kendi `PBZ.exe`'sinden türetilir (işaret dizesi + SHA-256 öneki doğrulaması), yalnız bellekte tutulur. Exe'ye ya da depoya gömülmez.
 - Oyun sürecine bağlanmaz, bellek okumaz.
-- Oodle DLL'i yerinde kullanılır, projeye kopyalanmaz. Sıkıştırılmış slotlar `%TEMP%\pbz-tracker-*` altına yazılıp hemen silinir.
-- `--dump` çözülmüş JSON'u `out/` altına yazar (git dışı); oyun klasörünü hedef kabul etmez.
+- Oodle açma saf JavaScript'tir (`lib/oodle/`); DLL gerekmez.
+- `--dump` çözülmüş JSON'u yazar; oyun, save ve exe klasörlerini reddeder. Dökümler `.gitignore`'da.
+- Paylaşılan exe'de kullanıcı verisi (SteamID, save, JSON, anahtar) yoktur.
 
 ## Kural tablosu (`data/rules.json`, SPOILER içerir)
 
-- `quests`: pinyin `QuestClass` → İngilizce ad. `guess: true` = doğrulanmadı (çıktıda `*`).
-- `cutoffs`: kesim noktaları. `passedWhen` geçildi mi, `revealWhen` adını göstermek güvenli mi; değilse `hint` gösterilir.
-- `missables`: `quest` (pinyin; bilinmiyorsa `null`), `cutoff`, `visibleWhen`, isteğe bağlı `doneWhen` / `failedWhen`, `warn`. `type: "info"` yalnız uyarıdır.
-- `trueEnding`: bir klasördeki tüm görevler (şimdilik `Branch` = mor Tale'ler, tahmin).
+- `cutoffs`: kesim noktaları. `where` {tr,en} konumla anlatım (varsayılan görünüm), `label` adıyla (yalnız gizli bölümde, geçildikten sonra), `passedWhen` geçildi mi.
+- `missables`: `quest` (pinyin; bilinmiyorsa `null`), `cutoff`, `visibleWhen`, isteğe bağlı `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (kayıttan algılanamayan eşya vb.). `type: "info"` yalnız uyarıdır; `activeWhen` doğruyken varsayılan görünümde durur.
+- `trueEnding`: bir klasördeki tüm görevler (`Branch` = mor görevler, locres `QuestMaze_*`).
 
-Koşullar üç değerlidir (doğru / yanlış / bilinmiyor): `mapUnlocked`, `levelVisited`, `bellPrefix`, `bossKilled`, `bossSeen` (`bosses` adını ya da ham `BP_Monster_*` anahtarını alır), `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`, varsayılan `Completed`), `any`, `all`, `not`, `unknown`.
-
-Durumlar: **açık**, **başlanmadı**, **tamamlandı**, **kaçtı**, **belirsiz**. Kesim noktası geçilmiş ve görev bitmemişse "kaçtı" sayılır.
-
-## Spoiler politikası
-
-Varsayılan çıktı yalnız kayıtta görünen görevleri, açılmış haritaları ve geçilmiş/karşılaşılmış kesim noktalarını adıyla gösterir. Henüz ulaşılmamış kesim noktaları belirsiz bir ipucuyla anlatılır. `--detay` her şeyi açar.
+Koşullar üç değerlidir (doğru / yanlış / bilinmiyor): `mapUnlocked`, `levelVisited`, `currentLevel`, `bellPrefix`, `bossKilled`, `bossSeen`, `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`), `any`, `all`, `not`, `unknown`.
 
 ## Format notları
 
-Ayrıntılar vault'ta: `10-Projects/pbz-tracker/sessions/2026-11-05-devir-save-cozumu.md`. `research/` ilk keşif betikleridir (sabit kodlu, araç değil).
+Ayrıntılar vault'ta: `10-Projects/pbz-tracker/sessions/2026-11-05-devir-save-cozumu.md`. `research/` ilk keşif betikleridir.

@@ -1,174 +1,205 @@
 {
-  "_comment": "SPOILER İÇERİR. Kural tablosu: pbz.js bu dosyayı okur. guess=true olanlar doğrulanmamış tahmindir. Koşul dili: bkz. README.md.",
-
-  "regions": {
-    "_comment": "Kayıttaki harita/seviye kodları → gösterilecek ad. Yalnız oyuncunun ulaştığı kodlar ekrana çıkar.",
-    "XiGu":           { "label": "Xigu vadisi", "guess": true },
-    "FuJiZhiLin":     { "label": "Crimson Forest", "guess": true },
-    "LuJiaCun":       { "label": "LuJiaCun" },
-    "Zhengdaodaying": { "label": "Mandate Encampment", "guess": true }
-  },
-
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. Koşul dili: README.md.",
   "bosses": {
-    "ChiLian": { "label": "Bai Chilian", "keys": ["BP_Monster_ChiLian", "BP_Monster_ChiLian_P2"] }
+    "ChiLian": {
+      "keys": [
+        "BP_Monster_ChiLian",
+        "BP_Monster_ChiLian_P2"
+      ]
+    }
   },
-
-  "quests": {
-    "_comment": "Pinyin QuestClass → İngilizce ad. guess=true: oyundaki günlükle karşılaştırılmadı.",
-    "XueMaiJueXing":   { "name": "Bloodline Awakening" },
-    "HongFangZi":      { "name": "Crimson Manor" },
-    "HuanShuPiPa":     { "name": "Illusory Pipa" },
-    "HuXinMiMi":       { "name": "Secrets at the Heart of the Lake" },
-    "XuKongHuanXiang": { "name": "Illusion of Inanis" },
-    "XiGuShenChu":     { "name": "Deep in the Valley" },
-    "QiShengHeLai":    { "name": "Whence the Weeping" },
-    "KunLunSanJie":    { "name": "Pillars of Kunlun" },
-    "SanMianHunDun":   { "name": "Triple Threat" },
-    "XueRouHua":       { "name": "Flesh Lily" },
-    "XiongFu":         { "name": "Four Fierce Axes" },
-    "QingLiMenHu":     { "name": "Purge the Sect" },
-    "JianXiYiShi":     { "name": "Apprentice Healer" },
-    "JiuSiFuShang":    { "name": "A Healer's Mercy" },
-    "BaiShanMiWen":    { "name": "Secrets of the Baishan Sect" },
-    "JiaoTuSanKu":     { "name": "Wily Hare's Three Dens" },
-    "XianYin":         { "name": "Resonant Strings" },
-    "RongShuZhiXin":   { "name": "Heart of the Banyan" },
-    "GuiTu":           { "name": "The Journey Home" },
-    "LanJiaGongZi":    { "name": "Young Master Lan" },
-    "NanYanZhiYin":    { "name": "Festering Secret", "guess": true },
-    "GeJueXieZi":      { "name": "A Severed Mindseal", "guess": true },
-    "YiGeBuLiu":       { "name": "Leave None Alive", "guess": true },
-    "ShaoZhu":         { "name": "Young Mistress", "guess": true },
-    "MainCh1-NiLiuErShang": { "name": "Against the Flow", "guess": true },
-    "MainCh1-2-GangTieJuTa": { "name": "Steel and Steam", "guess": true }
-  },
-
   "cutoffs": {
     "chilian": {
-      "label": "Bai Chilian'ı yenmek",
-      "hint": "Bu ormanın son büyük boss'unu yenmeden önce",
-      "passedWhen": { "bossKilled": "ChiLian" },
-      "revealWhen": { "bossSeen": "ChiLian" }
+      "where": {
+        "tr": "Bu bölgenin son dövüşüne girmeden önce",
+        "en": "Before this area's final fight"
+      },
+      "label": {
+        "tr": "Bai Chilian'ı yenmek",
+        "en": "Defeating Bai Chilian"
+      },
+      "passedWhen": {
+        "bossKilled": "ChiLian"
+      }
     },
     "mirage": {
-      "label": "Mirage Estate'e girmek (Pangzhen, Green Serpent House)",
-      "hint": "Ana hikâyenin bir sonraki büyük durağına girmeden önce (göl çevresindeki görevler orada kapanıyor)",
-      "passedWhen": { "unknown": "Bu bölgenin kayıttaki kodu henüz bilinmiyor" },
-      "revealWhen": { "unknown": "kod bilinmiyor" },
+      "where": {
+        "tr": "Ana hikâyede bir sonraki büyük bölgeye geçmeden önce",
+        "en": "Before the story moves you on to the next major area"
+      },
+      "label": {
+        "tr": "Mirage Estate'e girmek",
+        "en": "Entering Mirage Estate"
+      },
+      "passedWhen": {
+        "unknown": "bölge kodu henüz bilinmiyor"
+      },
       "guess": true
     },
     "final": {
-      "label": "Mount Soulrend son uyarısı",
-      "hint": "Oyun son bölüm için 'geri dönüş yok' uyarısı verdiğinde",
-      "passedWhen": { "unknown": "Son bölümün kayıttaki kodu henüz bilinmiyor" },
-      "revealWhen": { "unknown": "kod bilinmiyor" }
+      "where": {
+        "tr": "Oyun 'geri dönüş yok' uyarısı verdiğinde, onaylamadan önce",
+        "en": "When the game warns there is no turning back, before confirming"
+      },
+      "label": {
+        "tr": "Mount Soulrend son uyarısı",
+        "en": "Mount Soulrend final warning"
+      },
+      "passedWhen": {
+        "unknown": "son bölüm kodu henüz bilinmiyor"
+      }
     },
     "gen-alley": {
-      "label": "Pangzhen arka sokağına ilk ziyarette varmak / Smuggler's Tunnel tek yönlü kapısı",
-      "hint": "Görev açıkken yeni bir kasabaya ilk girişte arka sokaklara doğrudan dalma; tek yönlü kapılardan önce görevi düşün",
-      "passedWhen": { "unknown": "Kayıttan algılanamıyor; görev başarısız olursa kayıtta görünür" },
-      "revealWhen": { "unknown": "kod bilinmiyor" }
+      "where": {
+        "tr": "Bu görev açıkken yeni bir kasabaya ilk girişte arka sokaklara dalmadan ve tek yönlü kapılardan geçmeden önce",
+        "en": "While this quest is open: before heading into back alleys on your first visit to a new town, or through one-way doors"
+      },
+      "label": {
+        "tr": "Pangzhen arka sokağı / Smuggler's Tunnel tek yönlü kapısı",
+        "en": "Pangzhen back alley / Smuggler's Tunnel one-way door"
+      },
+      "passedWhen": {
+        "unknown": "kayıttan algılanamıyor; görev başarısız olursa kayıtta görünür"
+      }
     }
   },
-
   "missables": [
     {
       "id": "honor-among-thieves",
-      "name": "Honor Among Thieves",
       "quest": null,
-      "region": "FuJiZhiLin",
+      "names": {
+        "tr": "Honor Among Thieves",
+        "en": "Honor Among Thieves"
+      },
       "cutoff": "chilian",
-      "visibleWhen": { "mapUnlocked": "FuJiZhiLin" },
-      "warn": "Outpost / Thieves' Camp NPC'leriyle ilgili yan görev."
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "hintNotStarted": {
+        "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
+        "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
+      }
     },
     {
       "id": "boulderguard",
-      "name": "Boulderguard",
       "quest": null,
-      "region": "FuJiZhiLin",
+      "names": {
+        "tr": "Boulderguard",
+        "en": "Boulderguard"
+      },
       "cutoff": "chilian",
-      "visibleWhen": { "mapUnlocked": "FuJiZhiLin" },
-      "warn": "Outpost / Thieves' Camp NPC'leriyle ilgili yan görev."
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "hintNotStarted": {
+        "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
+        "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
+      },
+      "detect": false,
+      "_note": "Görev değil, aksesuar (Item_Accessory_006); kayıttaki AC_* kimliği bilinmiyor."
     },
     {
       "id": "healers-mercy",
       "quest": "JiuSiFuShang",
-      "region": "FuJiZhiLin",
       "cutoff": "chilian",
-      "visibleWhen": { "any": [{ "questSeen": "JiuSiFuShang" }, { "mapUnlocked": "FuJiZhiLin" }] }
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      }
     },
     {
       "id": "purge-the-sect",
       "quest": "QingLiMenHu",
-      "region": "FuJiZhiLin",
       "cutoff": "chilian",
-      "visibleWhen": { "any": [{ "questSeen": "QingLiMenHu" }, { "mapUnlocked": "FuJiZhiLin" }] }
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      }
     },
     {
       "id": "festering-secret",
       "quest": "NanYanZhiYin",
-      "region": "FuJiZhiLin",
       "cutoff": "chilian",
-      "guess": true,
-      "visibleWhen": { "any": [{ "questSeen": "NanYanZhiYin" }, { "mapUnlocked": "FuJiZhiLin" }] }
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      }
     },
     {
       "id": "flesh-lily-delivery",
-      "name": "Flesh Lily: teslim adımı",
       "quest": "XueRouHua",
-      "region": "FuJiZhiLin",
+      "suffix": {
+        "tr": "teslim adımı",
+        "en": "hand-in step"
+      },
       "cutoff": "chilian",
       "guess": true,
-      "doneWhen": { "questBranch": "XueRouHua", "branch": "1" },
-      "visibleWhen": { "any": [{ "questSeen": "XueRouHua" }, { "mapUnlocked": "FuJiZhiLin" }] },
-      "warn": "Teslim adımı kesim noktasında kapanır; görevin kendisi sonra da sürebilir."
+      "doneWhen": {
+        "questBranch": "XueRouHua",
+        "branch": "1"
+      },
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "warn": {
+        "tr": "Teslim adımı o noktada kapanır; görevin kendisi sonra da sürer.",
+        "en": "The hand-in closes at that point; the quest itself continues."
+      }
     },
     {
       "id": "lake-secrets",
       "quest": "HuXinMiMi",
       "cutoff": "mirage",
       "guess": true,
-      "visibleWhen": { "questSeen": "HuXinMiMi" },
-      "warn": "Göl çevresindeki görevlerden biri."
+      "visibleWhen": {
+        "questSeen": "HuXinMiMi"
+      }
     },
     {
       "id": "mountain-of-imprisonment",
-      "name": "Mountain of Imprisonment",
       "quest": null,
+      "names": {
+        "tr": "Mountain of Imprisonment",
+        "en": "Mountain of Imprisonment"
+      },
       "cutoff": "mirage",
-      "visibleWhen": { "unknown": "pinyin adı bilinmiyor" },
-      "warn": "Göl çevresindeki görevlerden biri."
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "_note": "Görev değil, bölge (Levelname_DDSD_001)."
     },
     {
       "id": "journey-home",
       "quest": "GuiTu",
       "cutoff": "gen-alley",
-      "visibleWhen": { "questSeen": "GuiTu" },
-      "warn": "Old Man Gen'i eve götürme görevi; yanlış sırayla ilerlersen başarısız olur."
+      "visibleWhen": {
+        "questSeen": "GuiTu"
+      }
     },
     {
       "id": "red-encampment",
       "type": "info",
-      "name": "Red",
-      "region": "Zhengdaodaying",
       "guess": true,
-      "visibleWhen": { "levelVisited": "Zhengdaodaying" },
-      "warn": "Red'i öldürme; zincirle kaç."
+      "visibleWhen": {
+        "levelVisited": "Zhengdaodaying"
+      },
+      "warn": {
+        "tr": "Bu kampta Red'i öldürme; zincirle kaç.",
+        "en": "In this camp, don't kill Red; escape with the chain."
+      },
+      "activeWhen": {
+        "currentLevel": "Zhengdaodaying"
+      }
     },
     {
       "id": "bloodline-awakening",
       "quest": "XueMaiJueXing",
       "cutoff": "final",
-      "visibleWhen": { "questSeen": "XueMaiJueXing" },
-      "warn": "Gerçek son için gerekli."
+      "visibleWhen": {
+        "questSeen": "XueMaiJueXing"
+      }
     }
   ],
-
   "trueEnding": {
-    "_comment": "Mor Tale'ler: Branch klasöründeki görevler olduğu tahmin ediliyor.",
+    "_comment": "Mor görevler: Branch klasörü (locres anahtarları QuestMaze_*).",
     "questFolder": "Branch",
-    "cutoff": "final",
-    "guess": true,
-    "warn": "Gerçek son için mor Tale'lerin hepsi bitmiş olmalı."
+    "cutoff": "final"
   }
 }

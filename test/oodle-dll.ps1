@@ -1,4 +1,4 @@
-# Oodle decompressor helper for pbz-tracker. Reads/writes only inside -Dir (a temp folder).
+# Reference Oodle decompressor (DLL via P/Invoke), used only by test/oodle-compare.js. Reads/writes only inside -Dir (a temp folder).
 # Input: <Dir>\index.json = [{ "file": "x.cmp", "raw": <size>, "out": "x.bin" }, ...]
 # The DLL is used in place (from another game's folder); it is never copied.
 param([Parameter(Mandatory)][string]$Dir, [Parameter(Mandatory)][string]$Dll)
