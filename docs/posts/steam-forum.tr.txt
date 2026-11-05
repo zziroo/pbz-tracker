@@ -1,23 +1,32 @@
-Oyunu hiçbir şey bilmeden, kör oynamak istiyordum ama sonunda "şu yan görevi yapmadın, gerçek son gitti" durumuna düşmek de istemiyordum. Kaçırılabilir eşya rehberi okumak da zaten kör oynamanın anlamını öldürüyor.
+Oyunu kör oynamak istiyordum. Ama sonunda "şu yan görevi yapmamışsın, gerçek son gitti" diye öğrenmek de istemiyordum. Kaçırılabilir şeyler rehberi okumak da kör oynamanın anlamını kaçırıyor zaten.
 
-Ben de kendime küçük bir araç yazdım: pbz-tracker. Rehber değil, emniyet kemeri gibi bir şey. Rehber ilerde ne olduğunu söyler; bu sadece nerede duracağını söylüyor.
+Ben de küçük bir araç yazdım: pbz-tracker. Rehber değil, emniyet kemeri gibi bir şey. Rehber ileride ne olduğunu söyler. Bu sadece nerede durman gerektiğini söylüyor.
 
-Save dosyanı salt okunur açıyor, bilinen kaçırılabilir görev/eşya listesiyle karşılaştırıyor ve geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan bir şey varsa sen oraya girmeden önce uyarıyor. Varsayılan ekranda sadece şu an aksiyon gerektiren uyarılar var; sorun yoksa tek satırla "şu an bir şey kaçırma riski yok" diyor (İngilizce arayüzde "No risk of missing anything right now."), oyuna dönüyorsun.
+Save dosyanı okuyor (sadece okuyor) ve bilinen kaçırılabilir görev ve eşyalarla karşılaştırıyor. Geri dönüşü olmayan bir noktaya gelmeden önce açıkta kalan bir şey varsa seni uyarıyor. Varsayılan ekranda sadece şu an işine yarayan uyarılar var. Risk yoksa tek satır görüyorsun: "Şu an kaçırma riski yok." (İngilizce arayüzde "No risk of missing anything right now."). Sen de oyuna dönüyorsun.
 
-Spoiler konusu işin özü: uyarılar sadece nerede durman gerektiğini söylüyor ("bu bölgenin son dövüşünden önce" gibi). Boss adı yok, ileriki bölge adı yok, hikâye yok. Görev adları sadece zaten günlüğündeyse görünüyor. Bulunduğun yerin ötesi hiç gösterilmiyor. Günlük sekmesi (görev durumları, aşama sayaçları, kaçanlar) bulanık; bir satır ancak tıklayınca açılıyor, kör oynuyorsan tıklama.
+Spoiler meselesi zaten işin özü. Uyarılar sadece NEREDE durman gerektiğini söylüyor ("bu bölgenin son dövüşünden önce", "hikâye seni bir sonraki büyük bölgeye götürmeden önce" gibi). Boss adı yok, ileriki bölge yok, hikâye olayı yok. Görev adı sadece o görev zaten günlüğündeyse görünüyor. Bulunduğun yerin ötesi hiç gösterilmiyor. Günlük sekmesi (görev durumu, adım sayaçları, kaçırılan eşyalar) bulanık duruyor. Satır ancak tıklayınca açılıyor; kör oynuyorsan tıklama.
 
 Tarayıcında çalışıyor: https://zziroo.github.io/pbz-tracker/
-Bağlantıya tıkla, oyun klasörünü seç, bitti. Hiçbir şey indirilmiyor, hiçbir dosya yüklenmiyor.
+Linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor.
 
-Türkçe oynayanlar için: Türkçe yama kuruluysa araç bunu kendisi algılıyor ve görev adlarını yamadan okuyor, ayar yapmana gerek yok. Arayüz de Türkçe ve İngilizce (TR/EN geçişi).
+Türkçe oynayanlara: Türkçe yama kuruluysa araç bunu kendi fark ediyor ve görev adlarını yamadan okuyor, ayar yapmana gerek yok. Arayüz de Türkçe ve İngilizce (TR/EN geçişi var).
 
-Pratik kısım: ücretsiz ve açık kaynak (GPL-3.0-or-later). Sekmeler: Uyarılar (varsayılan), Günlük (bulanık), Ayarlar, Hakkında. Oyunun yanında açık bırak; oyun her kaydettiğinde (çanda dinlenince, otomatik kayıtta) kendiliğinden yenileniyor. Klasör erişimi için Chrome ya da Edge gerekiyor; Firefox/Safari'de save'ini (ve bir kez PBZ.exe'yi) sürükleyip bırakabilirsin ama otomatik yenileme olmuyor. Her şey tarayıcıda çalışıyor; anahtar senin PBZ.exe'nden türetiliyor ve yalnız o tarayıcıda tutuluyor. Save'e, yedeklere, oyun klasörüne hiç yazmıyor, çalışan oyuna dokunmuyor. Test edildiği oyun sürümünü (26367565) gösteriyor, seninki daha yeniyse uyarıyor. Yerel uygulama istersen bir Windows exe'si de var: çift tıkla, bir pencere açılıyor (yalnız bu bilgisayarda çalışıyor, internete çıkmıyor). Exe imzasız olduğu için SmartScreen uyarı verir ("Ek bilgi -> Yine de çalıştır"); güvenmek istemezsen kaynak kodu açık, kendin derleyebilirsin. Kural düzeltmeleri: web sürümü kendiliğinden güncelleniyor; exe için depodaki güncel data/rules.json'ı exe'nin yanına koyman yeterli.
+Pratik kısım:
+- Ücretsiz ve açık kaynak (GPL-3.0-or-later).
+- Sekmeler: Uyarılar (varsayılan), Günlük (bulanık), Ayarlar, Hakkında.
+- Oyunun yanında açık bırak. Oyun her kayıt yaptığında (çanda dinlenince, otomatik kayıtta) kendi kendine yenileniyor.
+- Klasör erişimi için Chrome ya da Edge lazım. Firefox/Safari'de save'ini (ve bir kereliğine PBZ.exe'yi) sürükleyip bırakabilirsin ama otomatik yenileme yok.
+- Her şey tarayıcıda çalışıyor. Anahtar senin PBZ.exe'nden türetiliyor ve sadece o tarayıcıda kalıyor.
+- Sadece okuyor. Save'e, yedeklere ya da oyun klasörüne hiçbir şey yazmıyor, çalışan oyuna dokunmuyor.
+- Test edildiği oyun build'ini (26367565) gösteriyor, seninki daha yeniyse uyarıyor.
+- Yerel uygulama istersen bir Windows exe'si de var. Çift tıkla, bir pencere açılıyor. Sadece bu bilgisayarda çalışıyor, internete çıkmıyor. İmzasız olduğu için SmartScreen uyarı veriyor ("Ek bilgi", sonra "Yine de çalıştır"). Güvenmiyorsan kaynak kodu açık, kendin derleyebilirsin.
+- Kural düzeltmeleri: web sürümü kendini güncelliyor. Exe için repodaki güncel data/rules.json'ı exe'nin yanına atman yetiyor.
 
-Dürüst olayım: v0.5.0, hızlı yazıldı, kusursuz değil. İleriki bazı hikâye kesim noktaları save'den henüz algılanamıyor (oralarda uyarılar yalnız görev durumuna dayanıyor), bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor ve kurallar rehberlerden ve oyuncu raporlarından geliyor, bunlar her zaman aynı şeyi söylemiyor. Yanlış uyarı verirse ya da bir şeyi kaçırırsa yazın, düzelteyim.
+Dürüst olayım: daha v0.5.0 ve hızlı yaptım. Hikâyenin ileri kısımlarındaki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, oralarda uyarılar sadece görev durumuna bakıyor. Bazı görev ID eşleştirmeleri tahmine dayalı (* ile işaretli). Birkaç eşya save'den hiç okunamıyor. Kurallar da rehberlerden ve oyuncu raporlarından geliyor, bunlar her zaman birbirini tutmuyor. Yani kusursuz değil. Yanlış uyarı verirse ya da bir şeyi atlarsa yaz, düzelteyim.
 
-Kurallar Game8, PowerPyx ve DTGRE rehberlerinden, Steam Topluluğu rehberlerinden ( https://steamcommunity.com/app/4115450/guides/ ), bu forumdaki geri dönüşü olmayan nokta başlığından ( https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) ve Steam forumlarındaki oyuncu raporlarından; repoda kaynak gösterdim. Bulduklarını paylaşan herkese teşekkürler.
+Kurallar herkese açık rehberlerden (Game8, PowerPyx, DTGRE, Steam Topluluğu rehberleri: https://steamcommunity.com/app/4115450/guides/ ), bu forumdaki geri dönüşü olmayan nokta başlığından ( https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) ve Steam forumlarındaki oyuncu raporlarından geliyor. Hepsi repoda kaynak olarak yazıyor. Bulduklarını paylaşan herkese teşekkürler.
 
-[OPTIONAL: AI line] Kodun büyük kısmını yapay zekâ yardımıyla (Claude Code) yazdım, saklamanın anlamı yok.
+[OPTIONAL: AI line] Kodun çoğunu yapay zekâ yardımıyla (Claude Code) yazdım; asıl derdim aracın var olmasıydı.
 
 Web sürümü: https://zziroo.github.io/pbz-tracker/
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0

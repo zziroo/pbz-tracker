@@ -1,13 +1,13 @@
 EN:
-1. Not a guide, more like a seatbelt: a free tool that warns you before a point of no return (no spoilers)
-2. Not a guide, a tracker: it reads your PBZ save and warns you before a point of no return (no spoilers)
-3. I wanted to play PBZ blind without losing the true ending, so I made a little save-reader that taps you on the shoulder
-4. I made a "missables alarm" for PBZ so I could stop reading guides mid-playthrough (free, open source, no spoilers)
-5. [Tool] pbz-tracker v0.5: spoiler-free missable warnings straight from your save file, now in your browser
-6. Choose your game folder, get warned before a point of no return: a free, spoiler-free missables tracker that runs in your browser
+1. Not a guide, more like a seatbelt. Free tool that warns you before a point of no return (no spoilers)
+2. Not a guide, just a tracker that reads your PBZ save and warns you before a point of no return (no spoilers)
+3. I wanted to play PBZ blind and still get the true ending, so I made a little save reader that taps you on the shoulder
+4. Made a missables alarm for PBZ so I could stop checking guides mid-playthrough (free, open source, no spoilers)
+5. [Tool] pbz-tracker v0.5 now runs in your browser (spoiler-free missable warnings from your save)
+6. Pick your game folder and it warns you before a point of no return. Free missables tracker in the browser, no spoilers
 
 TR:
-1. Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok)
-2. Rehber değil, emniyet kemeri gibi: geri dönüşü olmayan noktadan önce uyaran ücretsiz bir araç (spoiler yok)
-3. PBZ için "bir şey kaçırıyor muyum?" kontrolü: save'ini okuyor, sadece nerede duracağını söylüyor
-4. Oyun klasörünü seç, geri dönüşü olmayan noktadan önce uyarı al: tarayıcıda çalışan, spoilersız, ücretsiz bir takipçi
+1. Kör oynarken gerçek sonu kaçırmamak için pbz-tracker diye küçük bir araç yazdım (ücretsiz, açık kaynak, spoiler yok)
+2. Rehber değil, emniyet kemeri gibi bir şey. Geri dönüşü olmayan noktadan önce uyarıyor (ücretsiz, spoiler yok)
+3. PBZ'de "bir şey kaçırıyor muyum" diye düşünenlere: save'i okuyup sadece nerede durman gerektiğini söyleyen bir araç
+4. Oyun klasörünü seç, geri dönüşü olmayan noktadan önce uyarsın. Tarayıcıda çalışan ücretsiz bir araç, spoiler yok

@@ -1,57 +1,57 @@
 What this is
 
-Not a guide. A tracker. pbz-tracker reads your Phantom Blade Zero save file (read-only) and warns you before a point of no return when a missable quest or item is still open. If nothing is at risk, it says "No risk of missing anything right now." and you keep playing.
+Not a guide, just a tracker. pbz-tracker reads your Phantom Blade Zero save file (read-only) and warns you before a point of no return if a missable quest or item is still open. If nothing is at risk it says "No risk of missing anything right now." and you keep playing.
 
-I made it because I wanted to play blind and still get the true ending. Those two things don't go together very well, and this is my compromise: a tool that stays quiet until you're actually about to lose something.
+I made it because I wanted to play blind and still get the true ending. Those two don't really go together, so I ended up with this: a tool that stays quiet until you're actually about to lose something.
 
-Web version: https://zziroo.github.io/pbz-tracker/ (click the link, choose your game folder, done; nothing is downloaded, no file is uploaded)
+Web version: https://zziroo.github.io/pbz-tracker/ (click the link, choose your game folder, done. Nothing is downloaded, no file is uploaded.)
 
 What this is NOT
 
-It is not a guide. A guide has to tell you what's ahead to be useful, and that's exactly the problem for a blind playthrough. This goes the other way: it stays silent until the moment you're about to lock yourself out of something, and then it only tells you where to stop.
+It's not a guide. A guide has to tell you what's ahead to be of any use, and that's the exact thing you don't want on a blind run. This goes the other way. It keeps quiet until you're about to lock yourself out of something, then it tells you where to stop, and that's all.
 
 Spoiler policy
 
-Warnings describe WHERE to stop, not what's coming: "before this area's final fight", "before the story moves you to the next major area". No boss names, no future regions, no story events. A quest name appears only if that quest is already in your journal. Everything else sits in the Journal tab, blurred; a row opens only when you click it. Content beyond where you are is never shown.
+Warnings describe WHERE to stop, not what's coming. Stuff like "before this area's final fight" or "before the story moves you to the next major area". No boss names, no future regions, no story events. A quest name only shows up if that quest is already in your journal. Everything else is in the Journal tab, blurred, and a row only opens when you click it. Anything past where you are is never shown.
 
 How to use (web version, recommended)
 
 1. Open https://zziroo.github.io/pbz-tracker/ in Chrome or Edge.
-2. Click "Choose game folder" and pick the game folder (or your Steam library folder). The browser asks for read access; allow it. Next time, one click ("Continue with PBZ") is enough.
-3. Leave it open next to the game (second monitor, or alt-tab now and then; you can also install it as an app to get its own window). Every time the game saves (resting at a bell, autosave), it refreshes on its own.
-4. Tabs: Warnings (the default view, only what you're about to lose), Journal (quest status, step counters, missed items; blurred, click a row only if you deliberately want to see it), Settings (language, refresh interval, game folder) and About.
-5. Firefox or Safari: drag & drop your save (and PBZ.exe once) onto the page. It works, but there's no automatic refresh; drop the save again after the game saves.
-6. Languages: the UI is in English and Turkish (TR/EN switch). If a community text patch (for example the Turkish patch) is installed, quest names are read from it automatically; otherwise English name tables are used. Other languages can be added through a JSON table, contributions welcome.
+2. Click "Choose game folder" and pick the game folder (or your Steam library folder). The browser asks for read access, allow it. Next time it's one click, "Continue with PBZ".
+3. Leave it open next to the game. Second monitor, or just alt-tab now and then. You can also install it as an app if you want it in its own window. Every time the game saves (resting at a bell, autosave) it refreshes by itself.
+4. Tabs: Warnings (default, only what you're about to lose), Journal (quest status, step counters, missed items, blurred, so only click a row if you really want to see it), Settings (language, refresh interval, game folder) and About.
+5. Firefox or Safari: drag & drop your save (and PBZ.exe, once) onto the page. It works, but there's no auto refresh, so drop the save again after the game saves.
+6. Languages: the UI is in English and Turkish (TR/EN switch). If you have a community text patch installed (the Turkish one for example), quest names get read from it automatically. Otherwise it falls back to the English name tables. Other languages can be added with a JSON table, contributions welcome.
 
 The exe (alternative)
 
-1. Download pbz-tracker-v0.5.0.exe from https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 and put it anywhere. It's about 89 MB because it embeds Node; nothing to install.
-2. Windows SmartScreen will warn you because the exe is unsigned. Click "More info", then "Run anyway". If you'd rather not trust a random exe, the source is at https://github.com/zziroo/pbz-tracker and you can build it yourself.
-3. Double-click it. A window opens with the same tabs. It finds your Steam install on its own; if it can't, you choose the game folder in Settings.
+1. Grab pbz-tracker-v0.5.0.exe from https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0 and put it anywhere. It's ~89 MB because Node is embedded in it. Nothing to install.
+2. Windows SmartScreen will complain because it's unsigned. "More info", then "Run anyway". If you'd rather not run a random exe from the internet, the source is at https://github.com/zziroo/pbz-tracker and you can build it yourself.
+3. Double-click it and a window opens with the same tabs. It finds your Steam install on its own. If it doesn't, choose the game folder in Settings.
 
 Is it safe?
 
-Yes, as far as I can make it.
+As far as I can make it, yes.
 - Read-only. It never writes to your save, backups or game folder.
-- Web version: everything runs in your browser. No file is uploaded and no request leaves the page (you can check it in DevTools -> Network). The decryption key is derived from your own PBZ.exe and kept in that browser only.
-- Exe: no internet. The window talks only to the tool itself on 127.0.0.1 (this computer). The exe contains no key, SteamID or personal data (the build scans itself for this); the key is derived from your own PBZ.exe at runtime.
+- Web: everything runs in your browser. No file is uploaded and no request leaves the page (you can check in DevTools, Network tab). The decryption key is derived from your own PBZ.exe and stays in that browser.
+- Exe: no internet at all. The window only talks to the tool itself on 127.0.0.1 (your own PC). There's no key, SteamID or personal data baked into the exe (the build scans itself to make sure). The key is derived from your own PBZ.exe when it runs.
 - It doesn't touch the running game process.
-- It shows the game build it was tested on (26367565) and warns if your game is newer.
+- It shows the game build it was tested on (26367565) and warns you if yours is newer.
 
 Known limits (v0.5.0, please read)
 
-- Some later story cutoffs can't be detected from the save yet; there the warnings rely on quest state only.
-- Some quest-ID mappings are educated guesses, marked with *.
-- A few items can't be detected from the save at all.
-- The rules come from guides and player reports, which don't always agree.
-- Built fast and new, so expect rough edges. It's not perfect.
+- Some of the later story cutoffs can't be detected from the save yet. Warnings there go by quest state only.
+- Some quest-ID mappings are educated guesses. Those are marked with *.
+- A few items just can't be detected from the save at all.
+- The rules come from guides and player reports, and those don't always agree with each other.
+- It's new and I built it fast, so expect rough edges.
 
 Where the rules come from
 
-What's missable and where the cutoffs are comes from public guides and players: Game8, PowerPyx, DTGRE (https://www.dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. Credited in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version is rebuilt and republished automatically; for the exe, drop the repository's latest data/rules.json next to it, no new release needed.
+What's missable and where the cutoffs are comes from public guides and players: Game8, PowerPyx, DTGRE (https://www.dtgre.com), the Steam Community guides (https://steamcommunity.com/app/4115450/guides/), the forum thread on the point of no return (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) and player reports from the Steam forums. All credited in the repo. Save decompression is a port of ooz by Powzix (Oodle). When a rule gets fixed, the web version rebuilds and republishes itself. For the exe, drop the repo's latest data/rules.json next to it, no new release needed.
 
 Feedback
 
 If it flags something wrong or misses something, open an issue at https://github.com/zziroo/pbz-tracker. Mapping corrections are especially welcome. Free and open source (GPL-3.0-or-later).
 
-[OPTIONAL: AI line] A good chunk of the code was written with AI assistance (Claude Code); I mostly wanted the tool to exist.
+[OPTIONAL: AI line] A good chunk of the code was written with AI help (Claude Code). I mostly wanted the tool to exist.

@@ -1,16 +1,18 @@
-Kör oynayıp gerçek sonu kaçırmamak için küçük bir araç yazdım: pbz-tracker (ücretsiz, açık kaynak, spoiler yok, tarayıcıda çalışıyor)
+Kör oynarken gerçek sonu kaçırmamak için geri dönüşü olmayan noktadan önce uyaran bir araç yaptım (ücretsiz, açık kaynak, spoiler yok, tarayıcıda çalışıyor)
 
-Rehber okumadan oynamak istedim ama "yan görevi atladın, gerçek son gitti" riskini de almak istemedim. Araç rehber değil: save dosyanı salt okunur açıyor, geri dönüşü olmayan bir noktaya yaklaşırken açıkta kalan kaçırılabilir görev/eşya varsa önceden uyarıyor. Yoksa sadece şu an bir şey kaçırma riski yok diyor.
+Rehber okumak istemedim, çünkü rehber her şeyi baştan söylüyor. Ama oyunun sonunda "şu yan görevi yapmamışsın, gerçek son gitti" diye öğrenmek de istemedim.
 
-Uyarılar sadece nerede duracağını söylüyor ("bu bölgenin son dövüşünden önce" gibi); boss adı, ileriki bölge, hikâye yok. Görev adları sadece zaten günlüğündeyse çıkıyor. Günlük sekmesi bulanık, bir satır ancak tıklayınca açılıyor; yanlışlıkla bir şey görmüyorsun. Türkçe yama kuruluysa otomatik algılıyor, görev adlarını yamadan okuyor; arayüzde TR/EN geçişi var.
+Ben de pbz-tracker'ı yaptım. Rehber değil. Save dosyanı okuyor (sadece okuyor). Kaçırılabilir bir görev ya da eşya hâlâ açıkken geri dönüşü olmayan bir noktaya geliyorsan seni uyarıyor. Öyle bir şey yoksa sadece "Şu an kaçırma riski yok." diyor.
 
-Artık bir web sayfası: bağlantıya tıkla, oyun klasörünü seç, bitti. Hiçbir şey indirilmiyor, hiçbir dosya yüklenmiyor, her şey tarayıcında çalışıyor ve oyun her kaydettiğinde kendiliğinden yenileniyor. Klasör erişimi için Chrome ya da Edge gerekiyor; Firefox/Safari'de save'i sürükleyip bırakabilirsin, sadece otomatik yenileme olmuyor. Yerel uygulama istersen aynı şeyi kendi penceresinde açan bir Windows exe'si de var (imzasız olduğu için SmartScreen söylenir; kaynak açık, istersen kendin derle). İkisi de save'e ve oyun klasörüne yazmıyor, oyuna dokunmuyor.
+Uyarılar sadece nerede durman gerektiğini söylüyor ("bu bölgenin son dövüşünden önce" gibi). Boss adı yok, ileriki bölge yok, hikâye yok. Görev adı sadece o görev zaten günlüğündeyse çıkıyor. Günlük sekmesi bulanık, satır ancak tıklayınca açılıyor. Yani yanlışlıkla bir şey görmüyorsun. Türkçe yama kuruluysa araç bunu kendi fark ediyor, görev adlarını yamadan okuyor. Arayüzde TR/EN geçişi var.
 
-Kusursuz değil: v0.5.0, ileriki bazı kesim noktaları save'den henüz algılanamıyor, bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor ve kurallar rehberlerden ve oyuncu raporlarından geliyor. Yanlış bir şey görürseniz yazın, düzelteyim.
+Artık bir web sayfası: linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor. Her şey tarayıcında çalışıyor, oyun her kayıt yaptığında da kendi kendine yenileniyor. Klasör erişimi için Chrome ya da Edge lazım. Firefox/Safari'de save'i sürükleyip bırakabilirsin, sadece otomatik yenileme yok. Yerel uygulama istersen aynı şeyi kendi penceresinde açan bir Windows exe'si de var. İmzasız olduğu için SmartScreen söyleniyor; kaynak kodu açık, istersen kendin derle. İkisi de save'e ya da oyun klasörüne bir şey yazmıyor, oyuna dokunmuyor.
 
-Kurallar Game8/PowerPyx/DTGRE rehberlerinden, Steam Topluluğu rehberlerinden ve Steam forumlarındaki oyuncu raporlarından; repoda kaynak var.
+Kusursuz değil, daha v0.5.0. İleriki bazı geri dönüşü olmayan noktalar save'den henüz tespit edilemiyor, bazı görev eşleştirmeleri tahmin (* ile işaretli), birkaç eşya save'den hiç okunamıyor, kurallar da rehberlerden ve oyuncu raporlarından geliyor. Yanlış bir şey görürsen yaz, düzelteyim.
 
-[OPTIONAL: AI line] Kodun çoğu yapay zekâ yardımıyla (Claude Code) yazıldı.
+Kurallar Game8, PowerPyx ve DTGRE'den, Steam Topluluğu rehberlerinden ve Steam forumlarındaki oyuncu raporlarından geliyor. Hepsi repoda kaynak olarak yazıyor.
+
+[OPTIONAL: AI line] Kodun çoğunu yapay zekâ yardımıyla (Claude Code) yazdım, söyleyeyim dedim.
 
 Web sürümü: https://zziroo.github.io/pbz-tracker/
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0

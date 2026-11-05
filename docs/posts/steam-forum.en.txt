@@ -1,31 +1,31 @@
-I wanted to play blind, but I also didn't want to get to the end and find out I locked myself out of the true ending because of some side quest I never heard of. Reading a full missables guide kind of defeats the point of going in blind, though.
+I wanted to play blind. I also didn't want to reach the end and find out I'd locked myself out of the true ending because of some side quest I never heard of. And reading a full missables guide kind of defeats the point of going in blind.
 
-So I made a small tool: pbz-tracker. Not a guide, more like a seatbelt. A guide tells you what's coming; this only tells you where to stop.
+So I made a small tool, pbz-tracker. It's not a guide, more like a seatbelt. A guide tells you what's coming. This only tells you where to stop.
 
-It reads your save (read-only), checks it against the known missables, and warns you BEFORE a point of no return if a quest or item is still open. By default it shows only the warnings that matter right now. If nothing is at risk, it just says "No risk of missing anything right now." and you go back to the game.
+It reads your save (read-only), checks it against the known missables and warns you before a point of no return if a quest or item is still open. By default you only see the warnings that matter right now. If nothing is at risk it says "No risk of missing anything right now." and you go back to the game.
 
-The spoiler part was the whole point. Warnings only tell you WHERE to stop ("before this area's final fight", "before the story moves you to the next major area"). No boss names, no future regions, no story events. Quest names show up only if the quest is already in your journal. Anything past where you are is never displayed. The Journal tab (quest status, step counters, missed items) is blurred; a row opens only when you click it, so don't click if you're playing blind.
+The spoiler part was the whole point. Warnings only say WHERE to stop, like "before this area's final fight" or "before the story moves you to the next major area". You won't see boss names, future regions or story events in there. A quest name only shows up if that quest is already in your journal, and anything past where you are is never shown. The Journal tab (quest status, step counters, missed items) is blurred. A row only opens when you click it, so if you're playing blind, don't click it.
 
 It runs in your browser: https://zziroo.github.io/pbz-tracker/
-Click the link, choose your game folder, done. Nothing is downloaded and no file is uploaded.
+Click the link, choose your game folder, that's it. Nothing is downloaded and no file is uploaded.
 
-Practical stuff:
-- Free, open source (GPL-3.0-or-later)
-- Tabs: Warnings (default), Journal (blurred), Settings, About
-- Leave it open next to the game; it refreshes on its own every time the game saves (resting at a bell, autosave)
-- Needs Chrome or Edge for the folder access. In Firefox/Safari you can drag & drop your save (and PBZ.exe once), but without the auto-refresh
-- Everything runs in the browser; the key is derived from your own PBZ.exe and kept in that browser only
-- Read-only: never writes to your save, backups or game folder. Doesn't touch the running game
-- UI in English and Turkish (TR/EN switch); if you have a community text patch installed, quest names come from it automatically
-- It shows the game build it was tested on (26367565) and warns if yours is newer
-- Prefer a local app? There's also a Windows exe: double-click and a window opens (local only, no internet). It's unsigned, so SmartScreen will complain ("More info -> Run anyway"). Source is public if you'd rather build it yourself
-- Rule fixes: the web version updates itself; for the exe, drop the repository's latest data/rules.json next to it
+The practical stuff:
+- Free and open source (GPL-3.0-or-later).
+- Tabs: Warnings (default), Journal (blurred), Settings, About.
+- Leave it open next to the game. It refreshes by itself every time the game saves (resting at a bell, autosave).
+- Folder access needs Chrome or Edge. In Firefox/Safari you can drag & drop your save (and PBZ.exe once), but there's no auto refresh.
+- It all runs in the browser. The key is derived from your own PBZ.exe and stays in that browser.
+- Read-only. It never writes to your save, backups or game folder, and it doesn't touch the running game.
+- The UI is in English and Turkish (TR/EN switch). If you have a community text patch installed, quest names come from it automatically.
+- It shows the game build it was tested on (26367565) and warns you if yours is newer.
+- If you'd rather have a local app, there's a Windows exe too. Double-click it and a window opens. Local only, no internet. It's unsigned, so SmartScreen will complain (More info, then Run anyway). The source is public if you'd rather build it yourself.
+- Rule fixes: the web version updates itself. For the exe, drop the repo's latest data/rules.json next to it.
 
-Being honest: this is v0.5.0 and I built it fast. Some later story cutoffs can't be detected from the save yet (there the warnings rely on quest state only), a few quest-ID mappings are educated guesses (marked with *), a few items can't be read from the save at all, and the rules come from guides and player reports, which don't always agree. It's not perfect. If it flags something wrong or misses something, tell me and I'll fix it.
+To be honest, this is v0.5.0 and I built it fast. Some later story cutoffs can't be detected from the save yet, so warnings there go by quest state only. A few quest-ID mappings are educated guesses (marked with *). A few items can't be read from the save at all. And the rules come from guides and player reports, which don't always agree with each other. So it's not perfect. If it flags something wrong or misses something, tell me and I'll fix it.
 
-The missables rules come from public guides (Game8, PowerPyx, DTGRE, the Steam Community guides at https://steamcommunity.com/app/4115450/guides/ ), this forum's point-of-no-return thread (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) and player reports from the Steam forums, credited in the repo. Thanks to everyone who posted their findings.
+The rules come from public guides (Game8, PowerPyx, DTGRE, the Steam Community guides at https://steamcommunity.com/app/4115450/guides/ ), this forum's point-of-no-return thread (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/ ) and player reports from the Steam forums. All credited in the repo. Thanks to everyone who posted what they found.
 
-[OPTIONAL: AI line] Full disclosure: I wrote a lot of this with AI assistance (Claude Code); I just wanted the thing to exist.
+[OPTIONAL: AI line] I wrote a lot of this with AI help (Claude Code). I mostly just wanted the thing to exist.
 
 Web version: https://zziroo.github.io/pbz-tracker/
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0

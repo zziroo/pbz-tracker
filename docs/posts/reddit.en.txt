@@ -1,18 +1,18 @@
-I wanted to play blind without losing the true ending, so I made a tool that warns you before a point of no return (no spoilers, free, open source, runs in your browser)
+I wanted to play blind and still get the true ending, so I made a tool that warns you before a point of no return (free, open source, no spoilers, runs in your browser)
 
-Quick background: I didn't want to read a missables guide because that spoils the whole thing, but I also didn't want to find out at the end that some side quest locked me out of the true ending.
+I didn't want to read a missables guide because it spoils everything. But I also didn't want to get to the end and find out some side quest had locked me out of the true ending.
 
-So, pbz-tracker. It's not a guide. It reads your save (read-only) and if you're about to hit a point of no return while a missable quest or item is still open, it warns you. Otherwise it just says "No risk of missing anything right now."
+So I made pbz-tracker. It's not a guide. It reads your save (read-only), and if you're about to hit a point of no return with a missable quest or item still open, it warns you. Otherwise it just says "No risk of missing anything right now."
 
-The warnings only tell you where to stop ("before this area's final fight"), never boss names, future areas or story stuff. Quest names show only if the quest is already in your journal. The Journal tab is blurred and a row opens only when you click it, so nothing slips out by accident. If a community text patch (e.g. the Turkish one) is installed, quest names come from it automatically; the UI has a TR/EN switch.
+Warnings only tell you where to stop ("before this area's final fight"). No boss names, no future areas, no story. Quest names only show up if the quest is already in your journal. The Journal tab is blurred and a row only opens when you click it, so you won't see anything by accident. If you have a community text patch installed (the Turkish one, say), quest names come from it automatically. The UI has a TR/EN switch.
 
-It's a web page now: click the link, choose your game folder, done. Nothing is downloaded, no file is uploaded, everything runs in your browser, and it refreshes on its own every time the game saves. Needs Chrome or Edge for the folder access; in Firefox/Safari you can drag & drop the save, just without the auto-refresh. If you'd rather have a local app, there's also a Windows exe that opens the same thing in its own window (unsigned, so SmartScreen will nag; source is public if you'd rather build it). Neither one writes to your save or game folder or touches the game.
+It's a web page now. Click the link, choose your game folder, done. Nothing is downloaded, no file is uploaded, it all runs in your browser, and it refreshes by itself every time the game saves. You need Chrome or Edge for the folder access. In Firefox/Safari you can drag & drop the save, you just don't get the auto refresh. There's also a Windows exe if you'd rather have a local app, same thing in its own window. It's unsigned so SmartScreen will nag you, and the source is public if you want to build it yourself. Neither version writes to your save or game folder or touches the game.
 
-It's v0.5.0 and not perfect: some later cutoffs can't be detected from the save yet, a few quest mappings are guesses (marked with *), a few items can't be read from the save at all, and the rules come from guides and player reports. If it gets something wrong, tell me and I'll fix it.
+It's v0.5.0 and it's not perfect. Some later cutoffs can't be detected from the save yet, a few quest mappings are guesses (marked with *), a few items can't be read from the save at all, and the rules come from guides and player reports. If it gets something wrong, tell me and I'll fix it.
 
-Rules are based on Game8 / PowerPyx / DTGRE, the Steam Community guides and player reports from the Steam forums, credited in the repo.
+The rules are based on Game8, PowerPyx, DTGRE, the Steam Community guides and player reports from the Steam forums. All credited in the repo.
 
-[OPTIONAL: AI line] Built with a lot of AI help (Claude Code), figured I should say so.
+[OPTIONAL: AI line] I wrote a lot of it with AI help (Claude Code), figured I should say so.
 
 Web version: https://zziroo.github.io/pbz-tracker/
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
