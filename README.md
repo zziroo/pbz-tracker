@@ -20,6 +20,10 @@ Windows SmartScreen may warn on first run because the exe is not code-signed. Ch
 
 ## Usage
 
+**Double-click the exe to open it, or drop your save file onto it.** It then watches your save and keeps the window open: G toggles the hidden sections, Q quits. You can drop `PBZSaveGame.sav`, your account folder under `SaveGames\Steam`, the game folder or `PBZ.exe`.
+
+From a terminal:
+
 ```
 pbz-tracker-v0.3.0.exe             # read once
 pbz-tracker-v0.3.0.exe --watch     # refresh whenever the game saves; G = toggle hidden sections, Q = quit
@@ -33,7 +37,9 @@ pbz-tracker-v0.3.0.exe --help
 
 `--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
 
-The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450). If saves from several Steam accounts exist, the tool asks which one to use, or you can pass `--steamid`.
+The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450), then in common folders (`<drive>:\SteamLibrary`, `Program Files\Steam`, `<drive>:\Games\PBZ`). If saves from several Steam accounts exist, the tool asks which one to use, or you can pass `--steamid`.
+
+**Installed elsewhere, or not through Steam?** Drop the game folder or the save onto the exe, or pass `--game <PBZ folder>` (plus `--save` if needed). Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
 
 ## Spoiler policy
 

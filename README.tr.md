@@ -20,6 +20,10 @@ Exe kod imzalı olmadığı için Windows SmartScreen ilk çalıştırmada uyara
 
 ## Kullanım
 
+**Çift tıkla aç; ya da save dosyanı exe'nin üstüne bırak.** Araç save'ini izler ve pencere açık kalır: G gizli bölümleri açar/kapatır, Q çıkar. `PBZSaveGame.sav` dosyasını, `SaveGames\Steam` altındaki hesap klasörünü, oyun klasörünü ya da `PBZ.exe`'yi bırakabilirsin.
+
+Terminalden:
+
 ```
 pbz-tracker-v0.3.0.exe             # bir kez oku
 pbz-tracker-v0.3.0.exe --watch     # oyun kaydettikçe yenile; G = gizli bölümler, Q = çık
@@ -33,7 +37,9 @@ pbz-tracker-v0.3.0.exe --help
 
 `--dump`, save'inin çözülmüş tam dökümünü yazar (`out\latest.json`). Oynama geçmişin gibi kişisel veri içerebilir; paylaşma. Oyun ya da save klasörüne yazmayı reddeder.
 
-Oyun Steam üzerinden bulunur: kayıt defterindeki `SteamPath` → `libraryfolders.vdf` → AppID 4115450. Birden fazla Steam hesabının kaydı varsa hangisinin kullanılacağını sorar; `--steamid` ile de seçilir.
+Oyun Steam üzerinden bulunur (kayıt defterindeki `SteamPath` → `libraryfolders.vdf` → AppID 4115450), sonra yaygın klasörlerde aranır (`<sürücü>:\SteamLibrary`, `Program Files\Steam`, `<sürücü>:\Games\PBZ`). Birden fazla Steam hesabının kaydı varsa hangisinin kullanılacağını sorar; `--steamid` ile de seçilir.
+
+**Başka bir klasöre ya da Steam dışından mı kurulu?** Oyun klasörünü ya da save'i exe'nin üstüne bırak, ya da `--game <PBZ klasörü>` ver (gerekirse `--save` ile birlikte). Steam manifesti yoksa oyun build'i "bilinmiyor" diye gösterilir; "doğrulanmadı" uyarısı çıkmaz.
 
 ## Spoiler politikası
 

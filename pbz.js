@@ -7,12 +7,12 @@ const i18n = require('./lib/i18n');
 const { t } = i18n;
 const { deriveKey } = require('./lib/key');
 const { loadSave } = require('./lib/savefile');
-const { findGameDir, findExe, findSave, findBuildId } = require('./lib/paths');
+const { findGameDir, findExe, findSave, findBuildId, classifyPath, gameFromPath } = require('./lib/paths');
 const { VERSION, TESTED_BUILDS } = require('./lib/version');
 const { extract } = require('./lib/state');
 const { build, render, statusMap, diff } = require('./lib/report');
 const { createNames, EMBEDDED_TABLES } = require('./lib/names');
-const { loadRules, loadNameTables } = require('./lib/datafiles');
+const { loadRules, loadNameTables, isSea } = require('./lib/datafiles');
 const EMBEDDED_RULES = require('./data/rules.json');
 const NAMES = require('./data/names.json');
 
@@ -38,7 +38,15 @@ function parseArgs(argv) {
       case '--no-color': o.color = false; break;
       case '-h': case '--help': o.help = true; break;
       case '-v': case '--version': o.version = true; break;
-      default: throw new Error(t('err.unknownOpt', { o: a }));
+      default: {
+        if (a.startsWith('-')) throw new Error(t('err.unknownOpt', { o: a }));
+        // Path without a flag (drag & drop onto the exe): save file, save folder, game folder or PBZ.exe.
+        const c = classifyPath(a);
+        if (!c) throw new Error(t('err.unknownPath', { p: a }));
+        if (c.save) o.save = c.save;
+        if (c.game) o.game = c.game;
+        if (c.exe) o.exe = c.exe;
+      }
     }
   }
   return o;
@@ -63,16 +71,40 @@ function safeDumpDir(dir, protectedDirs) {
   return path.resolve(dir);
 }
 
+// Started by double-click (no arguments) or by dropping files on the exe (only paths, no flags):
+// watch by default and keep the window open on errors.
+const RAW_ARGS = process.argv.slice(2);
+const INTERACTIVE = RAW_ARGS.length === 0 || (isSea() && RAW_ARGS.every((a) => !a.startsWith('-')));
+
+function waitForKey() {
+  if (!process.stdin.isTTY) return Promise.resolve();
+  console.error(t('pressKey'));
+  return new Promise((resolve) => {
+    process.stdin.setRawMode(true);
+    process.stdin.resume();
+    process.stdin.once('data', () => { process.stdin.setRawMode(false); process.stdin.pause(); resolve(); });
+  });
+}
+
 async function main() {
   // Language first, so argument errors are already localised.
   const langIdx = process.argv.indexOf('--lang');
   if (langIdx > 0 && process.argv[langIdx + 1]) i18n.setLang(process.argv[langIdx + 1].toLowerCase());
-  const opt = parseArgs(process.argv.slice(2));
+  const opt = parseArgs(RAW_ARGS);
   if (opt.lang) i18n.setLang(opt.lang);
+  if (INTERACTIVE) opt.watch = true;
   if (opt.version) { console.log(`pbz-tracker ${VERSION}`); return; }
   if (opt.help) { process.stdout.write(t('help')); return; }
 
-  const gameDir = findGameDir(opt.game || (opt.exe ? path.resolve(path.dirname(opt.exe), '..', '..') : undefined));
+  // Game folder: explicit, else derived from a given exe / save path, else Steam and common folders.
+  const hint = opt.game || (opt.exe && gameFromPath(path.dirname(opt.exe))) || (opt.save && gameFromPath(path.dirname(opt.save))) || undefined;
+  let gameDir;
+  try {
+    gameDir = findGameDir(hint);
+  } catch (e) {
+    if (opt.save && !opt.game) throw new Error(t('err.noGameForSave'));
+    throw e;
+  }
   const exe = findExe(gameDir, opt.exe);
   const savePath = await findSave(gameDir, { explicit: opt.save, steamId: opt.steamId });
   const buildId = findBuildId(gameDir);
@@ -167,4 +199,8 @@ async function main() {
   }
 }
 
-main().catch((e) => { console.error(t('err.prefix', { msg: e.message })); process.exit(1); });
+main().catch(async (e) => {
+  console.error(t('err.prefix', { msg: e.message }));
+  if (INTERACTIVE) await waitForKey();
+  process.exit(1);
+});
