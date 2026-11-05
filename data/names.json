@@ -1,55 +1,201 @@
 {
-  "_comment": "Pinyin görev/bölge kodu → Türkçe yama locres anahtarı + resmi İngilizce ad. guessKey=true: anahtar anlamdan çıkarıldı (oyun içi günlükle doğrulanmadı). guessEn=true: İngilizce ad rehberlerde doğrulanamadı. Türkçe metin bu dosyada tutulmaz; çalışırken yamanın Game.locres dosyasından okunur. Klasör → anahtar ailesi: Main=QuestStory_*, Branch=QuestMaze_*, Simple=QuestRumor_*, Collect=QuestCollect_*.",
-
+  "_comment": "Pinyin görev/bölge kodu → metin yamasındaki locres anahtarı. Görünen adlar names.<dil>.json dosyalarında (names.en.json, names.tr.json); yama varsa adlar çalışma anında yamadan okunur. guessKey=true: anahtar anlamdan çıkarıldı. guessEn=true: İngilizce ad rehberlerde doğrulanamadı. Klasör → anahtar ailesi: Main=QuestStory_*, Branch=QuestMaze_*, Simple=QuestRumor_*, Collect=QuestCollect_*.",
   "quests": {
-    "XueMaiJueXing":         { "locres": "QuestMaze_004",    "en": "Bloodline Awakening",              "guessKey": false, "guessEn": false },
-    "HongFangZi":            { "locres": "QuestMaze_010",    "en": "Crimson Manor",                    "guessKey": false, "guessEn": false },
-    "HuanShuPiPa":           { "locres": "QuestMaze_006",    "en": "Illusory Pipa",                    "guessKey": false, "guessEn": false },
-    "HuXinMiMi":             { "locres": "QuestMaze_008",    "en": "Secrets at the Heart of the Lake", "guessKey": false, "guessEn": false },
-    "XuKongHuanXiang":       { "locres": "QuestMaze_005",    "en": "Illusion of Inanis",               "guessKey": false, "guessEn": false },
-    "XiGuShenChu":           { "locres": "QuestMaze_012",    "en": "Deep in the Valley",               "guessKey": false, "guessEn": false },
-    "QiShengHeLai":          { "locres": "QuestMaze_001",    "en": "Whence the Weeping",               "guessKey": false, "guessEn": false },
-    "KunLunSanJie":          { "locres": "QuestMaze_003",    "en": "Pillars of Kunlun",                "guessKey": false, "guessEn": false },
-    "SanMianHunDun":         { "locres": "QuestMaze_017",    "en": "Triple Threat",                    "guessKey": false, "guessEn": false },
-    "XueRouHua":             { "locres": "QuestMaze_002",    "en": "Flesh Lily",                       "guessKey": false, "guessEn": false },
-
-    "XiongFu":               { "locres": "QuestRumor_001",   "en": "Four Fierce Axes",                 "guessKey": false, "guessEn": false },
-    "GeJueXieZi":            { "locres": "QuestRumor_002",   "en": "A Severed Mindseal",               "guessKey": false, "guessEn": false },
-    "BaiShanMiWen":          { "locres": "QuestRumor_003",   "en": "Secrets of the Baishan Sect",      "guessKey": false, "guessEn": false },
-    "GuiTu":                 { "locres": "QuestRumor_005",   "en": "The Journey Home",                 "guessKey": true,  "guessEn": false },
-    "LanJiaGongZi":          { "locres": "QuestRumor_006",   "en": "Young Master Lan",                 "guessKey": true,  "guessEn": false },
-    "YiGeBuLiu":             { "locres": "QuestRumor_022",   "en": "Leave None Alive",                 "guessKey": true,  "guessEn": false },
-    "NanYanZhiYin":          { "locres": "QuestRumor_024",   "en": "Festering Secret",                 "guessKey": false, "guessEn": false },
-    "QingLiMenHu":           { "locres": "QuestRumor_025",   "en": "Purge the Sect",                   "guessKey": false, "guessEn": false },
-    "JianXiYiShi":           { "locres": "QuestRumor_026",   "en": "Apprentice Healer",                "guessKey": false, "guessEn": false },
-    "JiuSiFuShang":          { "locres": "QuestRumor_027",   "en": "A Healer's Mercy",                 "guessKey": false, "guessEn": false },
-
-    "JiaoTuSanKu":           { "locres": "QuestCollect_002", "en": "The Wily Hare's Three Dens",       "guessKey": false, "guessEn": false },
-    "RongShuZhiXin":         { "locres": "QuestCollect_004", "en": "Heart of the Banyan",              "guessKey": false, "guessEn": false },
-    "XianYin":               { "locres": "QuestCollect_006", "en": "Resonant Strings",                 "guessKey": false, "guessEn": false },
-    "ShaoZhu":               { "locres": "QuestCollect_010", "en": "Young Mistress",                   "guessKey": true,  "guessEn": false },
-
-    "MainCh1-NiLiuErShang":  { "locres": "QuestStory_01_1",  "en": "Against the Flow",                 "guessKey": false, "guessEn": false },
-    "MainCh1-LinZhongShaJi": { "locres": "QuestStory_01_2",  "en": "Ambush in the Forest",             "guessKey": true,  "guessEn": true },
-    "MainCh1-ShiXinCun":     { "locres": "QuestStory_01_3",  "en": "Heartless Remnants",               "guessKey": true,  "guessEn": false },
-    "MainCh1-2-GangTieJuTa": { "locres": "QuestStory_01_4",  "en": "Steel and Steam",                  "guessKey": false, "guessEn": false },
-    "MainCh2-SiDaSheWu":     { "locres": "QuestStory_02_3",  "en": "The Four Serpent Houses",          "guessKey": true,  "guessEn": false, "note": "Alternatif: bölüm başlığı Chapter_02 (Snake's Reflection). Pinyin 'dört büyük yılan evi' anlamına geldiği için QuestStory_02_3 seçildi." }
+    "XueMaiJueXing": {
+      "locres": "QuestMaze_004",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "HongFangZi": {
+      "locres": "QuestMaze_010",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "HuanShuPiPa": {
+      "locres": "QuestMaze_006",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "HuXinMiMi": {
+      "locres": "QuestMaze_008",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "XuKongHuanXiang": {
+      "locres": "QuestMaze_005",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "XiGuShenChu": {
+      "locres": "QuestMaze_012",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "QiShengHeLai": {
+      "locres": "QuestMaze_001",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "KunLunSanJie": {
+      "locres": "QuestMaze_003",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "SanMianHunDun": {
+      "locres": "QuestMaze_017",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "XueRouHua": {
+      "locres": "QuestMaze_002",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "XiongFu": {
+      "locres": "QuestRumor_001",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "GeJueXieZi": {
+      "locres": "QuestRumor_002",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "BaiShanMiWen": {
+      "locres": "QuestRumor_003",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "GuiTu": {
+      "locres": "QuestRumor_005",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "LanJiaGongZi": {
+      "locres": "QuestRumor_006",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "YiGeBuLiu": {
+      "locres": "QuestRumor_022",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "NanYanZhiYin": {
+      "locres": "QuestRumor_024",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "QingLiMenHu": {
+      "locres": "QuestRumor_025",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "JianXiYiShi": {
+      "locres": "QuestRumor_026",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "JiuSiFuShang": {
+      "locres": "QuestRumor_027",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "JiaoTuSanKu": {
+      "locres": "QuestCollect_002",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "RongShuZhiXin": {
+      "locres": "QuestCollect_004",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "XianYin": {
+      "locres": "QuestCollect_006",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "ShaoZhu": {
+      "locres": "QuestCollect_010",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "MainCh1-NiLiuErShang": {
+      "locres": "QuestStory_01_1",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "MainCh1-LinZhongShaJi": {
+      "locres": "QuestStory_01_2",
+      "guessKey": true,
+      "guessEn": true
+    },
+    "MainCh1-ShiXinCun": {
+      "locres": "QuestStory_01_3",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "MainCh1-2-GangTieJuTa": {
+      "locres": "QuestStory_01_4",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "MainCh2-SiDaSheWu": {
+      "locres": "QuestStory_02_3",
+      "guessKey": true,
+      "guessEn": false,
+      "note": "Alternatif: bölüm başlığı Chapter_02 (Snake's Reflection). Pinyin 'dört büyük yılan evi' anlamına geldiği için QuestStory_02_3 seçildi."
+    }
   },
-
   "regions": {
-    "XiGu":           { "locres": "Levelname_NLES_001", "en": "Weeping Creek Valley", "guessKey": true,  "guessEn": false },
-    "FuJiZhiLin":     { "locres": "Levelname_LZSJ_001", "en": "Crimson Forest",       "guessKey": true,  "guessEn": false },
-    "LuJiaCun":       { "locres": "Levelname_SXC_01",   "en": "Village of Lu",        "guessKey": false, "guessEn": false },
-    "Zhengdaodaying": { "locres": "Levelname_YXZR_003", "en": "Mandate Encampment",   "guessKey": false, "guessEn": false }
+    "XiGu": {
+      "locres": "Levelname_NLES_001",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "FuJiZhiLin": {
+      "locres": "Levelname_LZSJ_001",
+      "guessKey": true,
+      "guessEn": false
+    },
+    "LuJiaCun": {
+      "locres": "Levelname_SXC_01",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "Zhengdaodaying": {
+      "locres": "Levelname_YXZR_003",
+      "guessKey": false,
+      "guessEn": false
+    }
   },
-
   "unmappedMissables": {
     "_comment": "Kayıttaki pinyin kodu bilinmeyen kaçırılabilirler. Anahtar: rules.json missables[].id.",
-    "honor-among-thieves":      { "pinyin": "unknown", "kind": "quest",    "locres": "QuestRumor_029",     "en": "Honor Among Thieves",      "guessKey": false, "guessEn": false },
-    "boulderguard":             { "pinyin": "unknown", "kind": "item",     "locres": "Item_Accessory_006", "en": "Boulderguard",             "guessKey": false, "guessEn": false, "note": "Görev değil, aksesuar." },
-    "mountain-of-imprisonment": { "pinyin": "unknown", "kind": "location", "locres": "Levelname_DDSD_001", "en": "Mountain of Imprisonment", "guessKey": false, "guessEn": false, "note": "Görev değil, bölge adı. İlgili görev adımı tahmini: QuestMazeDes_003_10 (KunLunSanJie)." }
+    "honor-among-thieves": {
+      "pinyin": "unknown",
+      "kind": "quest",
+      "locres": "QuestRumor_029",
+      "guessKey": false,
+      "guessEn": false
+    },
+    "boulderguard": {
+      "pinyin": "unknown",
+      "kind": "item",
+      "locres": "Item_Accessory_006",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "Görev değil, aksesuar."
+    },
+    "mountain-of-imprisonment": {
+      "pinyin": "unknown",
+      "kind": "location",
+      "locres": "Levelname_DDSD_001",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "Görev değil, bölge adı. İlgili görev adımı tahmini: QuestMazeDes_003_10 (KunLunSanJie)."
+    }
   },
-
   "trWordCase": {
     "_comment": "Başlık harf düzeni otomatik yanlış çıkarsa: küçük harfli kelime (tr) → doğru yazım. Örn. \"baıshan\": \"Baishan\"."
   }

@@ -26,6 +26,7 @@ function parseArgs(argv) {
       case '-w': case '--watch': o.watch = true; break;
       case '--show': o.show = true; break;
       case '--lang': o.lang = val().toLowerCase(); break;
+      case '--names': o.names = val(); break;
       case '--steamid': o.steamId = val(); break;
       case '--dump': o.dump = argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : path.join(process.cwd(), 'out'); break;
       case '--save': o.save = val(); break;
@@ -80,13 +81,13 @@ async function main() {
   } catch (e) {
     throw new Error(`${e.message} ${t('err.keyBuild', { build: buildId || '?', tested: TESTED_BUILDS.join(', ') })}`);
   }
-  const n = createNames({ gameDir, lang: i18n.getLang() });
+  const n = createNames({ gameDir, uiLang: i18n.getLang(), names: opt.names });
   const names = {
     quest: (id) => n.quest(id),
     region: (code) => (code ? n.region(code) : null),
     missable: (id) => n.missable(id),
     known: (id) => !!NAMES.quests?.[id],
-    notice: n.notice,
+    get notice() { return n.notice; },
   };
   const protectedDirs = [gameDir, path.dirname(savePath), path.dirname(exe)];
 

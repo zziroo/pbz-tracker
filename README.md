@@ -28,9 +28,18 @@ Terminal seçildi, HTML/blur değil: tek exe, dosya yazmıyor, G tuşu yetiyor.
 
 ## Adlar
 
-- Türkçe: çalışma anında Türkçe yamanın `ProjectPBZ\Content\Paks\ProjectPBZ-Windows_C.pak` içindeki `Game.locres` dosyasından okunur (salt okunur). Yama yoksa İngilizce'ye düşer ve bunu bir kez söyler.
-- İngilizce: `data/names.json` içindeki resmi adlar (Game8, Maxroll, PowerPyx vb. rehberler).
-- `data/names.json`: pinyin görev kodu → locres anahtarı + İngilizce ad. Türkçe metin depoda tutulmaz.
+Arayüz dili (`--lang`) ve ad kaynağı (`--names`) ayrı seçilir.
+
+- **Metin yaması:** `ProjectPBZ\Content\Paks` içindeki şifresiz ve `Game.locres` içeren her `.pak` aday sayılır (ör. Türkçe yama `ProjectPBZ-Windows_C.pak`). Bulunursa adlar çalışma anında oradan okunur (salt okunur) ve çıktı bunu bir kez söyler. Birden fazlaysa `--names <pak adı>` ile seçilir. Resmi oyun pak'ları şifreli olduğu için atlanır.
+- **Ad tabloları:** yama yoksa `data/names.<dil>.json` (arayüz dilinde). `names.en.json` resmi İngilizce adları içerir (Game8, Maxroll, PowerPyx vb.). Eksik ad İngilizceye düşer ve çıktı bunu bir kez söyler.
+- `data/names.json`: pinyin görev kodu → yamadaki locres anahtarı (dile bağlı değil).
+
+### Ad tablosuna katkı
+
+1. `data/names.en.json`'u `data/names.<dil>.json` olarak kopyala (ör. `names.de.json`) ve değerleri çevir. Anahtarlara dokunma: `quests` = kayıttaki pinyin görev kodu, `regions` = harita/seviye kodu, `missables` = `data/rules.json` içindeki kural kimliği.
+2. `lib/names.js` içindeki `TABLES` listesine bir satır ekle: `de: require('../data/names.de.json'),`.
+3. Bilmediğin adları sil; araç onları İngilizce gösterir.
+4. Adları oyunun kendi arayüzünden yaz; rehber sitelerden metin kopyalama.
 
 ## Güvenlik kuralları
 

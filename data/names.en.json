@@ -1,0 +1,47 @@
+{
+  "_comment": "English display names (official names from public guides). Keys: quests = pinyin quest id from the save, regions = map/level code, missables = data/rules.json missables[].id for missables without a known quest id, bells / bosses = save ids. Missing entries fall back to English (this file).",
+  "quests": {
+    "XueMaiJueXing": "Bloodline Awakening",
+    "HongFangZi": "Crimson Manor",
+    "HuanShuPiPa": "Illusory Pipa",
+    "HuXinMiMi": "Secrets at the Heart of the Lake",
+    "XuKongHuanXiang": "Illusion of Inanis",
+    "XiGuShenChu": "Deep in the Valley",
+    "QiShengHeLai": "Whence the Weeping",
+    "KunLunSanJie": "Pillars of Kunlun",
+    "SanMianHunDun": "Triple Threat",
+    "XueRouHua": "Flesh Lily",
+    "XiongFu": "Four Fierce Axes",
+    "GeJueXieZi": "A Severed Mindseal",
+    "BaiShanMiWen": "Secrets of the Baishan Sect",
+    "GuiTu": "The Journey Home",
+    "LanJiaGongZi": "Young Master Lan",
+    "YiGeBuLiu": "Leave None Alive",
+    "NanYanZhiYin": "Festering Secret",
+    "QingLiMenHu": "Purge the Sect",
+    "JianXiYiShi": "Apprentice Healer",
+    "JiuSiFuShang": "A Healer's Mercy",
+    "JiaoTuSanKu": "The Wily Hare's Three Dens",
+    "RongShuZhiXin": "Heart of the Banyan",
+    "XianYin": "Resonant Strings",
+    "ShaoZhu": "Young Mistress",
+    "MainCh1-NiLiuErShang": "Against the Flow",
+    "MainCh1-LinZhongShaJi": "Ambush in the Forest",
+    "MainCh1-ShiXinCun": "Heartless Remnants",
+    "MainCh1-2-GangTieJuTa": "Steel and Steam",
+    "MainCh2-SiDaSheWu": "The Four Serpent Houses"
+  },
+  "regions": {
+    "XiGu": "Weeping Creek Valley",
+    "FuJiZhiLin": "Crimson Forest",
+    "LuJiaCun": "Village of Lu",
+    "Zhengdaodaying": "Mandate Encampment"
+  },
+  "missables": {
+    "honor-among-thieves": "Honor Among Thieves",
+    "boulderguard": "Boulderguard",
+    "mountain-of-imprisonment": "Mountain of Imprisonment"
+  },
+  "bells": {},
+  "bosses": {}
+}

@@ -1,0 +1,8 @@
+{
+  "_comment": "Türkçe adlar. Boş bırakılabilir: Türkçe yama kuruluysa adlar çalışma anında yamadan okunur. Eksik ad İngilizceye düşer. Anahtarlar names.en.json ile aynı.",
+  "quests": {},
+  "regions": {},
+  "missables": {},
+  "bells": {},
+  "bosses": {}
+}
