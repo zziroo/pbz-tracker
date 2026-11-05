@@ -25,7 +25,7 @@ It's not a guide. A guide has to tell you what's ahead to be of any use, and tha
 [*]Warnings describe WHERE to stop, not what's coming. Stuff like "before this area's final fight" or "before the story moves you on to the next major area".
 [*]You won't see boss names or future regions in there, and no story events either.
 [*]A quest name only shows up if that quest is already in your journal.
-[*]Everything else is in the Journal tab, blurred. A row only opens when you click it, so if you're playing blind, don't click it.
+[*]Quests already in your journal show their name and status; step counters, notes and anything you haven't met yet stay blurred. In the Journal tab a row only opens when you click it, so if you're playing blind, don't click it.
 [*]Anything past where you currently are is never shown at all.
 [/list]
 [previewimg=48488277;sizeOriginal,inline;][/previewimg]

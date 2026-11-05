@@ -78,9 +78,15 @@ interface State {
   journal: {
     sections: Array<{
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
-      rows: Array<{ name: string; status: Status; statusText: string; progress: string | null; note: string | null }>;
+      rows: Array<{
+        name: string; status: Status; statusText: string; progress: string | null; note: string | null;
+        nameBlur: boolean;     // false = the quest is in the player's journal (in the save, status open/done/missed,
+                               // not a guess): name readable. true = not started, unknown, guess (*) or an item rule
+                               // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
+        detailBlur: boolean;   // progress + note blurred (currently always true). Missing → true.
+      }>;
     }>;
-    info: string[];            // named info texts (hidden layer)
+    info: string[];            // named info texts (hidden layer; always blurred as a whole)
     changes: string[];         // changes since the previous read (localized), may be empty
     legend: string;            // "* = guess, not verified."
   };
@@ -148,8 +154,12 @@ interface About {
 - Settings: General has the "exact names" checkbox; a collapsible **Diagnostics** panel at the bottom (count of unmatched
   quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
   Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.
-- Journal rows: names blurred by default (`filter: blur`), status badges never blurred. Click a row → that row
-  unblurs. "Show all" asks for confirmation. Leaving the tab or any new `state` re-blurs everything.
+- Journal rows: blurred per row part (`filter: blur`, class `.blur` + `aria-hidden` on each blurred part):
+  `nameBlur: false` → status badge and name readable, step counter and note blurred (`detailBlur`); `nameBlur: true`
+  → badge, name and details blurred together (the badge in a neutral colour until revealed). Info and change rows
+  are always blurred as a whole. Section titles and their counts are never blurred.
+  Click a row → every part of that row unblurs. "Show all" asks for confirmation. Leaving the tab, `Esc` or any
+  new `state` re-blurs everything.
 - Language toggle (TR/EN) top right.
 - Dark theme, system fonts (Segoe UI; Cascadia Mono/Consolas for numbers), no external resources, no emoji
   (inline SVG if an icon is needed). Works at 1100×760 and narrower (down to ~720 px wide).

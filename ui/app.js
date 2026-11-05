@@ -32,6 +32,7 @@
       'journal.hideAll': 'Tümünü gizle',
       'journal.confirm': 'Günlükteki tüm satırlar açılacak; spoiler içerebilir. Devam edilsin mi?',
       'journal.hidden': 'gizli, göstermek için tıkla',
+      'journal.detailsHidden': 'ayrıntılar gizli, göstermek için tıkla',
       'journal.info': 'Bilgi',
       'journal.changes': 'Son okumadan beri değişenler',
       'journal.empty': 'Günlükte gösterilecek bir şey yok.',
@@ -145,6 +146,7 @@
       'journal.hideAll': 'Hide all',
       'journal.confirm': 'This reveals every row in the journal and may contain spoilers. Continue?',
       'journal.hidden': 'hidden, click to reveal',
+      'journal.detailsHidden': 'details hidden, click to reveal',
       'journal.info': 'Info',
       'journal.changes': 'Changed since last read',
       'journal.empty': 'Nothing to show in the journal.',
@@ -579,17 +581,32 @@
     p.replaceChildren(...out);
   }
 
+  // Blur per row part (docs/ui-api.md): nameBlur → the whole row (badge, name + details) is blurred;
+  // otherwise badge and name are readable and only the details (step counter, note) are blurred when detailBlur.
+  // A field missing from an older transport counts as blurred. Plain rows (info, changes) are always blurred.
+  // Every blurred part carries `.blur` and aria-hidden until the row is revealed.
   function journalRow(r, plain) {
-    const text = h('span', { class: 'jtext', attrs: { 'aria-hidden': 'true' } },
-      h('span', { class: 'jname', text: r.name || '' }),
-      r.progress ? h('span', { class: 'jprogress mono', text: r.progress }) : null,
-      r.note ? h('span', { class: 'jnote', text: r.note }) : null);
-    const sr = h('span', { class: 'sr-only jhidden', text: t('journal.hidden') });
+    const nameBlur = plain || r.nameBlur !== false;
+    const detailBlur = r.detailBlur !== false;
+    const hasDetail = !!(r.progress || r.note);
+    const detail = hasDetail
+      ? h('span', { class: 'jdetail' + (!nameBlur && detailBlur ? ' blur' : '') },
+        r.progress ? h('span', { class: 'jprogress mono', text: r.progress }) : null,
+        r.note ? h('span', { class: 'jnote', text: r.note }) : null)
+      : null;
+    const text = h('span', { class: 'jtext' + (nameBlur ? ' blur' : '') },
+      h('span', { class: 'jname', text: r.name || '' }), detail);
     const children = [];
+    const blurred = nameBlur ? [text] : (detail && detailBlur ? [detail] : []);
     if (!plain) {
+      // The badge belongs to the "whole row": blurred (in a neutral colour, see style.css) with the name.
       const st = STATUSES.has(r.status) ? r.status : 'unknown';
-      children.push(h('span', { class: 'badge st-' + st, text: r.statusText || st }));
+      const badge = h('span', { class: 'badge st-' + st + (nameBlur ? ' blur' : ''), text: r.statusText || st });
+      if (nameBlur) blurred.push(badge);
+      children.push(badge);
     }
+    for (const el of blurred) el.setAttribute('aria-hidden', 'true');
+    const sr = blurred.length ? h('span', { class: 'sr-only jhidden', text: t(nameBlur ? 'journal.hidden' : 'journal.detailsHidden') }) : null;
     children.push(text, sr);
     return h('button', {
       class: 'jrow' + (plain ? ' jrow-plain' : ''),
@@ -601,8 +618,9 @@
   function setRowRevealed(row, on) {
     row.classList.toggle('revealed', on);
     row.setAttribute('aria-pressed', on ? 'true' : 'false');
-    const text = row.querySelector('.jtext');
-    if (on) text.removeAttribute('aria-hidden'); else text.setAttribute('aria-hidden', 'true');
+    for (const el of row.querySelectorAll('.blur')) {
+      if (on) el.removeAttribute('aria-hidden'); else el.setAttribute('aria-hidden', 'true');
+    }
     const sr = row.querySelector('.jhidden');
     if (sr) sr.hidden = on;
     updateToggleAll();

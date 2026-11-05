@@ -364,12 +364,23 @@ button, input, select { font: inherit; color: inherit; }
   align-items: baseline;
   gap: 2px 12px;
   min-width: 0;
+}
+/* Step counter + note: their own block, so a readable name can keep its details blurred. */
+.jdetail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  min-width: 0;
+}
+/* Blurred row part (the whole .jtext, or only .jdetail); the row's click reveals every part. */
+.jrow .blur {
   filter: blur(6px);
   user-select: none;
   -webkit-user-select: none;
   transition: filter 120ms ease-out;
 }
-.jrow.revealed .jtext { filter: none; user-select: text; -webkit-user-select: text; }
+.jrow.revealed .blur { filter: none; user-select: text; -webkit-user-select: text; }
 .jname { color: var(--text); overflow-wrap: anywhere; }
 .jprogress { color: var(--text-soft); font-size: 13px; }
 .jnote { color: var(--muted); font-size: 13.5px; }
@@ -390,6 +401,8 @@ button, input, select { font: inherit; color: inherit; }
 .st-missed { background: var(--red-soft); border-color: rgba(236, 117, 99, 0.45); color: var(--red); }
 .st-notStarted { background: transparent; border-color: rgba(224, 160, 64, 0.4); border-style: dashed; color: #c9a467; }
 .st-unknown { background: var(--grey-soft); border-color: rgba(154, 154, 154, 0.35); color: var(--grey); }
+/* A blurred badge must not give its status away by colour: neutral until the row is revealed. */
+.jrow:not(.revealed) .badge.blur { background: var(--grey-soft); border-color: rgba(154, 154, 154, 0.35); border-style: solid; color: var(--grey); }
 
 .legend { margin: 8px 0 0; color: var(--muted); font-size: 12.5px; }
 
@@ -481,7 +494,7 @@ option { background: var(--panel); color: var(--text); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
   .spinner { animation: none; }
-  .jtext { transition: none; }
+  .jrow .blur { transition: none; }
 }
 
 .kv {

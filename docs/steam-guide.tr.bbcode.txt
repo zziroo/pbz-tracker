@@ -33,7 +33,7 @@ Rehber değil. Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak 
 [*]Uyarılar NEREDE duracağını söylüyor, ileride ne olduğunu değil ("bu bölgenin son dövüşünden önce", "hikâye seni bir sonraki büyük bölgeye götürmeden önce" gibi).
 [*]Boss adı yok, ileriki bölge yok, hikâye olayı yok.
 [*]Görev adı sadece o görev zaten günlüğündeyse görünüyor.
-[*]Gerisi Günlük sekmesinde, bulanık duruyor. Satır ancak tıklayınca açılıyor; kör oynuyorsan tıklama.
+[*]Günlükte zaten başladığın görevlerin adı ve durumu açık; aşama sayaçları, notlar ve henüz karşılaşmadığın her şey bulanık. Günlük sekmesinde satır ancak tıklayınca açılıyor; kör oynuyorsan tıklama.
 [*]Bulunduğun yerin ötesindeki içerik hiçbir zaman gösterilmiyor.
 [/list]
 

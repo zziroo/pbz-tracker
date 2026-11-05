@@ -32,7 +32,7 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 ![Warnings tab](docs/screenshots/web-warnings.png)
 
 - **Warnings** (default tab): only what you are about to lose, or "No risk of missing anything right now."
-- **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Names are blurred until you click a row; any refresh blurs them again.
+- **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Rows are blurred until you click them (quests already in your journal keep their name and status readable); any refresh blurs them again.
 - **Settings**: language (TR/EN), name source, refresh interval, file access, and the game folder / save file (choose or forget).
 - **About**: version, tested game build, license, guide links.
 
@@ -44,7 +44,7 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 ## Spoiler policy
 
 1. **Default view:** only actionable warnings, meaning a cutoff ahead of you with something still open. Cutoffs are described by position, never by name. A quest is named only if it already appears in your journal; otherwise you get a location hint. With nothing at risk you see: "No risk of missing anything right now."
-2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quest names (with their counters and notes) are blurred until you click a row; status badges and section titles with their counts stay visible. Everything is blurred again on every refresh.
+2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quests already in your journal show their name and status; step counters, notes and anything you haven't met yet stay blurred until you click a row. Section titles with their counts stay visible. Everything is blurred again on every refresh.
 3. **Never shown:** anything your save says you have not reached. The line is always drawn from the save of the person running the tool.
 
 **Exact names (opt-in, off by default):** Settings → "Show place and boss names in warnings" writes the cutoff with its place and boss names, but only for areas your save shows you have reached; every other cutoff keeps its positional wording.
