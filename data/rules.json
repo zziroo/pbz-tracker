@@ -1,5 +1,36 @@
 {
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. Koşul dili: README.md.",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Koşul dili: README.md.",
+  "sources": {
+    "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
+    "game8": {
+      "name": "Game8 — Phantom Blade Zero missables",
+      "url": "https://game8.co/games/Phantom-Blade-Zero/archives/634952"
+    },
+    "maxroll": {
+      "name": "Maxroll — Phantom Blade Zero true ending guide",
+      "url": null
+    },
+    "powerpyx": {
+      "name": "PowerPyx — Phantom Blade Zero trophy guide & roadmap",
+      "url": "https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap"
+    },
+    "allthings": {
+      "name": "allthings.how — Phantom Blade Zero missables",
+      "url": null
+    },
+    "showgamer": {
+      "name": "Showgamer — Phantom Blade Zero missables",
+      "url": null
+    },
+    "dtgre-chilian": {
+      "name": "DTGRE — Bai Chilian missable quests",
+      "url": "https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html"
+    },
+    "dtgre-purple": {
+      "name": "DTGRE — True ending: purple quests & Mirage Estate warning",
+      "url": "https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html"
+    }
+  },
   "bosses": {
     "ChiLian": {
       "keys": [
@@ -20,6 +51,13 @@
       },
       "passedWhen": {
         "bossKilled": "ChiLian"
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
       }
     },
     "mirage": {
@@ -34,7 +72,14 @@
       "passedWhen": {
         "unknown": "bölge kodu henüz bilinmiyor"
       },
-      "guess": true
+      "guess": true,
+      "source": {
+        "ids": [
+          "allthings",
+          "dtgre-purple"
+        ],
+        "checked": "search-snippet"
+      }
     },
     "final": {
       "where": {
@@ -47,6 +92,13 @@
       },
       "passedWhen": {
         "unknown": "son bölüm kodu henüz bilinmiyor"
+      },
+      "source": {
+        "ids": [
+          "maxroll",
+          "powerpyx"
+        ],
+        "checked": "unverified"
       }
     },
     "gen-alley": {
@@ -60,6 +112,12 @@
       },
       "passedWhen": {
         "unknown": "kayıttan algılanamıyor; görev başarısız olursa kayıtta görünür"
+      },
+      "source": {
+        "ids": [
+          "allthings"
+        ],
+        "checked": "search-snippet"
       }
     }
   },
@@ -78,6 +136,13 @@
       "hintNotStarted": {
         "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
         "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
       }
     },
     {
@@ -96,7 +161,14 @@
         "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
       },
       "detect": false,
-      "_note": "Görev değil, aksesuar (Item_Accessory_006); kayıttaki AC_* kimliği bilinmiyor."
+      "_note": "Görev değil, aksesuar (Item_Accessory_006); kayıttaki AC_* kimliği bilinmiyor.",
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
+      }
     },
     {
       "id": "healers-mercy",
@@ -104,6 +176,13 @@
       "cutoff": "chilian",
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
       }
     },
     {
@@ -112,6 +191,13 @@
       "cutoff": "chilian",
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
       }
     },
     {
@@ -120,6 +206,13 @@
       "cutoff": "chilian",
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "dtgre-chilian"
+        ],
+        "checked": "unverified"
       }
     },
     {
@@ -141,6 +234,13 @@
       "warn": {
         "tr": "Teslim adımı o noktada kapanır; görevin kendisi sonra da sürer.",
         "en": "The hand-in closes at that point; the quest itself continues."
+      },
+      "source": {
+        "ids": [
+          "allthings",
+          "game8"
+        ],
+        "checked": "search-snippet"
       }
     },
     {
@@ -150,6 +250,13 @@
       "guess": true,
       "visibleWhen": {
         "questSeen": "HuXinMiMi"
+      },
+      "source": {
+        "ids": [
+          "allthings",
+          "dtgre-purple"
+        ],
+        "checked": "unverified"
       }
     },
     {
@@ -163,7 +270,14 @@
       "visibleWhen": {
         "unknown": "bölge kodu bilinmiyor"
       },
-      "_note": "Görev değil, bölge (Levelname_DDSD_001)."
+      "_note": "Görev değil, bölge (Levelname_DDSD_001).",
+      "source": {
+        "ids": [
+          "allthings",
+          "game8"
+        ],
+        "checked": "unverified"
+      }
     },
     {
       "id": "journey-home",
@@ -171,6 +285,12 @@
       "cutoff": "gen-alley",
       "visibleWhen": {
         "questSeen": "GuiTu"
+      },
+      "source": {
+        "ids": [
+          "allthings"
+        ],
+        "checked": "search-snippet"
       }
     },
     {
@@ -190,6 +310,12 @@
       "warnNamed": {
         "tr": "Ferman Ordugâhı: Red'i öldürme; zincirle kaç.",
         "en": "Mandate Encampment: don't kill Red; escape with the chain."
+      },
+      "source": {
+        "ids": [
+          "allthings"
+        ],
+        "checked": "search-snippet"
       }
     },
     {
@@ -198,6 +324,13 @@
       "cutoff": "final",
       "visibleWhen": {
         "questSeen": "XueMaiJueXing"
+      },
+      "source": {
+        "ids": [
+          "maxroll",
+          "powerpyx"
+        ],
+        "checked": "unverified"
       }
     }
   ],
@@ -257,6 +390,14 @@
         "quest": "HongFangZi",
         "en": "Crimson Manor"
       }
-    ]
+    ],
+    "source": {
+      "ids": [
+        "maxroll",
+        "powerpyx",
+        "dtgre-purple"
+      ],
+      "checked": "unverified"
+    }
   }
 }

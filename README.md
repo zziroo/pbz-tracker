@@ -66,3 +66,20 @@ Ayrıntılar vault'ta: `10-Projects/pbz-tracker/sessions/2026-11-05-devir-save-c
 ## Lisans
 
 GPL-3.0-or-later; tam metin `LICENSE` dosyasında. `lib/oodle/` altındaki save açma kodu, Powzix'in GPL-3.0 lisanslı [ooz](https://github.com/powzix/ooz) projesinden (`kraken.cpp`) JavaScript'e uyarlanmış türev bir çalışmadır; bu yüzden projenin tamamı GPL-3.0 altındadır. Derlenmiş `pbz-tracker.exe` paylaşılırken kaynak kodu da (bu depo) alıcıya sunulmalıdır.
+
+## Kaynaklar ve teşekkür
+
+Kaçırılabilir kuralları şu rehberlerden derlendi. Her kuralın kaynağı `data/rules.json` içinde `source` alanında; `checked: "unverified"` olanlar sayfada tek tek kontrol edilmedi.
+
+- Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
+- PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
+- DTGRE — Bai Chilian missables: https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
+- DTGRE — true ending, purple quests: https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+- Maxroll — true ending guide (adres eklenecek)
+- allthings.how — missables (adres eklenecek)
+- Showgamer — missables (adres eklenecek)
+
+Teknik:
+
+- Oodle açma, Powzix'in **ooz** projesinin JavaScript portu (github.com/powzix/ooz, GPL-3.0-or-later).
+- Save formatı: phantombladezerosaves.com/save-file-format ve bir dev.to yazısı (adres eklenecek).
