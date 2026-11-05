@@ -15,5 +15,6 @@ The rules are based on Game8, PowerPyx, DTGRE, the Steam Community guides and pl
 [OPTIONAL: AI line] I wrote a lot of it with AI help (Claude Code), figured I should say so.
 
 Web version: https://zziroo.github.io/pbz-tracker/
+Steam guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
 Source / issues: https://github.com/zziroo/pbz-tracker

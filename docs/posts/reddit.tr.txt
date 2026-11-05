@@ -15,5 +15,6 @@ Kurallar Game8, PowerPyx ve DTGRE'den, Steam Topluluğu rehberlerinden ve Steam 
 [OPTIONAL: AI line] Kodun çoğunu yapay zekâ yardımıyla (Claude Code) yazdım, söyleyeyim dedim.
 
 Web sürümü: https://zziroo.github.io/pbz-tracker/
+Steam rehberi: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
 Exe (Windows): https://github.com/zziroo/pbz-tracker/releases/tag/v0.5.0
 Kaynak / hata bildirimi: https://github.com/zziroo/pbz-tracker
