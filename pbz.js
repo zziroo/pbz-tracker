@@ -7,7 +7,8 @@ const i18n = require('./lib/i18n');
 const { t } = i18n;
 const { deriveKey } = require('./lib/key');
 const { loadSave } = require('./lib/savefile');
-const { findGameDir, findExe, findSave } = require('./lib/paths');
+const { findGameDir, findExe, findSave, findBuildId } = require('./lib/paths');
+const { VERSION, TESTED_BUILDS } = require('./lib/version');
 const { extract } = require('./lib/state');
 const { build, render, statusMap, diff } = require('./lib/report');
 const { createNames } = require('./lib/names');
@@ -33,6 +34,7 @@ function parseArgs(argv) {
       case '--interval': o.interval = Math.min(3600, Math.max(2, Number(val()) || 5)); break;
       case '--no-color': o.color = false; break;
       case '-h': case '--help': o.help = true; break;
+      case '-v': case '--version': o.version = true; break;
       default: throw new Error(t('err.unknownOpt', { o: a }));
     }
   }
@@ -64,12 +66,20 @@ async function main() {
   if (langIdx > 0 && process.argv[langIdx + 1]) i18n.setLang(process.argv[langIdx + 1].toLowerCase());
   const opt = parseArgs(process.argv.slice(2));
   if (opt.lang) i18n.setLang(opt.lang);
+  if (opt.version) { console.log(`pbz-tracker ${VERSION}`); return; }
   if (opt.help) { process.stdout.write(t('help')); return; }
 
   const gameDir = findGameDir(opt.game || (opt.exe ? path.resolve(path.dirname(opt.exe), '..', '..') : undefined));
   const exe = findExe(gameDir, opt.exe);
   const savePath = await findSave(gameDir, { explicit: opt.save, steamId: opt.steamId });
-  const key = deriveKey(exe); // kept in memory only, never written
+  const buildId = findBuildId(gameDir);
+  const gameBuild = { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) };
+  let key;
+  try {
+    key = deriveKey(exe); // kept in memory only, never written
+  } catch (e) {
+    throw new Error(`${e.message} ${t('err.keyBuild', { build: buildId || '?', tested: TESTED_BUILDS.join(', ') })}`);
+  }
   const n = createNames({ gameDir, lang: i18n.getLang() });
   const names = {
     quest: (id) => n.quest(id),
@@ -93,7 +103,7 @@ async function main() {
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'latest.json'), JSON.stringify(save.latest.data, null, 1));
     }
-    return { sig: save.sig, view: (show) => render({ st, result, names, color: opt.color, show, changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
+    return { sig: save.sig, view: (show) => render({ st, result, names, build: gameBuild, color: opt.color, show, changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
   };
 
   if (!opt.watch) { console.log((await read()).view(opt.show)); return; }
