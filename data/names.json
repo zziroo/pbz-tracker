@@ -146,6 +146,11 @@
       "guessKey": true,
       "guessEn": false,
       "note": "Alternatif: bölüm başlığı Chapter_02 (Snake's Reflection). Pinyin 'dört büyük yılan evi' anlamına geldiği için QuestStory_02_3 seçildi."
+    },
+    "RenOuMuXin": {
+      "locres": "QuestRumor_028",
+      "guessKey": false,
+      "guessEn": false
     }
   },
   "regions": {
