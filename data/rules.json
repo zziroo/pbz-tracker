@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-05.2",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer.",
+  "rulesVersion": "2026-11-05.3",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
     "game8": {
@@ -39,6 +39,97 @@
     "steam-mirage-discussion": {
       "name": "Steam Community discussion — is Mirage Estate the point of no return?",
       "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/"
+    },
+    "steam-cutoffA": {
+      "name": "Steam discussion — Crimson Forest boss changes the camps",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679173080075229/"
+    },
+    "steam-nowarning": {
+      "name": "Steam discussion — no warning before the Crimson Forest boss",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124188770/?ctp=2"
+    },
+    "steam-silentfail": {
+      "name": "Steam discussion — quests fail silently at chapter borders",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679173080112253/"
+    },
+    "steam-mirrorwood": {
+      "name": "Steam discussion — Mirrorwood memory flower",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679810651830034/"
+    },
+    "steam-baishan": {
+      "name": "Steam discussion — Baishan Sect body / save lock",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124412203/"
+    },
+    "steam-pipa": {
+      "name": "Steam discussion — Illusory Pipa needs the Yubi fight",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679810651843977/"
+    },
+    "steam-boulderguard": {
+      "name": "Steam discussion — missables (Boulderguard, Feathered Bow, Opera House)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124188770/"
+    },
+    "steam-peddler": {
+      "name": "Steam discussion — the peddler disappears",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124246536/"
+    },
+    "steam-lu-chest": {
+      "name": "Steam discussion — Village of Lu amber chest replaced by a bell",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124275774/"
+    },
+    "steam-young-mistress": {
+      "name": "Steam discussion — Mu Xiaokui third phase (ribbons)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124200331/"
+    },
+    "steam-red": {
+      "name": "Steam discussion — Red on the pigeon tower",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679810651832913/"
+    },
+    "steam-mandate-flower": {
+      "name": "Steam discussion — Memory Flower of the Mandate Leaders",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124298019/"
+    },
+    "steam-banyan": {
+      "name": "Steam discussion — Heart of the Banyan wave bug",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124241367/"
+    },
+    "steam-lengtu": {
+      "name": "Steam discussion — Leng Tu's Study soft lock",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124207116/"
+    },
+    "steam-myst": {
+      "name": "Steam discussion — Town of Death / Myst dialogue",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679173080134952/"
+    },
+    "steam-pillars": {
+      "name": "Steam discussion — 4/5 Long Pillars gives the normal ending",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679810651877698/"
+    },
+    "steam-mirage-warning": {
+      "name": "Steam discussion — warning at the Green Serpent House",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679490124412203/"
+    },
+    "steam-guide-nero": {
+      "name": "Steam guide (Nero, EN 100% achievements) — shows \"removed from the community\"",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3829337248",
+      "note": "Shown as removed from the Steam community; content still readable on 2026-11-05."
+    },
+    "steam-guide-lankec": {
+      "name": "Steam guide (Lankec, CN achievements) — shows \"removed from the community\"",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3829258710",
+      "note": "Shown as removed from the Steam community; content still readable on 2026-11-05."
+    },
+    "steam-guide-czyhaxj": {
+      "name": "Steam guide (CZYHAXJ, CN full walkthrough)",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3829266508"
+    },
+    "steam-guide-zayfer": {
+      "name": "Steam guide (Zayfer, PT-BR achievements) — shows \"removed from the community\"",
+      "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=3829452257",
+      "note": "Shown as removed from the Steam community; content still readable on 2026-11-05."
+    },
+    "steam-research-note": {
+      "name": "Research note: docs/research/steam-oyuncu-raporlari.md",
+      "url": null
     }
   },
   "bosses": {
@@ -52,8 +143,8 @@
   "cutoffs": {
     "chilian": {
       "where": {
-        "tr": "Bu bölgenin son dövüşüne girmeden önce",
-        "en": "Before this area's final fight"
+        "tr": "Bu bölgenin son dövüşüne girmeden önce (oyun uyarmaz; bağlı görevler sessizce kapanır)",
+        "en": "Before this area's final fight (the game gives no warning; linked quests fail silently)"
       },
       "label": {
         "tr": "Bai Chilian'ı yenmek",
@@ -65,19 +156,24 @@
       "source": {
         "ids": [
           "game8",
-          "dtgre-chilian"
+          "dtgre-chilian",
+          "steam-cutoffA",
+          "steam-nowarning",
+          "steam-silentfail",
+          "steam-research-note"
         ],
-        "checked": "unverified"
-      }
+        "checked": "search-snippet"
+      },
+      "note": "No in-game warning; quests fail silently. Only recovery: the autosave from before the fight (3 autosave slots)."
     },
     "mirage": {
       "where": {
-        "tr": "Ana hikâyede bir sonraki büyük bölgeye geçmeden önce",
-        "en": "Before the story moves you on to the next major area"
+        "tr": "Ana hikâyede bir sonraki büyük bölgeye geçmeden önce (tartışmalı: oyun eksik görev varsa sorabilir; güvenli tarafta kal)",
+        "en": "Before the story moves you on to the next major area (disputed: the game may ask if quests are unfinished; stay on the safe side)"
       },
       "label": {
-        "tr": "Mirage Estate'e girmek",
-        "en": "Entering Mirage Estate"
+        "tr": "Mirage Estate'e girmek (Green Serpent House kapısı)",
+        "en": "Entering Mirage Estate (Green Serpent House gate)"
       },
       "passedWhen": {
         "unknown": "bölge kodu henüz bilinmiyor"
@@ -87,20 +183,24 @@
         "ids": [
           "allthings",
           "dtgre-purple",
-          "steam-mirage-discussion"
+          "steam-mirage-discussion",
+          "steam-mirage-warning",
+          "steam-guide-czyhaxj",
+          "steam-guide-lankec",
+          "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "search-snippet"
       },
-      "note": "Conflicting sources: DTGRE / allthings.how say entering Mirage Estate (bridge from the Pangzhen backstreet) closes the lake quests and some shrine steps; a Steam discussion reply says Mirage Estate only changes Crimson Forest and the real point of no return comes near the end with an explicit warning. Kept as a guess; verify from the save when the area is reached."
+      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later."
     },
     "final": {
       "where": {
-        "tr": "Oyun seni açıkça uyardığında, onaylamadan önce",
-        "en": "When the game explicitly warns you, before confirming"
+        "tr": "Oyunun sonuna yakın, son bir çanda oyun seni açıkça uyardığında, onaylamadan önce",
+        "en": "Near the end, when the game explicitly warns you at a last bell, before confirming"
       },
       "label": {
-        "tr": "Mount Soulrend son uyarısı",
-        "en": "Mount Soulrend final warning"
+        "tr": "Last Chance çanı (Crusher & Saw sonrası)",
+        "en": "The Last Chance bell (after the Crusher and the Saw)"
       },
       "passedWhen": {
         "unknown": "son bölüm kodu henüz bilinmiyor"
@@ -108,10 +208,16 @@
       "source": {
         "ids": [
           "maxroll",
-          "powerpyx"
+          "powerpyx",
+          "steam-guide-czyhaxj",
+          "steam-guide-lankec",
+          "steam-mirage-discussion",
+          "steam-pillars",
+          "steam-research-note"
         ],
-        "checked": "unverified"
-      }
+        "checked": "search-snippet"
+      },
+      "note": "Location: the \"Last Chance\" bell after the Crusher and the Saw, before the Cliff of Severed Souls. Lady Inanis says if something is missing and asks for confirmation even when all is done. The five Long Pillars stay open until here; 4/5 gives the normal ending without a warning."
     },
     "gen-alley": {
       "where": {
@@ -128,6 +234,111 @@
       "source": {
         "ids": [
           "allthings"
+        ],
+        "checked": "search-snippet"
+      },
+      "note": "Superseded by smuggler-tunnel; no Steam source supports this trigger (unverified)."
+    },
+    "jingye": {
+      "where": {
+        "tr": "Bu bölgenin haydut liderine karşı dövüşten önce",
+        "en": "Before the fight against this area's outlaw leader"
+      },
+      "label": {
+        "tr": "Jing Ye'yi yenmek",
+        "en": "Defeating Jing Ye"
+      },
+      "passedWhen": {
+        "bossKilled": "BP_Monster_JingYe"
+      },
+      "source": {
+        "ids": [
+          "steam-guide-nero",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    "baishan-body": {
+      "where": {
+        "tr": "Bu kampta bir dövüşten sonra, bir çana dokunmadan, dinlenmeden ya da kaydetmeden önce",
+        "en": "In this camp, after a fight and before touching a bell, resting or saving"
+      },
+      "label": {
+        "tr": "Wu Lengshuang sonrası ceset incelemesi (Yubi'den önce)",
+        "en": "Inspecting the body after Wu Lengshuang (before Yubi)"
+      },
+      "passedWhen": {
+        "unknown": "kayıttan algılanamıyor"
+      },
+      "source": {
+        "ids": [
+          "steam-baishan",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    "lu-elevator": {
+      "where": {
+        "tr": "Bu köyün arenasındaki dövüşten sonra asansörle ayrılmadan önce",
+        "en": "After the fight in this village's arena, before leaving by the lift"
+      },
+      "label": {
+        "tr": "Village of Lu asansörü (Mu Xiaokui sonrası)",
+        "en": "Village of Lu lift (after Mu Xiaokui)"
+      },
+      "passedWhen": {
+        "questDone": "MainCh1-ShiXinCun"
+      },
+      "guess": true,
+      "note": "passedWhen is a guess: the village main quest being finished stands in for \"took the lift\". After returning via the lake the amber chest is replaced by a bell.",
+      "source": {
+        "ids": [
+          "steam-guide-lankec",
+          "steam-lu-chest",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    "smuggler-tunnel": {
+      "where": {
+        "tr": "Gizli kaçakçı geçidini açmadan önce",
+        "en": "Before opening the hidden smugglers' passage"
+      },
+      "label": {
+        "tr": "Smuggler's Tunnel'ı açmak",
+        "en": "Opening the Smuggler's Tunnel"
+      },
+      "passedWhen": {
+        "unknown": "kayıttan algılanamıyor"
+      },
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-guide-lankec",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    "leave-valley": {
+      "where": {
+        "tr": "Bu vadiden bir sonraki bölgeye geçmeden önce",
+        "en": "Before leaving this valley for the next area"
+      },
+      "label": {
+        "tr": "Weeping Creek Valley'den çıkmak",
+        "en": "Leaving Weeping Creek Valley"
+      },
+      "passedWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-research-note"
         ],
         "checked": "search-snippet"
       }
@@ -177,10 +388,13 @@
       "source": {
         "ids": [
           "game8",
-          "dtgre-chilian"
+          "dtgre-chilian",
+          "steam-boulderguard",
+          "steam-research-note"
         ],
-        "checked": "unverified"
-      }
+        "checked": "search-snippet"
+      },
+      "note": "Steps: after Peng Meng dies, talk to the hiding disciple again, then the grave north of the Axemaster's Holding Cell. Before leaving the Crimson Forest chapter."
     },
     {
       "id": "healers-mercy",
@@ -222,17 +436,20 @@
       "source": {
         "ids": [
           "game8",
-          "dtgre-chilian"
+          "dtgre-chilian",
+          "steam-guide-zayfer",
+          "steam-research-note"
         ],
         "checked": "unverified"
-      }
+      },
+      "note": "Reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile (PT-BR guide)."
     },
     {
       "id": "flesh-lily-delivery",
       "quest": "XueRouHua",
       "suffix": {
-        "tr": "teslim adımı",
-        "en": "hand-in step"
+        "tr": "1. kısım: karakoldaki teslim",
+        "en": "part 1: hand-in at the Outpost"
       },
       "cutoff": "chilian",
       "guess": true,
@@ -244,16 +461,20 @@
         "mapUnlocked": "FuJiZhiLin"
       },
       "warn": {
-        "tr": "Teslim adımı o noktada kapanır; görevin kendisi sonra da sürer.",
-        "en": "The hand-in closes at that point; the quest itself continues."
+        "tr": "Yalnız 1. kısım bu noktada kapanır; 2. kısım daha sonra başka bir kasabada sürer.",
+        "en": "Only part 1 closes here; part 2 continues later in another town."
       },
       "source": {
         "ids": [
           "allthings",
-          "game8"
+          "game8",
+          "steam-cutoffA",
+          "steam-guide-zayfer",
+          "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified)."
     },
     {
       "id": "lake-secrets",
@@ -272,38 +493,26 @@
       }
     },
     {
-      "id": "mountain-of-imprisonment",
-      "quest": null,
-      "names": {
-        "tr": "Mountain of Imprisonment",
-        "en": "Mountain of Imprisonment"
-      },
-      "cutoff": "mirage",
-      "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
-      },
-      "_note": "Görev değil, bölge (Levelname_DDSD_001).",
-      "source": {
-        "ids": [
-          "allthings",
-          "game8"
-        ],
-        "checked": "unverified"
-      }
-    },
-    {
       "id": "journey-home",
       "quest": "GuiTu",
-      "cutoff": "gen-alley",
+      "cutoff": "smuggler-tunnel",
       "visibleWhen": {
         "questSeen": "GuiTu"
       },
       "source": {
         "ids": [
-          "allthings"
+          "allthings",
+          "steam-guide-czyhaxj",
+          "steam-guide-lankec",
+          "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "warn": {
+        "tr": "Geçidi açtıktan sonra yeni kasabaya gitmeden bu iki görevin sahiplerine haber ver.",
+        "en": "After opening it, report to these two quest givers before going to the new town."
+      },
+      "note": "Accept The Journey Home and Young Master Lan before the Smuggler's Tunnel opens; afterwards report to both before Pangzhen (Brass Key). The old \"Pangzhen backstreet\" / one-way door trigger has no source: unverified."
     },
     {
       "id": "red-encampment",
@@ -320,17 +529,19 @@
         "currentLevel": "Zhengdaodaying"
       },
       "warnNamed": {
-        "tr": "Ferman Ordugâhı: Red'i öldürme; zincirle kaç.",
-        "en": "Mandate Encampment: don't kill Red; escape with the chain."
+        "tr": "Ferman Ordugâhı: Red'i güvercin kulesinde öldürme, zincirle kaç; öldürürsen bir eşya ve bir anı çiçeği yaprağı kaçar.",
+        "en": "Mandate Encampment: don't kill Red on the pigeon tower, escape with the chain; killing her loses an item and a memory-flower petal."
       },
       "source": {
         "ids": [
           "allthings",
-          "steam-guides"
+          "steam-guides",
+          "steam-red",
+          "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "search-snippet"
       },
-      "note": "Unverified detail: one Steam missables guide (since removed) refers to Red as \"him\" and places the fight on top of the Dovecote tower, while the anonymous warning text says \"a wounded woman\". Check in game and fix the wording if needed."
+      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified."
     },
     {
       "id": "bloodline-awakening",
@@ -345,6 +556,413 @@
           "powerpyx"
         ],
         "checked": "unverified"
+      }
+    },
+    {
+      "id": "mirrorwood-memory-flower",
+      "quest": null,
+      "names": {
+        "tr": "Kızıl Orman: ilk anı çiçeğinin son yaprağı",
+        "en": "Crimson Forest: last petal of the first memory flower"
+      },
+      "cutoff": "chilian",
+      "detect": false,
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "hintNotStarted": {
+        "tr": "Bu bölgedeki küçük koruluğun sonundaki anı yaprağını al; sonra oraya dönülemiyor.",
+        "en": "Pick up the memory petal at the end of the small grove in this area; you cannot return there later."
+      },
+      "note": "Mirrorwood: the last Inanis petal before Bai Chilian; the grove cannot be re-entered (two reports).",
+      "source": {
+        "ids": [
+          "steam-mirrorwood",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "peddler-gone",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "bossKilled": "ChiLian"
+      },
+      "warn": {
+        "tr": "Karakoldaki seyyar satıcı artık yok; aynı malzemeler çan menüsünde ve diğer tüccarlarda satılıyor.",
+        "en": "The Outpost peddler is gone; the same materials are sold in the bell menu and by other merchants."
+      },
+      "source": {
+        "ids": [
+          "steam-peddler",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "apprentice-healer",
+      "quest": "JianXiYiShi",
+      "cutoff": "jingye",
+      "visibleWhen": {
+        "any": [
+          {
+            "questSeen": "JianXiYiShi"
+          },
+          {
+            "mapUnlocked": "XiGu"
+          }
+        ]
+      },
+      "hintNotStarted": {
+        "tr": "Bu bölgede bir şifacının ot toplama işi var; otları toplamadan önce işi kabul et.",
+        "en": "A healer in this area needs herbs; accept the task before gathering them."
+      },
+      "note": "Accept before gathering the herbs; gathering first may leave the quest unobtainable (single comment, unverified).",
+      "source": {
+        "ids": [
+          "steam-guide-nero",
+          "steam-guide-lankec",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    {
+      "id": "baishan-body",
+      "quest": "BaiShanMiWen",
+      "cutoff": "baishan-body",
+      "visibleWhen": {
+        "all": [
+          {
+            "questSeen": "BaiShanMiWen"
+          },
+          {
+            "levelVisited": "Zhengdaodaying"
+          }
+        ]
+      },
+      "warn": {
+        "tr": "Yakındaki cesedi hemen incele; önce kaydedersen görev kilitlenebilir.",
+        "en": "Inspect the nearby body right away; saving first can lock the quest."
+      },
+      "note": "Mandate Encampment: after Wu Lengshuang, inspect Bi Taotao's body immediately (no bell, no rest, do not open the Training Grounds gate), then Yubi. Lanlan being found dead is not a failure (single source). Still bugged after patch 1.0302256.",
+      "source": {
+        "ids": [
+          "steam-baishan",
+          "steam-guide-lankec",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "pipa-dependency",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "questSeen": "HuanShuPiPa"
+      },
+      "warn": {
+        "tr": "Bu görevin bir parçası bir boss dövüşüne bağlı; o dövüşü atlama.",
+        "en": "One piece of this quest depends on a boss fight; do not skip that fight."
+      },
+      "warnNamed": {
+        "tr": "Hayali Pipa: arka plaka Yubi dövüşünden sonra gelir; Baishan görevi kilitlenirse Yubi → Pipa → gerçek son zinciri kopabilir.",
+        "en": "Illusory Pipa: the back plate comes after the Yubi fight; if the Baishan quest locks, the Yubi → Pipa → true ending chain can break."
+      },
+      "source": {
+        "ids": [
+          "steam-pipa",
+          "steam-baishan",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "opera-house-treasure",
+      "quest": null,
+      "unverified": true,
+      "names": {
+        "tr": "Opera binası hazinesi (ilk girişte)",
+        "en": "Opera House treasure (first visit)"
+      },
+      "cutoff": "mirage",
+      "detect": false,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "note": "Mirage Estate Opera House: take the Quick Hand treasure (Gold-and-Silver Sachet) on the first visit; it may close later (single player + CN guide).",
+      "source": {
+        "ids": [
+          "steam-nowarning",
+          "steam-guide-czyhaxj",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    {
+      "id": "lu-elevator-items",
+      "quest": null,
+      "names": {
+        "tr": "Köy arenası: kılıç ve amber sandığı",
+        "en": "Village arena: sword and amber chest"
+      },
+      "cutoff": "lu-elevator",
+      "detect": false,
+      "visibleWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "hintNotStarted": {
+        "tr": "Asansörden önce arenanın yakınındaki kılıcı ve amber sandığını al; sonra dönülemiyor.",
+        "en": "Before the lift, take the sword and the amber chest near the arena; there is no way back."
+      },
+      "note": "Wild Nightingale Sword (乱莺剑) + Sha-Chi amber chest before the lift.",
+      "source": {
+        "ids": [
+          "steam-guide-lankec",
+          "steam-lu-chest",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "young-mistress-ribbons",
+      "quest": "ShaoZhu",
+      "cutoff": "lu-elevator",
+      "visibleWhen": {
+        "questSeen": "ShaoZhu"
+      },
+      "warn": {
+        "tr": "Beş kurdeleyi kuyuya inmeden önce topla; yoksa bir boss'un gizli aşaması ve ödülleri kaçar.",
+        "en": "Collect all five ribbons before going down the well; otherwise a boss's hidden phase and its rewards are missed."
+      },
+      "note": "5 ribbons before the well/lift and before Yuzan → hidden third phase of Mu Xiaokui; rewards Fiend Saws + Fist Core Fragment.",
+      "source": {
+        "ids": [
+          "steam-young-mistress",
+          "steam-guide-czyhaxj",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "young-master-lan",
+      "quest": "LanJiaGongZi",
+      "cutoff": "smuggler-tunnel",
+      "visibleWhen": {
+        "questSeen": "LanJiaGongZi"
+      },
+      "note": "Same trigger as The Journey Home.",
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "severed-mindseal-first",
+      "quest": "GeJueXieZi",
+      "cutoff": "leave-valley",
+      "guess": true,
+      "suffix": {
+        "tr": "ilk taş",
+        "en": "first stone"
+      },
+      "doneWhen": {
+        "questBranch": "GeJueXieZi",
+        "branch": "1-1"
+      },
+      "visibleWhen": {
+        "any": [
+          {
+            "questSeen": "GeJueXieZi"
+          },
+          {
+            "mapUnlocked": "XiGu"
+          }
+        ]
+      },
+      "hintNotStarted": {
+        "tr": "Bu vadide bulduğun işaretli taşı, vadiden çıkmadan önce sahibine teslim et.",
+        "en": "Hand the marked stone you find in this valley to its keeper before leaving the valley."
+      },
+      "note": "Deliver the Weeping Creek Valley stone to the Shadow Warden before leaving; the last stone is in the frozen Crimson Forest tower after Mirage Estate. doneWhen (branch 1-1) is a guess.",
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-guide-nero",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "xiaocui",
+      "quest": null,
+      "unverified": true,
+      "names": {
+        "tr": "Xiaocui (A Hero's Lament → Ink Cut)",
+        "en": "Xiaocui (A Hero's Lament → Ink Cut)"
+      },
+      "cutoff": "final",
+      "detect": false,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "note": "Before Bi Feng free Lu Sanqian from the cage; before the Crusher and the Saw talk to Lu Jieyuan; bloody sword → Liu Yi → Ink Cut. Single CN walkthrough.",
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    {
+      "id": "dont-forget-me",
+      "quest": null,
+      "unverified": true,
+      "names": {
+        "tr": "勿相忘 (Don't Forget Me)",
+        "en": "勿相忘 (Don't Forget Me)"
+      },
+      "cutoff": "final",
+      "detect": false,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "note": "Before Kui Yanyan: the puppet/tree trunk and the thin man. Single CN walkthrough.",
+      "source": {
+        "ids": [
+          "steam-guide-czyhaxj",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    {
+      "id": "mandate-leaders-flower",
+      "quest": null,
+      "unverified": true,
+      "names": {
+        "tr": "Ferman liderlerinin anı çiçeği",
+        "en": "Memory Flower of the Mandate Leaders"
+      },
+      "cutoff": "final",
+      "detect": false,
+      "visibleWhen": {
+        "levelVisited": "Zhengdaodaying"
+      },
+      "note": "Six petals from allied purple NPCs; Steam players say kill them while they kneel, the PT-BR guide says the opposite (disputed). Reading item The Undying Heroic Spirit (Myst's tavern). Up to 4/6 before Seven Stars.",
+      "source": {
+        "ids": [
+          "steam-mandate-flower",
+          "steam-guide-zayfer",
+          "steam-research-note"
+        ],
+        "checked": "unverified"
+      }
+    },
+    {
+      "id": "triple-threat-flowers",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "questSeen": "SanMianHunDun"
+      },
+      "warn": {
+        "tr": "Bu görevin son dövüşünden önce ilgili çiçekleri topla.",
+        "en": "Collect the related flowers before this quest's final fight."
+      },
+      "warnNamed": {
+        "tr": "Üçlü Tehdit: ilgili üç çiçeği görevin son dövüşünden önce topla; son aşamanın tetiklenmesi belirli bir silah sanatı istiyor.",
+        "en": "Triple Threat: collect the three related flowers before the quest's final fight; triggering its last phase needs a specific weapon art."
+      },
+      "source": {
+        "ids": [
+          "steam-guide-lankec",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      },
+      "note": "Details (spoilers): the 3 Three-Faced Chaos flowers are in Mirage Estate; Yucong's third phase is triggered with the Blazing Edge (CN guide)."
+    },
+    {
+      "id": "banyan-manual-save",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "questSeen": "RongShuZhiXin"
+      },
+      "warn": {
+        "tr": "Bu görevdeki her ağaç karşılaşmasından önce elle kaydet; otomatik kayıt karşılaşmanın içine düşebilir.",
+        "en": "Save manually before each tree encounter in this quest; an autosave can land inside the encounter."
+      },
+      "warnNamed": {
+        "tr": "Banyanın Kalbi: 3. dalgadan sonra haritadan düşme hatası var (yamadan sonra da); her ağaçtan önce elle kaydet.",
+        "en": "Heart of the Banyan: a fall-through bug after wave 3 (still after the patch); save manually before each tree."
+      },
+      "source": {
+        "ids": [
+          "steam-banyan",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "lengtu-study",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "warn": {
+        "tr": "Bir çalışma odasındaki tomarı açtıktan sonra bir sonraki çana kadar ölme ya da ışınlanma.",
+        "en": "After opening the scroll in a study, do not die or teleport until the next bell."
+      },
+      "warnNamed": {
+        "tr": "Leng Tu's Study: tomarı açtıktan sonra ölmek/ışınlanmak/başka çanda dinlenmek etkileşimi siliyor (hata); önceki kaydı yükle.",
+        "en": "Leng Tu's Study: dying/teleporting/resting elsewhere after opening the scroll removes the interaction (bug); load an earlier save."
+      },
+      "source": {
+        "ids": [
+          "steam-lengtu",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "myst-dock",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "unknown": "bölge kodu bilinmiyor"
+      },
+      "warn": {
+        "tr": "Ölüler kasabasında bir karakterle konuşmadan önce rıhtımı keşfetme.",
+        "en": "In the town of the dead, do not explore the dock before talking to a certain character."
+      },
+      "warnNamed": {
+        "tr": "Town of Death: Myst'ten önce rıhtımı keşfetmek diyalogu siliyor.",
+        "en": "Town of Death: exploring the dock before Myst removes the dialogue."
+      },
+      "source": {
+        "ids": [
+          "steam-myst",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
       }
     }
   ],
@@ -414,6 +1032,7 @@
       ],
       "checked": "unverified"
     },
-    "note": "Some guides (a Steam 100% achievements guide, since removed from the Steam community; a true-ending checklist) also list defeating two optional blade-master bosses as a true-ending requirement. Unverified and not tracked yet; verify from the save when those areas are reached."
+    "note": "Some guides (a Steam 100% achievements guide, since removed from the Steam community; a true-ending checklist) also list defeating two optional blade-master bosses as a true-ending requirement. Unverified and not tracked yet; verify from the save when those areas are reached.",
+    "claim": "Unverified claim (single Steam guide, Nero): the two blade masters (Zhu Yuan, Bi Feng) are required for the true ending. PowerPyx does not say so; the CN guide lists them only under an achievement. Not tracked."
   }
 }
