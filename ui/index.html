@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<title>pbz-tracker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">pbz-tracker</div>
+  <nav class="tabs" role="tablist" id="tablist" aria-label="pbz-tracker">
+    <button type="button" role="tab" class="tab" id="tab-warnings" data-tab="warnings" aria-controls="panel-warnings" aria-selected="true"><span class="tab-key">1</span><span class="tab-label" data-i18n="tab.warnings">Uyarılar</span></button>
+    <button type="button" role="tab" class="tab" id="tab-journal" data-tab="journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1"><span class="tab-key">2</span><span class="tab-label" data-i18n="tab.journal">Günlük</span></button>
+    <button type="button" role="tab" class="tab" id="tab-settings" data-tab="settings" aria-controls="panel-settings" aria-selected="false" tabindex="-1"><span class="tab-key">3</span><span class="tab-label" data-i18n="tab.settings">Ayarlar</span></button>
+    <button type="button" role="tab" class="tab" id="tab-about" data-tab="about" aria-controls="panel-about" aria-selected="false" tabindex="-1"><span class="tab-key">4</span><span class="tab-label" data-i18n="tab.about">Hakkında</span></button>
+  </nav>
+  <div class="lang" role="group" id="lang-group" aria-label="Dil / Language">
+    <button type="button" class="lang-btn" data-lang="tr" aria-pressed="true">TR</button>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<div class="conn-banner" id="conn-banner" role="alert" hidden></div>
+
+<main class="content">
+  <section class="panel" id="panel-warnings" role="tabpanel" aria-labelledby="tab-warnings" tabindex="0"></section>
+  <section class="panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" tabindex="0" hidden></section>
+  <section class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden></section>
+  <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden></section>
+</main>
+
+<footer class="footer">
+  <span id="refresh-line" class="refresh-line" aria-live="off"></span>
+</footer>
+</body>
+</html>
