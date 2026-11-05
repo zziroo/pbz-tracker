@@ -63,9 +63,12 @@ function main() {
 
   const exe = path.join(DIST, `pbz-tracker-v${VERSION}.exe`);
   fs.copyFileSync(process.execPath, exe);
-  const npx = process.platform === 'win32' ? 'npx.cmd' : 'npx';
-  execFileSync(npx, ['--yes', 'postject@1.0.0-alpha.6', exe, 'NODE_SEA_BLOB', blob,
-    '--sentinel-fuse', 'NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2'], { stdio: 'inherit', shell: process.platform === 'win32' });
+  // Run npx through node itself (no shell, arguments passed as an array).
+  const npxCli = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npx-cli.js');
+  const postject = ['--yes', 'postject@1.0.0-alpha.6', exe, 'NODE_SEA_BLOB', blob,
+    '--sentinel-fuse', 'NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2'];
+  if (fs.existsSync(npxCli)) execFileSync(process.execPath, [npxCli, ...postject], { stdio: 'inherit' });
+  else execFileSync(process.platform === 'win32' ? 'npx.cmd' : 'npx', postject, { stdio: 'inherit', shell: process.platform === 'win32' });
   fs.rmSync(blob, { force: true });
   fs.rmSync(cfg, { force: true });
   console.log(`exe: ${path.relative(ROOT, exe)} (${(fs.statSync(exe).size / 1048576).toFixed(0)} MB)`);
