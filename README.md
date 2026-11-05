@@ -7,7 +7,7 @@ A local, **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero*
 ## What it does / does not do
 
 - Reads your save, finds missable quests that are still open, and tells you which point you must not pass yet: "Before this area's final fight", not a boss name.
-- **Never writes** to your save, its backups, the game folder or any patch. The save is read with shared access, so the game can stay open.
+- **Never writes** to your save, its backups, the game folder or any patch (the only file it can write is the optional `--dump` output). The save is read with shared access, so the game can stay open.
 - **No network access.** No telemetry, no update check.
 - **Contains no key and no personal data.** The save key is derived on each run from *your own* `PBZ.exe` and kept in memory only. The exe contains no SteamID, save data or key.
 - Does not attach to the game process and does not read its memory.
@@ -26,9 +26,12 @@ pbz-tracker-v0.3.0.exe --watch     # refresh whenever the game saves; G = toggle
 pbz-tracker-v0.3.0.exe --show      # also print the hidden sections
 pbz-tracker-v0.3.0.exe --lang en   # UI language: en or tr (default: system language)
 pbz-tracker-v0.3.0.exe --names en  # name source: a detected text patch or a name table
+pbz-tracker-v0.3.0.exe --dump        # write the newest save slot as JSON to .\out (debugging)
 pbz-tracker-v0.3.0.exe --version
 pbz-tracker-v0.3.0.exe --help
 ```
+
+`--dump` writes a full, decrypted dump of your save (`out\latest.json`). It may contain personal data such as your play history; do not share it. It refuses to write into the game or save folder.
 
 The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` → AppID 4115450). If saves from several Steam accounts exist, the tool asks which one to use, or you can pass `--steamid`.
 
@@ -59,6 +62,15 @@ Test against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another g
 
 `data/rules.json` contains spoilers for the whole game.
 
+### Rule syntax (`data/rules.json`)
+
+- `sources`: guide registry. Each rule has `source: {ids, checked}`; `checked: "unverified"` means the rule-to-guide mapping was not checked page by page.
+- `cutoffs`: points of no return. `where` {tr,en} describes the point by position (default view); `label` names it (hidden section only, after the point is passed); `passedWhen` is the condition for "passed".
+- `missables`: `quest` (pinyin id from the save, or `null`), `cutoff`, `visibleWhen`, optional `doneWhen` / `failedWhen`, `hintNotStarted` {tr,en}, `warn` {tr,en}, `detect: false` (cannot be read from the save). `type: "info"` rules are plain warnings: `warn` is the anonymous text (default view), `warnNamed` the named one (hidden section), `activeWhen` keeps them in the default view.
+- `trueEnding`: explicit list of true-ending purple quests; entries without a known pinyin id are never shown.
+
+Conditions are three-valued (true / false / unknown): `mapUnlocked`, `levelVisited`, `currentLevel`, `bellPrefix`, `bossKilled`, `bossSeen`, `questSeen`, `questDone`, `questBranch` + `branch` (+ `state`), `any`, `all`, `not`, `unknown`.
+
 ## License
 
 GPL-3.0-or-later (see `LICENSE`). The save decompressor in `lib/oodle/` is a JavaScript port of Powzix's [ooz](https://github.com/powzix/ooz) (GPL-3.0-or-later). When you share the exe, make the source (this repository) available too.
@@ -69,15 +81,7 @@ Missable rules were compiled from public guides. Each rule's `source` in `data/r
 
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
-- DTGRE — missable quests guide
-- DTGRE — true ending guide
-
-<details><summary>Source URLs (the addresses themselves contain spoilers)</summary>
-
-- https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
-- https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
-
-</details>
+- DTGRE (https://www.dtgre.com) — missable quests and true ending guides. Exact page URLs are only in `data/rules.json`, because the addresses themselves contain spoilers.
 - Maxroll (true ending), allthings.how (missables), Showgamer (missables): URLs to be added.
 
 Technical:

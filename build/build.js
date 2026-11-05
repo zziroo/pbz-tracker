@@ -5,7 +5,7 @@
 // The bundle contains no key, save data or user paths; the key is derived from the runner's own PBZ.exe.
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { execFileSync, execSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
@@ -62,13 +62,27 @@ function main() {
   execFileSync(process.execPath, ['--experimental-sea-config', cfg], { stdio: 'inherit' });
 
   const exe = path.join(DIST, `pbz-tracker-v${VERSION}.exe`);
-  fs.copyFileSync(process.execPath, exe);
+  const tmpExe = `${exe}.tmp`; // build next to the target, swap at the end (the target may be running)
+  fs.rmSync(tmpExe, { force: true });
+  fs.copyFileSync(process.execPath, tmpExe);
   // Run npx through node itself (no shell, arguments passed as an array).
   const npxCli = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npx-cli.js');
-  const postject = ['--yes', 'postject@1.0.0-alpha.6', exe, 'NODE_SEA_BLOB', blob,
+  const postject = ['--yes', 'postject@1.0.0-alpha.6', tmpExe, 'NODE_SEA_BLOB', blob,
     '--sentinel-fuse', 'NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2'];
   if (fs.existsSync(npxCli)) execFileSync(process.execPath, [npxCli, ...postject], { stdio: 'inherit' });
-  else execFileSync(process.platform === 'win32' ? 'npx.cmd' : 'npx', postject, { stdio: 'inherit', shell: process.platform === 'win32' });
+  else if (process.platform === 'win32') {
+    // npx.cmd needs a shell on Windows: pass one quoted command line instead of loose arguments.
+    const q = (a) => `"${String(a).replace(/"/g, '""')}"`;
+    execSync(['npx.cmd', ...postject].map(q).join(' '), { stdio: 'inherit' });
+  } else execFileSync('npx', postject, { stdio: 'inherit' });
+  try {
+    fs.renameSync(tmpExe, exe);
+  } catch (e) {
+    if (e.code === 'EBUSY' || e.code === 'EPERM') {
+      throw new Error(`${path.basename(exe)} is in use (probably running). Close it and build again; the new build is at ${tmpExe}`);
+    }
+    throw e;
+  }
   fs.rmSync(blob, { force: true });
   fs.rmSync(cfg, { force: true });
   console.log(`exe: ${path.relative(ROOT, exe)} (${(fs.statSync(exe).size / 1048576).toFixed(0)} MB)`);

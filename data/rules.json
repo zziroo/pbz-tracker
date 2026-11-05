@@ -1,5 +1,5 @@
 {
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Koşul dili: README.md.",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\".",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı.",
     "game8": {
@@ -83,8 +83,8 @@
     },
     "final": {
       "where": {
-        "tr": "Oyun 'geri dönüş yok' uyarısı verdiğinde, onaylamadan önce",
-        "en": "When the game warns there is no turning back, before confirming"
+        "tr": "Oyun seni açıkça uyardığında, onaylamadan önce",
+        "en": "When the game explicitly warns you, before confirming"
       },
       "label": {
         "tr": "Mount Soulrend son uyarısı",

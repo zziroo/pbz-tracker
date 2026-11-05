@@ -7,7 +7,7 @@
 ## Ne yapar / ne yapmaz
 
 - Save'ini okur, hâlâ açık kaçırılabilir görevleri bulur ve hangi noktayı henüz geçmemen gerektiğini söyler. Bunu adla değil konumla yapar: "Bu bölgenin son dövüşüne girmeden önce".
-- Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz**. Save paylaşımlı okumayla okunur, oyun açık kalabilir.
+- Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz** (yazabildiği tek dosya isteğe bağlı `--dump` çıktısı). Save paylaşımlı okumayla okunur, oyun açık kalabilir.
 - **Ağa çıkmaz.** Telemetri ya da güncelleme kontrolü yok.
 - **Anahtar ve kişisel veri içermez.** Save anahtarı her çalıştırmada *senin* `PBZ.exe`'nden türetilir ve yalnız bellekte tutulur. Exe'de SteamID, save verisi ya da anahtar yoktur.
 - Oyun sürecine bağlanmaz, belleğini okumaz.
@@ -26,9 +26,12 @@ pbz-tracker-v0.3.0.exe --watch     # oyun kaydettikçe yenile; G = gizli bölüm
 pbz-tracker-v0.3.0.exe --show      # gizli bölümleri de yaz
 pbz-tracker-v0.3.0.exe --lang tr   # arayüz dili: tr ya da en (varsayılan: sistem dili)
 pbz-tracker-v0.3.0.exe --names en  # ad kaynağı: bulunan bir metin yaması ya da ad tablosu
+pbz-tracker-v0.3.0.exe --dump        # en yeni save slotunu JSON olarak .\out klasörüne yaz (hata ayıklama)
 pbz-tracker-v0.3.0.exe --version
 pbz-tracker-v0.3.0.exe --help
 ```
+
+`--dump`, save'inin çözülmüş tam dökümünü yazar (`out\latest.json`). Oynama geçmişin gibi kişisel veri içerebilir; paylaşma. Oyun ya da save klasörüne yazmayı reddeder.
 
 Oyun Steam üzerinden bulunur: kayıt defterindeki `SteamPath` → `libraryfolders.vdf` → AppID 4115450. Birden fazla Steam hesabının kaydı varsa hangisinin kullanılacağını sorar; `--steamid` ile de seçilir.
 
@@ -38,7 +41,7 @@ Oyun Steam üzerinden bulunur: kayıt defterindeki `SteamPath` → `libraryfolde
 2. **Gizli (`--show` ya da watch'ta G):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Watch modunda her yenilemede yeniden kapanır.
 3. **Hiç gösterilmez:** save'e göre henüz ulaşılmamış her şey. Sınır her zaman aracı çalıştıranın kendi save'ine göre çizilir.
 
-Görünüm terminalde. HTML ya da bulanıklaştırma yok: tek exe, dosya yazmıyor, G tuşu yetiyor.
+Görünüm terminalde. HTML ya da bulanıklaştırma yok: tek exe, save'e, oyun klasörüne ve yamaya yazmıyor, G tuşu yetiyor.
 
 ## Desteklenen oyun sürümü
 
@@ -88,15 +91,7 @@ Kaçırılabilir kuralları herkese açık rehberlerden derlendi:
 
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
-- DTGRE — kaçırılabilir görevler rehberi
-- DTGRE — gerçek son rehberi
-
-<details><summary>Kaynak adresleri (adreslerin kendisi spoiler içerir)</summary>
-
-- https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
-- https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
-
-</details>
+- DTGRE (https://www.dtgre.com) — kaçırılabilir görevler ve gerçek son rehberleri. Sayfa adresleri yalnız `data/rules.json` içinde, çünkü adreslerin kendisi spoiler içeriyor.
 - Maxroll (gerçek son), allthings.how (missables), Showgamer (missables): adresleri eklenecek.
 
 Teknik:
