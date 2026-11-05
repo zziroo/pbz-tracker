@@ -48,7 +48,7 @@ Steam build **26367565** üzerinde doğrulandı. Başlık satırı kurulu build'
 
 Arayüz dili (`--lang`) ve ad kaynağı (`--names`) ayrı seçilir.
 
-- **Metin yaması:** `ProjectPBZ\Content\Paks` içindeki şifresiz ve `Game.locres` içeren her `.pak` aday sayılır (ör. Türkçe yama `ProjectPBZ-Windows_C.pak`). Bulunursa adlar çalışma anında oradan okunur (salt okunur) ve çıktı bunu bir kez söyler. Birden fazlaysa `--names <pak adı>` ile seçilir. Resmi oyun pak'ları şifreli olduğu için atlanır.
+- **Metin yaması:** `ProjectPBZ\Content\Paks` içindeki, `Localization/Game/<kültür>/Game.locres` taşıyan şifresiz `.pak` dosyaları aday sayılır (ör. Türkçe yama `ProjectPBZ-Windows_C.pak`). Bulunursa adlar çalışma anında oradan okunur (salt okunur) ve çıktı bunu bir kez söyler. Birden fazlaysa `--names <pak adı>` ile seçilir. Desteklenenler: eski dizinli pak'lar (v1–v9) ya da her sürümden küçük (≤ 32 MB), sıkıştırılmamış pak'lar. Resmi oyun pak'ları (v12) atlanır.
 - **Ad tabloları:** yama yoksa `data/names.<dil>.json` kullanılır (arayüz dilinde). `names.en.json` resmi İngilizce adları içerir. Eksik ad İngilizceye düşer ve çıktı bunu bir kez söyler.
 - `data/names.json`: pinyin görev kodu → yamadaki locres anahtarı (dile bağlı değil).
 
@@ -88,8 +88,15 @@ Kaçırılabilir kuralları herkese açık rehberlerden derlendi:
 
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
-- DTGRE — Bai Chilian missables: https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
-- DTGRE — true ending, purple quests: https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+- DTGRE — kaçırılabilir görevler rehberi
+- DTGRE — gerçek son rehberi
+
+<details><summary>Kaynak adresleri (adreslerin kendisi spoiler içerir)</summary>
+
+- https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
+- https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+
+</details>
 - Maxroll (gerçek son), allthings.how (missables), Showgamer (missables): adresleri eklenecek.
 
 Teknik:

@@ -45,7 +45,7 @@ Verified on Steam build **26367565**. The header shows the installed build. On a
 ## Names and languages
 
 - UI language (`--lang`) and name source (`--names`) are independent.
-- Any unencrypted `.pak` in `ProjectPBZ\Content\Paks` that contains a `Game.locres` (for example a fan translation) is detected and used for names at runtime, read-only.
+- A text patch in `ProjectPBZ\Content\Paks` (an unencrypted `.pak` carrying `Localization/Game/<culture>/Game.locres`, for example a fan translation) is detected and used for names at runtime, read-only. Supported: paks with a legacy index (v1–v9), or small (≤ 32 MB) uncompressed paks of any version. The official game paks (v12) are skipped.
 - Without a patch, names come from `data/names.<lang>.json`. English is complete; missing names fall back to English with a one-line notice.
 - To contribute a name table, see the Turkish README section "Ad tablosuna katkı". In short: copy `data/names.en.json` to `names.<lang>.json`, translate the values, and add one line to `TABLES` in `lib/names.js`.
 
@@ -69,8 +69,15 @@ Missable rules were compiled from public guides. Each rule's `source` in `data/r
 
 - Game8 — missables: https://game8.co/games/Phantom-Blade-Zero/archives/634952
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
-- DTGRE — Bai Chilian missables: https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
-- DTGRE — true ending, purple quests: https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+- DTGRE — missable quests guide
+- DTGRE — true ending guide
+
+<details><summary>Source URLs (the addresses themselves contain spoilers)</summary>
+
+- https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html
+- https://www.dtgre.com/2026/10/phantom-blade-zero-true-ending-purple-quests-mirage-estate.html
+
+</details>
 - Maxroll (true ending), allthings.how (missables), Showgamer (missables): URLs to be added.
 
 Technical:

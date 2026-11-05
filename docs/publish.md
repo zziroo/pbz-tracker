@@ -6,10 +6,23 @@ Bu adımların hiçbiri otomatik yapılmadı. Hepsi dışa dönük; sırayla ve 
 
 ```
 git status                                  # temiz olmalı
-git ls-files | findstr /i "sav json key bin"   # yalnız data/*.json beklenir; .sav / key.bin / dump olmamalı
+git ls-files | findstr /i /r "\.sav$ \.bin$ \.key$ \.cmp$ latest\.json AutoSave ManualSave"   # çıktı BOŞ olmalı
 ```
 
 `research/` klasörü depoda. İçinde anahtar yok, yalnız keşif betikleri var. Yayımlamak istemezsen önce `git rm -r research` çalıştır.
+
+### Geçmiş ve e-posta
+
+İlk push tüm commit geçmişini yayınlar: her commit'teki yazar e-postası ve eski sürümlerdeki bazı yerel yollar (ör. eski bir `research/decompress.ps1` yorumundaki Steam kütüphanesi yolu) görünür. İzlenen dosyaların son hâli temiz. İstemezsen iki seçenek var:
+
+- Geçmişi tek commit'e indir (yeni, temiz bir başlangıç):
+  ```
+  git checkout --orphan release && git add -A && git commit -m "pbz-tracker v0.3.0" && git branch -M release main
+  ```
+  Bundan önce `git config user.email <kullanıcı>@users.noreply.github.com` ile GitHub'ın noreply adresini ayarla.
+- Ya da geçmişi olduğu gibi bırak.
+
+Bu karar push'tan önce verilmeli; push'tan sonra geri almak zor.
 
 ## 1. Exe'yi derle
 
