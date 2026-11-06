@@ -213,6 +213,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "方块; patch \"KÜP\"; \"The Cube\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06."
+    },
+    "ZaiHuiXiongZhang": {
+      "locres": "QuestRumor_010",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "再会兄长; patch \"YENİDEN KARDEŞ\"; \"A Brother Once More\" (Steam/keengamer). Seen in a save 2026-11-06."
     }
   },
   "regions": {
