@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.14",
+  "rulesVersion": "2026-11-07.1",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -203,6 +203,10 @@
     "powerpyx-encampment": {
       "name": "PowerPyx — Mandate Encampment collectibles (comments: kneeling NPC flower needs the Shattered Hero's Courage)",
       "url": "https://www.powerpyx.com/phantom-blade-zero-mandate-encampment-collectible-locations/"
+    },
+    "game8-red": {
+      "name": "Game8 — Red Location and How to Beat",
+      "url": "https://game8.co/games/Phantom-Blade-Zero/archives/635019"
     }
   },
   "bosses": {
@@ -817,7 +821,7 @@
       "id": "red-encampment",
       "region": "mandate-encampment",
       "type": "info",
-      "guess": true,
+      "guess": false,
       "visibleWhen": {
         "any": [
           {
@@ -839,8 +843,8 @@
         ]
       },
       "warn": {
-        "tr": "Bu kampta yaralı bir kadınla dövüş başlarsa onu öldürme; yakındaki zincirle kaç.",
-        "en": "If a fight starts with a wounded woman in this camp, do not kill her; escape using the nearby chain."
+        "tr": "Bu kamptaki kule çatısında bir kadın kılıç ustasıyla dövüş başlarsa onu yenme; canı bitmeden arena kenarındaki zincirle çatıdan ayrıl. Yenersen bir kolye, bir anı çiçeği ve hikâyesinin devamı kaçar; sağ kalırsa sonraki bir boss dövüşünde tekrar çıkar.",
+        "en": "If a fight with a swordswoman starts on a tower roof in this camp, do not defeat her; leave the roof by the chain at the arena edge before her health runs out. Beating her loses a pendant, a memory flower and the rest of her story; alive, she returns in a later boss fight."
       },
       "activeWhen": {
         "all": [
@@ -865,19 +869,20 @@
         ]
       },
       "warnNamed": {
-        "tr": "Ferman Ordugâhı: Red'i güvercin kulesinde öldürme, zincirle kaç; öldürürsen bir eşya ve bir anı çiçeği yaprağı kaçar.",
-        "en": "Mandate Encampment: don't kill Red on the pigeon tower, escape with the chain; killing her loses an item and a memory-flower petal."
+        "tr": "Ferman Ordugâhı, Güvercinlik kulesi çatısı: Red'i (Kızıl, Gizemli Kılıç Ustası) yenme; canı bitmeden kenardaki zincirle çatıdan ayrıl. Yenersen Twin Fish Pendant, Tower Rear Exit'teki anı çiçeği ve Karanlık Tarikatın Kızı'nın devamı kaçar; sağ kalırsa Üç Kuleler'de Baş Mürit'in 2. fazında geri gelir (zorlaşır ama tüm ödüllerin tek yolu).",
+        "en": "Mandate Encampment, Dovecote tower roof: don't defeat Red, the Mysterious Swordswoman; leave the roof by the chain at the edge before her health runs out. Beating her loses the Twin Fish Pendant, the memory flower at Tower Rear Exit and the rest of Daughter of the Dark Sect; alive, she returns in phase 2 of the Chief Disciple fight at the Three Towers (harder, but the only way to all rewards)."
       },
       "source": {
         "ids": [
           "allthings",
           "steam-guides",
           "steam-red",
-          "steam-research-note"
+          "steam-research-note",
+          "game8-red"
         ],
-        "checked": "search-snippet"
+        "checked": "page-read"
       },
-      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell. Update 2026-11-06: the tale is MoJiaoZhiNv (QuestRumor_015 \"KARANLIK TARİKATIN KIZI\" = Daughter of the Dark Sect), seen in a save when the player met Red, so the name is verified; the warning stops once that tale is done.",
+      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell. Update 2026-11-06: the tale is MoJiaoZhiNv (QuestRumor_015 \"KARANLIK TARİKATIN KIZI\" = Daughter of the Dark Sect), seen in a save when the player met Red, so the name is verified; the warning stops once that tale is done. Update 2026-11-07: Game8 read in full: \"Do not defeat Red during your first encounter, or you will miss the Twin Fish Pendant\"; \"use the nearby chain to exit the arena\"; \"Leaving her alive forces her to appear alongside the Chief Disciple of the Seven-Stars later\" (harder, \"the only way to secure all possible rewards\"). Matches the Steam thread (defeat = item + flower lost). One Steam player claims fleeing cost map 100% (likely the boss entry until she returns); guides still recommend sparing. guess removed.",
       "exactWhen": {
         "any": [
           {
