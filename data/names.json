@@ -195,6 +195,24 @@
       "guessKey": false,
       "guessEn": false,
       "note": "道剑佛心; patch \"KILIÇ VE YOL\"; keengamer/wiki \"The Sword and the Way\" (Pangzhen, Myst's Tavern). Seen in a save 2026-11-06."
+    },
+    "BuMieXiaDan": {
+      "locres": "QuestRumor_032",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "不灭侠胆; patch \"ÖLMEZ KAHRAMANLIK RUHU\"; \"The Undying Heroic Spirit\" (keengamer/allthings). Seen in a save 2026-11-06."
+    },
+    "TouPaiHuaDan": {
+      "locres": "QuestRumor_033",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "头牌花旦; patch \"YILDIZ OYUNCU\"; \"The Star Performer\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06."
+    },
+    "FangKuai": {
+      "locres": "QuestRumor_031",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "方块; patch \"KÜP\"; \"The Cube\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06."
     }
   },
   "regions": {
