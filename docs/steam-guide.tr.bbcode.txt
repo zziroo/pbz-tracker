@@ -22,6 +22,9 @@ Bunu, oyunu kör oynamak ama yine de gerçek sonu almak istediğim için yaptım
 
 [previewimg=48488383;sizeOriginal,inline;][/previewimg]
 
+[h1]Bulunduğun yere göre gruplu[/h1]
+Uyarılar sekmesi bölgelere ayrılmış durumda. [b]"Şu an: <bölge>"[/b], en son dokunduğun çana göre şu an bulunduğun yer; tam orada dikkat etmen gerekenler bu başlığın altında. Daha önce geçtiğin bölgeler kendi adlarıyla onun altında duruyor, geride bir şey kaldıysa diye. Geri kalan her şey [b]"İleride"[/b] adlı tek bir blokta toplanıyor, üstünde bölge adı yok. Henüz gitmediğin bir bölgenin adı hiçbir yerde geçmiyor; yani başlıklara bakıp hikâyenin nereye gideceğini çıkaramıyorsun.
+
 İngilizce rehber: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
 
 [h1]Ne değil? Spoiler konusunda ne yapıyor?[/h1]
@@ -48,7 +51,7 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [*]https://zziroo.github.io/pbz-tracker/ adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
 [*]Sayfayı oyunun yanında açık bırak (ikinci monitör ya da ara sıra alt-tab; kendi penceresinde dursun istersen uygulama olarak da kurabilirsin). Oyun her kayıt yaptığında (çan, otomatik kayıt) kendi kendine yenileniyor.
-[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında.
+[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında.
 [*]Firefox/Safari: save dosyanı (ve bir kereliğine PBZ.exe'yi) sayfaya sürükleyip bırak. Çalışıyor ama otomatik yenileme yok; oyun kayıt yaptıktan sonra save'i tekrar bırakman gerekiyor.
 [/olist]
 
@@ -79,5 +82,6 @@ Kurallar bir JSON dosyasında duruyor. Bir rehber ya da oyuncu raporu bir şeyi 
 
 [h1]Geri bildirim[/h1]
 Yanlış uyarı, kaçırılan görev, hatalı eşleştirme: https://github.com/zziroo/pbz-tracker adresinde issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
+Kuralları kendin kurcalamak istersen: terminal sürümündeki --archive seçeneği (node pbz.js --watch --archive) okuduğu her save'in bir kopyasını save tarihiyle saklıyor. Kuralları gerçek kayıtlarla ben de böyle kontrol ediyorum. Ayrıntısı README'de.
 
 [i]Kodun epey bir kısmı yapay zekâ yardımıyla (Claude Code) yazıldı; benim asıl derdim aracın var olmasıydı.[/i]
