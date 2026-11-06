@@ -3,6 +3,7 @@
 // Phantom Blade Zero missables tracker, terminal version (for developers and rule analysis; players use
 // the web version, see README). Strictly read-only: never writes to the save, its backups or game files.
 // Engine: lib/session.js; output: lib/report.js render. `--cli` is accepted for compatibility (no-op).
+const fs = require('fs');
 const path = require('path');
 const i18n = require('./lib/i18n');
 const { t } = i18n;
@@ -10,8 +11,31 @@ const { classifyPath } = require('./lib/paths');
 const { VERSION } = require('./lib/version');
 const { render } = require('./lib/report');
 const { readConfig, forgetConfig } = require('./lib/config');
-const { createSession } = require('./lib/session');
+const { createSession, safeDumpDir } = require('./lib/session');
 const { watchSave } = require('./lib/watch');
+const { sigOf } = require('./lib/savefile');
+
+// --archive: keep a copy of every save the tool reads (the raw .sav and the decoded newest slot), named by
+// the save's own date, so the rules can be checked against the real play history afterwards. The same save
+// date is never written twice. A copy whose bytes differ from the ones just decoded (the game wrote in
+// between) is discarded; the next read archives that save. Never throws (archiving must not stop the report).
+//   archiveSave(dir, { savePath, sig, st, latest }) → saved base name | null
+function archiveSave(dir, { savePath, sig, st, latest }) {
+  try {
+    const stamp = (st.dateTime || 'unknown-date').replace(/[^0-9A-Za-z.-]/g, '_');
+    const base = path.join(dir, `PBZSaveGame-${stamp}`);
+    if (fs.existsSync(`${base}.sav`)) return null;
+    fs.mkdirSync(dir, { recursive: true });
+    fs.copyFileSync(savePath, `${base}.sav.tmp`);
+    if (sigOf(fs.statSync(savePath)) !== sig) { fs.unlinkSync(`${base}.sav.tmp`); return null; }
+    fs.renameSync(`${base}.sav.tmp`, `${base}.sav`);
+    fs.writeFileSync(`${base}.json`, JSON.stringify(latest, null, 1));
+    return path.basename(base);
+  } catch (e) {
+    console.error(t('archiveFail', { msg: e.message }));
+    return null;
+  }
+}
 
 function parseArgs(argv) {
   const o = { watch: false, show: false, dump: null, color: !!process.stdout.isTTY && !process.env.NO_COLOR, interval: 5, lang: null };
@@ -27,6 +51,7 @@ function parseArgs(argv) {
       case '--rules': o.rules = val(); break;
       case '--steamid': o.steamId = val(); break;
       case '--dump': o.dump = argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : path.join(process.cwd(), 'out'); break;
+      case '--archive': o.archive = argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[++i] : path.join(process.cwd(), 'archive'); break;
       case '--save': o.save = val(); break;
       case '--game': o.game = val(); break;
       case '--exe': o.exe = val(); break;
@@ -63,12 +88,19 @@ async function main() {
   const cfg = opt.forget ? {} : readConfig();
   const s = await createSession(opt, { cfg });
 
+  const archiveDir = opt.archive ? safeDumpDir(opt.archive, s.protectedDirs) : null;
   const read = async () => {
     const r = await s.read();
-    return { sig: r.sig, view: (show) => render({ st: r.st, result: r.result, names: s.names, build: s.gameBuild, data: s.dataInfo, color: opt.color, show, changes: r.changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
+    const archived = archiveDir ? archiveSave(archiveDir, { savePath: s.savePath, sig: r.sig, st: r.st, latest: r.latest }) : null;
+    return { sig: r.sig, archived, view: (show) => render({ st: r.st, result: r.result, names: s.names, build: s.gameBuild, data: s.dataInfo, color: opt.color, show, changes: r.changes, hiddenKey: opt.watch && process.stdin.isTTY }) };
   };
 
-  if (!opt.watch) { console.log((await read()).view(opt.show)); return; }
+  if (!opt.watch) {
+    const r = await read();
+    console.log(r.view(opt.show));
+    if (r.archived) console.log(t('archived', { file: r.archived }));
+    return;
+  }
 
   // ---- watch mode ----
   const tty = !!process.stdin.isTTY;
@@ -87,7 +119,8 @@ async function main() {
     onRead: (r) => {
       last = r;
       show = opt.show;              // hidden sections close again on every refresh
-      statusLine = t('watching', { time: stamp(), keys: tty ? t('watchKeys') : t('watchKeysNoTty') });
+      statusLine = t('watching', { time: stamp(), keys: tty ? t('watchKeys') : t('watchKeysNoTty') })
+        + (r.archived ? ` · ${t('archived', { file: r.archived })}` : '');
       paint();
     },
     onError: (e) => console.error(`\n${t('readFail', { time: stamp(), msg: e.message })}`),

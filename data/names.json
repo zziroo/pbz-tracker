@@ -219,6 +219,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "再会兄长; patch \"YENİDEN KARDEŞ\"; \"A Brother Once More\" (Steam/keengamer). Seen in a save 2026-11-06."
+    },
+    "MainCh2-XinZhiZongJi": {
+      "locres": "QuestStory_02_2",
+      "guessKey": false,
+      "guessEn": true,
+      "note": "心之踪迹; patch \"KALBİN İZİ\" (QuestStory_02_2); English \"The Heart's Trail\" from guides (Steam reports). Seen in a save 2026-11-06 (Pangzhen backstreet, map HouJie)."
     }
   },
   "regions": {
@@ -265,6 +271,13 @@
       "bellPrefixes": [
         "SZ"
       ]
+    },
+    "HouJie": {
+      "locres": "Levelname_SZ_001",
+      "guessKey": false,
+      "guessEn": false,
+      "bellPrefixes": [],
+      "note": "Pangzhen backstreet (后街, level Houjie): its own map code, but the patch has no separate level name, so it shows as Pangzhen. Bells keep the SZ prefix (Bell_SZ_005 seen). Seen in a save 2026-11-06."
     },
     "_comment": "Region map code (RecentlyInteractedAtByMap / UnLockBigMapMaskWidgetNames) → locres key. bellPrefixes: bell id prefixes (Bell_<prefix>_…) of that region, used for the header when the map code itself is not known yet; a known map code always wins."
   },

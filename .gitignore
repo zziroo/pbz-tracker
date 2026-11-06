@@ -25,3 +25,5 @@ pbz-tracker.config.json
 # v0.5 ve öncesinin lokal görev zaman çizelgesi: artık yazılmıyor, eski kopyalar depoya girmesin
 pbz-tracker.timeline.json
 pbz-tracker.timeline.json.tmp
+# --archive ile saklanan save kopyaları (kişisel; depoya girmez)
+archive/

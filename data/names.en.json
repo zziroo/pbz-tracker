@@ -42,14 +42,16 @@
     "BuMieXiaDan": "The Undying Heroic Spirit",
     "TouPaiHuaDan": "The Star Performer",
     "FangKuai": "The Cube",
-    "ZaiHuiXiongZhang": "A Brother Once More"
+    "ZaiHuiXiongZhang": "A Brother Once More",
+    "MainCh2-XinZhiZongJi": "The Heart's Trail"
   },
   "regions": {
     "XiGu": "Weeping Creek Valley",
     "FuJiZhiLin": "Crimson Forest",
     "LuJiaCun": "Village of Lu",
     "Zhengdaodaying": "Mandate Encampment",
-    "PangZhen": "Pangzhen"
+    "PangZhen": "Pangzhen",
+    "HouJie": "Pangzhen"
   },
   "missables": {
     "honor-among-thieves": "Honor Among Thieves",
