@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.5",
+  "rulesVersion": "2026-11-06.6",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -1245,6 +1245,19 @@
             "not": {
               "questDone": "BaiShanMiWen"
             }
+          },
+          {
+            "any": [
+              {
+                "bellPrefix": "YXZR",
+                "except": [
+                  "Bell_YXZR_018"
+                ]
+              },
+              {
+                "bellPrefix": "ZDDY"
+              }
+            ]
           }
         ]
       },
@@ -1259,7 +1272,7 @@
         "tr": "Baishan Tarikatının Sırları (Kızıl Orman, Thieves' Camp yakınındaki köprü): Ju ile konuşmada \"It was you who killed her!\" diye suçla, sonra Ju'yu yen; \"Mourn, and let go\" seçeneği Seal of Dugu'yu kaçırabilir (bir kaynak yalnız dövüşü erteler diyor).",
         "en": "Secrets of the Baishan Sect (Crimson Forest, bridge near the Thieves' Camp): accuse Ju (\"It was you who killed her!\") and defeat her; \"Mourn, and let go\" may lose the Seal of Dugu (one source says it only delays the fight)."
       },
-      "note": "Disputed: criticalhits/xboxplay say mourning loses the Seal of Dugu for good; allthings says it only delays the fight until the Ambush Forest step.",
+      "note": "Disputed: criticalhits/xboxplay say mourning loses the Seal of Dugu for good; allthings says it only delays the fight until the Ambush Forest step. Gated on the encampment bells (2026-11-06): the choice is the quest's last step, back at the bridge; showing it in the Village of Lu confused the user.",
       "source": {
         "ids": [
           "criticalhits-ju",
