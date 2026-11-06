@@ -2,10 +2,13 @@
 # Guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
 # Title: pbz-tracker: rehbersiz oyna, hiçbir şeyi kaçırma
 # Steam guides are edited per section; each "[h1]" block below is one section (title + body).
-# Images were uploaded in the Steam editor:
+# Images were uploaded in the Steam editor (re-uploaded 2026-11-06 with the region-grouped layout;
+# a file with the same name overwrites the old one, so the preview ids stayed the same):
 #   IMG1 = previewimg 48488383 (docs/screenshots/web-tr-warnings.png)
 #   IMG2 = previewimg 48488384 (docs/screenshots/web-tr-journal.png)
 #   IMG3 = previewimg 48488385 (docs/screenshots/web-setup.png)
+#   (48488386 window-tr-warnings.png is an old, unused upload)
+# Section ids in the editor: 9469049, 9469052, 9469058, 9469061 (editguidesubsection/?id=<guide>&sectionid=<id>).
 # Title alternatives:
 #   pbz-tracker: kör oynarken görev kaçırmamak için
 #   pbz-tracker: spoiler yemeden görev kaçırma uyarısı
@@ -20,12 +23,12 @@ Bunu, oyunu kör oynamak ama yine de gerçek sonu almak istediğim için yaptım
 
 [b][url=https://zziroo.github.io/pbz-tracker/]Web sürümünü aç[/url][/b]: linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor.
 
-[previewimg=48488383;sizeOriginal,inline;][/previewimg]
+[previewimg=48488383;sizeFull,inline;web-tr-warnings.png][/previewimg]
 
 [h1]Bulunduğun yere göre gruplu[/h1]
 Uyarılar sekmesi bölgelere ayrılmış durumda. [b]"Şu an: <bölge>"[/b], en son dokunduğun çana göre şu an bulunduğun yer; tam orada dikkat etmen gerekenler bu başlığın altında. Daha önce geçtiğin bölgeler kendi adlarıyla onun altında duruyor, geride bir şey kaldıysa diye. Geri kalan her şey [b]"İleride"[/b] adlı tek bir blokta toplanıyor, üstünde bölge adı yok. Henüz gitmediğin bir bölgenin adı hiçbir yerde geçmiyor; yani başlıklara bakıp hikâyenin nereye gideceğini çıkaramıyorsun.
 
-İngilizce rehber: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
+English guide: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512]pbz-tracker: a seatbelt for blind playthroughs[/url]
 
 [h1]Ne değil? Spoiler konusunda ne yapıyor?[/h1]
 [h1]Ne değil?[/h1]
@@ -40,7 +43,7 @@ Rehber değil. Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak 
 [*]Bulunduğun yerin ötesindeki içerik hiçbir zaman gösterilmiyor.
 [/list]
 
-[previewimg=48488384;sizeOriginal,inline;][/previewimg]
+[previewimg=48488384;sizeFull,inline;web-tr-journal.png][/previewimg]
 
 [h1]Türkçe yama[/h1]
 Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlarını doğrudan yamadan okuyor; yani adlar oyunda gördüğünle birebir aynı oluyor, ayar yapmana gerek yok. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi var).
@@ -48,14 +51,14 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [h1]Nasıl kullanılır?[/h1]
 [h1]Web sürümü[/h1]
 [olist]
-[*]https://zziroo.github.io/pbz-tracker/ adresini Chrome ya da Edge'de aç.
+[*][url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
 [*]Sayfayı oyunun yanında açık bırak (ikinci monitör ya da ara sıra alt-tab; kendi penceresinde dursun istersen uygulama olarak da kurabilirsin). Oyun her kayıt yaptığında (çan, otomatik kayıt) kendi kendine yenileniyor.
 [*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında.
 [*]Firefox/Safari: save dosyanı (ve bir kereliğine PBZ.exe'yi) sayfaya sürükleyip bırak. Çalışıyor ama otomatik yenileme yok; oyun kayıt yaptıktan sonra save'i tekrar bırakman gerekiyor.
 [/olist]
 
-[previewimg=48488385;sizeOriginal,inline;][/previewimg]
+[previewimg=48488385;sizeFull,inline;web-setup.png][/previewimg]
 
 [h1]Güvenli mi? Bilinen eksikler, kaynaklar, geri bildirim[/h1]
 [h1]Güvenli mi?[/h1]
@@ -76,12 +79,13 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [/list]
 
 [h1]Kurallar nereden geliyor?[/h1]
-Herkese açık rehberler ve oyuncular: Game8, PowerPyx, DTGRE (https://www.dtgre.com), Steam Topluluğu rehberleri (https://steamcommunity.com/app/4115450/guides/), dönüşü olmayan noktayla ilgili forum başlığı (https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/) ve Steam forumlarındaki oyuncu raporları. Hepsi repoda kaynak olarak belirtildi. Save açma (decompression) kısmı Powzix'in ooz'unun (Oodle) bir portu.
+Herkese açık rehberler ve oyuncular: Game8, PowerPyx, [url=https://www.dtgre.com]DTGRE[/url], [url=https://steamcommunity.com/app/4115450/guides/]Steam Topluluğu rehberleri[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/]dönüşü olmayan noktayla ilgili forum başlığı[/url] ve Steam forumlarındaki oyuncu raporları. Hepsi repoda kaynak olarak belirtildi. Save açma (decompression) kısmı Powzix'in ooz'unun (Oodle) bir portu.
 
 Kurallar bir JSON dosyasında duruyor. Bir rehber ya da oyuncu raporu bir şeyi düzelttiğinde dosya da düzeltiliyor; web sürümü her kural düzeltmesinde otomatik olarak yeniden derleniyor.
 
 [h1]Geri bildirim[/h1]
-Yanlış uyarı, kaçırılan görev, hatalı eşleştirme: https://github.com/zziroo/pbz-tracker adresinde issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
+Yanlış uyarı, kaçırılan görev, hatalı eşleştirme: [url=https://github.com/zziroo/pbz-tracker]github.com/zziroo/pbz-tracker[/url] adresinde issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
+
 Kuralları kendin kurcalamak istersen: terminal sürümündeki --archive seçeneği (node pbz.js --watch --archive) okuduğu her save'in bir kopyasını save tarihiyle saklıyor. Kuralları gerçek kayıtlarla ben de böyle kontrol ediyorum. Ayrıntısı README'de.
 
 [i]Kodun epey bir kısmı yapay zekâ yardımıyla (Claude Code) yazıldı; benim asıl derdim aracın var olmasıydı.[/i]
