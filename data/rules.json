@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.7",
+  "rulesVersion": "2026-11-06.8",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -158,7 +158,7 @@
     },
     "allthings-choices": {
       "name": "allthings.how — choices and consequences",
-      "url": "https://allthings.how/?p=320505"
+      "url": "https://allthings.how/phantom-blade-zero-choices-and-consequences/"
     },
     "gameshorizon-leave-none": {
       "name": "GamesHorizon — Leave None Alive",
@@ -175,6 +175,26 @@
     "keengamer-zhang": {
       "name": "KeenGamer — Phantom Blade Zero: all Quick Hand Zhang treasure locations and rewards",
       "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-quick-hand-zhang-treasure-locations-and-rewards/"
+    },
+    "steam-flowers-pangzhen": {
+      "name": "Steam discussion — \"Missable flowers!!\" (kneeling NPCs in Pangzhen, 6 players)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415745269/"
+    },
+    "steam-brother-jin": {
+      "name": "Steam discussion — \"A Brother Once More\" quest is bugged? (Jin killed before accepting)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415773000/"
+    },
+    "gamersky-brother": {
+      "name": "GamerSky — 再会兄长 trigger and route (Huang residence bedroom → Meigu Lake dock)",
+      "url": "https://www.gamersky.com/handbook/202610/2236093_21.shtml"
+    },
+    "game8-ledger": {
+      "name": "Game8 — Ledger of Atonement walkthrough (Chen Zhu choice)",
+      "url": "https://game8.co/games/Phantom-Blade-Zero/archives/637265"
+    },
+    "powerpyx-pangzhen": {
+      "name": "PowerPyx — Pangzhen collectible locations (Ledger of Atonement warning)",
+      "url": "https://www.powerpyx.com/phantom-blade-zero-pangzhen-collectible-locations/"
     }
   },
   "bosses": {
@@ -1074,6 +1094,9 @@
       "visibleWhen": {
         "any": [
           {
+            "bellPrefix": "SZ"
+          },
+          {
             "bellPrefix": "YXZR",
             "except": [
               "Bell_YXZR_018"
@@ -1084,15 +1107,150 @@
           }
         ]
       },
-      "note": "Six petals from allied purple NPCs; Steam players say kill them while they kneel, the PT-BR guide says the opposite (disputed). Reading item The Undying Heroic Spirit (Myst's tavern). Up to 4/6 before Seven Stars. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet).",
+      "note": "Six petals from allied NPCs who ask to be killed after their fight (first one in Pangzhen before the well; most at the Mandate Encampment, a few in later Pangzhen). Kill them while they kneel / before they transform (~10 s); after the transformation no petal drops. 4/6 needed for the quest (The Undying Heroic Spirit, reading item at Myst's tavern), all 6 for the HP bonus. Confirmed by 6 players in a Steam thread of 2026-11-06 and allthings.how; the PT-BR guide's \"do not kill\" is the outlier. Region: visible from Pangzhen (Bell_SZ_*) and the encampment bells (Bell_YXZR_* except 018, Bell_ZDDY_*).",
       "source": {
         "ids": [
           "steam-mandate-flower",
           "steam-guide-zayfer",
-          "steam-research-note"
+          "steam-research-note",
+          "steam-flowers-pangzhen",
+          "allthings-missables"
         ],
-        "checked": "unverified"
+        "checked": "page"
       }
+    },
+    {
+      "id": "kneeling-npc-flowers",
+      "type": "info",
+      "quest": null,
+      "visibleWhen": {
+        "any": [
+          {
+            "bellPrefix": "SZ"
+          },
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
+      },
+      "activeWhen": {
+        "any": [
+          {
+            "lastBellPrefix": "SZ"
+          },
+          {
+            "lastBellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "lastBellPrefix": "ZDDY"
+          }
+        ]
+      },
+      "exactWhen": {
+        "any": [
+          {
+            "bellPrefix": "SZ"
+          },
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
+      },
+      "warn": {
+        "tr": "Bu kasabadan itibaren: dövüş sonrası diz çöküp \"beni öldür\" diyen dost bir savaşçıyı hemen öldür; dönüşürse anı çiçeği yaprağı düşmez. Güçlü silahla gir.",
+        "en": "From this town on: when a friendly fighter kneels after a fight and asks to be killed, kill him at once; if he transforms, no memory-flower petal drops. Use a strong weapon."
+      },
+      "warnNamed": {
+        "tr": "Ölmez Kahramanlık Ruhu (Pangzhen + Ferman Ordugâhı): diz çöken ferman liderlerini dönüşmeden (~10 sn) öldür, yoksa yaprak düşmez. Görev için 4/6, HP bonusu için 6/6 yaprak; ilki Pangzhen'de kuyudan önce.",
+        "en": "The Undying Heroic Spirit (Pangzhen + Mandate Encampment): kill the kneeling Mandate leaders before they transform (~10 s) or no petal drops. 4/6 petals for the quest, 6/6 for the HP bonus; the first is in Pangzhen before the well."
+      },
+      "source": {
+        "ids": [
+          "steam-flowers-pangzhen",
+          "allthings-missables",
+          "steam-mandate-flower"
+        ],
+        "checked": "page"
+      },
+      "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest."
+    },
+    {
+      "id": "brother-once-more-start",
+      "type": "info",
+      "quest": null,
+      "guess": true,
+      "visibleWhen": {
+        "bellPrefix": "SZ"
+      },
+      "activeWhen": {
+        "lastBellPrefix": "SZ"
+      },
+      "exactWhen": {
+        "bellPrefix": "SZ"
+      },
+      "warn": {
+        "tr": "Bu kasabanın hanından bir ev anahtarı alıp o evin üst kat yatak odasındaki anı çiçeğini almadan göle açılma; göldeki iskele boss'unu önce öldürürsen bir görev kilitleniyor.",
+        "en": "Get the house key from this town's tavern and pick up the memory flower in that house's upstairs bedroom before heading out onto the lake; killing the dock boss on the lake first locks a quest."
+      },
+      "warnNamed": {
+        "tr": "Yeniden Kardeş (A Brother Once More): Myst'in Hanı'nda Niu'dan Huang konağı anahtarını al, Huang konağı önündeki kavşak çanından konağın 2. kat yatak odasındaki anı çiçeğini al (görev başlar). Meigu Gölü'ndeki Lu köyü sığlığı iskelesinde Jin'i bundan önce öldürürsen görev kilitleniyor (Steam, 2 oyuncu).",
+        "en": "A Brother Once More: take the Huang residence key from Niu at Myst's Tavern, then pick up the memory flower in the residence's upstairs bedroom (quest starts). Killing Jin at the Lu village shallows dock on Meigu Lake before that locks the quest (Steam, 2 players)."
+      },
+      "source": {
+        "ids": [
+          "steam-brother-jin",
+          "gamersky-brother"
+        ],
+        "checked": "page"
+      },
+      "note": "Pinyin id unknown (QuestRumor_010 \"YENİDEN KARDEŞ\" in the patch); switch to questSeen once it appears in a save. Trigger per GamerSky; lockout per one Steam thread (OP + one \"same here\"), so guess:true."
+    },
+    {
+      "id": "ledger-of-atonement-choice",
+      "type": "info",
+      "quest": null,
+      "guess": true,
+      "visibleWhen": {
+        "bellPrefix": "SZ"
+      },
+      "activeWhen": {
+        "lastBellPrefix": "SZ"
+      },
+      "exactWhen": {
+        "bellPrefix": "SZ"
+      },
+      "warn": {
+        "tr": "Sonraki dağ bölgesinde bir maskeli, kayıp defterini bulmanı isterse: defteri getirince \"bırak gitsin\" deme; onunla yüzleş (dövüş). Bırakırsan ardındaki kuklayı öldürüyor ve bir görev ile bir aksesuar kaçıyor (tartışmalı, güvenli tarafta kal).",
+        "en": "In the next mountain area, if a masked man asks you to find his lost ledger: when you bring it back, do not let him go; confront him (fight). Letting him go makes him kill the puppet behind him, costing a quest and an accessory (disputed, stay on the safe side)."
+      },
+      "warnNamed": {
+        "tr": "Kefaret Defteri (Hapis Dağı, Chen Zhu): sonunda \"This won't absolve you of your sins\" seç. \"Leave him be\" dersen Game8/PowerPyx'e göre Bai Xue görevi, Snow and Blood aksesuarı ve 2 anı çiçeği kaçıyor; allthings.how kaçmaz diyor.",
+        "en": "Ledger of Atonement (Mountain of Imprisonment, Chen Zhu): pick \"This won't absolve you of your sins\". Per Game8/PowerPyx, \"Leave him be\" loses the Bai Xue tale, the Snow and Blood accessory and 2 memory flowers; allthings.how says it does not."
+      },
+      "source": {
+        "ids": [
+          "game8-ledger",
+          "powerpyx-pangzhen",
+          "allthings-choices"
+        ],
+        "checked": "page"
+      },
+      "note": "Disputed: Game8 (2026-11-05) and PowerPyx say the peaceful option kills the female puppet and locks Bai Xue; allthings.how (2026-11-01) says both paths keep Bai Xue. Fight is safe in every source. Mountain of Imprisonment bell prefix unknown, so visible from Pangzhen on."
     },
     {
       "id": "triple-threat-flowers",
@@ -1169,7 +1327,7 @@
       "type": "info",
       "quest": null,
       "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
+        "questSeen": "MainCh2-SiZhen"
       },
       "warn": {
         "tr": "Ölüler kasabasında bir karakterle konuşmadan önce rıhtımı keşfetme.",
@@ -1185,7 +1343,23 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "questSeen": "MainCh2-SiZhen"
+          },
+          {
+            "not": {
+              "questDone": "MainCh2-SiZhen"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "questSeen": "MainCh2-SiZhen"
+      },
+      "note": "Visible once Town of Death (MainCh2-SiZhen) is in the save; active until that main quest is done."
     },
     {
       "id": "leave-none-alive-monk",

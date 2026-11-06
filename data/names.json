@@ -177,6 +177,12 @@
       "guessKey": true,
       "guessEn": true,
       "note": "死镇 \"dead town\" = patch \"ÖLÜM KASABASI\" (QuestStory_02_1); English name from Steam reports (Town of Death)."
+    },
+    "WuShiZunZhu": {
+      "locres": "QuestCollect_008",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "舞狮尊主; patch \"ASLAN DANSI BÜYÜK USTASI\"; Game8 \"Lion Dance Grandmaster\" (collectible quest, Pangzhen). Seen in a save 2026-11-06."
     }
   },
   "regions": {
