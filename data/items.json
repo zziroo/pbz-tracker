@@ -1,0 +1,87 @@
+{
+  "_comment": "SPOILER İÇERİR. Save Inventory codes → display names, for rule work and the diagnostics (the patch locres has no names for these codes). Key: the code as it appears in Inventory.MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (lib/state.js items). en: official English name; tr: Turkish name from the Turkish patch (title-cased), or null when not certain (the UI then shows English); guess: true = the code ↔ item mapping is not verified. Mappings verified by acquisition time on a real save (2026-11-06). Not bundled into the web build (the page only shows codes).",
+  "LuanYing": {
+    "en": "Wild Oriole Sword",
+    "tr": "Yaban Sarıasması Kılıcı",
+    "guess": false,
+    "note": "Main weapon. The sword on the pier after Mu Xiaokui (Village of Lu, before the lift); rule lu-elevator-sword."
+  },
+  "YuuBlade": {
+    "en": "Fiend Saws",
+    "tr": "İblis Testereleri",
+    "guess": true,
+    "note": "Main weapon, Mu Xiaokui's reward (acquired just before LuanYing). Fiend Saws is likely (the five-ribbon reward) but not verified."
+  },
+  "RenOuQingTongJian": {
+    "en": "Tianxuan Bronze Sword",
+    "tr": "Tianxuan Bronz Kılıcı",
+    "guess": false,
+    "note": "Main weapon, from Bi Yuan."
+  },
+  "CuiXinPiPa": {
+    "en": "Heartrend Pipa",
+    "tr": "Yürek Dağlayan Pipa",
+    "guess": false,
+    "note": "Sha-chi weapon (Phantom Edge), from Yuzan."
+  },
+  "KuYeSiZhuChuan": {
+    "en": "Kuye Temple Prayer Beads",
+    "tr": "Kuye Tapınağı Tespihi",
+    "guess": false,
+    "note": "Sha-chi weapon (Phantom Edge), from Bi Hai."
+  },
+  "CaoOuSiXian": {
+    "en": "Puppeteer's Bell",
+    "tr": "Kuklacının Çanı",
+    "guess": true,
+    "note": "Sha-chi weapon (Phantom Edge) acquired after the Dusk fight; the name is a guess."
+  },
+  "AC_ResistRanged": {
+    "en": "Arrowward",
+    "tr": "Oksavar",
+    "guess": false,
+    "note": "Accessory, the wounded thief's reward for the Thief's Manual; rule lu-wounded-thief-manual (doneWhen)."
+  },
+  "AC_SummonDuration": {
+    "en": "Agarwood Prayer Beads",
+    "tr": null,
+    "guess": true,
+    "note": "Accessory acquired at 01:46 on the mapping save; the name is a guess."
+  },
+  "T_02001": {
+    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
+    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
+    "guess": true,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+  },
+  "T_02002": {
+    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
+    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
+    "guess": true,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+  },
+  "T_02003": {
+    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
+    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
+    "guess": true,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+  },
+  "T_05001": {
+    "en": "Wedding Candles",
+    "tr": "Düğün Mumları",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_001); rule lu-quick-hand-treasures."
+  },
+  "T_05002": {
+    "en": "White Jade Twins",
+    "tr": "Beyaz Yeşim İkizler",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_002); rule lu-quick-hand-treasures."
+  },
+  "T_05003": {
+    "en": "Unveiled Statue",
+    "tr": "Peçesiz Heykel",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_003; the lu rule text says Açığa Çıkan Heykel); rule lu-quick-hand-treasures."
+  }
+}

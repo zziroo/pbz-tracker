@@ -152,6 +152,11 @@
       "guessKey": false,
       "guessEn": false
     },
+    "RenOuZhongShu": {
+      "locres": "QuestMaze_007",
+      "guessKey": false,
+      "guessEn": false
+    },
     "DaHuang": {
       "locres": "QuestRumor_009",
       "guessKey": false,

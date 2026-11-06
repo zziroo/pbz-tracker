@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.2",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen (yalnız type=info): uyarı varsayılan görünümde ne zaman dursun. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
+  "rulesVersion": "2026-11-06.3",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
     "game8": {
@@ -171,6 +171,10 @@
     "keengamer-tales": {
       "name": "KeenGamer — all tales and side quests",
       "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-33-tales-and-side-quests-walkthrough/"
+    },
+    "keengamer-zhang": {
+      "name": "KeenGamer — Phantom Blade Zero: all Quick Hand Zhang treasure locations and rewards",
+      "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-quick-hand-zhang-treasure-locations-and-rewards/"
     }
   },
   "bosses": {
@@ -349,7 +353,17 @@
         "en": "In the Mandate Encampment, after the Wu Lengshuang fight and before moving on or touching a bell, resting or saving"
       },
       "exactWhen": {
-        "levelVisited": "Zhengdaodaying"
+        "any": [
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
       },
       "passedWhen": {
         "unknown": "kayıttan algılanamıyor"
@@ -360,7 +374,8 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "note": "Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet)."
     },
     "lu-elevator": {
       "where": {
@@ -616,21 +631,45 @@
         "tr": "Geçidi açtıktan sonra yeni kasabaya gitmeden bu iki görevin sahiplerine haber ver.",
         "en": "After opening it, report to these two quest givers before going to the new town."
       },
-      "note": "Accept The Journey Home and Young Master Lan before the Smuggler's Tunnel opens; afterwards report to both before Pangzhen (Brass Key). The old \"Pangzhen backstreet\" / one-way door trigger has no source: unverified."
+      "note": "Accept The Journey Home and Young Master Lan before the Smuggler's Tunnel opens; afterwards report to both before Pangzhen (Brass Key). The old \"Pangzhen backstreet\" / one-way door trigger has no source: unverified. doneWhen: branch 2 Completed = reported back after opening the tunnel (seen on a real save: 2 Completed, 3/3-A Activating). Done here means this step only; the quest goes on.",
+      "doneWhen": {
+        "questBranch": "GuiTu",
+        "branch": "2"
+      }
     },
     {
       "id": "red-encampment",
       "type": "info",
       "guess": true,
       "visibleWhen": {
-        "levelVisited": "Zhengdaodaying"
+        "any": [
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
       },
       "warn": {
         "tr": "Bu kampta yaralı bir kadınla dövüş başlarsa onu öldürme; yakındaki zincirle kaç.",
         "en": "If a fight starts with a wounded woman in this camp, do not kill her; escape using the nearby chain."
       },
       "activeWhen": {
-        "currentLevel": "Zhengdaodaying"
+        "any": [
+          {
+            "lastBellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "lastBellPrefix": "ZDDY"
+          }
+        ]
       },
       "warnNamed": {
         "tr": "Ferman Ordugâhı: Red'i güvercin kulesinde öldürme, zincirle kaç; öldürürsen bir eşya ve bir anı çiçeği yaprağı kaçar.",
@@ -645,9 +684,19 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified.",
+      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell.",
       "exactWhen": {
-        "levelVisited": "Zhengdaodaying"
+        "any": [
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
       }
     },
     {
@@ -747,7 +796,17 @@
             "questSeen": "BaiShanMiWen"
           },
           {
-            "levelVisited": "Zhengdaodaying"
+            "any": [
+              {
+                "bellPrefix": "YXZR",
+                "except": [
+                  "Bell_YXZR_018"
+                ]
+              },
+              {
+                "bellPrefix": "ZDDY"
+              }
+            ]
           }
         ]
       },
@@ -755,7 +814,7 @@
         "tr": "Yakındaki cesedi hemen incele; önce kaydedersen görev kilitlenebilir.",
         "en": "Inspect the nearby body right away; saving first can lock the quest."
       },
-      "note": "Mandate Encampment: after Wu Lengshuang, inspect Bi Taotao's body immediately (no bell, no rest, do not open the Training Grounds gate), then Yubi. Lanlan being found dead is not a failure (single source). Still bugged after patch 1.0302256.",
+      "note": "Mandate Encampment: after Wu Lengshuang, inspect Bi Taotao's body immediately (no bell, no rest, do not open the Training Grounds gate), then Yubi. Lanlan being found dead is not a failure (single source). Still bugged after patch 1.0302256. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen keeps the default-view warning back until the encampment is reached (the quest itself starts earlier).",
       "source": {
         "ids": [
           "steam-baishan",
@@ -763,6 +822,19 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "activeWhen": {
+        "any": [
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
       }
     },
     {
@@ -813,11 +885,39 @@
       }
     },
     {
-      "id": "lu-elevator-items",
+      "id": "lu-elevator-sword",
       "quest": null,
       "names": {
-        "tr": "Köy arenası: kılıç ve amber sandığı",
-        "en": "Village arena: sword and amber chest"
+        "tr": "Köy arenası: kılıç",
+        "en": "Village arena: sword"
+      },
+      "cutoff": "lu-elevator",
+      "visibleWhen": {
+        "mapUnlocked": "LuJiaCun"
+      },
+      "doneWhen": {
+        "itemSeen": "LuanYing"
+      },
+      "hintNotStarted": {
+        "tr": "Asansörden önce arenanın yakınındaki kılıcı al; sonra dönülemiyor.",
+        "en": "Before the lift, take the sword near the arena; there is no way back."
+      },
+      "note": "Wild Oriole Sword (乱莺剑), save code LuanYing (Inventory.MainWeaponInfos). Verified by timing on a real save: picked up on the pier after Mu Xiaokui. Not picked up when the lift cutoff is passed → missed.",
+      "source": {
+        "ids": [
+          "steam-guide-lankec",
+          "steam-lu-chest",
+          "steam-research-note"
+        ],
+        "checked": "search-snippet"
+      }
+    },
+    {
+      "id": "lu-elevator-chest",
+      "quest": null,
+      "names": {
+        "tr": "Köy arenası: amber sandığı",
+        "en": "Village arena: amber chest"
       },
       "cutoff": "lu-elevator",
       "detect": false,
@@ -825,10 +925,10 @@
         "mapUnlocked": "LuJiaCun"
       },
       "hintNotStarted": {
-        "tr": "Asansörden önce arenanın yakınındaki kılıcı ve amber sandığını al; sonra dönülemiyor.",
-        "en": "Before the lift, take the sword and the amber chest near the arena; there is no way back."
+        "tr": "Asansörden önce arenanın yakınındaki amber sandığını al; sonra dönülemiyor.",
+        "en": "Before the lift, take the amber chest near the arena; there is no way back."
       },
-      "note": "Wild Nightingale Sword (乱莺剑) + Sha-Chi amber chest before the lift.",
+      "note": "Sha-Chi amber chest before the lift. Cannot be detected yet: its contents have no known save code (no Inventory entry mapped to it).",
       "source": {
         "ids": [
           "steam-guide-lankec",
@@ -867,13 +967,17 @@
       "visibleWhen": {
         "questSeen": "LanJiaGongZi"
       },
-      "note": "Same trigger as The Journey Home.",
+      "note": "Same trigger as The Journey Home. doneWhen: branch 2 Completed = reported back after opening the tunnel (seen on a real save: 2 Completed, 3/3-A Activating). Done here means this step only; the quest goes on.",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "doneWhen": {
+        "questBranch": "LanJiaGongZi",
+        "branch": "2"
       }
     },
     {
@@ -968,9 +1072,19 @@
       "cutoff": "final",
       "detect": false,
       "visibleWhen": {
-        "levelVisited": "Zhengdaodaying"
+        "any": [
+          {
+            "bellPrefix": "YXZR",
+            "except": [
+              "Bell_YXZR_018"
+            ]
+          },
+          {
+            "bellPrefix": "ZDDY"
+          }
+        ]
       },
-      "note": "Six petals from allied purple NPCs; Steam players say kill them while they kneel, the PT-BR guide says the opposite (disputed). Reading item The Undying Heroic Spirit (Myst's tavern). Up to 4/6 before Seven Stars.",
+      "note": "Six petals from allied purple NPCs; Steam players say kill them while they kneel, the PT-BR guide says the opposite (disputed). Reading item The Undying Heroic Spirit (Myst's tavern). Up to 4/6 before Seven Stars. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet).",
       "source": {
         "ids": [
           "steam-mandate-flower",
@@ -1231,7 +1345,60 @@
         ],
         "checked": "page"
       },
-      "note": "PowerPyx Village of Lu #41 Arrowward, marked missable: he dies when progressing too far into the region, trigger unknown. Unverified: the exact spot (door next to the Smuggler's Tunnel entrance bell) comes from the hand-over, not from the PowerPyx text; activeWhen ends with the village chapter quest (MainCh1-ShiXinCun) done, a guess (he may die earlier)."
+      "note": "PowerPyx Village of Lu #41 Arrowward, marked missable: he dies when progressing too far into the region, trigger unknown. Unverified: the exact spot (door next to the Smuggler's Tunnel entrance bell) comes from the hand-over, not from the PowerPyx text; activeWhen ends with the village chapter quest (MainCh1-ShiXinCun) done, a guess (he may die earlier). doneWhen: Arrowward = AC_ResistRanged (Inventory.AccessoryInfos), verified by timing on a real save; once it is in the save the warning leaves the default view.",
+      "doneWhen": {
+        "itemSeen": "AC_ResistRanged"
+      }
+    },
+    {
+      "id": "quickhand-request-start",
+      "quest": null,
+      "guess": true,
+      "names": {
+        "tr": "Çabuk El'in İsteği'ni başlat: Kızıl Orman'ın üç hazinesini Thieves' Camp yanındaki sığınakta Quick Hand Zhang'a teslim et (mor görev, gerçek son)",
+        "en": "Start Quick Hand's Request: hand the three Crimson Forest treasures to Quick Hand Zhang at the hideout next to the Thieves' Camp (purple quest, true ending)"
+      },
+      "cutoff": "mirage",
+      "visibleWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "itemSeen": "T_02001"
+          },
+          {
+            "itemSeen": "T_02002"
+          },
+          {
+            "itemSeen": "T_02003"
+          },
+          {
+            "not": {
+              "questBranch": "JiaoTuSanKu",
+              "branch": "1"
+            }
+          }
+        ]
+      },
+      "exactWhen": {
+        "mapUnlocked": "FuJiZhiLin"
+      },
+      "doneWhen": {
+        "questBranch": "JiaoTuSanKu",
+        "branch": "1"
+      },
+      "hintNotStarted": {
+        "tr": "Bir hazine avcısı için topladığın üç eşyayı, ilk tanıştığın bölgedeki sığınağına teslim et; bu, gerçek sona bağlı bir görevi başlatıyor.",
+        "en": "Hand the three items you collected for a treasure hunter to his hideout in the area where you first met him; this starts a quest tied to the true ending."
+      },
+      "note": "Quick Hand's Request (QuestCollect_003, purple, true ending; pinyin unknown, so no questSeen) starts by delivering the Crimson Forest treasures (InventoryInfos T_02001-T_02003) to Quick Hand Zhang at his hideout next to the Thieves' Camp (QuestCollectDes_003_02), then the Village of Lu, Pangzhen, Meigu Lake and Mirage Estate treasures. Seen on a real save: all three Crimson Forest treasures held, The Wily Hare's Three Dens (JiaoTuSanKu) branch 1 ('find Zhang's hidden treasure') still Activating, Quick Hand's Request not started, and Zhang not at the Village of Lu hideout. Guesses: doneWhen (JiaoTuSanKu branch 1 Completed = treasures delivered), that the chain is sequential, and the cutoff (mirage: the Crimson Forest is overwritten by snow after Mirage Estate). activeWhen: only while the three treasures are held and not yet delivered.",
+      "source": {
+        "ids": [
+          "keengamer-zhang"
+        ],
+        "checked": "unverified"
+      }
     },
     {
       "type": "info",
@@ -1270,7 +1437,7 @@
         ],
         "checked": "page"
       },
-      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all."
+      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003)."
     },
     {
       "type": "info",
@@ -1513,9 +1680,8 @@
         "en": "Pillars of Kunlun"
       },
       {
-        "quest": null,
-        "en": "The Herald's Illusion",
-        "guess": true
+        "quest": "RenOuZhongShu",
+        "en": "The Herald's Illusion"
       },
       {
         "quest": "HongFangZi",

@@ -24,7 +24,7 @@
       'err.openSettings': 'Ayarlar\'a git',
       'hdr.save': 'Kayıt',
       'hdr.play': 'oynama',
-      'hdr.location': 'Konum',
+      'hdr.location': 'Bölge',
       'warn.label': 'Uyarı',
       'info.label': 'Bilgi',
       'journal.notice': 'Spoiler içerebilir. Satıra tıklayınca o satır açılır.',
@@ -99,13 +99,16 @@
       'diag.tested': 'doğrulandı',
       'diag.untested': 'doğrulanmadı',
       'diag.save': 'Save',
-      'diag.saveDate': 'tarih {d} · bölge {l} · {n} görev',
+      'diag.saveDate': 'tarih {d} · seviye {l} · harita {m} · {n} görev',
       'diag.saveNone': 'okunmadı',
       'diag.unmatched': 'Eşleşmemiş görevler ({n})',
       'diag.unmatchedHint': 'Save\'de olup ad tablosunun tanımadığı görevler (ör. oyun güncellemesiyle gelen yeni bir yan görev). Bunlara bağlı kurallar "belirsiz" görünebilir.',
       'diag.undetectable': 'Bu save\'in menzilindeki, algılanamayan kurallar ({n})',
       'diag.reason.detectFalse': 'save\'den okunamıyor',
       'diag.reason.noQuestId': 'görev kimliği bilinmiyor',
+      'diag.itemsNone': 'Eşyalar: bu save\'de envanter (Inventory) yok.',
+      'diag.items': 'Save\'den önceki 24 saatte alınan eşyalar ({n}, kodlar)',
+      'diag.itemsHint': 'En yenisi üstte; süre, save\'in kendi saatine göre (−s:dd:ss önce). Adlar gösterilmez; bilinmeyen bir kod yeni bir eşyayı eşlemeye yarar.',
       'diag.copy': 'Raporu kopyala',
       'diag.copied': 'Kopyalandı.',
       'diag.copyFailed': 'Kopyalanamadı.',
@@ -138,7 +141,7 @@
       'err.openSettings': 'Open Settings',
       'hdr.save': 'Save',
       'hdr.play': 'played',
-      'hdr.location': 'Location',
+      'hdr.location': 'Area',
       'warn.label': 'Warning',
       'info.label': 'Info',
       'journal.notice': 'May contain spoilers. Click a row to reveal it.',
@@ -213,13 +216,16 @@
       'diag.tested': 'tested',
       'diag.untested': 'not tested',
       'diag.save': 'Save',
-      'diag.saveDate': 'date {d} · level {l} · {n} quests',
+      'diag.saveDate': 'date {d} · level {l} · map {m} · {n} quests',
       'diag.saveNone': 'not read',
       'diag.unmatched': 'Unmatched quests ({n})',
       'diag.unmatchedHint': 'Quests in your save that the name table does not know (e.g. a new side quest after a game update). Rules tied to them may show as "unknown".',
       'diag.undetectable': 'Undetectable rules in range for this save ({n})',
       'diag.reason.detectFalse': 'not readable from the save',
       'diag.reason.noQuestId': 'quest id not known',
+      'diag.itemsNone': 'Items: no Inventory in this save.',
+      'diag.items': 'Items acquired in the 24 h before the save ({n}, codes)',
+      'diag.itemsHint': 'Newest first; the time is relative to the save\'s own clock (−h:mm:ss before). No names; an unknown code helps to map a new item.',
       'diag.copy': 'Copy report',
       'diag.copied': 'Copied.',
       'diag.copyFailed': 'Could not copy.',
@@ -530,7 +536,8 @@
       first.append(t('hdr.play') + ' ', h('span', { class: 'mono', text: hd.playTime }));
     }
     if (first.childNodes.length) box.append(first);
-    if (hd.location) box.append(h('p', { class: 'hdr-line' }, t('hdr.location') + ': ', h('span', { class: 'hdr-strong', text: hd.location })));
+    if (hd.location) box.append(h('p', { class: 'hdr-line' }, t('hdr.location') + ': ', h('span', { class: 'hdr-strong', text: hd.location }),
+      hd.locationNote ? h('span', { class: 'muted', text: ' (' + hd.locationNote + ')' }) : null));
     if (hd.build && hd.build.text) {
       // build.quiet: an unknown build is not an "untested" warning.
       box.append(h('p', { class: 'hdr-line' + (hd.build.tested === false && !hd.build.quiet ? ' hdr-untested' : ''), text: hd.build.text }));
@@ -756,11 +763,18 @@
   }
 
   // ---- Diagnostics (collapsible, bottom of Settings) ----
+  // Seconds before the save → "-1:05:20" (same as lib/diagnostics.js fmtAgo).
+  function fmtAgo(s) {
+    if (typeof s !== 'number' || !isFinite(s)) return '?';
+    const a = Math.abs(Math.round(s));
+    return (s < 0 ? '+' : '-') + Math.floor(a / 3600) + ':' + String(Math.floor((a % 3600) / 60)).padStart(2, '0') + ':' + String(a % 60).padStart(2, '0');
+  }
   function renderDiagnostics(s) {
     if (typeof T.getDiagnostics !== 'function') return null;
     const d = app.diag;
     const unmatched = d && Array.isArray(d.unmatched) ? d.unmatched : [];
     const undet = d && Array.isArray(d.undetectable) ? d.undetectable : [];
+    const items = d && Array.isArray(d.recentItems) ? d.recentItems : null;
     const count = h('span', { class: 'diag-count' + (unmatched.length ? ' warn' : ''), attrs: { title: t('diag.countTitle'), 'aria-label': t('diag.countTitle') + ': ' + unmatched.length }, text: d ? String(unmatched.length) : '–' });
     const summary = h('summary', { class: 'diag-summary' }, h('span', { text: t('diag.title') }), count);
     const details = h('details', { class: 'set-card diag', attrs: { id: 'diag', open: app.diagOpen } }, summary);
@@ -782,7 +796,7 @@
       h('dt', { text: t('diag.nameSource') }), h('dd', { class: 'break', text: src }),
       h('dt', { text: t('diag.patch') }), h('dd', { class: 'mono break', text: patches.length ? patches.join(', ') : t('diag.none') }),
       h('dt', { text: t('diag.build') }), h('dd', { class: 'mono', text: build.id ? build.id + ' · ' + t(build.tested ? 'diag.tested' : 'diag.untested') : t('diag.buildUnknown') }),
-      h('dt', { text: t('diag.save') }), h('dd', { class: 'mono', text: save.date || save.read ? t('diag.saveDate', { d: str(save.date), l: str(save.level), n: str(save.quests) }) : t('diag.saveNone') }));
+      h('dt', { text: t('diag.save') }), h('dd', { class: 'mono', text: save.date || save.read ? t('diag.saveDate', { d: str(save.date), l: str(save.level), m: str(save.map), n: str(save.quests) }) : t('diag.saveNone') }));
 
     const list = (items, fmt) => (items.length ? h('ul', { class: 'diag-list mono' }, ...items.map((x) => h('li', { text: fmt(x) }))) : h('p', { class: 'muted', text: t('diag.none') }));
     const body = h('div', { class: 'diag-body' },
@@ -793,6 +807,10 @@
       h('p', { class: 'hint', text: t('diag.unmatchedHint') }),
       h('h3', { class: 'diag-sub', text: t('diag.undetectable', { n: undet.length }) }),
       list(undet, (r) => r.id + ' — ' + str(r.cutoff) + ' · ' + (r.reason === 'detectFalse' || r.reason === 'noQuestId' ? t('diag.reason.' + r.reason) : str(r.reason)) + (r.status ? ' · ' + r.status : '')),
+      items ? h('h3', { class: 'diag-sub', text: t('diag.items', { n: items.length }) }) : null,
+      items ? list(items, (x) => x.code + '  ' + fmtAgo(x.ago)) : null,
+      items ? h('p', { class: 'hint', text: t('diag.itemsHint') }) : null,
+      !items && save.inventory === false ? h('p', { class: 'muted', text: t('diag.itemsNone') }) : null,
       h('div', { class: 'diag-actions' },
         h('button', { class: 'btn', attrs: { type: 'button', id: 'diag-copy' }, text: t('diag.copy'), on: { click: () => copyReport() } })));
 

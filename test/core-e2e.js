@@ -130,9 +130,9 @@ async function main() {
     const core = sb.require('./lib/core');
     const i18n = sb.require('./lib/i18n');
     const { extract } = sb.require('./lib/state');
-    const { build } = sb.require('./lib/report');
+    const { build, makeEval, regionLine } = sb.require('./lib/report');
     const { collectDiagnostics, formatDiagnostics } = sb.require('./lib/diagnostics');
-    const { createTimeline, exportTimeline } = sb.require('./lib/timeline');
+    const { createTimeline, exportTimeline, snapshotOf, itemSnapshotOf } = sb.require('./lib/timeline');
     i18n.setLang('en');
     const rules = rulesInfo.rules;
     const { latest } = await core.decodeSave(saveBytes, key);
@@ -158,6 +158,8 @@ async function main() {
     // Diagnostics: no personal data, even with hostile inputs (full paths where only names belong).
     const user = (() => { try { return os.userInfo().username; } catch { return process.env.USERNAME || ''; } })();
     const needles = [os.homedir(), gameDir, save, path.dirname(save), exe, '7656119', user].filter((s) => s && s.length >= 3);
+    // Hostile item codes (paths) with a time inside the 24 h window: they must not reach the report either.
+    const hostileItems = new Map([...st.items, [save, { table: 'inventory', time: st.dateTime, held: true }], [os.homedir(), { table: 'accessory', time: st.dateTime, held: true }]]);
     const d = collectDiagnostics({
       mode: 'web', version: '0.0.0-test', uiLang: 'en', exact: true,
       rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'sidecar' },
@@ -166,19 +168,68 @@ async function main() {
       nameFiles: [path.join(path.dirname(save), 'names.xx.json')],
       patches: [path.join(paksDir, 'ProjectPBZ-Windows_C.pak')],
       build: { id: buildId, tested: true },
-      st, result: { ...exact, unmatched: [...exact.unmatched, { id: save, folder: path.dirname(save), completion: os.homedir() }] },
+      st: { ...st, items: hostileItems }, result: { ...exact, unmatched: [...exact.unmatched, { id: save, folder: path.dirname(save), completion: os.homedir() }] },
       ok: true,
       timeline: { enabled: true, count: 3, error: `EACCES ${os.homedir()}` },
     });
     const text = formatDiagnostics(d);
     const blob = `${text}\n${JSON.stringify(d)}`.toLowerCase();
     const leaks = needles.filter((n) => blob.includes(n.toLowerCase()) || blob.includes(n.toLowerCase().replace(/\\/g, '/')) || blob.includes(JSON.stringify(n).slice(1, -1).toLowerCase()));
-    check(leaks.length === 0, `diagnostics report has no personal data (checked: home dir, game path, save path, exe, '7656119', OS user)${leaks.length ? ` — LEAK: ${leaks.length}` : ''}`);
+    check(leaks.length === 0, `diagnostics report has no personal data (checked: home dir, game path, save path, exe, '7656119', OS user; also as item codes)${leaks.length ? ` — LEAK: ${leaks.length}` : ''}`);
+    const itemLines = text.split('\n').filter((l) => /^ {2}- /.test(l) && text.indexOf(l) > text.indexOf('items acquired'));
+    const ri = d.recentItems;
+    check(Array.isArray(ri) && ri.length > 0 && ri.length <= 30 && ri.every((x, i) => Object.keys(x).join() === 'code,ago' && Number.isInteger(x.ago) && x.ago <= 86400 && (i === 0 || ri[i - 1].ago <= x.ago))
+      && ri.some((x) => x.code === '?') && itemLines.length === ri.length && itemLines.every((l) => /^ {2}- [A-Za-z0-9_.?-]+ {2}[-+]\d+:\d{2}:\d{2}$/.test(l)) && !/\d{2}\.\d{2}\.\d{2}/.test(itemLines.join('\n')),
+      `diagnostics recent items: ${ri ? ri.length : '-'} codes, newest first, offsets before the save only (no time of day, no names; hostile codes → "?")`);
     check(/text patch: ProjectPBZ-Windows_C\.pak/.test(text) && /date \d{4}-\d{2}-\d{2} /.test(text) && !/\d{2}\.\d{2}\.\d{2}\b/.test(text.split('\n').find((l) => l.startsWith('save:')) || ''),
       'diagnostics keep the pak file name and only the date of the save');
     const real = collectDiagnostics({ mode: 'web', version: '0.0.0-test', uiLang: 'en', rules: { version: rules.rulesVersion, schemaVersion: 1, source: 'embedded' },
       keyMap: require('../data/names.json'), namesSource: names.source, patches: [], build: { id: buildId, tested: true }, st, result: plain, ok: true, timeline: null });
     console.log(formatDiagnostics(real).trimEnd().split('\n').map((l) => `      | ${l}`).join('\n'));
+
+    // Items on the real save: the four Inventory tables, table + time + held only; itemSeen.
+    const TIME = /^\d{4}\.\d{2}\.\d{2}-\d{2}\.\d{2}\.\d{2}$/;
+    const tables = new Set([...st.items.values()].map((v) => v.table));
+    check(['mainWeapon', 'shaChiWeapon', 'accessory', 'inventory'].every((x) => tables.has(x))
+      && [...st.items.values()].every((v) => Object.keys(v).sort().join() === 'held,table,time' && (v.time === null || TIME.test(v.time))),
+      `items: ${st.items.size} codes from MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (table, time, held only)`);
+    const evR = makeEval(st, rules);
+    const held = [...st.items].find(([, v]) => v.held), usedUp = [...st.items].find(([, v]) => !v.held);
+    check(evR({ itemSeen: held[0] }) === true && (!usedUp || evR({ itemSeen: usedUp[0] }) === false) && evR({ itemSeen: 'NoSuchItem_000' }) === false,
+      `itemSeen on the real save: held → true, used up (CurrentAmount 0${usedUp ? `, e.g. ${usedUp[0]}` : ', none here'}) → false, absent → false`);
+    // Header area: from the region maps (last bell used), never from the level name.
+    // The expected map is computed here independently: the newest RecentlyInteractedAtByMap entry.
+    const loc = regionLine(st, names);
+    const byMap = Object.entries(latest.data.BellManager?.RecentlyInteractedAtByMap || {}).sort((a, b) => b[1] - a[1]);
+    const wantName = byMap.length ? names.region(byMap[0][0]) : null;
+    check(byMap.length > 0 && !!wantName && !!loc && loc.loc === wantName && loc.src === 'last bell used' && st.region.code === byMap[0][0],
+      `header area: newest bell map ${byMap.length ? byMap[0][0] : '-'} → "${loc ? loc.loc : '-'}" (${loc ? loc.src : '-'}), level ${st.currentLevel} not used`);
+
+    // A save without Inventory: items unknown → the sword rule is "unknown" (never "missed") even with the
+    // lift cutoff passed, and the timeline logs no items and keeps its stored item snapshot.
+    const passLift = (s) => ({ ...s, quests: new Map([...s.quests, ['MainCh1-ShiXinCun', { id: 'MainCh1-ShiXinCun', folder: 'Main', completion: 'Succeded', branches: {}, progress: null }]]) });
+    const stNoInv = extract({ ...latest.data, Inventory: null });
+    const swordOf = (s) => build(s, rules, names).closed.find((x) => x.key === 'lu-elevator-sword') || {};
+    const thiefOf = (s) => build(s, rules, names).infoLater.concat(build(s, rules, names).infoNow).find((x) => x.key === 'lu-wounded-thief-manual') || {};
+    const noInvSword = swordOf(passLift(stNoInv)), emptySword = swordOf(passLift({ ...st, items: new Map() }));
+    let nStore = null;
+    const ntl = createTimeline({ load: () => nStore, save: (x) => { nStore = JSON.parse(JSON.stringify(x)); } });
+    await ntl.record(st, 'n1');
+    const storedItems = JSON.stringify(nStore.items);
+    const n2 = await ntl.record(stNoInv, 'n2');
+    const n3 = await ntl.record(st, 'n3');
+    check(stNoInv.items === null && noInvSword.status === 'unknown' && emptySword.status === 'missed' && thiefOf(stNoInv).done === false
+      && !n2.some((r) => r.kind === 'item') && !n3.some((r) => r.kind === 'item') && JSON.stringify(nStore.items) === storedItems,
+      `save without Inventory: sword rule ${noInvSword.status} with the cutoff passed (empty item tables → ${emptySword.status}); thief info not done; timeline items ${n2.length}/${n3.length}, snapshot kept`);
+    const dNoInv = collectDiagnostics({ st: stNoInv, ok: true });
+    check(dNoInv.recentItems === null && dNoInv.save.inventory === false && /no Inventory in this save/.test(formatDiagnostics(dNoInv)), 'diagnostics: a save without Inventory says so');
+    // Mandate Encampment rules are bell-based: before the encampment (only the outer-gate bell lit on the way
+    // to the Village of Lu), neither the Baishan body warning nor the Red warning is in the default view.
+    const encReached = [...st.bells].some((b) => /^Bell_(YXZR|ZDDY)/.test(b) && b !== 'Bell_YXZR_018');
+    if (!encReached) {
+      check(!plain.infoNow.some((i) => i.key === 'red-encampment') && !plain.warnings.some((w) => w.named.some((it) => it.key === 'baishan-body')),
+        'real save before the encampment: no Red / Baishan body warning in the default view');
+    } else console.log('      (this save has encampment bells: the before-encampment check is skipped)');
 
     // Timeline: baseline, no duplicates on a re-read, one record for one change, the cap.
     let stored = null;
@@ -231,6 +282,30 @@ async function main() {
     try { await delFail.clear(); } catch { clearFailed = true; }
     check(removed === 1 && afterClear === 0 && rebase.length === st.quests.size && clearFailed && (await delFail.count()) === st.quests.size,
       'timeline: clear() removes the stored copy and resets; a failed remove keeps the records');
+
+    // Item records: the first read is a baseline for items, a new code → one record, none after a restart;
+    // a stored timeline without an item snapshot (older format) is a baseline too; the cap covers them.
+    const withItems = (s, extra) => ({ ...s, items: new Map([...s.items, ...extra]) });
+    let iStore = null;
+    const itl = createTimeline({ load: () => iStore, save: (x) => { iStore = JSON.parse(JSON.stringify(x)); } });
+    const i1 = await itl.record(st, 'a');
+    const stI = { ...withItems(st, [['TEST_NewItem', { table: 'accessory', time: '2099.01.01-00.00.00', held: true }]]), dateTime: 'later' };
+    const i2 = await itl.record(stI, 'b');
+    const i3 = await createTimeline({ load: () => iStore, save: () => {} }).record(stI, 'c');
+    let legacyStore = null;
+    const ltl = createTimeline({ load: () => ({ version: 1, snapshot: iStore.snapshot, records: [] }), save: (x) => { legacyStore = JSON.parse(JSON.stringify(x)); } });
+    const l1 = await ltl.record(stI, 'd');
+    const l2 = await ltl.record(withItems(stI, [['TEST_Another', { table: 'inventory', time: null, held: false }]]), 'e');
+    check(i1.length === st.quests.size && !i1.some((r) => r.kind === 'item') && iStore.items && Object.keys(iStore.items).length === stI.items.size
+      && i2.length === 1 && i2[0].kind === 'item' && i2[0].code === 'TEST_NewItem' && i2[0].table === 'accessory' && i2[0].at === '2099.01.01-00.00.00' && i2[0].t === 'later' && i2[0].readAt === 'b'
+      && i3.length === 0 && l1.length === 0 && !!legacyStore && !!legacyStore.items && l2.length === 1 && l2[0].code === 'TEST_Another' && l2[0].at === null,
+      `timeline items: baseline 0 item records (${st.items.size} codes stored), one new code → 1, restart → ${i3.length}, old stored timeline without items → baseline ${l1.length}, then ${l2.length}`);
+    console.log(`      item record sample: ${JSON.stringify(i2[0])}`);
+    let icStore = null;
+    const icap = createTimeline({ load: () => ({ version: 1, snapshot: snapshotOf(st), items: itemSnapshotOf(st), records: [] }), save: (x) => { icStore = x; }, cap: 3 });
+    const five = Array.from({ length: 5 }, (_, k) => [`TEST_Cap${k}`, { table: 'inventory', time: `2099.01.01-00.00.0${k}`, held: true }]);
+    const ic = await icap.record(withItems(st, five), 'x');
+    check(ic.length === 5 && icStore.records.length === 3 && icStore.records.map((r) => r.code).join() === 'TEST_Cap2,TEST_Cap3,TEST_Cap4', 'timeline items: oldest first within a read, capped with the quest records');
   }
 
   // ---- save-independent checks (synthetic state, rules file only) ----
@@ -264,6 +339,71 @@ async function main() {
     check(rejects(withCut({ exactWhen: { any: [{ mapUnlocked: 'A' }, { mapUnlokced: 'B' }] } })) && rejects(withCut({ exactWhen: { not: { bosKilled: 'x' } } }))
       && rejects(withCut({ whereExact: { tr: '', en: ' ' } })) && !rejects(withCut({ exactWhen: { questBranch: 'Q', branch: '1', state: 'Completed' } })) && !rejects(rules),
       'rules schema: unknown exactWhen keys (nested) and empty whereExact are rejected at load');
+    check(rejects(withCut({ exactWhen: { itemSeen: 5 } })) && rejects(withCut({ exactWhen: { itemSeen: '' } })) && rejects(withCut({ exactWhen: { mapUnlocked: 'A', except: ['Bell_X'] } }))
+      && rejects(withCut({ exactWhen: { bellPrefix: 'X', except: 'Bell_X' } })) && !rejects(withCut({ exactWhen: { all: [{ itemSeen: 'LuanYing' }, { lastBellPrefix: 'YXZR', except: ['Bell_YXZR_018'] }] } })),
+      'rules schema: itemSeen must be a code; except needs bellPrefix / lastBellPrefix and an array');
+
+    // itemSeen: held → true; used up (CurrentAmount 0) or absent → false; a state without item tables → unknown.
+    i18n.setLang('en');
+    const stItems = { ...empty, items: new Map([['HeldSword', { table: 'mainWeapon', time: null, held: true }], ['UsedKey', { table: 'inventory', time: null, held: false }]]) };
+    const evI = makeEval(stItems, rules);
+    check(evI({ itemSeen: 'HeldSword' }) === true && evI({ itemSeen: 'UsedKey' }) === false && evI({ itemSeen: 'Nope' }) === false
+      && evI({ not: { itemSeen: 'Nope' } }) === true && makeEval(empty, rules)({ itemSeen: 'HeldSword' }) === null,
+      'itemSeen (synthetic): held → true, used up / absent → false, no item tables → unknown');
+
+    // Item rule, info rule with doneWhen, missable activeWhen (a small rules file of their own).
+    const mini = validateRules({
+      schemaVersion: 1, rulesVersion: 'test',
+      cutoffs: { c: { where: { en: 'Before X', tr: 'X' }, label: { en: 'X', tr: 'X' }, passedWhen: { mapUnlocked: 'Passed' } } },
+      missables: [
+        { id: 'sword', quest: null, names: { en: 'Sword', tr: 'Kılıç' }, cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'S' }, hintNotStarted: { en: 'take the sword', tr: 'x' } },
+        { id: 'thief', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'R' }, warn: { en: 'give the book', tr: 'x' }, warnNamed: { en: 'Thief: give the book', tr: 'x' } },
+        { id: 'late', quest: 'Q', cutoff: 'c', visibleWhen: { questSeen: 'Q' }, activeWhen: { mapUnlocked: 'Camp' }, warn: { en: 'w', tr: 'w' } },
+      ],
+    }, 'mini.json');
+    const quest = (id) => [id, { id, folder: 'Branch', completion: 'Started', branches: {}, progress: null }];
+    const base = { ...empty, maps: new Set(['A']), quests: new Map([quest('Q'), quest('UnmappedSide')]), items: new Map() };
+    const namesK = { ...names, known: (id) => id !== 'UnmappedSide' };
+    const rowOf = (res, id) => res.closed.find((x) => x.key === id) || {};
+    const b1 = build(base, mini, namesK); // nothing picked up, before the cutoff, an unmatched side quest in the save
+    const b2 = build({ ...base, maps: new Set(['A', 'Passed']) }, mini, namesK);
+    const b3 = build({ ...base, items: new Map([['S', { table: 'mainWeapon', time: null, held: true }], ['R', { table: 'accessory', time: null, held: true }]]) }, mini, namesK);
+    const b4 = build({ ...base, maps: new Set(['A', 'Camp']) }, mini, namesK);
+    check(b1.unmappedSide.length === 1 && rowOf(b1, 'sword').status === 'notStarted' && b1.warnings.some((w) => w.hints.has('take the sword')) && !b1.undetectable.some((u) => u.id === 'sword')
+      && rowOf(b2, 'sword').status === 'missed' && /not picked up/.test(rowOf(b2, 'sword').note || '') && rowOf(b3, 'sword').status === 'done'
+      && !b3.warnings.some((w) => w.hints.has('take the sword')),
+      `item rule: not picked up → ${rowOf(b1, 'sword').status} (unmatched side quests ignored), after the cutoff → ${rowOf(b2, 'sword').status} (${rowOf(b2, 'sword').note}), picked up → ${rowOf(b3, 'sword').status}`);
+    const thiefNow = (b) => b.infoNow.some((i) => i.key === 'thief');
+    const thiefLater = b3.infoLater.find((i) => i.key === 'thief');
+    check(thiefNow(b1) && !thiefNow(b3) && !!thiefLater && thiefLater.done === true && thiefLater.warnNamed === 'Thief: give the book (done)',
+      `info rule with doneWhen: active until done, then hidden layer only, marked: "${thiefLater && thiefLater.warnNamed}"`);
+    const named = (b, id) => b.warnings.some((w) => w.named.some((it) => it.key === id));
+    check(!named(b1, 'late') && named(b4, 'late') && rowOf(b1, 'late').status === 'open',
+      'missable activeWhen: the default-view warning waits for it; the journal row is unchanged');
+
+    // Mandate Encampment (real rules): the outer-gate bell lit on the way to the Village of Lu does not count.
+    const encSt = (bells, lastBell) => ({ ...empty, maps: new Set(['XiGu', 'FuJiZhiLin', 'LuJiaCun']), levels: new Set(['zhengdaodaying']), currentLevel: 'Zhengdaodaying',
+      bells: new Set(bells), lastBell, quests: new Map([['BaiShanMiWen', { id: 'BaiShanMiWen', folder: 'Branch', completion: 'Started', branches: {}, progress: null }]]) });
+    const inLu = build(encSt(['Bell_YXZR_018', 'Bell_SXC_01_07'], 'Bell_SXC_01_07'), rules, names);
+    const inCamp = build(encSt(['Bell_YXZR_018', 'Bell_SXC_01_07', 'Bell_YXZR_011'], 'Bell_YXZR_011'), rules, names);
+    const leftCamp = build(encSt(['Bell_YXZR_018', 'Bell_YXZR_011', 'Bell_SZ_001'], 'Bell_SZ_001'), rules, names);
+    const red = (b) => b.infoNow.some((i) => i.key === 'red-encampment');
+    check(!named(inLu, 'baishan-body') && !red(inLu) && !inLu.infoLater.some((i) => i.key === 'red-encampment')
+      && named(inCamp, 'baishan-body') && red(inCamp) && !red(leftCamp) && leftCamp.infoLater.some((i) => i.key === 'red-encampment'),
+      'encampment rules: in the Village of Lu (level Zhengdaodaying, outer-gate bell only) no Baishan body / Red warning; at an encampment bell both; Red leaves the default view after the encampment');
+
+    // regionOf / regionLine: the newest bell wins; without bell times the last unlocked map; an unknown map → no line.
+    const { regionOf } = sb.require('./lib/state');
+    const { regionLine } = sb.require('./lib/report');
+    const r1 = regionOf({ RecentlyInteractedAtByMap: { XiGu: 100, LuJiaCun: 300, FuJiZhiLin: 200 }, UnLockBigMapMaskWidgetNames: ['XiGu', 'FuJiZhiLin', 'LuJiaCun', 'Later'] });
+    const r2 = regionOf({ RecentlyInteractedAtByMap: {}, UnLockBigMapMaskWidgetNames: ['XiGu', 'FuJiZhiLin'] });
+    const r3 = regionOf({});
+    const namesR = { ...names, region: (code) => ({ LuJiaCun: 'Village of Lu', FuJiZhiLin: 'Crimson Forest' })[code] || null };
+    const l1r = regionLine({ region: r1 }, namesR), l2r = regionLine({ region: r2 }, namesR);
+    check(r1.code === 'LuJiaCun' && r1.source === 'bell' && r2.code === 'FuJiZhiLin' && r2.source === 'map' && r3 === null
+      && l1r.loc === 'Village of Lu' && l1r.src === 'last bell used' && l2r.loc === 'Crimson Forest' && l2r.src === 'last map unlocked'
+      && regionLine({ region: { code: 'NoSuchMap', source: 'bell' } }, namesR) === null && regionLine({ region: null }, namesR) === null,
+      'regionOf: newest bell wins, else the last unlocked map; an unknown map code → no area line');
   }
 
   // TransientError for a truncated file, from the core directly.

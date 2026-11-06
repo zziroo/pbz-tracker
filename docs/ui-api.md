@@ -62,7 +62,9 @@ interface State {
   header: {
     saveTime: string;          // "05.11.2026 03:37" (game save time)
     playTime: string;          // "12:01"
-    location: string | null;   // localized region name or null
+    location: string | null;   // localized region name or null: the region map of the last bell used (else the last map
+                               // unlocked), never the level name (one level can hold several regions)
+    locationNote?: string | null; // localized source of `location`, e.g. "last bell used"; the page shows it in brackets
     build: { id: string | null; tested: boolean; text: string; quiet?: boolean };  // text = localized header line; quiet: unknown build without the "untested" colour
     notices: string[];         // localized one-liners: patch found, name fallback, rules source/version ...
   } | null;                    // null when ok === false and nothing was ever read
@@ -122,19 +124,36 @@ interface Diagnostics {
   names: { keyMapQuests: number; source: 'patch' | 'table' | null; sourceName: string | null; sidecars: string[] };
   patches: string[];           // text patch file names (no folders)
   build: { id: string | null; tested: boolean };
-  save: { read: boolean; date: string | null; level: string | null; quests: number | null };  // date "YYYY-MM-DD"
+  save: { read: boolean; date: string | null; level: string | null; map: string | null; quests: number | null; inventory: boolean | null };  // date "YYYY-MM-DD"; level = raw level name, map = region map code of the header; inventory false = the save has no Inventory tables (items unknown, recentItems null)
   unmatched: Array<{ id: string; folder: string; completion: string | null }>;   // quests the name table does not know
   undetectable: Array<{ id: string; cutoff: string | null; reason: 'detectFalse' | 'noQuestId'; status: Status | null }>;  // undetectable rules in range for this save
+  recentItems: Array<{ code: string; ago: number }> | null;  // items acquired in the 24 h before the save's own timestamp (not the
+                               // system clock), newest first, at most 30; ago = seconds before it (negative = after). Codes only,
+                               // never names or a time of day (an unexpected code becomes "?"). null = nothing read.
   timeline: { enabled: boolean; count: number; error: string | null } | null;     // error: a short code only
   report: string;              // plain text of all of the above
 }
 
 interface TimelineExport {
   tool: 'pbz-tracker'; version: string; format: 1; exportedAt: string; count: number;
-  records: Array<{ t: string; readAt: string; questId: string; folder: string; from: string | null; to: string | null;
-                   branches: Record<string, string>; progress: string | null; level: string | null }>;
-  // from: null = the quest appeared; to: null = the quest is no longer in the save (e.g. an older save was loaded).
+  records: Array<QuestRecord | ItemRecord>;
   // t is the save's own date and time: an export contains play times.
+}
+
+interface QuestRecord {        // no `kind`
+  t: string; readAt: string; questId: string; folder: string; from: string | null; to: string | null;
+  branches: Record<string, string>; progress: string | null; level: string | null;
+  // from: null = the quest appeared; to: null = the quest is no longer in the save (e.g. an older save was loaded).
+}
+
+interface ItemRecord {         // an item code that appeared in the save's Inventory tables (lib/state.js items)
+  kind: 'item'; t: string; readAt: string; code: string;
+  table: 'mainWeapon' | 'shaChiWeapon' | 'accessory' | 'inventory';
+  at: string | null;           // the save's own acquisition time of the item (DateTime / DirtyTime / FirstAddTime)
+  level: string | null;
+  // The first read without a stored item snapshot (new timeline, or one stored before item records existed) is a
+  // baseline: no item records. A read without Inventory tables logs no items and keeps the stored item snapshot. An item that disappears (older save loaded) is not logged; if it comes back it is
+  // logged again. Same CAP (2000 records, quest and item records together).
 }
 
 interface About {
