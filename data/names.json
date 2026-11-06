@@ -166,6 +166,11 @@
       "locres": "QuestRumor_018",
       "guessKey": false,
       "guessEn": false
+    },
+    "MiaoShouKongKong": {
+      "locres": "QuestCollect_003",
+      "guessKey": false,
+      "guessEn": false
     }
   },
   "regions": {
