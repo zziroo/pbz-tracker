@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.4",
+  "rulesVersion": "2026-11-06.5",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -1437,7 +1437,11 @@
         ],
         "checked": "page"
       },
-      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003)."
+      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003). Verified 2026-11-06: the Village of Lu hand-in completes MiaoShouKongKong branch 3 (and 3-1); T_05001..3 drop to 0; Fine Thread is probably AC_Control (acquired 03:46).",
+      "doneWhen": {
+        "questBranch": "MiaoShouKongKong",
+        "branch": "3"
+      }
     },
     {
       "type": "info",

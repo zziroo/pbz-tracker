@@ -83,5 +83,11 @@
     "tr": "Peçesiz Heykel",
     "guess": false,
     "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_003; the lu rule text says Açığa Çıkan Heykel); rule lu-quick-hand-treasures."
+  },
+  "AC_Control": {
+    "en": "Fine Thread",
+    "tr": "İnce İplik",
+    "guess": true,
+    "note": "acquired right after the Village of Lu hand-in to Quick Hand Zhang (2026-11-06 03:46)"
   }
 }
