@@ -225,6 +225,18 @@
       "guessKey": false,
       "guessEn": true,
       "note": "心之踪迹; patch \"KALBİN İZİ\" (QuestStory_02_2); English \"The Heart's Trail\" from guides (Steam reports). Seen in a save 2026-11-06 (Pangzhen backstreet, map HouJie)."
+    },
+    "QiXingJianZhen": {
+      "locres": "QuestCollect_005",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "七星剑阵; patch \"YEDİ YILDIZ DÜZENİ\" (collect the Seven Stars disciples' memory flowers); \"Seven Stars Formation\" (guides). Seen in a save 2026-11-06 (Mandate Encampment)."
+    },
+    "XiaoXue": {
+      "locres": "QuestRumor_004",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "小雪; patch \"KAHRAMANLARIN HAYRANI XUE\"; \"Xue, Admirer of Heroes\" (keengamer). Boss BP_Monster_XiaoXue. Seen in a save 2026-11-06 (Mandate Encampment)."
     }
   },
   "regions": {
