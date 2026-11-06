@@ -297,6 +297,26 @@ button, input, select { font: inherit; color: inherit; }
 .item-text { display: block; overflow-wrap: anywhere; }
 .item-note { display: block; color: var(--muted); font-size: 13.5px; }
 
+/* Region groups of the warnings: the player's current region, other reached regions, then "later". */
+.group { margin-bottom: 22px; }
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.group-dot { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
+.group-current .group-title { color: var(--text); }
+.group-current .group-dot { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.group-later .group-title { color: var(--muted); }
+.group .cards:last-child { margin-bottom: 0; }
+
 .cards-info { grid-template-columns: 1fr; gap: 10px; }
 .card-info {
   display: flex;

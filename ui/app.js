@@ -499,9 +499,10 @@
       out.push(h('div', { class: 'norisk' }, icon('check', 'icon-xl'), h('p', { class: 'norisk-text', text: s.noRiskText || '' })));
     }
 
-    if (warnings.length) {
-      const list = h('div', { class: 'cards' });
-      for (const w of warnings) {
+    // Per-cutoff cards and info rows; `titleTag` is h3 inside a region group (whose heading is the h2).
+    const warnCards = (list, titleTag) => {
+      const grid = h('div', { class: 'cards' });
+      for (const w of list) {
         const items = Array.isArray(w.items) ? w.items : [];
         const ul = h('ul', { class: 'card-items' });
         for (const it of items) {
@@ -509,19 +510,34 @@
             h('span', { class: 'item-text', text: it.text || '' }),
             it.note ? h('span', { class: 'item-note', text: it.note }) : null));
         }
-        list.append(h('article', { class: 'card card-warn' },
-          h('h2', { class: 'card-title' }, icon('warn'), h('span', { text: w.where || '' })),
+        grid.append(h('article', { class: 'card card-warn' },
+          h(titleTag, { class: 'card-title' }, icon('warn'), h('span', { text: w.where || '' })),
           items.length ? ul : null));
       }
-      out.push(list);
-    }
+      return grid;
+    };
+    const infoCards = (list) => {
+      const grid = h('div', { class: 'cards cards-info' });
+      for (const line of list) grid.append(h('div', { class: 'card card-info' }, icon('info'), h('p', { class: 'info-text', text: line })));
+      return grid;
+    };
 
-    if (info.length) {
-      const list = h('div', { class: 'cards cards-info' });
-      for (const line of info) {
-        list.append(h('div', { class: 'card card-info' }, icon('info'), h('p', { class: 'info-text', text: line })));
+    // Grouped by game region when the transport provides it (State.groups): the region the player is in,
+    // other reached regions, then one anonymous "later" block. Older transports: the flat lists.
+    const groups = Array.isArray(s.groups) ? s.groups.filter((g) => g && ((Array.isArray(g.warnings) && g.warnings.length) || (Array.isArray(g.info) && g.info.length))) : [];
+    if (groups.length) {
+      for (const g of groups) {
+        const r = g.region || {};
+        const kind = r.current ? 'current' : r.reached ? 'reached' : 'later';
+        const sec = h('section', { class: 'group group-' + kind },
+          h('h2', { class: 'group-title' }, h('span', { class: 'group-dot', attrs: { 'aria-hidden': 'true' } }), h('span', { text: g.title || '' })));
+        if (Array.isArray(g.warnings) && g.warnings.length) sec.append(warnCards(g.warnings, 'h3'));
+        if (Array.isArray(g.info) && g.info.length) sec.append(infoCards(g.info));
+        out.push(sec);
       }
-      out.push(list);
+    } else {
+      if (warnings.length) out.push(warnCards(warnings, 'h2'));
+      if (info.length) out.push(infoCards(info));
     }
 
     p.replaceChildren(...out);

@@ -78,6 +78,18 @@ interface State {
     items: Array<{ text: string; note: string | null }>;  // named started quests, location hints, counts
   }>;
   info: string[];              // anonymous info warnings (e.g. the camp warning)
+  groups: Array<{              // the same warnings + info, grouped by game region (rules.json `regions`); only
+                               // non-empty groups, in order: the region the player is in, other reached regions
+                               // in story order, then ONE anonymous 'later' group for everything in unreached
+                               // regions (never named: a spoiler). Missing (older transport) → render warnings/info.
+    region: { id: string; name: string | null; current: boolean; reached: boolean };  // id = a rules.json key
+                               // ('later' for the merged group): never shown to the player, use `title` / `name`.
+                               // name = the header's region text (names.region(mapCode), else the rule table's own
+                               // names); null for 'later' or when nothing names it
+    title: string;             // localized heading: "Now: Pangzhen" / the region name / "Later"
+    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null }> }>;  // as `warnings`
+    info: string[];            // as `info`
+  }>;
   // Layer 2 (blurred in the Journal tab)
   journal: {
     sections: Array<{

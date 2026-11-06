@@ -429,6 +429,88 @@ async function main() {
     check(evPz(rules.cutoffs.mirage.exactWhen) === true && evNo(rules.cutoffs.mirage.exactWhen) === false
       && evPz(bridge.activeWhen) === true && evNo(bridge.activeWhen) === false,
       'mirage: exactWhen and the bridge hint need a Pangzhen bell (Bell_SZ_…), a look-alike prefix does not count');
+
+    // Region groups (real rules, English names): last bell Bell_SZ_031 in the Pangzhen backstreet (map HouJie)
+    // → the first group is Pangzhen, current; a Crimson Forest item still open sits under a reached group named
+    // like the header (names.region('FuJiZhiLin')); everything of unreached regions is in the single 'later' group.
+    const { regionsOf } = sb.require('./lib/report');
+    const { regionOf: regionOfBell } = sb.require('./lib/state');
+    const quests = (...ids) => new Map(ids.map((id) => [id, { id, folder: 'Branch', completion: 'Started', branches: {}, progress: null }]));
+    const bellMgr = { UnLockBigMapMaskWidgetNames: ['XiGu', 'FuJiZhiLin', 'LuJiaCun', 'PangZhen', 'HouJie'], RecentlyInteractedAtByMap: { PangZhen: 10, HouJie: 20 }, RecentlyInteractedBellID: 'Bell_SZ_031' };
+    const stHj = { ...stPz, maps: new Set(bellMgr.UnLockBigMapMaskWidgetNames), bells: new Set(['Bell_NLES_001', 'Bell_LZSJ_001', 'Bell_SXC_01_07', 'Bell_SZ_031']),
+      lastBell: 'Bell_SZ_031', region: regionOfBell(bellMgr), quests: quests('HuXinMiMi', 'JiuSiFuShang', 'XueMaiJueXing') };
+    const bHj = build(stHj, rules, nEn);
+    const g0 = bHj.groups[0], gIds = bHj.groups.map((g) => g.region.id);
+    const gOf = (key) => bHj.groups.find((g) => g.warnings.some((w) => w.named.some((it) => it.key === key)) || g.info.some((i) => i.key === key));
+    const later = bHj.groups.find((g) => g.region.id === 'later');
+    const unreached = new Set(regionsOf(stHj, rules, nEn).list.filter((r) => !r.reached).map((r) => r.id));
+    const primary = (id) => { const m = rules.missables.find((x) => x.id === id); return Array.isArray(m.region) ? m.region[0] : m.region; };
+    const laterKeys = later ? [...later.warnings.flatMap((w) => w.named.map((it) => it.key)), ...later.info.map((i) => i.key)] : [];
+    const orderOf = (id) => rules.regions[id].order;
+    const reachedIds = gIds.slice(1).filter((x) => x !== 'later');
+    check(!!g0 && g0.region.id === 'pangzhen' && g0.region.current === true && g0.region.reached === true && g0.region.name === 'Pangzhen'
+      && gOf('lake-secrets') === g0 && gOf('mirage-bridge-choice') === g0 && gIds.filter((x) => x === 'later').length === 1 && gIds[gIds.length - 1] === 'later'
+      && gIds.every((x) => x === 'later' || !unreached.has(x)) && bHj.groups.every((g) => g === later || (g.region.reached && !!g.region.name))
+      && reachedIds.join() === 'weeping-creek-valley,crimson-forest,village-of-lu' && reachedIds.every((x, i) => i === 0 || orderOf(reachedIds[i - 1]) < orderOf(x)),
+      `region groups: HouJie + Bell_SZ_031 → first group ${g0 && g0.region.id} (current), then reached regions by story order: ${gIds.join(' → ')}`);
+    const gCf = gOf('healers-mercy');
+    check(!!gCf && gCf.region.id === 'crimson-forest' && !gCf.region.current && gCf.region.reached && gCf.region.name === nEn.region('FuJiZhiLin') && gCf.region.name === 'Crimson Forest'
+      && gIds.indexOf('crimson-forest') > 0 && gIds.indexOf('crimson-forest') < gIds.indexOf('later'),
+      `region groups: an open Crimson Forest quest sits under the reached group "${gCf && gCf.region.name}" (names.region)`);
+    const regionsOfRule = (id) => { const m = rules.missables.find((x) => x.id === id); return Array.isArray(m.region) ? m.region : [m.region]; };
+    const flatKeys = (b) => [...b.warnings.flatMap((w) => w.named.map((it) => it.key)), ...b.infoNow.map((i) => i.key)];
+    const wantLater = flatKeys(bHj).filter((k) => regionsOfRule(k).every((r) => unreached.has(r))).sort().join();
+    check(!!later && later.region.name === null && !later.region.current && !later.region.reached && laterKeys.includes('bloodline-awakening')
+      && [...laterKeys].sort().join() === wantLater,
+      `region groups: unreached regions' items (${laterKeys.join(', ')}) are all inside the single anonymous 'later' group`);
+    // The groups hold exactly the default-view items, once each.
+    const flat = (b) => flatKeys(b).sort().join();
+    const grouped = (b) => b.groups.flatMap((g) => [...g.warnings.flatMap((w) => w.named.map((it) => it.key)), ...g.info.map((i) => i.key)]).sort().join();
+    // Hints are deduped per cutoff in the flat list but per cutoff-per-group in the groups: compare them as sets.
+    const sum = (b, f) => b.warnings.reduce((n, w) => n + f(w), 0), gsum = (b, f) => b.groups.reduce((n, g) => n + sum({ warnings: g.warnings }, f), 0);
+    const hintSet = (ws) => [...new Set(ws.flatMap((w) => [...w.hints]))].sort().join('|');
+    check(flat(bHj) === grouped(bHj) && sum(bHj, (w) => w.unnamed + w.tales) === gsum(bHj, (w) => w.unnamed + w.tales)
+      && hintSet(bHj.warnings) === hintSet(bHj.groups.flatMap((g) => g.warnings)) && hintSet(bHj.warnings) !== '',
+      'region groups: the same default-view items as warnings + infoNow, each once (hints compared as a set)');
+    // mapUnlocked is case-insensitive like regionsOf / names.region (the save spells ZhengDaoDaYing).
+    const evCase = makeEval({ ...stPz, maps: new Set(['ZhengDaoDaYing']) }, rules);
+    const rCase = regionsOf({ ...stPz, maps: new Set(['ZhengDaoDaYing']) }, rules, nEn).list.find((r) => r.id === 'mandate-encampment');
+    check(evCase({ mapUnlocked: 'Zhengdaodaying' }) === true && evCase({ mapUnlocked: 'zhengdaodaying' }) === true && evCase({ mapUnlocked: 'XiGu' }) === false
+      && rCase.reached === true && rCase.name === 'Mandate Encampment',
+      'mapUnlocked: case-insensitive (ZhengDaoDaYing in the save vs Zhengdaodaying in the rules), same for regionsOf');
+    // A sidecar rule whose region is missing or unknown (schema bypassed) never crashes build(): it lands in 'later'.
+    const sidecar = (patch) => { const r = JSON.parse(JSON.stringify(rules)); const m = r.missables.find((x) => x.id === 'healers-mercy'); delete m.region; Object.assign(m, patch); return r; };
+    const bMissing = build(stHj, sidecar({}), nEn), bUnknown = build(stHj, sidecar({ region: 'no-such-region' }), nEn);
+    const inLater = (b) => b.groups.find((g) => g.region.id === 'later')?.warnings.some((w) => w.named.some((it) => it.key === 'healers-mercy'));
+    check(inLater(bMissing) === true && inLater(bUnknown) === true && !bMissing.groups.some((g) => g.region.id !== 'later' && g.warnings.some((w) => w.named.some((it) => it.key === 'healers-mercy'))),
+      'region groups: a sidecar missable with a missing / unknown region lands in the later group, no crash');
+    // No regions table (the mini rules): no groups at all, and the terminal render keeps the flat layout.
+    const { render } = sb.require('./lib/report');
+    const bMini = build(base, mini, namesK);
+    const textMini = render({ st: base, result: bMini, names: namesK, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false });
+    const flatLine = textMini.split('\n').find((l) => l.includes('Before X'));
+    check(Array.isArray(bMini.groups) && bMini.groups.length === 0 && bMini.warnings.length === 1 && flatLine === '  ▶ Before X:' && /^      • take the sword$/m.test(textMini) && !/Later/.test(textMini),
+      'no regions table: groups is empty and the terminal report prints the flat layout');
+    // The id 'later' is reserved for the regions table.
+    const withLater = JSON.parse(JSON.stringify(rules)); withLater.regions.later = { order: 99, mapCodes: [], bellPrefixes: [] };
+    check(rejects(withLater), 'rules schema: regions.later is rejected (reserved id)');
+    // Current region by the last bell's prefix when the header's map code is unknown; the encampment's outer-gate
+    // bell (except) does not make it reached; a region array follows the current region.
+    const stEnc = { ...stHj, region: { code: 'NoSuchMap', source: 'bell', bell: 'Bell_YXZR_011' }, lastBell: 'Bell_YXZR_011', bells: new Set([...stHj.bells, 'Bell_YXZR_018', 'Bell_YXZR_011']) };
+    const stGate = { ...stHj, bells: new Set([...stHj.bells, 'Bell_YXZR_018']) };
+    const rEnc = regionsOf(stEnc, rules, nEn), rGate = regionsOf(stGate, rules, nEn);
+    const bEnc = build(stEnc, rules, nEn);
+    check(rEnc.current === 'mandate-encampment' && rGate.current === 'pangzhen' && !rGate.list.find((r) => r.id === 'mandate-encampment').reached
+      && rEnc.list.find((r) => r.id === 'mandate-encampment').name === 'Mandate Encampment'
+      && bEnc.groups[0].region.id === 'mandate-encampment' && bEnc.groups[0].info.some((i) => i.key === 'kneeling-npc-flowers') && gOf('kneeling-npc-flowers') === g0,
+      'region groups: current by last-bell prefix, Bell_YXZR_018 alone does not reach the encampment, a region array follows the current region');
+    // Schema: a missable with an unknown region, a missing region (with a regions table) and an unknown region
+    // on a cutoff are rejected; a rules file without a regions table needs no region fields.
+    const withMiss = (patch) => { const r = JSON.parse(JSON.stringify(rules)); Object.assign(r.missables.find((m) => m.id === 'healers-mercy'), patch); return r; };
+    const noRegion = withMiss({}); delete noRegion.missables.find((m) => m.id === 'healers-mercy').region;
+    check(rejects(withMiss({ region: 'no-such-region' })) && rejects(withMiss({ region: ['crimson-forest', 'nope'] })) && rejects(noRegion)
+      && rejects(withCut({ region: 'nope' })) && !rejects(withMiss({ region: ['pangzhen', 'crimson-forest'] })) && !rejects(mini),
+      'rules schema: an unknown or missing region is rejected (missable and cutoff); a file without regions needs none');
   }
 
   // TransientError for a truncated file, from the core directly.

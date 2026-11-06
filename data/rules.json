@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.12",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
+  "rulesVersion": "2026-11-06.13",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
     "game8": {
@@ -213,6 +213,133 @@
       ]
     }
   },
+  "regions": {
+    "_comment": "Oyun bölgeleri, hikâye sırasıyla (order). Uyarılar bölgeye göre gruplanır: oyuncunun olduğu bölge (st.region.code mapCodes içinde ya da son çanın öneki bellPrefixes içinde) önce, sonra ulaşılan bölgeler (haritası açılmış ya da bir çanına dokunulmuş; except: sayılmayan çanlar), ulaşılmamış olanların hepsi tek adsız \"ileride\" grubunda (bölge adı spoiler olur). Ad: names.region(mapCodes[0]) ile başlıktaki gibi; locres yalnız referans. names.json regions ile aynı kodlar/önekler. Her cutoff ve missable bir region taşır (işin YAPILDIĞI bölge; dizi ise ilki birincil).",
+    "weeping-creek-valley": {
+      "order": 1,
+      "names": {
+        "tr": "Ağlayan Dere Vadisi",
+        "en": "Weeping Creek Valley"
+      },
+      "locres": "Levelname_NLES_001",
+      "mapCodes": [
+        "XiGu"
+      ],
+      "bellPrefixes": [
+        "NLES",
+        "XG"
+      ]
+    },
+    "crimson-forest": {
+      "order": 2,
+      "names": {
+        "tr": "Kızıl Orman",
+        "en": "Crimson Forest"
+      },
+      "locres": "Levelname_LZSJ_001",
+      "mapCodes": [
+        "FuJiZhiLin"
+      ],
+      "bellPrefixes": [
+        "FJZL",
+        "LZSJ"
+      ]
+    },
+    "village-of-lu": {
+      "order": 3,
+      "names": {
+        "tr": "Lu Köyü",
+        "en": "Village of Lu"
+      },
+      "locres": "Levelname_SXC_01",
+      "mapCodes": [
+        "LuJiaCun"
+      ],
+      "bellPrefixes": [
+        "LJC",
+        "SXC"
+      ]
+    },
+    "pangzhen": {
+      "order": 4,
+      "names": {
+        "tr": "Pangzhen",
+        "en": "Pangzhen"
+      },
+      "locres": "Levelname_SZ_001",
+      "mapCodes": [
+        "PangZhen",
+        "HouJie"
+      ],
+      "bellPrefixes": [
+        "SZ"
+      ],
+      "_note": "HouJie = Pangzhen arka sokağı (kendi harita kodu, çanları SZ önekli)."
+    },
+    "mandate-encampment": {
+      "order": 5,
+      "names": {
+        "tr": "Ferman Ordugâhı",
+        "en": "Mandate Encampment"
+      },
+      "locres": "Levelname_YXZR_003",
+      "mapCodes": [
+        "Zhengdaodaying"
+      ],
+      "bellPrefixes": [
+        "YXZR",
+        "ZDDY"
+      ],
+      "except": [
+        "Bell_YXZR_018"
+      ],
+      "_note": "Bell_YXZR_018 dış kapı çanı, Lu Köyü yolunda yanıyor; kurallardaki gibi sayılmaz. Kayıtta harita kodu ZhengDaoDaYing yazımıyla görüldü (karşılaştırma büyük/küçük harf duyarsız)."
+    },
+    "mountain-of-imprisonment": {
+      "order": 6,
+      "names": {
+        "tr": "Hapis Dağı",
+        "en": "Mountain of Imprisonment"
+      },
+      "locres": "Levelname_DDSD_001",
+      "mapCodes": [],
+      "bellPrefixes": [],
+      "_note": "Harita kodu ve çan öneki henüz bilinmiyor (hiçbir kayıtta görülmedi)."
+    },
+    "meigu-lake": {
+      "order": 7,
+      "names": {
+        "tr": "Meigu Gölü",
+        "en": "Meigu Lake"
+      },
+      "locres": "Levelname_YGYW_001",
+      "mapCodes": [],
+      "bellPrefixes": [],
+      "_note": "Harita kodu ve çan öneki henüz bilinmiyor (hiçbir kayıtta görülmedi)."
+    },
+    "mirage-estate": {
+      "order": 8,
+      "names": {
+        "tr": "Serap Malikânesi",
+        "en": "Mirage Estate"
+      },
+      "locres": "Levelname_XM_001",
+      "mapCodes": [],
+      "bellPrefixes": [],
+      "_note": "Harita kodu ve çan öneki henüz bilinmiyor (hiçbir kayıtta görülmedi)."
+    },
+    "mount-soulrend": {
+      "order": 9,
+      "names": {
+        "tr": "Ruhyaran Dağı",
+        "en": "Mount Soulrend"
+      },
+      "locres": "Levelname_LYZ_001",
+      "mapCodes": [],
+      "bellPrefixes": [],
+      "_note": "Son bölge; harita kodu ve çan öneki henüz bilinmiyor."
+    }
+  },
   "cutoffs": {
     "chilian": {
       "where": {
@@ -223,6 +350,7 @@
         "tr": "Bai Chilian'ı yenmek",
         "en": "Defeating Bai Chilian"
       },
+      "region": "crimson-forest",
       "whereExact": {
         "tr": "Kızıl Orman'ın son boss'u Bai Chilian'a girmeden önce (oyun uyarmaz; bağlı görevler sessizce kapanır)",
         "en": "Before the Crimson Forest's last boss, Bai Chilian (the game gives no warning; linked quests fail silently)"
@@ -255,6 +383,7 @@
         "tr": "Mirage Estate'e girmek (Green Serpent House kapısı)",
         "en": "Entering Mirage Estate (Green Serpent House gate)"
       },
+      "region": "pangzhen",
       "whereExact": {
         "tr": "Pangzhen'deki Green Serpent House kapısından Mirage Estate'e geçmeden önce (tartışmalı: oyun eksik görev varsa sorabilir; güvenli tarafta kal)",
         "en": "Before going through the Green Serpent House gate in Pangzhen into Mirage Estate (disputed: the game may ask if quests are unfinished; stay on the safe side)"
@@ -289,6 +418,7 @@
         "tr": "Last Chance çanı (Crusher & Saw sonrası)",
         "en": "The Last Chance bell (after the Crusher and the Saw)"
       },
+      "region": "mount-soulrend",
       "whereExact": {
         "tr": "The Crusher and the Saw dövüşünden sonraki \"Last Chance\" çanında, oyun seni açıkça uyardığında, onaylamadan önce",
         "en": "At the \"Last Chance\" bell after the Crusher and the Saw, when the game explicitly warns you, before confirming"
@@ -322,6 +452,7 @@
         "tr": "Pangzhen arka sokağı / Smuggler's Tunnel tek yönlü kapısı",
         "en": "Pangzhen back alley / Smuggler's Tunnel one-way door"
       },
+      "region": "pangzhen",
       "passedWhen": {
         "unknown": "kayıttan algılanamıyor; görev başarısız olursa kayıtta görünür"
       },
@@ -342,6 +473,7 @@
         "tr": "Jing Ye'yi yenmek",
         "en": "Defeating Jing Ye"
       },
+      "region": "weeping-creek-valley",
       "whereExact": {
         "tr": "Haydut Jing Ye'ye karşı dövüşten önce",
         "en": "Before the fight against Jing Ye, the outlaw"
@@ -376,6 +508,7 @@
         "tr": "Wu Lengshuang sonrası ceset incelemesi (Yubi'den önce)",
         "en": "Inspecting the body after Wu Lengshuang (before Yubi)"
       },
+      "region": "mandate-encampment",
       "whereExact": {
         "tr": "Ferman Ordugâhı'nda Wu Lengshuang dövüşünden sonra, ilerlemeden ve bir çana dokunmadan, dinlenmeden ya da kaydetmeden önce",
         "en": "In the Mandate Encampment, after the Wu Lengshuang fight and before moving on or touching a bell, resting or saving"
@@ -414,6 +547,7 @@
         "tr": "Village of Lu asansörü (Mu Xiaokui sonrası)",
         "en": "Village of Lu lift (after Mu Xiaokui)"
       },
+      "region": "village-of-lu",
       "whereExact": {
         "tr": "Lu Köyü'nde Mu Xiaokui'nin arenasındaki dövüşten sonra asansörle ayrılmadan önce",
         "en": "After the fight in Mu Xiaokui's arena in the Village of Lu, before leaving by the lift"
@@ -444,6 +578,7 @@
         "tr": "Smuggler's Tunnel'ı açmak",
         "en": "Opening the Smuggler's Tunnel"
       },
+      "region": "village-of-lu",
       "whereExact": {
         "tr": "Lu Köyü'nde Smuggler's Tunnel'ı açmadan önce (Old Man Gen ile Genç Efendi Lan'ın görevleri)",
         "en": "Before opening the Smuggler's Tunnel in the Village of Lu (Old Man Gen's and Young Master Lan's quests)"
@@ -472,6 +607,7 @@
         "tr": "Weeping Creek Valley'den çıkmak",
         "en": "Leaving Weeping Creek Valley"
       },
+      "region": "weeping-creek-valley",
       "whereExact": {
         "tr": "Ağlayan Dere Vadisi'nden bir sonraki bölgeye geçmeden önce",
         "en": "Before leaving Weeping Creek Valley for the next area"
@@ -494,6 +630,7 @@
   "missables": [
     {
       "id": "honor-among-thieves",
+      "region": "crimson-forest",
       "quest": null,
       "names": {
         "tr": "Honor Among Thieves",
@@ -517,6 +654,7 @@
     },
     {
       "id": "boulderguard",
+      "region": "crimson-forest",
       "quest": null,
       "names": {
         "tr": "Boulderguard",
@@ -545,6 +683,7 @@
     },
     {
       "id": "healers-mercy",
+      "region": "crimson-forest",
       "quest": "JiuSiFuShang",
       "cutoff": "chilian",
       "visibleWhen": {
@@ -560,6 +699,7 @@
     },
     {
       "id": "purge-the-sect",
+      "region": "crimson-forest",
       "quest": "QingLiMenHu",
       "cutoff": "chilian",
       "visibleWhen": {
@@ -575,6 +715,7 @@
     },
     {
       "id": "festering-secret",
+      "region": "crimson-forest",
       "quest": "NanYanZhiYin",
       "cutoff": "chilian",
       "visibleWhen": {
@@ -593,6 +734,7 @@
     },
     {
       "id": "flesh-lily-delivery",
+      "region": "crimson-forest",
       "quest": "XueRouHua",
       "suffix": {
         "tr": "1. kısım: karakoldaki teslim",
@@ -621,10 +763,14 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified)."
+      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley."
     },
     {
       "id": "lake-secrets",
+      "region": [
+        "pangzhen",
+        "meigu-lake"
+      ],
       "quest": "HuXinMiMi",
       "cutoff": "mirage",
       "guess": true,
@@ -637,10 +783,12 @@
           "dtgre-purple"
         ],
         "checked": "unverified"
-      }
+      },
+      "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure."
     },
     {
       "id": "journey-home",
+      "region": "village-of-lu",
       "quest": "GuiTu",
       "cutoff": "smuggler-tunnel",
       "visibleWhen": {
@@ -667,6 +815,7 @@
     },
     {
       "id": "red-encampment",
+      "region": "mandate-encampment",
       "type": "info",
       "guess": true,
       "visibleWhen": {
@@ -729,6 +878,7 @@
     },
     {
       "id": "bloodline-awakening",
+      "region": "mount-soulrend",
       "quest": "XueMaiJueXing",
       "cutoff": "final",
       "visibleWhen": {
@@ -740,10 +890,12 @@
           "powerpyx"
         ],
         "checked": "unverified"
-      }
+      },
+      "note": "Region: mount-soulrend = the final cutoff; the quest's own steps span earlier areas (not mapped)."
     },
     {
       "id": "mirrorwood-memory-flower",
+      "region": "crimson-forest",
       "quest": null,
       "names": {
         "tr": "Kızıl Orman: ilk anı çiçeğinin son yaprağı",
@@ -769,6 +921,7 @@
     },
     {
       "id": "peddler-gone",
+      "region": "crimson-forest",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -788,6 +941,7 @@
     },
     {
       "id": "apprentice-healer",
+      "region": "weeping-creek-valley",
       "quest": "JianXiYiShi",
       "cutoff": "jingye",
       "visibleWhen": {
@@ -804,7 +958,7 @@
         "tr": "Bu bölgede bir şifacının ot toplama işi var; otları toplamadan önce işi kabul et.",
         "en": "A healer in this area needs herbs; accept the task before gathering them."
       },
-      "note": "Accept before gathering the herbs; gathering first may leave the quest unobtainable (single comment, unverified).",
+      "note": "Accept before gathering the herbs; gathering first may leave the quest unobtainable (single comment, unverified). Region: weeping-creek-valley (the quest is visible with XiGu); the cutoff boss may be met from the Crimson Forest too (exactWhen).",
       "source": {
         "ids": [
           "steam-guide-nero",
@@ -816,6 +970,7 @@
     },
     {
       "id": "baishan-body",
+      "region": "mandate-encampment",
       "quest": "BaiShanMiWen",
       "cutoff": "baishan-body",
       "visibleWhen": {
@@ -867,6 +1022,7 @@
     },
     {
       "id": "pipa-dependency",
+      "region": "mandate-encampment",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -887,10 +1043,12 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "note": "Region: mandate-encampment (the Yubi fight); a guess, the rule has no activeWhen so it never reaches the default view."
     },
     {
       "id": "opera-house-treasure",
+      "region": "mirage-estate",
       "quest": null,
       "unverified": true,
       "names": {
@@ -914,6 +1072,7 @@
     },
     {
       "id": "lu-elevator-sword",
+      "region": "village-of-lu",
       "quest": null,
       "names": {
         "tr": "Köy arenası: kılıç",
@@ -942,6 +1101,7 @@
     },
     {
       "id": "lu-elevator-chest",
+      "region": "village-of-lu",
       "quest": null,
       "names": {
         "tr": "Köy arenası: amber sandığı",
@@ -968,6 +1128,7 @@
     },
     {
       "id": "young-mistress-ribbons",
+      "region": "village-of-lu",
       "quest": "ShaoZhu",
       "cutoff": "lu-elevator",
       "visibleWhen": {
@@ -990,6 +1151,7 @@
     },
     {
       "id": "young-master-lan",
+      "region": "village-of-lu",
       "quest": "LanJiaGongZi",
       "cutoff": "smuggler-tunnel",
       "visibleWhen": {
@@ -1010,6 +1172,7 @@
     },
     {
       "id": "severed-mindseal-first",
+      "region": "weeping-creek-valley",
       "quest": "GeJueXieZi",
       "cutoff": "leave-valley",
       "guess": true,
@@ -1047,6 +1210,7 @@
     },
     {
       "id": "xiaocui",
+      "region": "mountain-of-imprisonment",
       "quest": null,
       "unverified": true,
       "names": {
@@ -1069,6 +1233,7 @@
     },
     {
       "id": "dont-forget-me",
+      "region": "mirage-estate",
       "quest": null,
       "unverified": true,
       "names": {
@@ -1080,7 +1245,7 @@
       "visibleWhen": {
         "unknown": "bölge kodu bilinmiyor"
       },
-      "note": "Before Kui Yanyan: the puppet/tree trunk and the thin man. Single CN walkthrough.",
+      "note": "Before Kui Yanyan: the puppet/tree trunk and the thin man. Single CN walkthrough. Region: mirage-estate is a guess (Kui Yanyan's area is not mapped); only affects grouping once that region is reached.",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
@@ -1091,6 +1256,7 @@
     },
     {
       "id": "mandate-leaders-flower",
+      "region": "mandate-encampment",
       "quest": "BuMieXiaDan",
       "names": {
         "tr": "Ferman liderlerinin anı çiçeği",
@@ -1127,6 +1293,10 @@
     },
     {
       "id": "kneeling-npc-flowers",
+      "region": [
+        "pangzhen",
+        "mandate-encampment"
+      ],
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1204,10 +1374,11 @@
         ],
         "checked": "page"
       },
-      "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest. 17173 (2026-11-03): 2 in Pangzhen (Pond of Fading Song area after the Flaming Mane; Slums bell, down the stairs), 4 at the Mandate Encampment; light-blue HP bar. PowerPyx comments (2026-10-30/31): the dropped flower only shows a text prompt until the Shattered Hero's Courage is obtained; then it can be collected (player confirmed)."
+      "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest. 17173 (2026-11-03): 2 in Pangzhen (Pond of Fading Song area after the Flaming Mane; Slums bell, down the stairs), 4 at the Mandate Encampment; light-blue HP bar. PowerPyx comments (2026-10-30/31): the dropped flower only shows a text prompt until the Shattered Hero's Courage is obtained; then it can be collected (player confirmed). Region: pangzhen + mandate-encampment (first = primary); grouped under whichever the player is in."
     },
     {
       "id": "brother-once-more-start",
+      "region": "pangzhen",
       "type": "info",
       "quest": null,
       "guess": true,
@@ -1255,6 +1426,7 @@
     },
     {
       "id": "ledger-of-atonement-choice",
+      "region": "mountain-of-imprisonment",
       "type": "info",
       "quest": null,
       "guess": true,
@@ -1287,6 +1459,7 @@
     },
     {
       "id": "triple-threat-flowers",
+      "region": "mirage-estate",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1311,6 +1484,7 @@
     },
     {
       "id": "banyan-manual-save",
+      "region": "pangzhen",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1330,10 +1504,12 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "note": "Region: pangzhen is a guess (the banyan encounters are not mapped); the rule has no activeWhen so it never reaches the default view."
     },
     {
       "id": "lengtu-study",
+      "region": "mountain-of-imprisonment",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1353,10 +1529,12 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "note": "Region: mountain-of-imprisonment is a guess (the study is not mapped); visibleWhen is unknown so the rule never shows."
     },
     {
       "id": "myst-dock",
+      "region": "pangzhen",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1396,6 +1574,7 @@
     },
     {
       "id": "leave-none-alive-monk",
+      "region": "village-of-lu",
       "type": "info",
       "quest": null,
       "visibleWhen": {
@@ -1439,6 +1618,7 @@
       "type": "info",
       "quest": null,
       "id": "baishan-ju-choice",
+      "region": "mandate-encampment",
       "guess": true,
       "visibleWhen": {
         "questSeen": "BaiShanMiWen"
@@ -1493,6 +1673,7 @@
       "type": "info",
       "quest": null,
       "id": "journey-home-start-choice",
+      "region": "village-of-lu",
       "visibleWhen": {
         "mapUnlocked": "LuJiaCun"
       },
@@ -1532,6 +1713,7 @@
       "type": "info",
       "quest": null,
       "id": "lu-wounded-thief-manual",
+      "region": "village-of-lu",
       "guess": true,
       "visibleWhen": {
         "mapUnlocked": "LuJiaCun"
@@ -1572,6 +1754,7 @@
     },
     {
       "id": "quickhand-request-start",
+      "region": "crimson-forest",
       "quest": null,
       "guess": true,
       "names": {
@@ -1624,6 +1807,7 @@
       "type": "info",
       "quest": null,
       "id": "lu-quick-hand-treasures",
+      "region": "village-of-lu",
       "guess": true,
       "visibleWhen": {
         "mapUnlocked": "LuJiaCun"
@@ -1667,6 +1851,7 @@
       "type": "info",
       "quest": null,
       "id": "young-master-lan-start-choice",
+      "region": "village-of-lu",
       "guess": true,
       "visibleWhen": {
         "mapUnlocked": "LuJiaCun"
@@ -1708,6 +1893,7 @@
       "type": "info",
       "quest": null,
       "id": "mirage-bridge-choice",
+      "region": "pangzhen",
       "guess": true,
       "visibleWhen": {
         "questSeen": "HuXinMiMi"
@@ -1750,6 +1936,7 @@
       "type": "info",
       "quest": null,
       "id": "flesh-lily-give",
+      "region": "weeping-creek-valley",
       "guess": true,
       "visibleWhen": {
         "any": [
@@ -1810,6 +1997,7 @@
       "type": "info",
       "quest": null,
       "id": "quick-hand-escape-choice",
+      "region": "crimson-forest",
       "guess": true,
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
@@ -1853,6 +2041,7 @@
       "type": "info",
       "quest": null,
       "id": "cui-rootless-dew",
+      "region": "mountain-of-imprisonment",
       "guess": true,
       "visibleWhen": {
         "unknown": "bölge kodu bilinmiyor"
