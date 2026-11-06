@@ -237,6 +237,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "小雪; patch \"KAHRAMANLARIN HAYRANI XUE\"; \"Xue, Admirer of Heroes\" (keengamer). Boss BP_Monster_XiaoXue. Seen in a save 2026-11-06 (Mandate Encampment)."
+    },
+    "MoJiaoZhiNv": {
+      "locres": "QuestRumor_015",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "魔教之女; patch \"KARANLIK TARİKATIN KIZI\"; \"Daughter of the Dark Sect\" (allthings.how, keengamer): Red's tale at the Mandate Encampment. Seen in a save 2026-11-06."
     }
   },
   "regions": {
