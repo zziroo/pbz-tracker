@@ -152,7 +152,7 @@ function createTransport() {
     return {
       source: n.source,
       quest: (id) => n.quest(id),
-      region: (code) => (code ? n.region(code) : null),
+      region: (code, bell) => (code || bell ? n.region(code, bell) : null),
       missable: (id) => n.missable(id),
       known: (id) => !!NAMES.quests?.[id],
       get notice() { return n.notice; },

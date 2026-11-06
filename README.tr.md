@@ -44,7 +44,7 @@ Sayfayı oyunun yanında açık bırak. Save'i 3 saniyede bir kontrol eder (Ayar
 ## Spoiler politikası
 
 1. **Varsayılan görünüm:** yalnız eyleme dönük uyarılar, yani önünde bir kesim noktası olan ve hâlâ açık bir kaçırılabilir. Kesim noktası adıyla değil konumuyla anlatılır. Görev adı yalnız görev günlüğünde zaten başlamışsa yazılır; başlamamışsa yalnız konum ipucu verilir. Uyarı yoksa: "Şu an kaçırma riski yok."
-2. **Gizli (Günlük sekmesi):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Günlükte zaten başladığın görevlerin adı ve durumu açık; aşama sayaçları, notlar ve henüz karşılaşmadığın her şey satıra tıklayana kadar bulanık. Sayılı bölüm başlıkları görünür kalır. Her yenilemede hepsi yeniden bulanıklaşır.
+2. **Gizli (Günlük sekmesi):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Günlükte zaten başladığın görevlerin ve tamamlanan satırların adı ve durumu açık; aşama sayaçları, notlar ve henüz karşılaşmadığın her şey satıra tıklayana kadar bulanık. Sayılı bölüm başlıkları görünür kalır. Her yenilemede hepsi yeniden bulanıklaşır.
 3. **Hiç gösterilmez:** save'e göre henüz ulaşılmamış her şey. Sınır her zaman aracı çalıştıranın kendi save'ine göre çizilir.
 
 **Tam adlar (isteğe bağlı, varsayılan kapalı):** Ayarlar → "Uyarılarda yer ve boss adlarını göster" kesim noktasını yer ve boss adlarıyla yazar, ama yalnız save'ine göre ulaştığın bölgelerde; diğer kesim noktaları konumla anlatılmaya devam eder.

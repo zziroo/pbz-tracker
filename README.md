@@ -44,7 +44,7 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 ## Spoiler policy
 
 1. **Default view:** only actionable warnings, meaning a cutoff ahead of you with something still open. Cutoffs are described by position, never by name. A quest is named only if it already appears in your journal; otherwise you get a location hint. With nothing at risk you see: "No risk of missing anything right now."
-2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quests already in your journal show their name and status; step counters, notes and anything you haven't met yet stay blurred until you click a row. Section titles with their counts stay visible. Everything is blurred again on every refresh.
+2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quests already in your journal and anything already done show their name and status; step counters, notes and anything you haven't met yet stay blurred until you click a row. Section titles with their counts stay visible. Everything is blurred again on every refresh.
 3. **Never shown:** anything your save says you have not reached. The line is always drawn from the save of the person running the tool.
 
 **Exact names (opt-in, off by default):** Settings → "Show place and boss names in warnings" writes the cutoff with its place and boss names, but only for areas your save shows you have reached; every other cutoff keeps its positional wording.

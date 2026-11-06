@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.6",
+  "rulesVersion": "2026-11-06.7",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -232,7 +232,7 @@
         "en": "Before going through the Green Serpent House gate in Pangzhen into Mirage Estate (disputed: the game may ask if quests are unfinished; stay on the safe side)"
       },
       "exactWhen": {
-        "unknown": "region code not known yet"
+        "bellPrefix": "SZ"
       },
       "passedWhen": {
         "unknown": "bölge kodu henüz bilinmiyor"
@@ -250,7 +250,7 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later."
+      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later. exactWhen: a Pangzhen bell (Bell_SZ_…) was used — the Pangzhen map code was not in the save yet on 2026-11-06."
     },
     "final": {
       "where": {
@@ -1506,8 +1506,8 @@
         "questSeen": "HuXinMiMi"
       },
       "warn": {
-        "tr": "Bir sonraki büyük bölgeye geçerken oyun bir uyarıyla seçim sunarsa ve göl görevi bitmediyse geri dönmeyi seç.",
-        "en": "If the game warns you and offers a choice before the next major area while the lake quest is unfinished, choose to return."
+        "tr": "Bu kasabada bir köprüde biri seni uyarırsa ve göl görevin bitmediyse 'sonra dön' de.",
+        "en": "If someone warns you at a bridge in this town and your lake quest isn't finished, choose to come back later."
       },
       "warnNamed": {
         "tr": "Mirage Estate köprüsü (Pangzhen arka sokağı, Inanis'in uyarısı): Gölün Kalbindeki Sırlar bitmediyse \"Return later\" de; geçersen Kızıl Orman'daki bazı çanlar kapanır, Ağlayış Nereden Gelir'in iki adımı engellenir ve göl görevi yarım kalırsa gerçek olmayan son gelir.",
@@ -1519,6 +1519,24 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "activeWhen": {
+        "all": [
+          {
+            "questSeen": "HuXinMiMi"
+          },
+          {
+            "not": {
+              "questDone": "HuXinMiMi"
+            }
+          },
+          {
+            "bellPrefix": "SZ"
+          }
+        ]
+      },
+      "exactWhen": {
+        "bellPrefix": "SZ"
       }
     },
     {

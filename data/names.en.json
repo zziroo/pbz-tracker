@@ -34,13 +34,15 @@
     "RenOuZhongShu": "The Herald's Illusion",
     "DaHuang": "Dahuang",
     "XiaoCui": "Cui",
-    "MiaoShouKongKong": "Quick Hand's Request"
+    "MiaoShouKongKong": "Quick Hand's Request",
+    "MainCh2-SiZhen": "Town of Death"
   },
   "regions": {
     "XiGu": "Weeping Creek Valley",
     "FuJiZhiLin": "Crimson Forest",
     "LuJiaCun": "Village of Lu",
-    "Zhengdaodaying": "Mandate Encampment"
+    "Zhengdaodaying": "Mandate Encampment",
+    "PangZhen": "Pangzhen"
   },
   "missables": {
     "honor-among-thieves": "Honor Among Thieves",

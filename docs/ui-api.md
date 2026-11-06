@@ -82,7 +82,7 @@ interface State {
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
       rows: Array<{
         name: string; status: Status; statusText: string; progress: string | null; note: string | null;
-        nameBlur: boolean;     // false = the quest is in the player's journal (in the save, status open/done/missed,
+        nameBlur: boolean;     // false = status done (any row), or the quest is in the player's journal (in the save, status open/done/missed,
                                // not a guess): name readable. true = not started, unknown, guess (*) or an item rule
                                // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
         detailBlur: boolean;   // progress + note blurred (currently always true). Missing → true.

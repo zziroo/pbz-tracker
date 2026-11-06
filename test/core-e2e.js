@@ -150,7 +150,9 @@ async function main() {
       const [id, c] = cutoffOf(w.where) || [];
       const reached = !!c?.whereExact && c.exactWhen && !('unknown' in c.exactWhen);
       if (pickEn(c?.whereExact) === w.where) named++; else vague++;
-      if (id === 'final' || id === 'mirage') check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (region code unknown)`);
+      // A cutoff whose exactWhen is unknown (no region code yet) or false for this save must keep the vague text.
+      const exactOk = c ? makeEval(st, rules)(c.exactWhen) === true : false;
+      if (c && !exactOk) check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (area not reached / code unknown)`);
       else if (reached && id) console.log(`      exact: ${id} → ${w.where}`);
     }
     check(named > 0, `exact mode names ${named} warning(s), ${vague} stay vague`);

@@ -171,29 +171,60 @@
       "locres": "QuestCollect_003",
       "guessKey": false,
       "guessEn": false
+    },
+    "MainCh2-SiZhen": {
+      "locres": "QuestStory_02_1",
+      "guessKey": true,
+      "guessEn": true,
+      "note": "死镇 \"dead town\" = patch \"ÖLÜM KASABASI\" (QuestStory_02_1); English name from Steam reports (Town of Death)."
     }
   },
   "regions": {
     "XiGu": {
       "locres": "Levelname_NLES_001",
       "guessKey": true,
-      "guessEn": false
+      "guessEn": false,
+      "bellPrefixes": [
+        "NLES",
+        "XG"
+      ]
     },
     "FuJiZhiLin": {
       "locres": "Levelname_LZSJ_001",
       "guessKey": true,
-      "guessEn": false
+      "guessEn": false,
+      "bellPrefixes": [
+        "FJZL",
+        "LZSJ"
+      ]
     },
     "LuJiaCun": {
       "locres": "Levelname_SXC_01",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "bellPrefixes": [
+        "LJC",
+        "SXC"
+      ]
     },
     "Zhengdaodaying": {
       "locres": "Levelname_YXZR_003",
       "guessKey": false,
-      "guessEn": false
-    }
+      "guessEn": false,
+      "bellPrefixes": [
+        "YXZR",
+        "ZDDY"
+      ]
+    },
+    "PangZhen": {
+      "locres": "Levelname_SZ_001",
+      "guessKey": false,
+      "guessEn": false,
+      "bellPrefixes": [
+        "SZ"
+      ]
+    },
+    "_comment": "Region map code (RecentlyInteractedAtByMap / UnLockBigMapMaskWidgetNames) → locres key. bellPrefixes: bell id prefixes (Bell_<prefix>_…) of that region, used for the header when the map code itself is not known yet; a known map code always wins."
   },
   "unmappedMissables": {
     "_comment": "Kayıttaki pinyin kodu bilinmeyen kaçırılabilirler. Anahtar: rules.json missables[].id.",
