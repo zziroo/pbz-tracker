@@ -183,6 +183,18 @@
       "guessKey": false,
       "guessEn": false,
       "note": "舞狮尊主; patch \"ASLAN DANSI BÜYÜK USTASI\"; Game8 \"Lion Dance Grandmaster\" (collectible quest, Pangzhen). Seen in a save 2026-11-06."
+    },
+    "JiGuanChuan": {
+      "locres": "QuestMaze_011",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "机关船; patch \"SHA-CHI İLE ÇALIŞAN TEKNE\"; purple tale (true ending). Seen in a save 2026-11-06."
+    },
+    "DaoJianFoXin": {
+      "locres": "QuestRumor_030",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "道剑佛心; patch \"KILIÇ VE YOL\"; keengamer/wiki \"The Sword and the Way\" (Pangzhen, Myst's Tavern). Seen in a save 2026-11-06."
     }
   },
   "regions": {
