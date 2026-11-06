@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-07.1",
+  "rulesVersion": "2026-11-07.2",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -865,6 +865,11 @@
             "not": {
               "questDone": "MoJiaoZhiNv"
             }
+          },
+          {
+            "not": {
+              "bossKilled": "BP_Monster_EMei_Sword_Top"
+            }
           }
         ]
       },
@@ -882,7 +887,7 @@
         ],
         "checked": "page-read"
       },
-      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell. Update 2026-11-06: the tale is MoJiaoZhiNv (QuestRumor_015 \"KARANLIK TARİKATIN KIZI\" = Daughter of the Dark Sect), seen in a save when the player met Red, so the name is verified; the warning stops once that tale is done. Update 2026-11-07: Game8 read in full: \"Do not defeat Red during your first encounter, or you will miss the Twin Fish Pendant\"; \"use the nearby chain to exit the arena\"; \"Leaving her alive forces her to appear alongside the Chief Disciple of the Seven-Stars later\" (harder, \"the only way to secure all possible rewards\"). Matches the Steam thread (defeat = item + flower lost). One Steam player claims fleeing cost map 100% (likely the boss entry until she returns); guides still recommend sparing. guess removed.",
+      "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell. Update 2026-11-06: the tale is MoJiaoZhiNv (QuestRumor_015 \"KARANLIK TARİKATIN KIZI\" = Daughter of the Dark Sect), seen in a save when the player met Red, so the name is verified; the warning stops once that tale is done. Update 2026-11-07: Game8 read in full: \"Do not defeat Red during your first encounter, or you will miss the Twin Fish Pendant\"; \"use the nearby chain to exit the arena\"; \"Leaving her alive forces her to appear alongside the Chief Disciple of the Seven-Stars later\" (harder, \"the only way to secure all possible rewards\"). Matches the Steam thread (defeat = item + flower lost). One Steam player claims fleeing cost map 100% (likely the boss entry until she returns); guides still recommend sparing. guess removed. Real-save check 2026-11-07 00:11: Red is BP_Monster_EMei_Sword_Top (AttemptCount 1, no KillCount after leaving by the chain); MoJiaoZhiNv branch S1 Activating → branch \"1\" Activating at 00:09:06, item R_03026 four seconds later. doneWhen = branch 1 reached (Activating or Completed) or tale done; activeWhen also stops once the boss has a kill.",
       "exactWhen": {
         "any": [
           {
@@ -893,6 +898,22 @@
           },
           {
             "bellPrefix": "ZDDY"
+          }
+        ]
+      },
+      "doneWhen": {
+        "any": [
+          {
+            "questBranch": "MoJiaoZhiNv",
+            "branch": "1",
+            "state": "Activating"
+          },
+          {
+            "questBranch": "MoJiaoZhiNv",
+            "branch": "1"
+          },
+          {
+            "questDone": "MoJiaoZhiNv"
           }
         ]
       }
