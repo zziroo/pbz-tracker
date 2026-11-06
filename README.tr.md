@@ -93,6 +93,7 @@ node pbz.js --cli --interval 5     # izleme modunda kontrol aralığı, saniye (
 node pbz.js --cli --show           # gizli bölümleri de yaz
 node pbz.js --cli --exact          # uyarılarda yer ve boss adlarını yaz (yalnız ulaştığın bölgelerde)
 node pbz.js --cli --dump [klasör]  # en yeni save slotunu JSON olarak yaz (varsayılan .\out; hata ayıklama)
+node pbz.js --watch --archive [klasör]  # okunan her save'in kopyasını save tarihiyle sakla (varsayılan .\archive; kural kontrolü)
 node pbz.js --cli --lang tr        # arayüz dili: tr ya da en
 node pbz.js --cli --names en       # ad kaynağı: bulunan bir metin yaması (ör. ProjectPBZ-Windows_C) ya da tablo dili
 node pbz.js --cli --rules <yol>    # data/rules.json yerine başka bir kural dosyası

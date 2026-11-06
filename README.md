@@ -85,6 +85,7 @@ node pbz.js --cli --interval 5     # poll interval in watch mode, seconds (2–3
 node pbz.js --cli --show           # also print the hidden sections
 node pbz.js --cli --exact          # name places and bosses in the warnings (only in areas you have reached)
 node pbz.js --cli --dump [folder]  # write the newest save slot as JSON (default .\out; debugging)
+node pbz.js --watch --archive [folder]  # keep a copy of every save read, named by its save date (default .\archive; rule checks)
 node pbz.js --cli --lang en        # UI language: en or tr
 node pbz.js --cli --names en       # name source: a detected text patch (e.g. ProjectPBZ-Windows_C) or a table language
 node pbz.js --cli --rules <path>   # use another rules file instead of data/rules.json

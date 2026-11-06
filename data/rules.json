@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-06.11",
+  "rulesVersion": "2026-11-06.12",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -199,6 +199,10 @@
     "17173-missables": {
       "name": "17173 — 易错过道具和任务及关键节点 (Pangzhen kneeling NPC locations, Red)",
       "url": "https://news.17173.com/content/11032026/170457976.shtml"
+    },
+    "powerpyx-encampment": {
+      "name": "PowerPyx — Mandate Encampment collectibles (comments: kneeling NPC flower needs the Shattered Hero's Courage)",
+      "url": "https://www.powerpyx.com/phantom-blade-zero-mandate-encampment-collectible-locations/"
     }
   },
   "bosses": {
@@ -1183,23 +1187,24 @@
         ]
       },
       "warn": {
-        "tr": "Bu kasabadan itibaren: dövüş sonrası diz çöküp \"beni öldür\" diyen dost bir savaşçıyı hemen öldür; dönüşürse anı çiçeği yaprağı düşmez. Güçlü silahla gir.",
-        "en": "From this town on: when a friendly fighter kneels after a fight and asks to be killed, kill him at once; if he transforms, no memory-flower petal drops. Use a strong weapon."
+        "tr": "Bu kasabadan itibaren: dövüş sonrası diz çöküp \"beni öldür\" diyen dost bir savaşçıyı hemen öldür; dönüşürse anı çiçeği yaprağı düşmez. Güçlü silahla gir. Yere düşen mavi çiçek o an toplanamaz; görevin bir sonraki bölgedeki adımından sonra geri dönüp alırsın.",
+        "en": "From this town on: when a friendly fighter kneels after a fight and asks to be killed, kill him at once; if he transforms, no memory-flower petal drops. Use a strong weapon. The blue flower it leaves cannot be picked up yet; you come back for it after a quest step in the next area."
       },
       "warnNamed": {
-        "tr": "Ölmez Kahramanlık Ruhu: diz çöken ferman liderlerini dönüşmeden (~10 sn) öldür, yoksa yaprak düşmez; önce etraftaki küçük düşmanları temizle. Pangzhen'de 2 tane (Pond of Fading Song çanı yakını, Flaming Mane ister; Slums çanından merdiven aşağı), Ferman Ordugâhı'nda 4. Görev için 4/6, HP bonusu için 6/6.",
-        "en": "The Undying Heroic Spirit: kill the kneeling Mandate leaders before they transform (~10 s) or no petal drops; clear the small enemies around them first. 2 in Pangzhen (near the Pond of Fading Song bell, needs the Flaming Mane; down the stairs from the Slums bell), 4 at the Mandate Encampment. 4/6 for the quest, 6/6 for the HP bonus."
+        "tr": "Ölmez Kahramanlık Ruhu: diz çöken ferman liderlerini dönüşmeden (~10 sn) öldür, yoksa yaprak düşmez; önce etraftaki küçük düşmanları temizle. Pangzhen'de 2 tane (Pond of Fading Song çanı yakını, Flaming Mane ister; Slums çanından merdiven aşağı), Ferman Ordugâhı'nda 4. Görev için 4/6, HP bonusu için 6/6. Düşen çiçek Shattered Hero's Courage alınmadan toplanamaz (Ordugâh'taki Chief Disciple sonrası Pangzhen'deki mor cüppeliye dön); çiçek yerde kalır.",
+        "en": "The Undying Heroic Spirit: kill the kneeling Mandate leaders before they transform (~10 s) or no petal drops; clear the small enemies around them first. 2 in Pangzhen (near the Pond of Fading Song bell, needs the Flaming Mane; down the stairs from the Slums bell), 4 at the Mandate Encampment. 4/6 for the quest, 6/6 for the HP bonus. The dropped flower cannot be collected until you hold the Shattered Hero's Courage (after the Chief Disciple at the encampment, return to the purple-robed man in Pangzhen); it stays on the ground."
       },
       "source": {
         "ids": [
           "steam-flowers-pangzhen",
           "allthings-missables",
           "steam-mandate-flower",
-          "17173-missables"
+          "17173-missables",
+          "powerpyx-encampment"
         ],
         "checked": "page"
       },
-      "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest. 17173 (2026-11-03): 2 in Pangzhen (Pond of Fading Song area after the Flaming Mane; Slums bell, down the stairs), 4 at the Mandate Encampment; light-blue HP bar."
+      "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest. 17173 (2026-11-03): 2 in Pangzhen (Pond of Fading Song area after the Flaming Mane; Slums bell, down the stairs), 4 at the Mandate Encampment; light-blue HP bar. PowerPyx comments (2026-10-30/31): the dropped flower only shows a text prompt until the Shattered Hero's Courage is obtained; then it can be collected (player confirmed)."
     },
     {
       "id": "brother-once-more-start",
