@@ -523,12 +523,13 @@
     };
 
     // Grouped by game region when the transport provides it (State.groups): the region the player is in,
-    // other reached regions, then one anonymous "later" block. Older transports: the flat lists.
+    // other reached regions, the "until the final bell" block (region.endgame), then one anonymous "later"
+    // block. Headings come from the transport (g.title). Older transports: the flat lists.
     const groups = Array.isArray(s.groups) ? s.groups.filter((g) => g && ((Array.isArray(g.warnings) && g.warnings.length) || (Array.isArray(g.info) && g.info.length))) : [];
     if (groups.length) {
       for (const g of groups) {
         const r = g.region || {};
-        const kind = r.current ? 'current' : r.reached ? 'reached' : 'later';
+        const kind = r.current ? 'current' : r.reached ? 'reached' : r.endgame ? 'endgame' : 'later';
         const sec = h('section', { class: 'group group-' + kind },
           h('h2', { class: 'group-title' }, h('span', { class: 'group-dot', attrs: { 'aria-hidden': 'true' } }), h('span', { text: g.title || '' })));
         if (Array.isArray(g.warnings) && g.warnings.length) sec.append(warnCards(g.warnings, 'h3'));

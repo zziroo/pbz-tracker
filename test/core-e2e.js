@@ -433,36 +433,51 @@ async function main() {
     // Region groups (real rules, English names): last bell Bell_SZ_031 in the Pangzhen backstreet (map HouJie)
     // → the first group is Pangzhen, current; a Crimson Forest item still open sits under a reached group named
     // like the header (names.region('FuJiZhiLin')); everything of unreached regions is in the single 'later' group.
-    const { regionsOf } = sb.require('./lib/report');
+    const { regionsOf, groupTitle } = sb.require('./lib/report');
     const { regionOf: regionOfBell } = sb.require('./lib/state');
     const quests = (...ids) => new Map(ids.map((id) => [id, { id, folder: 'Branch', completion: 'Started', branches: {}, progress: null }]));
     const bellMgr = { UnLockBigMapMaskWidgetNames: ['XiGu', 'FuJiZhiLin', 'LuJiaCun', 'PangZhen', 'HouJie'], RecentlyInteractedAtByMap: { PangZhen: 10, HouJie: 20 }, RecentlyInteractedBellID: 'Bell_SZ_031' };
     const stHj = { ...stPz, maps: new Set(bellMgr.UnLockBigMapMaskWidgetNames), bells: new Set(['Bell_NLES_001', 'Bell_LZSJ_001', 'Bell_SXC_01_07', 'Bell_SZ_031']),
-      lastBell: 'Bell_SZ_031', region: regionOfBell(bellMgr), quests: quests('HuXinMiMi', 'JiuSiFuShang', 'XueMaiJueXing') };
+      lastBell: 'Bell_SZ_031', region: regionOfBell(bellMgr), quests: quests('HuXinMiMi', 'JiuSiFuShang', 'XueMaiJueXing', 'BuMieXiaDan') };
     const bHj = build(stHj, rules, nEn);
     const g0 = bHj.groups[0], gIds = bHj.groups.map((g) => g.region.id);
     const gOf = (key) => bHj.groups.find((g) => g.warnings.some((w) => w.named.some((it) => it.key === key)) || g.info.some((i) => i.key === key));
     const later = bHj.groups.find((g) => g.region.id === 'later');
+    const endgame = bHj.groups.find((g) => g.region.id === 'endgame');
     const unreached = new Set(regionsOf(stHj, rules, nEn).list.filter((r) => !r.reached).map((r) => r.id));
     const primary = (id) => { const m = rules.missables.find((x) => x.id === id); return Array.isArray(m.region) ? m.region[0] : m.region; };
-    const laterKeys = later ? [...later.warnings.flatMap((w) => w.named.map((it) => it.key)), ...later.info.map((i) => i.key)] : [];
+    const keysOf = (g) => (g ? [...g.warnings.flatMap((w) => w.named.map((it) => it.key)), ...g.info.map((i) => i.key)] : []);
+    const laterKeys = keysOf(later), endKeys = keysOf(endgame);
     const orderOf = (id) => rules.regions[id].order;
-    const reachedIds = gIds.slice(1).filter((x) => x !== 'later');
+    const reserved = new Set(['endgame', 'later']);
+    const reachedIds = gIds.slice(1).filter((x) => !reserved.has(x));
     check(!!g0 && g0.region.id === 'pangzhen' && g0.region.current === true && g0.region.reached === true && g0.region.name === 'Pangzhen'
       && gOf('lake-secrets') === g0 && gOf('mirage-bridge-choice') === g0 && gIds.filter((x) => x === 'later').length === 1 && gIds[gIds.length - 1] === 'later'
-      && gIds.every((x) => x === 'later' || !unreached.has(x)) && bHj.groups.every((g) => g === later || (g.region.reached && !!g.region.name))
+      && gIds.filter((x) => x === 'endgame').length <= 1 && (!endgame || gIds[gIds.length - 2] === 'endgame')
+      && gIds.every((x) => reserved.has(x) || !unreached.has(x)) && bHj.groups.every((g) => g === later || g === endgame || (g.region.reached && !!g.region.name && !g.region.endgame))
       && reachedIds.join() === 'weeping-creek-valley,crimson-forest,village-of-lu' && reachedIds.every((x, i) => i === 0 || orderOf(reachedIds[i - 1]) < orderOf(x)),
-      `region groups: HouJie + Bell_SZ_031 → first group ${g0 && g0.region.id} (current), then reached regions by story order: ${gIds.join(' → ')}`);
+      `region groups: HouJie + Bell_SZ_031 → first group ${g0 && g0.region.id} (current), then reached regions by story order, endgame, later: ${gIds.join(' → ')}`);
+    // Final-cutoff missables (cutoff === trueEnding.cutoff) sit in the 'endgame' group whatever their region
+    // (bloodline-awakening: unreached region; mandate-leaders-flower: unreached here, reached in bEnc below),
+    // together with the purple-quest count; 'later' never holds a final-cutoff item.
+    const finalCut = rules.trueEnding.cutoff;
+    const isFinal = (key) => rules.missables.find((x) => x.id === key)?.cutoff === finalCut;
+    check(!!endgame && endgame.region.endgame === true && endgame.region.name === null && !endgame.region.current && !endgame.region.reached
+      && endKeys.includes('bloodline-awakening') && endKeys.includes('mandate-leaders-flower') && endKeys.every(isFinal)
+      && endgame.warnings.length === 1 && endgame.warnings[0].where === whereText(rules.cutoffs[finalCut], makeEval(stHj, rules), false) && endgame.warnings[0].tales > 0
+      && bHj.warnings.find((w) => w.where === endgame.warnings[0].where).tales === endgame.warnings[0].tales
+      && !laterKeys.some(isFinal) && !bHj.groups.some((g) => g !== endgame && g.warnings.some((w) => w.where === endgame.warnings[0].where)),
+      `region groups: the 'endgame' group holds the final-cutoff items (${endKeys.join(', ')}) and the purple-quest count (${endgame && endgame.warnings[0].tales}), nothing else`);
     const gCf = gOf('healers-mercy');
     check(!!gCf && gCf.region.id === 'crimson-forest' && !gCf.region.current && gCf.region.reached && gCf.region.name === nEn.region('FuJiZhiLin') && gCf.region.name === 'Crimson Forest'
       && gIds.indexOf('crimson-forest') > 0 && gIds.indexOf('crimson-forest') < gIds.indexOf('later'),
       `region groups: an open Crimson Forest quest sits under the reached group "${gCf && gCf.region.name}" (names.region)`);
     const regionsOfRule = (id) => { const m = rules.missables.find((x) => x.id === id); return Array.isArray(m.region) ? m.region : [m.region]; };
     const flatKeys = (b) => [...b.warnings.flatMap((w) => w.named.map((it) => it.key)), ...b.infoNow.map((i) => i.key)];
-    const wantLater = flatKeys(bHj).filter((k) => regionsOfRule(k).every((r) => unreached.has(r))).sort().join();
-    check(!!later && later.region.name === null && !later.region.current && !later.region.reached && laterKeys.includes('bloodline-awakening')
-      && [...laterKeys].sort().join() === wantLater,
-      `region groups: unreached regions' items (${laterKeys.join(', ')}) are all inside the single anonymous 'later' group`);
+    const wantLater = flatKeys(bHj).filter((k) => regionsOfRule(k).every((r) => unreached.has(r)) && !isFinal(k)).sort().join();
+    check(!!later && later.region.name === null && !later.region.current && !later.region.reached && !later.region.endgame && laterKeys.length > 0
+      && !laterKeys.includes('bloodline-awakening') && [...laterKeys].sort().join() === wantLater,
+      `region groups: unreached regions' non-final items (${laterKeys.join(', ')}) are all inside the single anonymous 'later' group`);
     // The groups hold exactly the default-view items, once each.
     const flat = (b) => flatKeys(b).sort().join();
     const grouped = (b) => b.groups.flatMap((g) => [...g.warnings.flatMap((w) => w.named.map((it) => it.key)), ...g.info.map((i) => i.key)]).sort().join();
@@ -491,9 +506,39 @@ async function main() {
     const flatLine = textMini.split('\n').find((l) => l.includes('Before X'));
     check(Array.isArray(bMini.groups) && bMini.groups.length === 0 && bMini.warnings.length === 1 && flatLine === '  ▶ Before X:' && /^      • take the sword$/m.test(textMini) && !/Later/.test(textMini),
       'no regions table: groups is empty and the terminal report prints the flat layout');
-    // The id 'later' is reserved for the regions table.
+    // The ids 'later' and 'endgame' are reserved for the regions table.
     const withLater = JSON.parse(JSON.stringify(rules)); withLater.regions.later = { order: 99, mapCodes: [], bellPrefixes: [] };
-    check(rejects(withLater), 'rules schema: regions.later is rejected (reserved id)');
+    const withEndgame = JSON.parse(JSON.stringify(rules)); withEndgame.regions.endgame = { order: 99, mapCodes: [], bellPrefixes: [] };
+    check(rejects(withLater) && rejects(withEndgame), 'rules schema: regions.later and regions.endgame are rejected (reserved ids)');
+    // Synthetic: with trueEnding.cutoff, an info rule in the current region stays there while a missable of the
+    // same region whose cutoff is the final one lands in 'endgame' (after the reached regions, before 'later');
+    // without trueEnding nothing moves.
+    const synth = (te) => validateRules({
+      schemaVersion: 1, rulesVersion: 'test',
+      regions: { here: { order: 1, mapCodes: ['A'], names: { en: 'Here', tr: 'Bura' } }, far: { order: 2, mapCodes: ['Far'], names: { en: 'Far', tr: 'Uzak' } } },
+      cutoffs: {
+        c: { region: 'here', where: { en: 'Before X', tr: 'X' }, label: { en: 'X', tr: 'X' }, passedWhen: { mapUnlocked: 'Passed' } },
+        end: { region: 'far', where: { en: 'Before the end', tr: 'Son' }, label: { en: 'End', tr: 'Son' }, passedWhen: { mapUnlocked: 'Ended' } },
+      },
+      missables: [
+        { id: 'tip', type: 'info', region: 'here', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, warn: { en: 'tip here', tr: 'x' }, warnNamed: { en: 'Tip', tr: 'x' } },
+        { id: 'local', region: 'here', quest: 'L', cutoff: 'c', visibleWhen: { questSeen: 'L' }, warn: { en: 'w', tr: 'w' } },
+        { id: 'flower', region: 'here', quest: 'F', cutoff: 'end', visibleWhen: { questSeen: 'F' }, warn: { en: 'w', tr: 'w' } },
+        { id: 'faraway', region: 'far', quest: 'W', cutoff: 'c', visibleWhen: { questSeen: 'W' }, warn: { en: 'w', tr: 'w' } },
+      ],
+      ...(te ? { trueEnding: { cutoff: 'end', quests: [{ quest: 'P', en: 'Purple' }] } } : {}),
+    }, 'synth.json');
+    const stSyn = { ...empty, maps: new Set(['A']), region: { code: 'A', source: 'map' }, quests: new Map([quest('L'), quest('F'), quest('W'), quest('P')]), items: new Map() };
+    const nSyn = { ...namesK, region: () => null };
+    const bTe = build(stSyn, synth(true), nSyn), bNoTe = build(stSyn, synth(false), nSyn);
+    const where = (b, key) => b.groups.find((g) => g.warnings.some((w) => w.named.some((it) => it.key === key)) || g.info.some((i) => i.key === key))?.region.id;
+    const ids = (b) => b.groups.map((g) => g.region.id).join();
+    const endSyn = bTe.groups.find((g) => g.region.id === 'endgame');
+    i18n.setLang('en');
+    check(ids(bTe) === 'here,endgame,later' && where(bTe, 'tip') === 'here' && where(bTe, 'local') === 'here' && where(bTe, 'flower') === 'endgame' && where(bTe, 'faraway') === 'later'
+      && endSyn.warnings.length === 1 && endSyn.warnings[0].tales === 1 && groupTitle(endSyn) === 'Until the final bell' && bTe.groups[0].region.endgame === false
+      && ids(bNoTe) === 'here,later' && where(bNoTe, 'tip') === 'here' && where(bNoTe, 'flower') === 'here' && where(bNoTe, 'faraway') === 'later',
+      `region groups (synthetic): with trueEnding the final-cutoff missable moves to 'endgame' (${ids(bTe)}), the info tip stays; without trueEnding nothing moves (${ids(bNoTe)})`);
     // Current region by the last bell's prefix when the header's map code is unknown; the encampment's outer-gate
     // bell (except) does not make it reached; a region array follows the current region.
     const stEnc = { ...stHj, region: { code: 'NoSuchMap', source: 'bell', bell: 'Bell_YXZR_011' }, lastBell: 'Bell_YXZR_011', bells: new Set([...stHj.bells, 'Bell_YXZR_018', 'Bell_YXZR_011']) };
@@ -502,8 +547,10 @@ async function main() {
     const bEnc = build(stEnc, rules, nEn);
     check(rEnc.current === 'mandate-encampment' && rGate.current === 'pangzhen' && !rGate.list.find((r) => r.id === 'mandate-encampment').reached
       && rEnc.list.find((r) => r.id === 'mandate-encampment').name === 'Mandate Encampment'
-      && bEnc.groups[0].region.id === 'mandate-encampment' && bEnc.groups[0].info.some((i) => i.key === 'kneeling-npc-flowers') && gOf('kneeling-npc-flowers') === g0,
-      'region groups: current by last-bell prefix, Bell_YXZR_018 alone does not reach the encampment, a region array follows the current region');
+      && bEnc.groups[0].region.id === 'mandate-encampment' && bEnc.groups[0].info.some((i) => i.key === 'kneeling-npc-flowers') && gOf('kneeling-npc-flowers') === g0
+      && !bEnc.groups[0].warnings.some((w) => w.named.some((it) => it.key === 'mandate-leaders-flower'))
+      && bEnc.groups.find((g) => g.region.id === 'endgame')?.warnings.some((w) => w.named.some((it) => it.key === 'mandate-leaders-flower')) === true,
+      'region groups: current by last-bell prefix, Bell_YXZR_018 alone does not reach the encampment, a region array follows the current region; the final-cutoff flower quest is in endgame, not the encampment');
     // Schema: a missable with an unknown region, a missing region (with a regions table) and an unknown region
     // on a cutoff are rejected; a rules file without a regions table needs no region fields.
     const withMiss = (patch) => { const r = JSON.parse(JSON.stringify(rules)); Object.assign(r.missables.find((m) => m.id === 'healers-mercy'), patch); return r; };
