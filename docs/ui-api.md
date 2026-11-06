@@ -63,7 +63,9 @@ interface State {
     saveTime: string;          // "05.11.2026 03:37" (game save time)
     playTime: string;          // "12:01"
     location: string | null;   // localized region name or null: the region map of the last bell used (else the last map
-                               // unlocked), never the level name (one level can hold several regions)
+                               // unlocked); if that map code has no name yet, the region whose bell prefix
+                               // (names.json regions[].bellPrefixes, Bell_<prefix>_…) matches the last bell used.
+                               // Never the level name (one level can hold several regions)
     locationNote?: string | null; // localized source of `location`, e.g. "last bell used"; the page shows it in brackets
     build: { id: string | null; tested: boolean; text: string; quiet?: boolean };  // text = localized header line; quiet: unknown build without the "untested" colour
     notices: string[];         // localized one-liners: patch found, name fallback, rules source/version ...
@@ -82,7 +84,7 @@ interface State {
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
       rows: Array<{
         name: string; status: Status; statusText: string; progress: string | null; note: string | null;
-        nameBlur: boolean;     // false = status done (any row), or the quest is in the player's journal (in the save, status open/done/missed,
+        nameBlur: boolean;     // false = status done (any row except guesses *), or the quest is in the player's journal (in the save, status open/done/missed,
                                // not a guess): name readable. true = not started, unknown, guess (*) or an item rule
                                // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
         detailBlur: boolean;   // progress + note blurred (currently always true). Missing → true.

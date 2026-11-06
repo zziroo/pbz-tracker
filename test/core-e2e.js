@@ -406,6 +406,29 @@ async function main() {
       && l1r.loc === 'Village of Lu' && l1r.src === 'last bell used' && l2r.loc === 'Crimson Forest' && l2r.src === 'last map unlocked'
       && regionLine({ region: { code: 'NoSuchMap', source: 'bell' } }, namesR) === null && regionLine({ region: null }, namesR) === null,
       'regionOf: newest bell wins, else the last unlocked map; an unknown map code → no area line');
+
+    // Bell-prefix fallback: real names (core names, English table), regionOf().bell, label "last bell used".
+    const { createNamesFrom } = sb.require('./lib/core/names');
+    const nEn = createNamesFrom({ patches: [], uiLang: 'en' });
+    const r4 = regionOf({ RecentlyInteractedBellID: 'Bell_SZ_001' });
+    const r5 = regionOf({ RecentlyInteractedAtByMap: { PangZhenX: 9 }, RecentlyInteractedBellID: 'Bell_SZ_026' });
+    const r6 = regionOf({ UnLockBigMapMaskWidgetNames: ['NewMap'], RecentlyInteractedBellID: 'Bell_SZ_026' });
+    const l4 = regionLine({ region: r4 }, nEn), l6 = regionLine({ region: r6 }, nEn);
+    check(nEn.region('Unknown', 'Bell_SZ_026') === 'Pangzhen' && nEn.region('LuJiaCun', 'Bell_SZ_026') === 'Village of Lu'
+      && nEn.region('Unknown', 'Bell_SZX_1') === null && nEn.region(null, 'Bell_NOPE_1') === null
+      && r4 && r4.code === null && r4.bell === 'Bell_SZ_001' && r5.bell === 'Bell_SZ_026'
+      && l4 && l4.loc === 'Pangzhen' && l4.src === 'last bell used' && l6 && l6.loc === 'Pangzhen' && l6.src === 'last bell used',
+      'region by bell prefix: names.region(code, bell), regionOf().bell, only-a-bell save, label "last bell used" (Bell_<p>_ exact prefix)');
+
+    // Mirage: exact names and the bridge hint follow a Pangzhen bell (Bell_SZ_…), not a look-alike prefix.
+    const stPz = { quests: new Map(), maps: new Set(), levels: new Set(), bells: new Set(), bosses: new Map(), items: new Map(), currentLevel: '', lastBell: '' };
+    const lakeOpen = new Map([['HuXinMiMi', { id: 'HuXinMiMi', folder: 'Branch', completion: 'Started', branches: {}, progress: null }]]);
+    const evPz = makeEval({ ...stPz, bells: new Set(['Bell_SZ_026']), quests: lakeOpen }, rules);
+    const evNo = makeEval({ ...stPz, bells: new Set(['Bell_SZX_001']), quests: lakeOpen }, rules);
+    const bridge = rules.missables.find((m) => m.id === 'mirage-bridge-choice');
+    check(evPz(rules.cutoffs.mirage.exactWhen) === true && evNo(rules.cutoffs.mirage.exactWhen) === false
+      && evPz(bridge.activeWhen) === true && evNo(bridge.activeWhen) === false,
+      'mirage: exactWhen and the bridge hint need a Pangzhen bell (Bell_SZ_…), a look-alike prefix does not count');
   }
 
   // TransientError for a truncated file, from the core directly.
