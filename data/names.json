@@ -249,6 +249,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "相煎何急 (the \"why fry each other\" idiom about brothers turning on each other); patch \"AKRABAYA KARŞI AKRABA\"; \"Kin Against Kin\" (allthings.how). Starts at a memory flower near the Ancestral Shrine Square bell in Pangzhen (Blackwater Gang brothers), ends at Meigu Lake. Seen in a save 2026-11-07 (Simple, Started) right after BP_Monster_YouLong_SecondBrother was killed."
+    },
+    "CiMuXin": {
+      "locres": "QuestRumor_011",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "慈母心 (a kind mother's heart); patch \"BİR ANNENİN KALBİ\", subtitle about the crow repaying its mother; \"A Mother's Heart\" (allthings.how). Pangzhen tale: starts at a memory flower ~66 m from the Pangzhen Slums bell (\"find the woman's son\"), ends at a guarded flower ~85 m from Pond of Fading Song. Seen in a save 2026-11-07 15:34 (Started, branch 1) right after the Slums bell was activated."
     }
   },
   "regions": {
