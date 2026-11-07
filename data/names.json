@@ -143,9 +143,9 @@
     },
     "MainCh2-SiDaSheWu": {
       "locres": "QuestStory_02_3",
-      "guessKey": true,
+      "guessKey": false,
       "guessEn": false,
-      "note": "Alternatif: bölüm başlığı Chapter_02 (Snake's Reflection). Pinyin 'dört büyük yılan evi' anlamına geldiği için QuestStory_02_3 seçildi."
+      "note": "四大蛇屋; patch \"DÖRT YILAN EVİ\" (QuestStory_02_3) confirmed 2026-11-07 when the quest appeared in a save (branch 2 with three tasks = Serpent Eye/Tongue/Fang from the Red, Black and White houses; the Green Serpent House passage to Mirage Estate opens after all three). English \"The Four Serpent Houses\" (games.gg, allthings.how)."
     },
     "RenOuMuXin": {
       "locres": "QuestRumor_028",
