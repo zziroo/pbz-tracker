@@ -1,14 +1,15 @@
 # Steam Community guide (Türkçe) — final text as published in the Steam editor.
 # Guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
 # Title: pbz-tracker: rehbersiz oyna, hiçbir şeyi kaçırma
-# Steam guides are edited per section; each "[h1]" block below is one section (title + body).
+# Steam guides are edited per section; each top-level "[h1]" block below is one section (title + body).
 # Images were uploaded in the Steam editor (re-uploaded 2026-11-06 with the region-grouped layout;
 # a file with the same name overwrites the old one, so the preview ids stayed the same):
 #   IMG1 = previewimg 48488383 (docs/screenshots/web-tr-warnings.png)
 #   IMG2 = previewimg 48488384 (docs/screenshots/web-tr-journal.png)
 #   IMG3 = previewimg 48488385 (docs/screenshots/web-setup.png)
 #   (48488386 window-tr-warnings.png is an old, unused upload)
-# Section ids in the editor: 9469049, 9469052, 9469058, 9469061 (editguidesubsection/?id=<guide>&sectionid=<id>).
+# Section ids in the editor (editguidesubsection/?id=<guide>&sectionid=<id>):
+#   9469049 Rehber değil... / 9469052 Spoiler kuralları / 9469058 Nasıl kullanılır? / 9469061 Güvenlik, eksikler, kaynaklar, geri bildirim
 # Title alternatives:
 #   pbz-tracker: kör oynarken görev kaçırmamak için
 #   pbz-tracker: spoiler yemeden görev kaçırma uyarısı
@@ -30,11 +31,8 @@ Uyarılar sekmesi bölgelere ayrılmış durumda. [b]"Şu an: <bölge>"[/b], en 
 
 English guide: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512]pbz-tracker: a seatbelt for blind playthroughs[/url]
 
-[h1]Ne değil? Spoiler konusunda ne yapıyor?[/h1]
-[h1]Ne değil?[/h1]
-Rehber değil. Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak zorunda; kör oynayan için sorun da zaten tam bu. Bu araç tam tersini yapıyor: bir şeyi kaçırmak üzere olduğun ana kadar susuyor, o an gelince de sadece nerede durman gerektiğini söylüyor.
-
 [h1]Spoiler kuralları[/h1]
+Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak zorunda; kör oynayan için sorun da zaten tam bu. Bu araç tam tersini yapıyor: bir şeyi kaçırmak üzere olduğun ana kadar susuyor, o an gelince de sadece nerede durman gerektiğini söylüyor.
 [list]
 [*]Uyarılar NEREDE duracağını söylüyor, ileride ne olduğunu değil ("bu bölgenin son dövüşünden önce", "hikâye seni bir sonraki büyük bölgeye götürmeden önce" gibi).
 [*]Boss adı yok, ileriki bölge yok, hikâye olayı yok.
@@ -45,11 +43,7 @@ Rehber değil. Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak 
 
 [previewimg=48488384;sizeFull,inline;web-tr-journal.png][/previewimg]
 
-[h1]Türkçe yama[/h1]
-Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlarını doğrudan yamadan okuyor; yani adlar oyunda gördüğünle birebir aynı oluyor, ayar yapmana gerek yok. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi var).
-
 [h1]Nasıl kullanılır?[/h1]
-[h1]Web sürümü[/h1]
 [olist]
 [*][url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
@@ -60,7 +54,10 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 
 [previewimg=48488385;sizeFull,inline;web-setup.png][/previewimg]
 
-[h1]Güvenli mi? Bilinen eksikler, kaynaklar, geri bildirim[/h1]
+[h1]Türkçe yama ve dil[/h1]
+Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlarını doğrudan yamadan okuyor; yani adlar oyunda gördüğünle birebir aynı oluyor, ayar yapmana gerek yok. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi var).
+
+[h1]Güvenlik, eksikler, kaynaklar, geri bildirim[/h1]
 [h1]Güvenli mi?[/h1]
 [list]
 [*]Sadece okuyor. Save'e, yedeklere, oyun klasörüne ya da yamaya hiçbir şey yazmıyor.
@@ -69,7 +66,7 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [*]Test edildiği oyun build'ini (26367565) gösteriyor; seninki daha yeniyse uyarıyor.
 [/list]
 
-[h1]Bilinen eksikler (v0.6.0)[/h1]
+[h1]Bilinen eksikler[/h1]
 [list]
 [*]Hikâyenin ileri kısımlarındaki bazı geri dönüşsüz noktalar save'den henüz tespit edilemiyor; oralardaki uyarılar sadece görev durumuna dayanıyor.
 [*]Bazı görev ID eşleştirmeleri tahmine dayalı; bunlar * ile işaretli.
@@ -92,6 +89,6 @@ Kurallar bir JSON dosyasında duruyor. Bir rehber ya da oyuncu raporu bir şeyi 
 [h1]Geri bildirim[/h1]
 Yanlış uyarı, kaçırılan görev, hatalı eşleştirme: [url=https://github.com/zziroo/pbz-tracker]github.com/zziroo/pbz-tracker[/url] adresinde issue aç. Eşleştirme düzeltmeleri özellikle makbule geçer. Ücretsiz ve açık kaynak (GPL-3.0-or-later).
 
-Kuralları kendin kurcalamak istersen: terminal sürümündeki --archive seçeneği (node pbz.js --watch --archive) okuduğu her save'in bir kopyasını save tarihiyle saklıyor. Kuralları gerçek kayıtlarla ben de böyle kontrol ediyorum. Ayrıntısı README'de.
+Kuralları kendi save'lerinle kontrol etmek istersen: terminal sürümündeki --archive seçeneği (node pbz.js --watch --archive) okuduğu her save'in bir kopyasını save tarihiyle saklıyor. Ayrıntısı README'de.
 
 [i]Kodun epey bir kısmı yapay zekâ yardımıyla (Claude Code) yazıldı; benim asıl derdim aracın var olmasıydı.[/i]
