@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-07.4",
+  "rulesVersion": "2026-11-07.5",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -329,8 +329,13 @@
       },
       "locres": "Levelname_XM_001",
       "mapCodes": [],
-      "bellPrefixes": [],
-      "_note": "Harita kodu ve çan öneki henüz bilinmiyor (hiçbir kayıtta görülmedi)."
+      "bellPrefixes": [
+        "XM"
+      ],
+      "_note": "Çan öneki XM (Bell_XM_001 Malikâne Arka Kapısı … Bell_XM_022 Söğüt Köşkü, yamada). Bell_XM_015 \"Serap Malikânesi\" ADLI çan Pangzhen haritasındadır (allthings.how Pangzhen çan listesi; kayıtta 2026-11-07 15:59 Pangzhen seviyesinde, Yeşil Yılan Evi kapısı açılmadan dokunuldu), bu yüzden sayılmaz. Harita kodu henüz bilinmiyor.",
+      "except": [
+        "Bell_XM_015"
+      ]
     },
     "mount-soulrend": {
       "order": 9,
@@ -396,7 +401,10 @@
         "bellPrefix": "SZ"
       },
       "passedWhen": {
-        "unknown": "bölge kodu henüz bilinmiyor"
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
       },
       "guess": true,
       "source": {
@@ -411,7 +419,7 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later. exactWhen: a Pangzhen bell (Bell_SZ_…) was used — the Pangzhen map code was not in the save yet on 2026-11-06."
+      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later. exactWhen: a Pangzhen bell (Bell_SZ_…) was used — the Pangzhen map code was not in the save yet on 2026-11-06. passedWhen: a Mirage Estate bell (Bell_XM_…) other than Bell_XM_015 was used; XM_015 is the Pangzhen-side bell named \"Mirage Estate\" (touched 2026-11-07 15:59 with the serpent gate still shut, Four Serpent Houses at 2/3). Map code still unknown."
     },
     "final": {
       "where": {
