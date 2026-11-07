@@ -61,6 +61,9 @@ const STRINGS = {
     'readFailFiles': 'Could not read the save: {msg} · choose or drop it again',
     'account': '{id} · {date}',
     'timelineHint': 'On every read, quest state changes are kept in this browser\'s storage for this site (at most 2000 records), never uploaded. For checking the rules after the game. An export contains your play times (save timestamps).',
+    'update.ready': 'New version ready',
+    'update.reload': 'Reload',
+    'update.dismiss': 'Dismiss',
   },
   tr: {
     'start.fs': 'Başlamak için Phantom Blade Zero klasörünü (Steam: …\\steamapps\\common\\PBZ) ya da Steam kütüphane klasörünü seç. Klasörü buraya sürükleyip bırakabilirsin de. Dosyalar bu tarayıcıda okunur; hiçbir şey yüklenmez.',
@@ -118,6 +121,9 @@ const STRINGS = {
     'readFailFiles': 'Save okunamadı: {msg} · yeniden seç ya da bırak',
     'account': '{id} · {date}',
     'timelineHint': 'Her okumada görev durum değişiklikleri bu tarayıcının siteye ait deposunda tutulur (en çok 2000 kayıt), hiçbir yere yüklenmez. Oyun bittikten sonra kuralları doğrulamak için. Dışa aktarılan dosya oynama zamanlarını (save saatlerini) içerir.',
+    'update.ready': 'Yeni sürüm hazır',
+    'update.reload': 'Yenile',
+    'update.dismiss': 'Kapat',
   },
 };
 

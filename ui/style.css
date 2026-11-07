@@ -175,6 +175,22 @@ button, input, select { font: inherit; color: inherit; }
   font-size: 12px;
 }
 
+/* Web version: "new version ready" bar (web/main.js inserts it above the footer when a new build is installed). */
+.update-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px var(--gutter);
+  background: var(--accent-soft);
+  border-top: 1px solid var(--accent-line);
+  color: var(--accent);
+  font-size: 14px;
+}
+.update-text { flex: 1; min-width: 0; }
+.update-close { padding: 4px 9px; color: var(--muted); border-color: transparent; }
+.update-close:hover:not(:disabled) { color: var(--text); border-color: transparent; }
+
 /* ---- Buttons ---- */
 .btn {
   display: inline-flex;
