@@ -89,5 +89,11 @@
     "tr": "İnce İplik",
     "guess": true,
     "note": "acquired right after the Village of Lu hand-in to Quick Hand Zhang (2026-11-06 03:46)"
+  },
+  "I_06006": {
+    "en": "Shattered Hero's Courage",
+    "tr": "Kırık Kahraman Cesareti",
+    "guess": true,
+    "note": "InventoryInfos. Identified by timing on a real save (2026-11-07 03:21:20): acquired in Pangzhen right after the Chief Disciple was reported to the Wolf Leader, at the same second BuMieXiaDan went S1 Completed → branch 1 Activating (petal counter). The Turkish name is a guess (no locres entry for item codes)."
   }
 }
