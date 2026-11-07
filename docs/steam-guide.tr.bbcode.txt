@@ -19,7 +19,7 @@
 [h1]Rehber değil, sadece zamanında "dur" der[/h1]
 [b]pbz-tracker[/b], Phantom Blade Zero save dosyanı okuyor (sadece okuyor, hiçbir şeye dokunmuyor) ve kaçırılabilir bir görev ya da eşya hâlâ açıkken, dönüşü olmayan bir noktaya gelmeden [b]önce[/b] seni uyarıyor. Risk yoksa [i]"Şu an kaçırma riski yok."[/i] diyor, sen de oyununa devam ediyorsun.
 
-Bunu, oyunu kör oynamak ama yine de gerçek sonu almak istediğim için yaptım. İkisi aynı anda pek olmuyor. Orta yol olarak bu çıktı: bir şeyi gerçekten kaybetmek üzere olana kadar sesini çıkarmayan bir araç.
+Bunu, oyunu kör oynamak ama varlığını bilmediğim bir kesim noktasında görev, anı çiçeği ya da eşya kaybetmemek istediğim için yaptım. İkisi aynı anda pek olmuyor: rehber kör oynamayı bozuyor, rehbersiz gidince de bir şeyler kalıcı olarak kaçıyor. Orta yol olarak bu çıktı: bir şeyi gerçekten kaybetmek üzere olana kadar sesini çıkarmayan bir araç.
 
 [b][url=https://zziroo.github.io/pbz-tracker/]Web sürümünü aç[/url][/b]: linke tıkla, oyun klasörünü seç, bitti. Ne bir şey indiriliyor ne de bir dosya yükleniyor.
 

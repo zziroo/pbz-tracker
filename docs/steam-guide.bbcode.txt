@@ -12,7 +12,7 @@
 [h1]Not a guide. A seatbelt.[/h1]
 [b]pbz-tracker[/b] reads your Phantom Blade Zero save (read-only, it never writes anything) and warns you before a point of no return if a missable quest or item is still open. If nothing is at risk it just says [i]"No risk of missing anything right now."[/i] and you carry on.
 
-I made it because I wanted to play blind and I also wanted the true ending. Those two don't really go together, a guide ruins the blind part and skipping the guide means you probably miss the ending. So I ended up writing a small tool that stays quiet until I'm actually about to lose something. That's the seatbelt in the title, it doesn't steer, it just catches you.
+I made it because I wanted to play blind without losing quests, memory flowers or items to a cutoff I didn't know was there. Those two don't really go together: a guide ruins the blind part, and skipping the guide means something probably gets locked away for good. So I ended up writing a small tool that stays quiet until I'm actually about to lose something. That's the seatbelt in the title, it doesn't steer, it just catches you.
 
 [b][url=https://zziroo.github.io/pbz-tracker/]Open the web version[/url][/b], pick your game folder, that's it. Nothing is downloaded, no file is uploaded.
 
