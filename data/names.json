@@ -243,6 +243,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "魔教之女; patch \"KARANLIK TARİKATIN KIZI\"; \"Daughter of the Dark Sect\" (allthings.how, keengamer): Red's tale at the Mandate Encampment. Seen in a save 2026-11-06."
+    },
+    "XiangJianHeJi": {
+      "locres": "QuestRumor_012",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "相煎何急 (the \"why fry each other\" idiom about brothers turning on each other); patch \"AKRABAYA KARŞI AKRABA\"; \"Kin Against Kin\" (allthings.how). Starts at a memory flower near the Ancestral Shrine Square bell in Pangzhen (Blackwater Gang brothers), ends at Meigu Lake. Seen in a save 2026-11-07 (Simple, Started) right after BP_Monster_YouLong_SecondBrother was killed."
     }
   },
   "regions": {
