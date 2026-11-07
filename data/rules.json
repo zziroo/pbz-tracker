@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-07.6",
+  "rulesVersion": "2026-11-08.1",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -306,9 +306,13 @@
         "en": "Mountain of Imprisonment"
       },
       "locres": "Levelname_DDSD_001",
-      "mapCodes": [],
-      "bellPrefixes": [],
-      "_note": "Harita kodu ve çan öneki henüz bilinmiyor (hiçbir kayıtta görülmedi)."
+      "mapCodes": [
+        "DengDingShanDao"
+      ],
+      "bellPrefixes": [
+        "DDSD"
+      ],
+      "_note": "Harita kodu DengDingShanDao ve çan öneki DDSD kayıtta görüldü (2026-11-08 01:32, Bell_DDSD_001 Hanımın Yolu; Meigu Gölü üzerinden, ana görev Dört Yılan Evi 2/3 iken ulaşıldı)."
     },
     "meigu-lake": {
       "order": 7,
@@ -350,7 +354,7 @@
       "locres": "Levelname_LYZ_001",
       "mapCodes": [],
       "bellPrefixes": [],
-      "_note": "Son bölge; harita kodu ve çan öneki henüz bilinmiyor."
+      "_note": "Son bölge; harita kodu henüz bilinmiyor. Çan öneki LYZ (Levelname_LYZ_001) ama Bell_LYZ_010 Donmuş Göl İskelesi ve Bell_LYZ_011 Dört Muhafızın Aynası Meigu Gölü haritasındaki donmuş ayna diyarında açıldı (2026-11-08, MeiGuHu haritası); LYZ önekini bölge/son kesim için kullanma, önce hangi LYZ çanlarının gerçekten Ruhyaran Dağı olduğunu doğrula."
     }
   },
   "cutoffs": {
@@ -1278,7 +1282,7 @@
       "cutoff": "final",
       "detect": false,
       "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
+        "bellPrefix": "DDSD"
       },
       "note": "Before Bi Feng free Lu Sanqian from the cage; before the Crusher and the Saw talk to Lu Jieyuan; bloody sword → Liu Yi → Ink Cut. Single CN walkthrough.",
       "source": {
@@ -1287,29 +1291,31 @@
           "steam-research-note"
         ],
         "checked": "unverified"
+      },
+      "hintNotStarted": {
+        "tr": "Bi Feng'den önce kafesteki Lu Sanqian'ı serbest bırak; Ezici ve Testere'den önce Lu Jieyuan ile konuş; kanlı kılıcı Liu Yi'ye götür (Mürekkep Kesiği). Tek bir Çince rehber, doğrulanmadı.",
+        "en": "Free Lu Sanqian from the cage before Bi Feng; talk to Lu Jieyuan before the Crusher and the Saw; take the bloody sword to Liu Yi (Ink Cut). Single CN walkthrough, unverified."
       }
     },
     {
       "id": "dont-forget-me",
-      "region": "mirage-estate",
-      "quest": null,
-      "unverified": true,
-      "names": {
-        "tr": "勿相忘 (Don't Forget Me)",
-        "en": "勿相忘 (Don't Forget Me)"
-      },
+      "region": "pangzhen",
+      "quest": "WuXiangWang",
       "cutoff": "final",
-      "detect": false,
       "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
+        "questSeen": "WuXiangWang"
       },
-      "note": "Before Kui Yanyan: the puppet/tree trunk and the thin man. Single CN walkthrough. Region: mirage-estate is a guess (Kui Yanyan's area is not mapped); only affects grouping once that region is reached.",
+      "note": "WuXiangWang = QuestRumor_034 \"BENİ UNUTMA\" / \"Don't Forget Me\" (keengamer Tale 23). Starts at the Pangzhen inn rooftop (Yuling murmuring about Senior Brother Zhou); the letter (Reading R_12017) is on a body in Mountain of Imprisonment NE of Kui Yanyan / Shrine Outer Gate (keengamer; pickup place on the real save not verified). Seen Started 2026-11-07 22:51. Cutoff final (ordinary tale, no earlier lock known).",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
           "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "search-snippet"
+      },
+      "hintStarted": {
+        "tr": "Zhou Ping'in son mektubunu Pangzhen Pazar Yeri çanının doğusundaki binada, üst kattaki Yuling'e ver (giriş Hayali Pipa ile açılır).",
+        "en": "Hand Zhou Ping's last letter to Yuling on the upper floor of the building east of the Pangzhen Marketplace bell (the entrance opens with the Illusory Pipa)."
       }
     },
     {
@@ -1489,13 +1495,27 @@
       "quest": null,
       "guess": true,
       "visibleWhen": {
-        "bellPrefix": "SZ"
+        "any": [
+          {
+            "bellPrefix": "SZ"
+          },
+          {
+            "bellPrefix": "DDSD"
+          }
+        ]
       },
       "activeWhen": {
-        "lastBellPrefix": "SZ"
+        "any": [
+          {
+            "lastBellPrefix": "SZ"
+          },
+          {
+            "lastBellPrefix": "DDSD"
+          }
+        ]
       },
       "exactWhen": {
-        "bellPrefix": "SZ"
+        "bellPrefix": "DDSD"
       },
       "warn": {
         "tr": "Sonraki dağ bölgesinde bir maskeli, kayıp defterini bulmanı isterse: defteri getirince \"bırak gitsin\" deme; onunla yüzleş (dövüş). Bırakırsan ardındaki kuklayı öldürüyor ve bir görev ile bir aksesuar kaçıyor (tartışmalı, güvenli tarafta kal).",
@@ -1513,7 +1533,7 @@
         ],
         "checked": "page"
       },
-      "note": "Disputed: Game8 (2026-11-05) and PowerPyx say the peaceful option kills the female puppet and locks Bai Xue; allthings.how (2026-11-01) says both paths keep Bai Xue. Fight is safe in every source. Mountain of Imprisonment bell prefix unknown, so visible from Pangzhen on."
+      "note": "Disputed: Game8 (2026-11-05) and PowerPyx say the peaceful option kills the female puppet and locks Bai Xue; allthings.how (2026-11-01) says both paths keep Bai Xue. Fight is safe in every source. Mountain of Imprisonment bell prefix unknown, so visible from Pangzhen on. 2026-11-08: Hapis Dağı çan öneki DDSD bilindiğinden kural dağda da etkin (activeWhen SZ|DDSD); exactWhen DDSD."
     },
     {
       "id": "triple-threat-flowers",

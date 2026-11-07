@@ -330,6 +330,15 @@
         "MGH"
       ],
       "note": "Meigu Lake (美姑湖). Map code MeiGuHu and bells Bell_MGH_… (001 Ağlayan Sis Kapısı, 004 Meigu Şarkıevi İskelesi, 008 Lu Köyü Sığlıkları İskelesi, 011/013 Beyaz Yılan Evi) seen in a save 2026-11-07 21:39."
+    },
+    "DengDingShanDao": {
+      "locres": "Levelname_DDSD_001",
+      "guessKey": false,
+      "guessEn": false,
+      "bellPrefixes": [
+        "DDSD"
+      ],
+      "note": "Mountain of Imprisonment (登顶山道 / Dengding mountain path); patch \"HAPİS DAĞI\". Map code seen in RecentlyInteractedAtByMap 2026-11-08 01:32 with Bell_DDSD_001."
     }
   },
   "unmappedMissables": {
