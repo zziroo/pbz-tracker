@@ -255,6 +255,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "慈母心 (a kind mother's heart); patch \"BİR ANNENİN KALBİ\", subtitle about the crow repaying its mother; \"A Mother's Heart\" (allthings.how). Pangzhen tale: starts at a memory flower ~66 m from the Pangzhen Slums bell (\"find the woman's son\"), ends at a guarded flower ~85 m from Pond of Fading Song. Seen in a save 2026-11-07 15:34 (Started, branch 1) right after the Slums bell was activated."
+    },
+    "XiLouFeiXu": {
+      "locres": "QuestMaze_013",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "西楼飞絮 (willow catkins drifting past the west tower); patch \"KİBRİN CAZİBESİ\", subtitle \"Uyanıkken bin bir biçim; rüyalarda her şey boş\", tasks \"Meigu Gölündeki tüm Hatıra Çiçeklerini topla\" / \"adada Yan Qiansui'yi bul\"; \"Allure of Vanity\" (allthings.how). Purple tale (true ending). Seen in a save 2026-11-07 21:39 (Succeded, 6/6 flowers F_08011–016 + FA_0801, BP_Monster_YanQianSui killed)."
     }
   },
   "regions": {
@@ -309,7 +315,16 @@
       "bellPrefixes": [],
       "note": "Pangzhen backstreet (后街, level Houjie): its own map code, but the patch has no separate level name, so it shows as Pangzhen. Bells keep the SZ prefix (Bell_SZ_005 seen). Seen in a save 2026-11-06."
     },
-    "_comment": "Region map code (RecentlyInteractedAtByMap / UnLockBigMapMaskWidgetNames) → locres key. bellPrefixes: bell id prefixes (Bell_<prefix>_…) of that region, used for the header when the map code itself is not known yet; a known map code always wins."
+    "_comment": "Region map code (RecentlyInteractedAtByMap / UnLockBigMapMaskWidgetNames) → locres key. bellPrefixes: bell id prefixes (Bell_<prefix>_…) of that region, used for the header when the map code itself is not known yet; a known map code always wins.",
+    "MeiGuHu": {
+      "locres": "Levelname_YGYW_001",
+      "guessKey": false,
+      "guessEn": false,
+      "bellPrefixes": [
+        "MGH"
+      ],
+      "note": "Meigu Lake (美姑湖). Map code MeiGuHu and bells Bell_MGH_… (001 Ağlayan Sis Kapısı, 004 Meigu Şarkıevi İskelesi, 008 Lu Köyü Sığlıkları İskelesi, 011/013 Beyaz Yılan Evi) seen in a save 2026-11-07 21:39."
+    }
   },
   "unmappedMissables": {
     "_comment": "Kayıttaki pinyin kodu bilinmeyen kaçırılabilirler. Anahtar: rules.json missables[].id.",
