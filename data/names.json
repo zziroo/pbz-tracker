@@ -261,6 +261,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "西楼飞絮 (willow catkins drifting past the west tower); patch \"KİBRİN CAZİBESİ\", subtitle \"Uyanıkken bin bir biçim; rüyalarda her şey boş\", tasks \"Meigu Gölündeki tüm Hatıra Çiçeklerini topla\" / \"adada Yan Qiansui'yi bul\"; \"Allure of Vanity\" (allthings.how). Purple tale (true ending). Seen in a save 2026-11-07 21:39 (Succeded, 6/6 flowers F_08011–016 + FA_0801, BP_Monster_YanQianSui killed)."
+    },
+    "WuXiangWang": {
+      "locres": "QuestRumor_034",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "勿相忘 (do not forget each other); patch \"BENİ UNUTMA\", subtitle \"Yaşam ya da Ölüm\", tasks: woman on the Pangzhen inn roof murmuring \"Kıdemli Kardeş Zhou\" / deliver Zhou Ping's last letter to Yuling in Pangzhen; \"Don't Forget Me\" (keengamer, Tale 23, Pangzhen Inn Rooftop; hand-in: Illusory Pipa at the Marketplace bell, building to the east, upper floor). Letter = Reading item R_12017 (ReadingDes_DDSD_Letter_017, signed Zhou Pingzi). Seen in a save 2026-11-07 22:51 (Simple, Started, S1 Activating) right after R_12017 was picked up at 21:49."
     }
   },
   "regions": {

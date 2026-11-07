@@ -49,7 +49,8 @@
     "MoJiaoZhiNv": "Daughter of the Dark Sect",
     "XiangJianHeJi": "Kin Against Kin",
     "CiMuXin": "A Mother's Heart",
-    "XiLouFeiXu": "Allure of Vanity"
+    "XiLouFeiXu": "Allure of Vanity",
+    "WuXiangWang": "Don't Forget Me"
   },
   "regions": {
     "XiGu": "Weeping Creek Valley",
@@ -57,7 +58,8 @@
     "LuJiaCun": "Village of Lu",
     "Zhengdaodaying": "Mandate Encampment",
     "PangZhen": "Pangzhen",
-    "HouJie": "Pangzhen"
+    "HouJie": "Pangzhen",
+    "MeiGuHu": "Meigu Lake"
   },
   "missables": {
     "honor-among-thieves": "Honor Among Thieves",
