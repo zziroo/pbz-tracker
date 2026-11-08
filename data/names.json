@@ -357,6 +357,13 @@
         "DDSD"
       ],
       "note": "Mountain of Imprisonment (登顶山道 / Dengding mountain path); patch \"HAPİS DAĞI\". Map code seen in RecentlyInteractedAtByMap 2026-11-08 01:32 with Bell_DDSD_001."
+    },
+    "MeiGu_YiJi": {
+      "locres": "Levelname_YGYW_001",
+      "guessKey": false,
+      "guessEn": false,
+      "bellPrefixes": [],
+      "note": "Forbidden Ruins inside Meigu Lake (幻术遗迹, level PBZ_Huanshuyiji2_WP; broken bell BrokenBell_HSSYJ_01 \"Hayalet İllüzyonist Harabeleri\"). No level name of its own in the patch, shown as Meigu Lake. Seen 2026-11-08 05:23."
     }
   },
   "unmappedMissables": {
