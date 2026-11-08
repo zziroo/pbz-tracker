@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.5",
+  "rulesVersion": "2026-11-08.6",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -215,6 +215,10 @@
     "keengamer-acolytes": {
       "name": "KeenGamer — all 4 Acolyte locations and Discordance realm rewards",
       "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-4-acolyte-locations-and-discordance-realm-rewards/"
+    },
+    "powerupgaming-bloodline": {
+      "name": "PowerUp Gaming — Bloodline Awakening quest guide",
+      "url": "https://powerupgaming.co.uk/2026/11/02/phantom-blade-zero-bloodline-awakening-quest-guide/"
     }
   },
   "bosses": {
@@ -1023,11 +1027,16 @@
       "source": {
         "ids": [
           "maxroll",
-          "powerpyx"
+          "powerpyx",
+          "powerupgaming-bloodline"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
-      "note": "Region: mount-soulrend = the final cutoff; the quest's own steps span earlier areas (not mapped)."
+      "note": "Region: mount-soulrend = the final cutoff; the quest's own steps span earlier areas (not mapped). Five Lóng Pillar trials (PowerUp Gaming): Weeping Creek Valley (Rusted Loong Key, east caves), Crimson Forest (after Iron Fever, chain-sickle gap), Meigu Lake east (Midlake Long Pillar Dock, boat), Meigu Lake west (Discordance realm, Dread Axe), and the fifth past the Green Serpent House near the Covered Corridor bell (right path, chain-sickle down to a hidden platform) — that one must be done before the Mount Soulrend finale. Save 2026-11-08 16:48: tasks 11011 with Tutorial_Longzhu1-4 all done, so the open task is the Covered Corridor pillar.",
+      "hintStarted": {
+        "tr": "Beşinci Lóng Sütunu Yeşil Yılan Evi geçidinden sonra, Kapalı Koridor çanından sağdaki yolda: aşağıdaki kanca noktasına zincir orakla in, gizli platform batı yakadaki sütuna çıkar. Ruhyaran Dağı'ndaki final dizisinden önce bitir; ilk dört sütun sonradan da yapılabilir.",
+        "en": "The fifth Lóng Pillar is past the Green Serpent House gate, on the right path from the Covered Corridor bell: use the chain sickle on the grapple point below, the hidden platform leads to the west-side pillar. Finish it before the Mount Soulrend finale; the first four pillars can be done later."
+      }
     },
     {
       "id": "mirrorwood-memory-flower",
