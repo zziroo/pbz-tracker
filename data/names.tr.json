@@ -28,6 +28,14 @@
   },
   "regions": {},
   "missables": {},
+  "shaChiWeapons": {
+    "TigerCannon": "Kaplan Topu",
+    "ThunderSpear": "Gök Gürültüsü Mızrağı",
+    "CuiXinPiPa": "Kalpyaran Pipa",
+    "KuYeSiZhuChuan": "Kuye Tapınağı Tespihi",
+    "BrutalAxe": "Dehşet Baltası",
+    "XueDiZi": "Uçan Giyotin"
+  },
   "bells": {},
   "bosses": {}
 }

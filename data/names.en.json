@@ -65,12 +65,19 @@
     "HouJie": "Pangzhen",
     "MeiGuHu": "Meigu Lake",
     "DengDingShanDao": "Mountain of Imprisonment",
-    "MeiGu_YiJi": "Meigu Lake"
+    "MeiGu_YiJi": "Meigu Lake",
+    "XiMeng": "Mirage Estate"
   },
   "missables": {
     "honor-among-thieves": "Honor Among Thieves",
     "boulderguard": "Boulderguard",
     "mountain-of-imprisonment": "Mountain of Imprisonment"
+  },
+  "shaChiWeapons": {
+    "TigerCannon": "Tiger Cannon",
+    "ThunderSpear": "Thunder Spear",
+    "CuiXinPiPa": "Heartrend Pipa",
+    "KuYeSiZhuChuan": "Kuye Temple Prayer Beads"
   },
   "bells": {},
   "bosses": {}

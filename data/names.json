@@ -370,6 +370,13 @@
       "guessEn": false,
       "bellPrefixes": [],
       "note": "Forbidden Ruins inside Meigu Lake (幻术遗迹, level PBZ_Huanshuyiji2_WP; broken bell BrokenBell_HSSYJ_01 \"Hayalet İllüzyonist Harabeleri\"). No level name of its own in the patch, shown as Meigu Lake. Seen 2026-11-08 05:23."
+    },
+    "XiMeng": {
+      "locres": "Levelname_XM_001",
+      "bellPrefixes": [
+        "XM"
+      ],
+      "note": "Map code of Mirage Estate (level PBZ_Ximeng_WP), first seen in RecentlyInteractedAtByMap on 2026-11-08 18:15 at Bell_XM_001."
     }
   },
   "unmappedMissables": {
@@ -396,6 +403,63 @@
       "guessKey": false,
       "guessEn": false,
       "note": "Görev değil, bölge adı. İlgili görev adımı tahmini: QuestMazeDes_003_10 (KunLunSanJie)."
+    }
+  },
+  "shaChiWeapons": {
+    "_comment": "Sha-Chi silahı (Phantom Edge) kayıt kimliği (MapSubsystem kilitlerinin NeedShaChiWeaponIds, Inventory.ShaChiWeaponInfo anahtarları) → yamadaki locres anahtarı (PhantomEdges_NNN). Eşleşmeler Türkçe yamanın adı/açıklamasından ve kilidin RequiredTags etiketinden çıkarıldı (2026-11-08); guessKey=true: anahtar yalnız anlamdan.",
+    "TigerCannon": {
+      "locres": "PhantomEdges_006",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "KAPLAN TOPU; taş duvarları (StoneWall) kırar."
+    },
+    "ThunderSpear": {
+      "locres": "PhantomEdges_019",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "GÖK GÜRÜLTÜSÜ MIZRAĞI; PhantomBarrier kilitleri."
+    },
+    "CuiXinPiPa": {
+      "locres": "PhantomEdges_024",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "KALPYARAN PİPA (Heartrend Pipa)."
+    },
+    "KuYeSiZhuChuan": {
+      "locres": "PhantomEdges_013",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "KUYE TAPINAĞI TESPİHİ."
+    },
+    "BrutalAxe": {
+      "locres": "PhantomEdges_001",
+      "guessKey": false,
+      "guessEn": true,
+      "note": "DEHŞET BALTASI; ChainBlocker kilitleri."
+    },
+    "XueDiZi": {
+      "locres": "PhantomEdges_020",
+      "guessKey": false,
+      "guessEn": true,
+      "note": "UÇAN GİYOTİN (血滴子)."
+    },
+    "LionHead": {
+      "locres": "PhantomEdges_012",
+      "guessKey": true,
+      "guessEn": true,
+      "note": "ALEVLİ YELE (aslan dansı ustasının silahı); ThornyVine kilitleri."
+    },
+    "JinGua": {
+      "locres": "PhantomEdges_002",
+      "guessKey": true,
+      "guessEn": true,
+      "note": "YIKIM SIRIĞI (taşı parçalar, yeri çatlatır); GroundBlocker kilitleri (RequiredTags BreakBlocker.Ground)."
+    },
+    "UnnamedBow": {
+      "locres": "PhantomEdges_009",
+      "guessKey": true,
+      "guessEn": true,
+      "note": "TÜY YAY (yaşlı okçunun onardığı yay); HangingGift kilitleri."
     }
   },
   "trWordCase": {

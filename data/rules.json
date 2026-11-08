@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.9",
+  "rulesVersion": "2026-11-08.10",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -365,11 +365,13 @@
         "en": "Mirage Estate"
       },
       "locres": "Levelname_XM_001",
-      "mapCodes": [],
+      "mapCodes": [
+        "XiMeng"
+      ],
       "bellPrefixes": [
         "XM"
       ],
-      "_note": "Çan öneki XM (Bell_XM_001 Malikâne Arka Kapısı … Bell_XM_022 Söğüt Köşkü, yamada). Bell_XM_015 \"Serap Malikânesi\" ADLI çan Pangzhen haritasındadır (allthings.how Pangzhen çan listesi; kayıtta 2026-11-07 15:59 Pangzhen seviyesinde, Yeşil Yılan Evi kapısı açılmadan dokunuldu), bu yüzden sayılmaz. Harita kodu henüz bilinmiyor.",
+      "_note": "Çan öneki XM (Bell_XM_001 Malikâne Arka Kapısı … Bell_XM_022 Söğüt Köşkü, yamada). Bell_XM_015 \"Serap Malikânesi\" ADLI çan Pangzhen haritasındadır (allthings.how Pangzhen çan listesi; kayıtta 2026-11-07 15:59 Pangzhen seviyesinde, Yeşil Yılan Evi kapısı açılmadan dokunuldu), bu yüzden sayılmaz. Harita kodu XiMeng (PBZ_Ximeng_WP), 2026-11-08 18:15 kaydında görüldü.",
       "except": [
         "Bell_XM_015"
       ]
