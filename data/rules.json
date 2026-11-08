@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.12",
+  "rulesVersion": "2026-11-08.13",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -2344,7 +2344,12 @@
       },
       {
         "quest": "MiaoShouKongKong",
-        "en": "Quick Hand's Request"
+        "en": "Quick Hand's Request",
+        "doneWhen": {
+          "questBranch": "MiaoShouKongKong",
+          "branch": "6-1"
+        },
+        "note": "Branch 6-1 = Mirage Estate treasures handed in (the last stage). Real save 2026-11-08: all branches 1..6-1 Completed at 21:29, Steam \"Lost and Found\" unlocked the same minute, the in-game journal lists the tale as completed, but QuestCompletion stayed Started."
       },
       {
         "quest": "QiShengHeLai",
