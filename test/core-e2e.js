@@ -155,7 +155,9 @@ async function main() {
       if (c && !exactOk) check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (area not reached / code unknown)`);
       else if (reached && id) console.log(`      exact: ${id} → ${w.where}`);
     }
-    check(named > 0, `exact mode names ${named} warning(s), ${vague} stay vague`);
+    // The live save may have no open warning left on a reached cutoff (e.g. the lake quest done): then nothing can be named.
+    const nameable = exact.warnings.some((w) => { const [, c] = cutoffOf(w.where) || []; return !!c?.whereExact && makeEval(st, rules)(c.exactWhen) === true; });
+    check(named > 0 || !nameable, `exact mode names ${named} warning(s), ${vague} stay vague${nameable ? "" : " (no reachable cutoff warning in this save)"}`);
 
     // Diagnostics: no personal data, even with hostile inputs (full paths where only names belong).
     const user = (() => { try { return os.userInfo().username; } catch { return process.env.USERNAME || ''; } })();
