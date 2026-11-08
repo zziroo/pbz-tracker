@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.16",
+  "rulesVersion": "2026-11-09.1",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -395,9 +395,13 @@
         "en": "Mount Soulrend"
       },
       "locres": "Levelname_LYZ_001",
-      "mapCodes": [],
-      "bellPrefixes": [],
-      "_note": "Son bölge; harita kodu henüz bilinmiyor. Çan öneki LYZ (Levelname_LYZ_001) ama Bell_LYZ_010 Donmuş Göl İskelesi ve Bell_LYZ_011 Dört Muhafızın Aynası Meigu Gölü haritasındaki donmuş ayna diyarında açıldı (2026-11-08, MeiGuHu haritası); LYZ önekini bölge/son kesim için kullanma, önce hangi LYZ çanlarının gerçekten Ruhyaran Dağı olduğunu doğrula."
+      "mapCodes": [
+        "DuanHunYa"
+      ],
+      "bellPrefixes": [
+        "DH"
+      ],
+      "_note": "Son bölge; harita kodu henüz bilinmiyor. Çan öneki LYZ (Levelname_LYZ_001) ama Bell_LYZ_010 Donmuş Göl İskelesi ve Bell_LYZ_011 Dört Muhafızın Aynası Meigu Gölü haritasındaki donmuş ayna diyarında açıldı (2026-11-08, MeiGuHu haritası); LYZ önekini bölge/son kesim için kullanma, önce hangi LYZ çanlarının gerçekten Ruhyaran Dağı olduğunu doğrula. 2026-11-09: harita kodu DuanHunYa (PBZ_Duanhun_WP), çan öneki DH (Bell_DH_001 Gümüş Patika … Bell_DH_008 Son Şans … Bell_DH_012); Bell_LYZ_008 Dağ Tanrısı Tapınağı da bu haritada. LYZ_010-014 Meigu haritasındaki alem çanları, bu bölgeye sayılmaz."
     }
   },
   "cutoffs": {
@@ -487,7 +491,7 @@
         "en": "At the \"Last Chance\" bell after the Crusher and the Saw, when the game explicitly warns you, before confirming"
       },
       "exactWhen": {
-        "unknown": "region code not known yet"
+        "bellPrefix": "DH"
       },
       "passedWhen": {
         "unknown": "son bölüm kodu henüz bilinmiyor"
@@ -504,7 +508,7 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Location: the \"Last Chance\" bell after the Crusher and the Saw, before the Cliff of Severed Souls. Lady Inanis says if something is missing and asks for confirmation even when all is done. The five Long Pillars stay open until here; 4/5 gives the normal ending without a warning."
+      "note": "Location: the \"Last Chance\" bell after the Crusher and the Saw, before the Cliff of Severed Souls. Lady Inanis says if something is missing and asks for confirmation even when all is done. The five Long Pillars stay open until here; 4/5 gives the normal ending without a warning. 2026-11-09: Bell_DH_008 = \"Son Şans\" (Last Chance) on map DuanHunYa; exactWhen = any DH bell. passedWhen still unknown (the warning is a dialog at that bell, not a bell id)."
     },
     "gen-alley": {
       "where": {
@@ -1281,7 +1285,7 @@
         "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → Ruhyaran Dağı: PowerPyx'e göre geçince diğer bölgelere dönüş kapanır (Steam raporları asıl son noktanın Ezici ve Testere sonrası \"Last Chance\" çanı olduğunu söylüyor; güvenli tarafta kal). Geçmeden önce: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (Gök Gürültüsü Ay Feneri; başka sığınakta teslim fenerin kaçmasına yol açabilir); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi ve kule çatısı (Kızıl Orman Sha-Chi Kulesi: anahtar Kule Tabanı çanının yanındaki ocağın dibinde, 6. kattaki asansörün yanındaki kapıyı açar; çatıda Demir İblis → Yumruğun Kalbi, Mu Xiaokui → Yüce Teşkilat Nişanı, \"Onlara Karşı Kullan\" idmanı → İblis Testereleri malzemesi); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği Ruhyaran ziyaretinden sonra çıkabiliyor.",
         "en": "The wall near the Mourning Hall bell → Mount Soulrend: PowerPyx says you cannot return to the other regions after it (Steam reports put the real point of no return at the \"Last Chance\" bell after the Crusher and the Saw; stay on the safe side). Before crossing: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (Thundermoon Lantern; handing in elsewhere may lose the lantern); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist and the tower roof (Crimson Forest Sha-Chi Tower: the key lies by the furnace next to the Tower Base bell and opens the door by the 6th-floor lift; on the roof Iron Fiend → Heart of the Fist, Mu Xiaokui → Supreme Order Token, the \"Use It Against Them\" spar → Fiend Saws material); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting Mount Soulrend."
       },
-      "note": "PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26). Crimson Forest Sha-Chi Tower key = Item_Key_XSSL_001 (save door lock needs K_13001 on PBZ_Fujizhilin_WP); KeenGamer: by the furnace near the Tower Base bell, opens the door by the 6th-floor lift to the rooftop.",
+      "note": "PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26). Crimson Forest Sha-Chi Tower key = Item_Key_XSSL_001 (save door lock needs K_13001 on PBZ_Fujizhilin_WP); KeenGamer: by the furnace near the Tower Base bell, opens the door by the 6th-floor lift to the rooftop. Done once a DH (Mount Soulrend) bell is lit. Real save 2026-11-09 02:08: Bell_DH_001/002/003/006 + LYZ_008 lit, XiaoCui Succeded before entering (branch 5 completed on Mountain of Imprisonment, Lu Jieyuan step), MainCh3-PoJu Succeded.",
       "source": {
         "ids": [
           "powerpyx-mirage",
@@ -1290,6 +1294,9 @@
           "keengamer-cf-tower"
         ],
         "checked": "page"
+      },
+      "doneWhen": {
+        "bellPrefix": "DH"
       }
     },
     {
@@ -1445,7 +1452,7 @@
           }
         ]
       },
-      "note": "Cui (XiaoCui): starts above Yuzan's arena in the Village of Lu; Mountain of Imprisonment steps: cage talk → Bi Feng → Rootless Dew → rear door at Commander's Platform → second rescue after Kui Yanyan (give dew) → Lu Sanqian before the shrine boss gives Crude Radiant Heart → parents on Mount Soulrend before the Crusher and the Saw → Lu Jieyuan after that fight gives Baishan Ribbon. Sources: gamingdeputy FR, playnews, keengamer (Bi Feng itself has no missable).",
+      "note": "Cui (XiaoCui): starts above Yuzan's arena in the Village of Lu; Mountain of Imprisonment steps: cage talk → Bi Feng → Rootless Dew → rear door at Commander's Platform → second rescue after Kui Yanyan (give dew) → Lu Sanqian before the shrine boss gives Crude Radiant Heart → parents on Mount Soulrend before the Crusher and the Saw → Lu Jieyuan after that fight gives Baishan Ribbon. Sources: gamingdeputy FR, playnews, keengamer (Bi Feng itself has no missable). Real save 2026-11-09 ~01:50: branch 5 Completed and quest Succeded while on Mountain of Imprisonment (last step was Lu Jieyuan there), i.e. the parents step did not require Mount Soulrend in this playthrough.",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",

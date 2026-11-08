@@ -321,6 +321,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "白雪 Bai Xue; patch \"BAI XUE\". Opens after the Ironmask fight on Mountain of Imprisonment (talk to the puppet behind him). Seen Succeded 2026-11-09 01:17."
+    },
+    "MainCh3-LongYuZuo": {
+      "locres": "QuestStory_03_4",
+      "guessKey": true,
+      "guessEn": true,
+      "note": "Chapter 3 main quest after The Way Forward; patch title QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff) is the only remaining chapter-3 story title, so the link is inferred. Seen Started 2026-11-09 02:08 on entering DuanHunYa."
     }
   },
   "regions": {
@@ -407,6 +413,13 @@
         "XM"
       ],
       "note": "Map code of Mirage Estate (level PBZ_Ximeng_WP), first seen in RecentlyInteractedAtByMap on 2026-11-08 18:15 at Bell_XM_001."
+    },
+    "DuanHunYa": {
+      "locres": "Levelname_LYZ_001",
+      "bellPrefixes": [
+        "DH"
+      ],
+      "note": "Mount Soulrend map code (level PBZ_Duanhun_WP, 断魂崖 Soulrend Cliff); bells Bell_DH_001..012 (+ Bell_DH_DP_008 pillar) and Bell_LYZ_008 (Mountain God Temple) light on this map. Bell_DH_008 = \"Son Şans\" (Last Chance). First seen 2026-11-09 02:08."
     }
   },
   "unmappedMissables": {

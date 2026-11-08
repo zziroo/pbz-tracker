@@ -59,7 +59,8 @@
     "QuanXin": "Heart of the Fist",
     "YiBiZhiDao": "Use It Against Them",
     "YongShengDaoZhu": "Ledger of Atonement",
-    "BaiXue": "Bai Xue"
+    "BaiXue": "Bai Xue",
+    "MainCh3-LongYuZuo": "Soulrend Cliff"
   },
   "regions": {
     "XiGu": "Weeping Creek Valley",
@@ -71,7 +72,8 @@
     "MeiGuHu": "Meigu Lake",
     "DengDingShanDao": "Mountain of Imprisonment",
     "MeiGu_YiJi": "Meigu Lake",
-    "XiMeng": "Mirage Estate"
+    "XiMeng": "Mirage Estate",
+    "DuanHunYa": "Mount Soulrend"
   },
   "missables": {
     "honor-among-thieves": "Honor Among Thieves",
