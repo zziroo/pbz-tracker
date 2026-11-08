@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.8",
+  "rulesVersion": "2026-11-08.9",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -227,6 +227,14 @@
     "gamesgg-tempering": {
       "name": "games.gg — all Soul Temper materials",
       "url": "https://games.gg/phantom-blade-0/guides/all-soul-temper-materials-phantom-blade-zero-locations/"
+    },
+    "powerpyx-mirage": {
+      "name": "PowerPyx — Mirage Estate walkthrough",
+      "url": "https://www.powerpyx.com/?p=368142"
+    },
+    "allthings-mirage-map": {
+      "name": "allthings.how — Mirage Estate map",
+      "url": "https://allthings.how/phantom-blade-zero/map/mirage-estate/"
     }
   },
   "bosses": {
@@ -1228,6 +1236,45 @@
           "steam-research-note"
         ],
         "checked": "unverified"
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "soulrend-wall-prep",
+      "region": "mirage-estate",
+      "guess": true,
+      "visibleWhen": {
+        "questSeen": "MainCh2-SiDaSheWu"
+      },
+      "activeWhen": {
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
+      },
+      "exactWhen": {
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
+      },
+      "warn": {
+        "tr": "Bu malikânenin sonunda bir duvardan son bölgeye geçilir; bir kaynağa göre sonra diğer bölgelere dönülemez. Geçmeden önce başka bölgelerde kalan işleri bitir.",
+        "en": "At the end of this estate a wall leads to the final region; one source says you cannot return to the other regions afterwards. Finish work left in other regions before crossing."
+      },
+      "warnNamed": {
+        "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → Ruhyaran Dağı: PowerPyx'e göre geçince diğer bölgelere dönüş kapanır (Steam raporları asıl son noktanın Ezici ve Testere sonrası \"Last Chance\" çanı olduğunu söylüyor; güvenli tarafta kal). Geçmeden önce: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (Gök Gürültüsü Ay Feneri; başka sığınakta teslim fenerin kaçmasına yol açabilir); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi (Sha-Chi Kulesi 6. kat Demir İblis); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği Ruhyaran ziyaretinden sonra çıkabiliyor.",
+        "en": "The wall near the Mourning Hall bell → Mount Soulrend: PowerPyx says you cannot return to the other regions after it (Steam reports put the real point of no return at the \"Last Chance\" bell after the Crusher and the Saw; stay on the safe side). Before crossing: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (Thundermoon Lantern; handing in elsewhere may lose the lantern); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist (Iron Fiend, Sha-Chi Tower 6th floor); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting Mount Soulrend."
+      },
+      "note": "PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26).",
+      "source": {
+        "ids": [
+          "powerpyx-mirage",
+          "allthings-mirage-map",
+          "steam-research-note"
+        ],
+        "checked": "page"
       }
     },
     {
