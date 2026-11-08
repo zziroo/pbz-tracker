@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.2",
+  "rulesVersion": "2026-11-08.3",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -2147,12 +2147,25 @@
         ],
         "checked": "page"
       },
-      "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Save code of the dew unknown, so detect stays off. Triggers added 2026-11-08 once the DDSD prefix was known.",
+      "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Save code of the dew unknown, so detect stays off. Triggers added 2026-11-08 once the DDSD prefix was known. doneWhen: XiaoCui branch 4-A reached (Activating or Completed). On the real save (2026-11-08 04:14:28) branch 3 completed and 4-A activated at the same second right after the second rescue in the hanging-cage room, and Yusuf reported giving the dew; 4-B stayed None. Reading: 4-A = \"Lu Sanqian drank the Rootless Dew\" (QuestDes_01-DDSD_012), 4-B = \"his days are numbered\" (DDSD_013, dew not given). Branch meaning inferred from one save, not from the quest asset.",
       "activeWhen": {
         "lastBellPrefix": "DDSD"
       },
       "exactWhen": {
         "bellPrefix": "DDSD"
+      },
+      "doneWhen": {
+        "any": [
+          {
+            "questBranch": "XiaoCui",
+            "branch": "4-A",
+            "state": "Activating"
+          },
+          {
+            "questBranch": "XiaoCui",
+            "branch": "4-A"
+          }
+        ]
       }
     }
   ],
