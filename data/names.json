@@ -285,6 +285,12 @@
       "guessKey": false,
       "guessEn": false,
       "note": "正义蒙尘 (justice covered in dust); patch \"LEKELENMİŞ ADALET\", subtitle \"Bir Zamanlar Kunlun'un Kılıç Ustasıydı\", task \"collect Huangxing's memory flowers\" (6); \"Justice Tarnished\" (allthings.how). Seen in a save 2026-11-08 03:38 (Collect, Started, 2/6)."
+    },
+    "BaiYing": {
+      "locres": "QuestCollect_007",
+      "guessKey": false,
+      "guessEn": true,
+      "note": "白影 (white shadow); patch \"BEYAZGÖLGE\", task QuestCollectDes_007_01 \"collect the Blizzard Blademaster's memory flowers\" (6 flowers, tracked task points MemoryFlower_Baiying_1..6). Collection quest in the Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells on the Meigu map). English name guessed from the weapon \"Whiteshadow\" and the achievement \"The White Shadow\"; no guide names the quest. Seen in a save 2026-11-08 15:37 (Started, branch 1 Activating 5/6)."
     }
   },
   "regions": {

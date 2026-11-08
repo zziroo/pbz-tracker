@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.4",
+  "rulesVersion": "2026-11-08.5",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -207,6 +207,14 @@
     "game8-red": {
       "name": "Game8 — Red Location and How to Beat",
       "url": "https://game8.co/games/Phantom-Blade-Zero/archives/635019"
+    },
+    "powerupgaming-lake": {
+      "name": "PowerUp Gaming — Secrets at the Heart of the Lake guide",
+      "url": "https://powerupgaming.co.uk/2026/11/01/phantom-blade-zero-secrets-at-the-heart-of-the-lake-guide/"
+    },
+    "keengamer-acolytes": {
+      "name": "KeenGamer — all 4 Acolyte locations and Discordance realm rewards",
+      "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-all-4-acolyte-locations-and-discordance-realm-rewards/"
     }
   },
   "bosses": {
@@ -801,11 +809,80 @@
       "source": {
         "ids": [
           "allthings",
-          "dtgre-purple"
+          "dtgre-purple",
+          "powerupgaming-lake",
+          "keengamer-acolytes"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
-      "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure."
+      "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure. Steps (PowerUp Gaming / KeenGamer): 6 Firefly's Memory Flowers in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (Yanru fire, Lei Ting lightning, Guhe poison, Hansui ice in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet, Mountain of Imprisonment; Yang: Hansui drop) → Four Guardians' Mirror (Bell_LYZ_011, frozen NW shore of Meigu Lake, map MeiGuHu) → Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells) → Blizzard Blademaster at Whiteshadow's Fall (Bell_LYZ_014) → red statue, insert both eyes → Heart of the Lake ritual → Inanis. Save 2026-11-08: S1/S2/S4 Completed, S3 + branch 3 Activating while inside the realm (last bell Bell_LYZ_013).",
+      "hintStarted": {
+        "tr": "Sıra: Lu Köyü'nde Ateşböceği anı çiçekleri (6) → Alacakaranlık (Kukla Ustası) → dört Mürit maskesi (ateş, yıldırım, zehir; buz olan Kızıl Malikâne'de Hansui) → iki Kristal Kukla Gözü (Yin: Hapis Dağı'ndaki asılı kukla; Yang: Hansui) → Meigu Gölü'nün kuzeybatı donmuş kıyısındaki Dört Muhafızın Aynası → Uyumsuzluk alemi → Beyazgölge'nin Düşüşü'nde Tipi Kılıç Ustası → kırmızı heykele iki gözü tak → Gölün Kalbi'nde ayini durdur. Hepsi Mirage Estate köprüsünden önce.",
+        "en": "Order: Firefly's Memory Flowers (6) in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (fire, lightning, poison; the ice one is Hansui in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet in Mountain of Imprisonment; Yang: Hansui) → Four Guardians' Mirror on the frozen NW shore of Meigu Lake → Discordance realm → Blizzard Blademaster at Whiteshadow's Fall → put both eyes in the red statue → stop the ritual at the Heart of the Lake. All before the Mirage Estate bridge."
+      }
+    },
+    {
+      "type": "info",
+      "quest": null,
+      "id": "discordance-realm-prep",
+      "region": "meigu-lake",
+      "guess": true,
+      "visibleWhen": {
+        "all": [
+          {
+            "questSeen": "HuXinMiMi"
+          },
+          {
+            "any": [
+              {
+                "bellPrefix": "MGH"
+              },
+              {
+                "bellPrefix": "LYZ"
+              }
+            ]
+          }
+        ]
+      },
+      "activeWhen": {
+        "any": [
+          {
+            "lastBellPrefix": "MGH"
+          },
+          {
+            "lastBellPrefix": "LYZ"
+          }
+        ]
+      },
+      "exactWhen": {
+        "any": [
+          {
+            "bellPrefix": "MGH"
+          },
+          {
+            "bellPrefix": "LYZ"
+          }
+        ]
+      },
+      "doneWhen": {
+        "questDone": "HuXinMiMi"
+      },
+      "warn": {
+        "tr": "Gölün donmuş kıyısındaki büyük aynaya girmeden önce ağır baltanı, onarılmış pipayı ve iki kristal gözü yanına al; içeride sondaki dövüşe gitmeden her bölümü bitir.",
+        "en": "Before entering the big mirror on the frozen lake shore bring the heavy axe, the repaired pipa and both crystal eyes; inside, clear every section before the final fight."
+      },
+      "warnNamed": {
+        "tr": "Dört Muhafızın Aynası / Uyumsuzluk alemi (Hayalet İllüzyonist Harabeleri): girmeden Dread Axe, onarılmış Hayali Pipa ve iki Kristal Kukla Gözü yanında olsun. İçeride: 4. Lóng Sütunu (zincirleri balta kırar, Altın Maskeli), pipayla açılan sis duvarının ardında Karataş parçası, iki Sha-Chi Kehribarı parçası, Beyazgölge görevi için Tipi Kılıç Ustası'nın 6 anı çiçeği; en son Yasak Patika çanından tekne yoluyla Beyazgölge'nin Düşüşü'nde Tipi Kılıç Ustası (Whiteshadow silahı), sonra kırmızı heykel. Dövüşten sonra aleme dönülüp dönülemediği doğrulanmadı.",
+        "en": "Four Guardians' Mirror / Discordance realm (Phantom Illusionist Ruins): bring the Dread Axe, the repaired Illusory Pipa and both Crystal Puppet Eyes before entering. Inside: 4th Lóng Pillar (axe breaks the chains, Gold-Masked One), a Blackstone fragment behind the mist wall the pipa clears, two Sha-Chi Amber fragments, the Blizzard Blademaster's 6 memory flowers for the Whiteshadow tale; last, from the Forbidden Path bell take the boat path to Whiteshadow's Fall for the Blizzard Blademaster (Whiteshadow weapon), then the red statue. Whether the realm can be re-entered after the fight is unverified."
+      },
+      "note": "KeenGamer acolytes/Discordance guide + PowerUp Gaming. Realm = level PBZ_Huanshuyiji2_WP with LYZ bells on map MeiGuHu (Bell_LYZ_010 Frozen Lake Dock, 011 Four Guardians' Mirror, 013 Forbidden Path, 014 Whiteshadow's Fall) and BrokenBell_HSSYJ_01..07 (group HuanShuShi). Save 2026-11-08: BaiYing 5/6 (tracked MemoryFlower_Baiying_6), MoTian_LongZhu_01 kill 4 (pillar trial), Item_Piece_002 +2, Item_001 8 at Bell_LYZ_013. Re-entry after the Blademaster unverified, so shown until the lake quest completes.",
+      "source": {
+        "ids": [
+          "keengamer-acolytes",
+          "powerupgaming-lake"
+        ],
+        "checked": "page"
+      }
     },
     {
       "id": "journey-home",
