@@ -348,6 +348,31 @@ button, input, select { font: inherit; color: inherit; }
 .card-info .icon { margin-top: 2px; }
 .info-text { margin: 0; color: var(--text-soft); font-size: 14px; }
 
+/* Open map locks (State.mapLocks): one card, a line per reached region. */
+.card-locks {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border-left: 3px solid var(--border-strong);
+  color: var(--muted);
+}
+.card-locks .icon { margin-top: 2px; }
+.locks-body { min-width: 0; }
+.locks-title {
+  margin: 0 0 6px;
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.locks-list { list-style: none; margin: 0; padding: 0; }
+.locks-row { padding: 3px 0; font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; }
+.locks-region { color: var(--text); font-weight: 600; }
+.locks-region::after { content: ": "; }
+.locks-items { color: var(--text-soft); }
+
 /* ---- Journal ---- */
 .journal-bar {
   display: flex;

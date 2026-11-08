@@ -27,6 +27,7 @@
       'hdr.location': 'Bölge',
       'warn.label': 'Uyarı',
       'info.label': 'Bilgi',
+      'locks.title': 'Haritada açık kilitler',
       'journal.notice': 'Spoiler içerebilir. Satıra tıklayınca o satır açılır.',
       'journal.showAll': 'Tümünü göster',
       'journal.hideAll': 'Tümünü gizle',
@@ -144,6 +145,7 @@
       'hdr.location': 'Area',
       'warn.label': 'Warning',
       'info.label': 'Info',
+      'locks.title': 'Open map locks',
       'journal.notice': 'May contain spoilers. Click a row to reveal it.',
       'journal.showAll': 'Show all',
       'journal.hideAll': 'Hide all',
@@ -301,6 +303,7 @@
     eyeOff: ['M3 3l18 18', 'M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a15.6 15.6 0 0 1-2.6 3.1', 'M6.5 7.6C4.4 9.1 3 12 3 12s4 6 9 6a8.9 8.9 0 0 0 3.9-.9', 'M9.9 10a3 3 0 0 0 4.1 4.1'],
     error: ['M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z', 'M12 7.5v6', 'M12 16.5h.01'],
     external: ['M14 4h6v6', 'M20 4l-9 9', 'M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'],
+    lock: ['M7 11V8a5 5 0 0 1 10 0v3', 'M5 11h14v10H5z', 'M12 15v3'],
   };
   function icon(name, cls) {
     const svg = document.createElementNS(SVG_NS, 'svg');
@@ -540,6 +543,19 @@
     } else {
       if (warnings.length) out.push(warnCards(warnings, 'h2'));
       if (info.length) out.push(infoCards(info));
+    }
+
+    // Map locks still closed in reached regions (State.mapLocks): one small card, a line per region, texts
+    // already localized by the transport. Missing (older transport) or empty → no card.
+    const locks = Array.isArray(s.mapLocks) ? s.mapLocks.filter((r) => r && Array.isArray(r.items) && r.items.length) : [];
+    if (locks.length) {
+      const ul = h('ul', { class: 'locks-list' });
+      for (const r of locks) {
+        const items = r.items.map((it) => it.text || [it.type, it.need].filter(Boolean).join(' ')).join(', ');
+        ul.append(h('li', { class: 'locks-row' }, h('span', { class: 'locks-region', text: r.region || '' }), h('span', { class: 'locks-items', text: items })));
+      }
+      out.push(h('section', { class: 'cards cards-info' },
+        h('div', { class: 'card card-locks' }, icon('lock'), h('div', { class: 'locks-body' }, h('h2', { class: 'locks-title', text: t('locks.title') }), ul))));
     }
 
     p.replaceChildren(...out);

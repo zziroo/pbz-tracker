@@ -154,6 +154,7 @@ function createTransport() {
       quest: (id) => n.quest(id),
       region: (code, bell) => (code || bell ? n.region(code, bell) : null),
       missable: (id) => n.missable(id),
+      shaChiWeapon: (id) => n.shaChiWeapon(id),
       known: (id) => !!NAMES.quests?.[id],
       get notice() { return n.notice; },
     };

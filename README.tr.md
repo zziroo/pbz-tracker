@@ -9,6 +9,7 @@
 ## Ne yapar / ne yapmaz
 
 - Save'ini okur, hâlâ açık kaçırılabilir görevleri bulur ve hangi noktayı henüz geçmemen gerektiğini söyler. Bunu adla değil konumla yapar: "Bu bölgenin son dövüşüne girmeden önce".
+- Ulaştığın bölgelerde hâlâ kapalı harita kilitlerini (taş duvar, kapı) ve her birinin ne istediğini listeler: adıyla bir Phantom Edge ya da bir anahtar eşya.
 - Save'e, yedeklerine, oyun klasörüne ve yamalara **asla yazmaz**. Tarayıcı yalnız okuma izni alır. Sayfanın hatırladıkları (türetilen anahtar, seçilen klasörler, ayarlar ve görev zaman çizelgesi) o tarayıcının siteye ait deposunda (IndexedDB) durur. Save okunurken oyun açık kalabilir.
 - **Tamamen tarayıcında çalışır.** Hiçbir dosya yüklenmez ve sayfadan hiçbir istek çıkmaz; DevTools → Network sekmesinden kontrol edebilirsin. Telemetri yok; sitenin kendi dosyaları dışında güncelleme kontrolü yok. Sunucu tarafı olmayan statik bir sayfadır: site yalnız kendi dosyalarını sunar. İlk ziyaretten sonra çevrimdışı da çalışır. Yeni bir sürüm yayınlandığında açık sayfa "Yeni sürüm hazır" çubuğunu gösterir ve yalnız Yenile'ye tıklayınca geçer (tarayıcı sitenin kendi `sw.js` dosyasını sekme öne gelince ve her 10 dakikada bir yeniden kontrol eder; başka bir şey değil). Hakkında sekmesindeki bağlantılar yalnız tıklarsan açılır.
 - **Anahtar ve kişisel veri içermez.** Save anahtarı tarayıcında *senin* `PBZ.exe`'nden türetilir (parça parça okunur, asla bütünüyle değil). Sayfada SteamID, save verisi ya da anahtar yoktur.

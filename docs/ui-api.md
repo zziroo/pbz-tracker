@@ -98,6 +98,20 @@ interface State {
     warnings: Array<{ where: string; items: Array<{ text: string; note: string | null; hint?: string | null }> }>;  // as `warnings`
     info: string[];            // as `info`
   }>;
+  mapLocks?: Array<{           // map locks still closed in regions the player has reached (save MapSubsystem lock
+                               // arrays minus EndedLockObjGuids; a region is reached when its map is unlocked, one of
+                               // its bells was used or it is the header's map), one entry per region name, in the
+                               // save's map order; [] when none. Missing (older transport) → nothing. Always visible
+                               // (not blurred): reached regions only, never a lock id or a position.
+    region: string;            // the header's region text (names.region(mapCode)), else the map code
+    items: Array<{
+      type: string;            // localized actor type word: "stone wall" / "gate" / "door" / "lock"
+      need: string | null;     // localized requirement: the Phantom Edge's name (its raw id when no name is known)
+                               // or "key item K_05007"; null for needKind 'none'
+      needKind: 'weapon' | 'item' | 'none';
+      text: string;            // the whole item, localized: "stone wall (Tiger Cannon)", "gate (key item K_05007)", "locked door"
+    }>;
+  }>;
   // Layer 2 (blurred in the Journal tab)
   journal: {
     sections: Array<{

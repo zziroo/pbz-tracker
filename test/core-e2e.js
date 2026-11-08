@@ -566,6 +566,47 @@ async function main() {
     check(rejects(withMiss({ region: 'no-such-region' })) && rejects(withMiss({ region: ['crimson-forest', 'nope'] })) && rejects(noRegion)
       && rejects(withCut({ region: 'nope' })) && !rejects(withMiss({ region: ['pangzhen', 'crimson-forest'] })) && !rejects(mini),
       'rules schema: an unknown or missing region is rejected (missable and cutoff); a file without regions needs none');
+
+    // Map locks: lib/state.js mapLocksOf drops a lock listed in EndedLockObjGuids (case-insensitively) and keeps only
+    // the actor class; lib/report.js mapLocksOf shows reached maps only (unlocked, a bell used, or the header's map),
+    // names the Phantom Edge (English table), labels key items and plain doors, and merges maps sharing a region name.
+    const { mapLocksOf: locksOfSave } = sb.require('./lib/state');
+    const { mapLocksOf } = sb.require('./lib/report');
+    const { toState } = sb.require('./lib/viewmodel');
+    const msub = {
+      EndedLockObjGuids: ['pbz_xigu_wp-bp_stonewall_c_uaid_aa_1'],
+      XiGu: { MapLockGroups: { 0: { SwitchLockJsonArray: [], ShaChiLockJsonArray: [
+        { Guid: 'PBZ_Xigu_WP-BP_StoneWall_C_UAID_AA_1', NeedShaChiWeaponIds: ['TigerCannon'] },
+        { Guid: 'PBZ_Xigu_WP-BP_StoneWall_C_UAID_BB_2', NeedShaChiWeaponIds: ['TigerCannon'] }] } } },
+      HouJie: { MapLockGroups: { 0: { SwitchLockJsonArray: [{ Guid: 'PBZ_Houjie_WP-BP_Block_Gate_C_UAID_CC_3', NeedItems: { K_05007: 1 } }], DoorDirLockJsonArray: [{ Guid: 'PBZ_Houjie_WP-BP_SingleDoor_Poverty_C_UAID_DD_4' }] } } },
+      PangZhen: { MapLockGroups: { 0: { ShaChiLockJsonArray: [{ Guid: 'PBZ_Pangzhen_WP-BP_ThornyVine_C_UAID_EE_5', NeedShaChiWeaponIds: ['LionHead'] }] } } },
+      DengDingShanDao: { MapLockGroups: { 0: { DoorDirLockJsonArray: [{ Guid: 'PBZ_DengDingShanDao_WP-BP_SingleDoor_Poverty_C_UAID_FF_6' }] } } },
+    };
+    const locks = locksOfSave(msub);
+    const stL = { ...empty, maps: new Set(['XiGu', 'PangZhen']), bellMaps: new Set(['HouJie']), region: { code: 'PangZhen', source: 'bell' }, mapLocks: locks };
+    const lockRegions = mapLocksOf(stL, nEn);
+    const textOf = (region) => (lockRegions.find((g) => g.region === region) || { items: [] }).items.map((i) => i.text).join(', ');
+    check(Array.isArray(locks) && locks.length === 5 && !JSON.stringify(locks).includes('UAID') && locks[0].actor === 'StoneWall' && locks[0].kind === 'weapon' && locks[0].needs.join() === 'TigerCannon'
+      && locksOfSave(undefined) === null && locksOfSave({}).length === 0
+      && lockRegions.map((g) => g.region).join('|') === 'Weeping Creek Valley|Pangzhen'
+      && textOf('Weeping Creek Valley') === 'stone wall (Tiger Cannon)' && textOf('Pangzhen') === 'gate (key item K_05007), locked door, lock (LionHead)'
+      && lockRegions[1].items.map((i) => i.needKind).join() === 'item,none,weapon' && lockRegions[1].items[1].need === null && lockRegions[1].items[1].type === 'door' && lockRegions[1].items[2].need === 'LionHead',
+      `map locks: ended Guid dropped (${Array.isArray(locks) ? locks.length : '-'} of 6 kept), unreached map hidden, "${textOf('Weeping Creek Valley')}" / "${textOf('Pangzhen')}"`);
+    // Terminal block (after the warnings, before the journal) and the page field; neither when there are none.
+    const bL = build(stL, mini, nEn), bNone = build({ ...empty, maps: new Set(['XiGu']) }, mini, nEn);
+    const rend = (s, b) => render({ st: s, result: b, names: nEn, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false });
+    const textL = rend(stL, bL), textNone = rend(empty, bNone);
+    const vm = toState({ ok: true, error: null, readAt: 'x', view: { st: stL, result: bL, names: nEn, build: null, data: null, changes: [] } });
+    const vmNone = toState({ ok: false, error: 'e', readAt: null, view: null });
+    const at = (re) => textL.search(re);
+    check(/^Open map locks$/m.test(textL) && /^  Weeping Creek Valley: 1 lock — stone wall \(Tiger Cannon\)$/m.test(textL)
+      && /^  Pangzhen: 3 locks — gate \(key item K_05007\), locked door, lock \(LionHead\)$/m.test(textL)
+      && at(/No risk/) < at(/Open map locks/) && at(/Open map locks/) < at(/Journal status/)
+      && !/Open map locks/.test(textNone) && bNone.mapLocks.length === 0
+      && Array.isArray(vm.mapLocks) && vm.mapLocks.length === 2 && vm.mapLocks[0].region === 'Weeping Creek Valley'
+      && Object.keys(vm.mapLocks[0].items[0]).sort().join() === 'need,needKind,text,type' && vm.mapLocks[1].items[0].text === 'gate (key item K_05007)'
+      && Array.isArray(vmNone.mapLocks) && vmNone.mapLocks.length === 0,
+      'map locks: terminal block between the warnings and the journal, viewmodel mapLocks; absent when there are none');
   }
 
   // TransientError for a truncated file, from the core directly.

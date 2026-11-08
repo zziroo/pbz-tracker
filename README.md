@@ -9,6 +9,7 @@ A **read-only**, spoiler-safe missables tracker for **Phantom Blade Zero** (PC, 
 ## What it does / does not do
 
 - Reads your save, finds missable quests that are still open, and tells you which point you must not pass yet: "Before this area's final fight", not a boss name.
+- Lists the map locks still closed in areas you have reached (stone walls, gates, doors) and what each one needs: a Phantom Edge by name, or a key item.
 - **Never writes** to your save, its backups, the game folder or any patch. The browser only gets read access. What the page remembers (the derived key, the chosen folders, the settings and the quest timeline) stays in that browser's storage for the site (IndexedDB). The game can stay open while it reads the save.
 - **Runs entirely in your browser.** No file is uploaded and no request leaves the page; you can check this in DevTools → Network. No telemetry, no update check beyond the site's own files. It is a static page with no server side: the site only serves its own files. After the first visit it also works offline. When a new version has been published, an open page shows a "New version ready" bar and switches only when you click Reload (the browser re-checks the site's own `sw.js` when the tab regains focus and every 10 minutes; nothing else). Links in the About tab open only when you click them.
 - **Contains no key and no personal data.** The save key is derived in your browser from *your own* `PBZ.exe` (read in chunks, never as a whole). The page contains no SteamID, save data or key.
