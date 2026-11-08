@@ -75,6 +75,10 @@ async function main() {
   const saveR = fsReader(save);
   let saveBytes;
   try { saveBytes = await saveR.read(0, saveR.size); } finally { saveR.close(); }
+  // The CLI variants read the same snapshot from a temp copy: the game may rewrite the live save between two reads.
+  const saveSnap = require("path").join(require("os").tmpdir(), `pbz-e2e-${process.pid}.sav`);
+  fs.writeFileSync(saveSnap, Buffer.from(saveBytes));
+  process.on("exit", () => { try { fs.unlinkSync(saveSnap); } catch {} });
 
   const rulesInfo = loadRules({ embedded: require('../data/rules.json') });
   const nameTables = loadNameTables(require('../lib/names').EMBEDDED_TABLES);
@@ -112,7 +116,7 @@ async function main() {
     const text = render({ st, result, names, build: { id: buildId, tested: !!buildId && TESTED_BUILDS.includes(buildId) }, data: dataInfo,
       color: false, show: !!v.show, changes: diff(null, statusMap(result)), hiddenKey: false });
 
-    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--game', gameDir, '--save', save, ...v.args],
+    const cli = execFileSync(process.execPath, [path.join(ROOT, 'pbz.js'), '--cli', '--no-color', '--game', gameDir, '--save', saveSnap, ...v.args],
       { encoding: 'utf8', env, cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
     const same = cli === `${text}\n`;
     check(same, `report [${v.args.join(' ') || 'default'}] equals the CLI output (${slots.length} slots, latest ${latest.name}; patches ${patches.map((p) => p.name).join(', ') || '-'} in ${patchMs.toFixed(0)} ms; decode ${decMs.toFixed(0)} ms)`);
