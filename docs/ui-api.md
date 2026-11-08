@@ -75,7 +75,9 @@ interface State {
   noRiskText: string;
   warnings: Array<{
     where: string;             // positional cutoff text, e.g. "Before this area's final fight"
-    items: Array<{ text: string; note: string | null }>;  // named started quests, location hints, counts
+    items: Array<{ text: string; note: string | null; hint?: string | null }>;  // named started quests, location hints, counts
+                               // hint: only on a named started quest whose rule has `hintStarted` (what is left to
+                               // do, localized); the page shows it as a muted sub-line under the name. Missing → none.
   }>;
   info: string[];              // anonymous info warnings (e.g. the camp warning)
   groups: Array<{              // the same warnings + info, grouped by game region (rules.json `regions`); only
@@ -93,7 +95,7 @@ interface State {
                                // 'later' or when nothing names it. endgame = true only for the 'endgame' group
                                // (current and reached are false there).
     title: string;             // localized heading: "Now: Pangzhen" / the region name / "Until the final bell" / "Later"
-    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null }> }>;  // as `warnings`
+    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null; hint?: string | null }> }>;  // as `warnings`
     info: string[];            // as `info`
   }>;
   // Layer 2 (blurred in the Journal tab)

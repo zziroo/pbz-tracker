@@ -508,7 +508,8 @@
         for (const it of items) {
           ul.append(h('li', { class: 'card-item' },
             h('span', { class: 'item-text', text: it.text || '' }),
-            it.note ? h('span', { class: 'item-note', text: it.note }) : null));
+            it.note ? h('span', { class: 'item-note', text: it.note }) : null,
+            it.hint ? h('span', { class: 'item-hint', text: it.hint }) : null));
         }
         grid.append(h('article', { class: 'card card-warn' },
           h(titleTag, { class: 'card-title' }, icon('warn'), h('span', { text: w.where || '' })),

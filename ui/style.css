@@ -312,6 +312,8 @@ button, input, select { font: inherit; color: inherit; }
 .card-item:first-child { border-top: 0; }
 .item-text { display: block; overflow-wrap: anywhere; }
 .item-note { display: block; color: var(--muted); font-size: 13.5px; }
+/* hintStarted of a started quest: what is left to do, under its name. */
+.item-hint { display: block; margin-top: 2px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 
 /* Region groups of the warnings: the player's current region, other reached regions, "until the final bell", then "later". */
 .group { margin-bottom: 22px; }

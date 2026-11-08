@@ -360,7 +360,7 @@ async function main() {
       missables: [
         { id: 'sword', quest: null, names: { en: 'Sword', tr: 'Kılıç' }, cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'S' }, hintNotStarted: { en: 'take the sword', tr: 'x' } },
         { id: 'thief', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'R' }, warn: { en: 'give the book', tr: 'x' }, warnNamed: { en: 'Thief: give the book', tr: 'x' } },
-        { id: 'late', quest: 'Q', cutoff: 'c', visibleWhen: { questSeen: 'Q' }, activeWhen: { mapUnlocked: 'Camp' }, warn: { en: 'w', tr: 'w' } },
+        { id: 'late', quest: 'Q', cutoff: 'c', visibleWhen: { questSeen: 'Q' }, activeWhen: { mapUnlocked: 'Camp' }, warn: { en: 'w', tr: 'w' }, hintStarted: { en: 'finish the letter', tr: 'x' } },
       ],
     }, 'mini.json');
     const quest = (id) => [id, { id, folder: 'Branch', completion: 'Started', branches: {}, progress: null }];
@@ -382,6 +382,12 @@ async function main() {
     const named = (b, id) => b.warnings.some((w) => w.named.some((it) => it.key === id));
     check(!named(b1, 'late') && named(b4, 'late') && rowOf(b1, 'late').status === 'open',
       'missable activeWhen: the default-view warning waits for it; the journal row is unchanged');
+    // hintStarted: carried by the named (open) warning item, shown under the quest; the build row carries it too
+    // (the viewmodel journal rows ignore it), and a done quest (not named) never carries one.
+    const lateItem = b4.warnings.flatMap((w) => w.named).find((it) => it.key === 'late');
+    const bDone = build({ ...base, maps: new Set(['A', 'Camp']), quests: new Map([['Q', { id: 'Q', folder: 'Branch', completion: 'Succeded', branches: {}, progress: null }]]) }, mini, namesK);
+    check(lateItem?.hint === 'finish the letter' && rowOf(b4, 'late').hint === 'finish the letter' && rowOf(bDone, 'late').status === 'done' && rowOf(bDone, 'late').hint === undefined,
+      `hintStarted: named open item carries hint "${lateItem?.hint}"; done → none`);
 
     // Mandate Encampment (real rules): the outer-gate bell lit on the way to the Village of Lu does not count.
     const encSt = (bells, lastBell) => ({ ...empty, maps: new Set(['XiGu', 'FuJiZhiLin', 'LuJiaCun']), levels: new Set(['zhengdaodaying']), currentLevel: 'Zhengdaodaying',
