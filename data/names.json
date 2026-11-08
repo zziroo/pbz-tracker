@@ -494,9 +494,9 @@
     },
     "JinGua": {
       "locres": "PhantomEdges_002",
-      "guessKey": true,
-      "guessEn": true,
-      "note": "YIKIM SIRIĞI (taşı parçalar, yeri çatlatır); GroundBlocker kilitleri (RequiredTags BreakBlocker.Ground)."
+      "guessKey": false,
+      "guessEn": false,
+      "note": "金瓜 (golden melon mace) = Bashpole, patch \"YIKIM SIRIĞI\"; dropped by Wan Jun (BP_Monster_WanJun_JinGua, Mandate Encampment); acquired 2026-11-06 20:24 in a real save. Aerial Sha-Chi attack = Gökyıkımı Darbesi (level 5) → achievement Heavenfall Strike."
     },
     "UnnamedBow": {
       "locres": "PhantomEdges_009",
