@@ -152,6 +152,9 @@ button, input, select { font: inherit; color: inherit; }
 
 /* ---- Content ---- */
 .content {
+  /* Containing block for absolutely positioned descendants (the journal rows' .sr-only spans): without it
+     they are positioned against the viewport, escape this scroller and make the whole document scrollable. */
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
