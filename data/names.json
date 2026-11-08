@@ -309,6 +309,18 @@
       "guessKey": false,
       "guessEn": false,
       "note": "以彼之道 (use their own way against them); patch \"ONLARA KARŞI KULLAN\", task QuestRumorDes_035_01 challenge Jade Dancer and Iron Fiend using only Fiend Saws + Iron Gauntlets; \"Use It Against Them\" (keengamer). Rooftop spar of the Crimson Forest Sha-Chi Tower; reward Heel Reinforcement Part (Fiend Saws tempering). Seen Succeded in a save 2026-11-09 00:48."
+    },
+    "YongShengDaoZhu": {
+      "locres": "QuestRumor_021",
+      "guessKey": true,
+      "guessEn": false,
+      "note": "Ledger of Atonement (patch \"KEFARET DEFTERİ\"). Pinyin 永生刀主? Seen Succeded in a save 2026-11-09 01:17 together with BaiXue, right after BP_Monster_IronMaskMan_Boss was killed (01:11, Backstreet Courtyard Key K_05007 dropped); the id→title link is inferred from that timing, not from the pinyin."
+    },
+    "BaiXue": {
+      "locres": "QuestRumor_014",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "白雪 Bai Xue; patch \"BAI XUE\". Opens after the Ironmask fight on Mountain of Imprisonment (talk to the puppet behind him). Seen Succeded 2026-11-09 01:17."
     }
   },
   "regions": {
