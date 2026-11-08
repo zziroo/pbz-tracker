@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.10",
+  "rulesVersion": "2026-11-08.11",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -235,6 +235,10 @@
     "allthings-mirage-map": {
       "name": "allthings.how — Mirage Estate map",
       "url": "https://allthings.how/phantom-blade-zero/map/mirage-estate/"
+    },
+    "gfinity-blazing-edge": {
+      "name": "Gfinity — how to get the Blazing Edge",
+      "url": "https://www.gfinityesports.com/article/phantom-blade-zero-how-to-get-the-blazing-edge-weapon"
     }
   },
   "bosses": {
@@ -1696,17 +1700,22 @@
         "en": "Collect the related flowers before this quest's final fight."
       },
       "warnNamed": {
-        "tr": "Üçlü Tehdit: ilgili üç çiçeği görevin son dövüşünden önce topla; son aşamanın tetiklenmesi belirli bir silah sanatı istiyor.",
-        "en": "Triple Threat: collect the three related flowers before the quest's final fight; triggering its last phase needs a specific weapon art."
+        "tr": "Üçlü Tehdit: üç Üç Yüzlü Kaos çiçeği Serap Malikânesi'nde; son dövüş Kızıl Orman'daki donmuş Ayna Korusu'nda ve Alevli Kılıç ister. Alevli Kılıç ayrı bir silah değil: Pangzhen'deki Myst'te Sanguine Erişim'e Ruh Tavlaması (Söndürülmüş Alevli Kabza + Kavurucu Alev parçaları + 5000 Kalıntı Tozu). Yucong'dan sonra görev Ağlayan Dere Vadisi'ne, Hanımın heykelindeki Yarık'a dönüyor; ödül Donduran Kaos.",
+        "en": "Triple Threat: the three Three-Faced Chaos flowers are in Mirage Estate; the final fight is in the frozen Mirrorwood in Crimson Forest and needs the Blazing Edge. The Blazing Edge is not a separate weapon: Soul Temper Sanguine Reach at Myst in Pangzhen (Quenched Flaming Grip + Scorching Flame fragments + 5000 Remnant Dust). After Yucong the quest returns to Weeping Creek Valley, the Rift inside the Lady's statue; reward Freezing Chaos."
       },
       "source": {
         "ids": [
           "steam-guide-lankec",
-          "steam-research-note"
+          "steam-research-note",
+          "gfinity-blazing-edge"
         ],
         "checked": "search-snippet"
       },
-      "note": "Details (spoilers): the 3 Three-Faced Chaos flowers are in Mirage Estate; Yucong's third phase is triggered with the Blazing Edge (CN guide)."
+      "note": "Details (spoilers): the 3 Three-Faced Chaos flowers are in Mirage Estate; Yucong's third phase is triggered with the Blazing Edge (CN guide). Quest tasks (QuestMazeDes_017): S2 Mirrorwood entrance, S3 flowers in Mirage Estate, S4 \"equip the Soul-Tempered Sanguine Reach\", S5 deeper into the Mirrorwood, 1 \"use the Blazing Edge to defeat the Three-Faced Puppet that fled to the Mirrorwood\", S7 \"return to Weeping Creek Valley, the Rift inside the Lady's statue\". Blazing Edge = Soul Tempered Sanguine Reach (WeaponDes_UI_014; Gfinity). Save 2026-11-08 21:35: S1-S3,S5 Completed, S6 + branch 1 Activating at Bell_FJZL_GP_002 (unnamed).",
+      "hintStarted": {
+        "tr": "Ayna Korusu'na girmeden önce Pangzhen'de Myst'e uğrayıp Sanguine Erişim'i Ruh Tavlaması ile Alevli Kılıç yap; Yucong'un son aşaması onsuz tetiklenmiyor. Sonra Ağlayan Dere Vadisi'nde Hanımın heykelindeki Yarık.",
+        "en": "Before going deep into the Mirrorwood, Soul Temper Sanguine Reach into the Blazing Edge at Myst in Pangzhen; Yucong's last phase does not trigger without it. Then the Rift inside the Lady's statue in Weeping Creek Valley."
+      }
     },
     {
       "id": "banyan-manual-save",
