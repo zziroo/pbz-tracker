@@ -291,6 +291,12 @@
       "guessKey": false,
       "guessEn": true,
       "note": "白影 (white shadow); patch \"BEYAZGÖLGE\", task QuestCollectDes_007_01 \"collect the Blizzard Blademaster's memory flowers\" (6 flowers, tracked task points MemoryFlower_Baiying_1..6). Collection quest in the Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells on the Meigu map). English name guessed from the weapon \"Whiteshadow\" and the achievement \"The White Shadow\"; no guide names the quest. Seen in a save 2026-11-08 15:37 (Started, branch 1 Activating 5/6)."
+    },
+    "MainCh3-PoJu": {
+      "locres": "QuestStory_03_3",
+      "guessKey": false,
+      "guessEn": true,
+      "note": "破局 (break the deadlock); chapter 3 main quest, patch \"İLERİYE GİDEN YOL\" (QuestStory_03_3); tasks QuestStoryDes_03_06 enter Mirage Estate → 03_02 find a wall you can blast → 03_07 blast it with the Tiger Cannon; next main quest is QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff). English title guessed (\"The Way Forward\"). First seen in a save 2026-11-08 18:12 on entering Mirage Estate (Started, branch 1 Completed)."
     }
   },
   "regions": {
