@@ -267,6 +267,24 @@
       "guessKey": false,
       "guessEn": false,
       "note": "勿相忘 (do not forget each other); patch \"BENİ UNUTMA\", subtitle \"Yaşam ya da Ölüm\", tasks: woman on the Pangzhen inn roof murmuring \"Kıdemli Kardeş Zhou\" / deliver Zhou Ping's last letter to Yuling in Pangzhen; \"Don't Forget Me\" (keengamer, Tale 23, Pangzhen Inn Rooftop; hand-in: Illusory Pipa at the Marketplace bell, building to the east, upper floor). Letter = Reading item R_12017 (ReadingDes_DDSD_Letter_017, signed Zhou Pingzi). Seen in a save 2026-11-07 22:51 (Simple, Started, S1 Activating) right after R_12017 was picked up at 21:49."
+    },
+    "LiuYi": {
+      "locres": "QuestRumor_020",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "柳义 Liu Yi (the NPC); patch \"KAHRAMANIN AĞIDI\", tasks Moji's relic → bloodstained sword to Liu Yi → draw Moji's sword; \"Hero's Lament\" (keengamer/allthings). Starts from the imprisoned NPC in Hanging Cage Cavern, Mountain of Imprisonment. Reward Ink Cut. Seen in a save 2026-11-08 03:38 (Started)."
+    },
+    "JiangHuRenShi": {
+      "locres": "QuestRumor_019",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "江湖人士 (a person of the jianghu / Wulin fighter); patch \"GENİŞ PALA\", tasks \"return to the Wulin fighter after defeating the Old Commander\" (= Bi Feng) / \"return to the Wulin fighter in the caves\"; \"The Broad Saber\" (keengamer/allthings). Starts in Hanging Cage Cavern. Seen in a save 2026-11-08 03:38 (Started)."
+    },
+    "ZhengYiMengChen": {
+      "locres": "QuestCollect_009",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "正义蒙尘 (justice covered in dust); patch \"LEKELENMİŞ ADALET\", subtitle \"Bir Zamanlar Kunlun'un Kılıç Ustasıydı\", task \"collect Huangxing's memory flowers\" (6); \"Justice Tarnished\" (allthings.how). Seen in a save 2026-11-08 03:38 (Collect, Started, 2/6)."
     }
   },
   "regions": {

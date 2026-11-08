@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-08.1",
+  "rulesVersion": "2026-11-08.2",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -1273,28 +1273,29 @@
     {
       "id": "xiaocui",
       "region": "mountain-of-imprisonment",
-      "quest": null,
-      "unverified": true,
-      "names": {
-        "tr": "Xiaocui (A Hero's Lament → Ink Cut)",
-        "en": "Xiaocui (A Hero's Lament → Ink Cut)"
-      },
+      "quest": "XiaoCui",
       "cutoff": "final",
-      "detect": false,
       "visibleWhen": {
-        "bellPrefix": "DDSD"
+        "any": [
+          {
+            "questSeen": "XiaoCui"
+          },
+          {
+            "bellPrefix": "DDSD"
+          }
+        ]
       },
-      "note": "Before Bi Feng free Lu Sanqian from the cage; before the Crusher and the Saw talk to Lu Jieyuan; bloody sword → Liu Yi → Ink Cut. Single CN walkthrough.",
+      "note": "Cui (XiaoCui): starts above Yuzan's arena in the Village of Lu; Mountain of Imprisonment steps: cage talk → Bi Feng → Rootless Dew → rear door at Commander's Platform → second rescue after Kui Yanyan (give dew) → Lu Sanqian before the shrine boss gives Crude Radiant Heart → parents on Mount Soulrend before the Crusher and the Saw → Lu Jieyuan after that fight gives Baishan Ribbon. Sources: gamingdeputy FR, playnews, keengamer (Bi Feng itself has no missable).",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
           "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
-      "hintNotStarted": {
-        "tr": "Bi Feng'den önce kafesteki Lu Sanqian'ı serbest bırak; Ezici ve Testere'den önce Lu Jieyuan ile konuş; kanlı kılıcı Liu Yi'ye götür (Mürekkep Kesiği). Tek bir Çince rehber, doğrulanmadı.",
-        "en": "Free Lu Sanqian from the cage before Bi Feng; talk to Lu Jieyuan before the Crusher and the Saw; take the bloody sword to Liu Yi (Ink Cut). Single CN walkthrough, unverified."
+      "hintStarted": {
+        "tr": "Bi Feng alanından ayrılmadan Köksüz Çiy'i al (kırmızı köşkün ötesindeki kayalar). Komutan Platformu'ndaki arka kapıyı aç ve Lu Sanqian'la konuş; Kui Yanyan sonrası asılı kafes odasında kafesini indirip çiyi ver; Ezici ve Testere'den önce Ruhyaran Dağı'ndaki anne-babaya kurdele ve mektubu götür.",
+        "en": "Take the Rootless Dew before leaving Bi Feng's arena (rocks past the red pavilion). Open the rear door at Commander's Platform and talk to Lu Sanqian; after Kui Yanyan lower his cage in the hanging-cage room and give him the dew; bring the ribbon and letter to Cui's parents on Mount Soulrend before the Crusher and the Saw."
       }
     },
     {
@@ -2122,7 +2123,14 @@
       "region": "mountain-of-imprisonment",
       "guess": true,
       "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
+        "any": [
+          {
+            "questSeen": "XiaoCui"
+          },
+          {
+            "bellPrefix": "DDSD"
+          }
+        ]
       },
       "warn": {
         "tr": "Kafesteki bir yaşlıyı ikinci kez kurtarırken bir dövüş alanında bulduğun çiyi ona ver.",
@@ -2134,11 +2142,18 @@
       },
       "source": {
         "ids": [
-          "allthings-choices"
+          "steam-guide-czyhaxj",
+          "steam-research-note"
         ],
-        "checked": "search-snippet"
+        "checked": "page"
       },
-      "note": "Placeholder: no save trigger known yet (visibleWhen unknown), so it never shows; fill in when the quest id / region is mapped."
+      "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Save code of the dew unknown, so detect stays off. Triggers added 2026-11-08 once the DDSD prefix was known.",
+      "activeWhen": {
+        "lastBellPrefix": "DDSD"
+      },
+      "exactWhen": {
+        "bellPrefix": "DDSD"
+      }
     }
   ],
   "trueEnding": {
