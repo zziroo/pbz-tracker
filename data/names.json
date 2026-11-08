@@ -297,6 +297,18 @@
       "guessKey": false,
       "guessEn": true,
       "note": "破局 (break the deadlock); chapter 3 main quest, patch \"İLERİYE GİDEN YOL\" (QuestStory_03_3); tasks QuestStoryDes_03_06 enter Mirage Estate → 03_02 find a wall you can blast → 03_07 blast it with the Tiger Cannon; next main quest is QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff). English title guessed (\"The Way Forward\"). First seen in a save 2026-11-08 18:12 on entering Mirage Estate (Started, branch 1 Completed)."
+    },
+    "QuanXin": {
+      "locres": "QuestRumor_036",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "拳心 (heart of the fist); patch \"YUMRUĞUN KALBİ\", task QuestRumorDes_036_01 find the Iron Fist Master's gravestone in the snow-covered Mirrorwood; \"Heart of the Fist\" (keengamer). Starts with Iron Fiend on the Crimson Forest Sha-Chi Tower roof (key by the furnace at the Tower Base bell). Seen Succeded in a save 2026-11-09 00:48 (Fist Fragment: Shell → Worldbreaker Fist, Iron Gauntlets tempering)."
+    },
+    "YiBiZhiDao": {
+      "locres": "QuestRumor_035",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "以彼之道 (use their own way against them); patch \"ONLARA KARŞI KULLAN\", task QuestRumorDes_035_01 challenge Jade Dancer and Iron Fiend using only Fiend Saws + Iron Gauntlets; \"Use It Against Them\" (keengamer). Rooftop spar of the Crimson Forest Sha-Chi Tower; reward Heel Reinforcement Part (Fiend Saws tempering). Seen Succeded in a save 2026-11-09 00:48."
     }
   },
   "regions": {
