@@ -593,8 +593,8 @@ async function main() {
     check(Array.isArray(locks) && locks.length === 5 && !JSON.stringify(locks).includes('UAID') && locks[0].actor === 'StoneWall' && locks[0].kind === 'weapon' && locks[0].needs.join() === 'TigerCannon'
       && locksOfSave(undefined) === null && locksOfSave({}).length === 0
       && lockRegions.map((g) => g.region).join('|') === 'Weeping Creek Valley|Pangzhen'
-      && textOf('Weeping Creek Valley') === 'stone wall (Tiger Cannon)' && textOf('Pangzhen') === 'gate (key item K_05007), locked door, lock (LionHead)'
-      && lockRegions[1].items.map((i) => i.needKind).join() === 'item,none,weapon' && lockRegions[1].items[1].need === null && lockRegions[1].items[1].type === 'door' && lockRegions[1].items[2].need === 'LionHead',
+      && textOf('Weeping Creek Valley') === 'stone wall (Tiger Cannon)' && textOf('Pangzhen') === 'gate (key item K_05007), locked door, lock (Flaming Mane)'
+      && lockRegions[1].items.map((i) => i.needKind).join() === 'item,none,weapon' && lockRegions[1].items[1].need === null && lockRegions[1].items[1].type === 'door' && lockRegions[1].items[2].need === 'Flaming Mane',
       `map locks: ended Guid dropped (${Array.isArray(locks) ? locks.length : '-'} of 6 kept), unreached map hidden, "${textOf('Weeping Creek Valley')}" / "${textOf('Pangzhen')}"`);
     // Terminal block (after the warnings, before the journal) and the page field; neither when there are none.
     const bL = build(stL, mini, nEn), bNone = build({ ...empty, maps: new Set(['XiGu']) }, mini, nEn);
@@ -604,7 +604,7 @@ async function main() {
     const vmNone = toState({ ok: false, error: 'e', readAt: null, view: null });
     const at = (re) => textL.search(re);
     check(/^Open map locks$/m.test(textL) && /^  Weeping Creek Valley: 1 lock — stone wall \(Tiger Cannon\)$/m.test(textL)
-      && /^  Pangzhen: 3 locks — gate \(key item K_05007\), locked door, lock \(LionHead\)$/m.test(textL)
+      && /^  Pangzhen: 3 locks — gate \(key item K_05007\), locked door, lock \(Flaming Mane\)$/m.test(textL)
       && at(/No risk/) < at(/Open map locks/) && at(/Open map locks/) < at(/Journal status/)
       && !/Open map locks/.test(textNone) && bNone.mapLocks.length === 0
       && Array.isArray(vm.mapLocks) && vm.mapLocks.length === 2 && vm.mapLocks[0].region === 'Weeping Creek Valley'
@@ -617,7 +617,7 @@ async function main() {
   try { await core0.decodeSave(saveBytes.subarray(0, 100), key); check(false, 'truncated save throws'); } catch (e) {
     check(e instanceof core0.TransientError, `truncated save → TransientError (${e.message})`);
   }
-  const bad = saveBytes.slice(); bad[bad.length - 1] ^= 0xFF; // flip a byte in the last slot's tag/ciphertext
+  const bad = saveBytes.slice(); bad[Math.floor(bad.length / 2)] ^= 0xFF; // flip a byte inside a slot's ciphertext (the last byte may be padding)
   try { await core0.decodeSave(bad, key); check(false, 'corrupted save throws'); } catch (e) {
     check(e instanceof core0.TransientError, `corrupted block → TransientError (${e.message})`);
   }
