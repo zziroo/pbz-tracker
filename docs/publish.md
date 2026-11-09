@@ -64,7 +64,7 @@ Yayından sonra kontrol: sayfayı aç, DevTools → Network'te yalnız sitenin k
 ## 6. Steam Rehberi, forum ve Nexus
 
 - Metinler hazır: `docs/steam-guide.bbcode.txt` (İngilizce Steam rehberi) ve `docs/steam-guide.tr.bbcode.txt` (Türkçe Steam rehberi; Steam rehber başına tek dil kabul ettiği için iki ayrı rehber), `docs/posts/*` (Steam forumu, Reddit, Nexus; başlıklar `docs/posts/titles.txt`).
-- Steam rehberleri: Topluluk Merkezi → Rehberler → rehberi düzenle. Ekran görüntülerini editörde yükleyip `[previewimg=…]` satırlarını editörün verdiği kimliklerle değiştir. EN: `docs/screenshots/web-warnings.png`, `web-journal.png`, `web-setup.png`. TR: `web-tr-warnings.png`, `web-tr-journal.png`, `web-setup.png`.
+- Steam rehberleri: Topluluk Merkezi → Rehberler → rehberi düzenle. Ekran görüntülerini editörde yükleyip `[previewimg=…]` satırlarını editörün verdiği kimliklerle değiştir. EN: `docs/screenshots/web-warnings.png`, `web-journal.png`, `web-maps.png`, `web-setup.png`. TR: `web-tr-warnings.png`, `web-tr-journal.png`, `web-tr-maps.png`, `web-setup.png`.
 - İki rehber birbirine bağlantı veriyor (EN → TR ve TR → EN); rehber adresi değişirse ikisini de güncelle.
 - Nexus: oyunun sayfası → Upload. Dağıtılan bir program dosyası yok; mod sayfası web sürümüne ve depoya bağlantı verir.
 - `[OPTIONAL: AI line]` satırlarını göndermeden önce tut ya da sil.

@@ -316,6 +316,101 @@ async function main() {
     check(ic.length === 5 && icStore.records.length === 3 && icStore.records.map((r) => r.code).join() === 'TEST_Cap2,TEST_Cap3,TEST_Cap4', 'timeline items: oldest first within a read, capped with the quest records');
   }
 
+  // ---- map completion on the real save (browser sandbox) ----
+  {
+    const sb = loadSandbox();
+    const core = sb.require('./lib/core');
+    const i18n = sb.require('./lib/i18n');
+    const { extract } = sb.require('./lib/state');
+    const { build } = sb.require('./lib/report');
+    const { completion, buildTable, reached } = sb.require('./lib/completion');
+    const { toState } = sb.require('./lib/viewmodel');
+    const table = sb.require('./lib/map-table');
+    const mapItems = require('../data/game/map-items.json');
+    i18n.setLang('en');
+    const { latest } = await core.decodeSave(saveBytes, key);
+    const data = latest.data;
+    const st = extract(data);
+
+    // Independent recount straight from the registry and the raw save (mirrors UI/Library/MapItemCompletionCalc.js).
+    const lcs = (arr) => new Set((arr || []).map((s) => String(s).toLowerCase()));
+    const cycle = data.PBZGameSystem?.CycleCount || 0;
+    const inv = data.Inventory || {};
+    const bellsOn = lcs(data.BellManager?.ActivateBellIDs), nodes = lcs(Object.keys(data.EventPipeline?.ExecuteNodeGuid || {})), mobs = lcs(data.PBZGameSystem?.CompleteAddItemMobDomainNames), actorKeys = lcs(Object.keys(data.LevelActorManager || {}));
+    const got = (tbl, id) => { const k = Object.keys(tbl || {}).find((x) => x.toLowerCase() === String(id).toLowerCase()); return !!k && (tbl[k].AcquiredCycle ?? 0) === cycle; };
+    const anyNode = (g) => (g || []).some((x) => nodes.has(String(x).toLowerCase()));
+    const hasActor = (guid) => { if (!guid) return false; const g = String(guid).toLowerCase(); if (actorKeys.has(g)) return true; const tail = g.split('-').pop(); for (const k of actorKeys) if (k === tail || k.endsWith('-' + tail)) return true; return false; };
+    const flatIds = new Set(Object.values(mapItems.allItemIds).flat());
+    const petals = (fa) => [...flatIds].filter((c) => /^F_/.test(c) && c.slice(2, 6) === fa.slice(3, 7)).length;
+    const refOf = (ids) => {
+      const miss = []; let cur = 0, tot = 0;
+      const tick = (ok, label) => { tot++; if (ok) cur++; else miss.push(label); };
+      const bell = new Set(), w = new Set(), s2 = new Set(), a = new Set(), m = new Set();
+      for (const id of ids) {
+        const mm = mapItems.maps[id];
+        mm.bells.forEach((e) => bell.add(e.BellID)); mm.weapons.forEach((e) => { if (e.ID && e.ID.toLowerCase() !== 'zimingjian') w.add(e.ID); }); mm.phantomEdges.forEach((e) => e.ID && s2.add(e.ID)); mm.accessories.forEach((e) => e.ID && a.add(e.ID)); mm.medicines.forEach((e) => e.ID && m.add(e.ID));
+      }
+      for (const b of bell) tick(bellsOn.has(b.toLowerCase()), 'bell ' + b);
+      for (const x of w) tick(got(inv.MainWeaponInfos, x), 'weapon ' + x);
+      for (const x of s2) tick(got(inv.ShaChiWeaponInfo, x), 'phantomEdge ' + x);
+      for (const x of a) tick(got(inv.AccessoryInfos, x), 'accessory ' + x);
+      for (const x of m) tick(got(inv.MedicineInfos, x), 'medicine ' + x);
+      for (const id of ids) {
+        const mm = mapItems.maps[id];
+        for (const l of ['rongShu', 'longZhu', 'daoCaoRen']) mm[l].forEach((e) => tick(anyNode(e.NodeGuids), 'challenge ' + (e.FlowEvent || '')));
+        for (const l of ['domainItemsA', 'domainItemsB']) mm[l].forEach((e) => tick(hasActor(e.SaveGuid) || (e.MobDomainName && mobs.has(e.MobDomainName.toLowerCase())) || anyNode(e.NodeGuids), (l === 'domainItemsA' ? 'amber ' : 'blackstone ') + (e.SaveGuid || e.MobDomainName || e.FlowEvent || '')));
+        mm.memoryFlowers.forEach((e) => { const id2 = e.ItemID; if (!id2) return; if (/^FA_/.test(id2) && petals(id2) > 1) return; tick(got(inv.InventoryInfos, id2), 'flower ' + id2); });
+      }
+      return { percent: tot ? Math.floor((cur / tot) * 100) : 0, current: cur, total: tot, missing: miss.sort() };
+    };
+    const groupsDef = { pangzhen: ['PangZhen', 'HouJie'], meiguhu: ['MeiGuHu', 'MeiGu_YiJi'] };
+    const inGroup = new Set(Object.values(groupsDef).flat());
+    const ref = {};
+    for (const [g, ids] of Object.entries(groupsDef)) ref[g] = refOf(ids);
+    for (const id of Object.keys(mapItems.maps)) if (!inGroup.has(id) && !['Test', 'HuanShuShi', 'XueSeSenLin'].includes(id)) { const r = refOf([id]); if (r.total) ref[id] = r; }
+
+    const ours = completion(st, table);
+    const mine = {};
+    for (const g of ours) mine[g.id] = { percent: g.percent, current: g.current, total: g.total, missing: g.items.filter((x) => !x.done).map((x) => x.cat + ' ' + (x.code || '')).sort() };
+    const keys = [...new Set([...Object.keys(ref), ...Object.keys(mine)])].sort(); // ref: merge groups first, ours: registry order
+    const same = keys.every((k) => JSON.stringify(ref[k]) === JSON.stringify(mine[k]));
+    check(same && Object.keys(ref).length === 9 && !('DuanHunShan' in mine) && !('Test' in mine),
+      `map completion (compact table + extracted state) equals the recount from the full registry + raw save for ${Object.keys(mine).length} groups: ${ours.map((g) => `${g.id} ${g.percent}%`).join(', ')}`);
+    if (!same) for (const k of keys) if (JSON.stringify(ref[k]) !== JSON.stringify(mine[k])) console.log(`      ${k}: ref ${JSON.stringify(ref[k])}\n      ${' '.repeat(k.length)}  got ${JSON.stringify(mine[k])}`);
+    // The reference save of 2026-11-09 17:50 (research/gamedata/build.js --save): the three missing accessories.
+    if (/^2026\.11\.09-17\.50/.test(st.dateTime)) {
+      const want = { pangzhen: [100, []], meiguhu: [100, []], XiGu: [98, ['accessory AC_ResistNonBreak']], FuJiZhiLin: [98, ['accessory AC_Stealth']], DengDingShanDao: [100, []], DuanHunYa: [100, []], XiMeng: [97, ['accessory AC_Electrified']], LuJiaCun: [100, []], ZhengDaoDaYing: [100, []] };
+      check(Object.entries(want).every(([k, [p, miss]]) => mine[k] && mine[k].percent === p && mine[k].missing.join() === miss.join()),
+        'map completion of the 2026-11-09 17:50 save: pangzhen 100, meiguhu 100, XiGu 98 (AC_ResistNonBreak), FuJiZhiLin 98 (AC_Stealth), XiMeng 97 (AC_Electrified), the rest 100 — as research/gamedata/build.js --save prints');
+    } else console.log(`      (save ${st.dateTime}: the fixed 2026-11-09 17:50 numbers are not checked)`);
+    // The compact table: built from data/game, no coordinates, every item has a category and a detection key, bells named.
+    const rebuilt = buildTable(mapItems, require('../data/game/code-index.json'), require('../data/game/maps.json'));
+    const tjson = JSON.stringify(table);
+    check(JSON.stringify(rebuilt) === tjson && !/\[-?\d+,-?\d+,-?\d+\]/.test(tjson) && !/Location/.test(tjson)
+      && table.groups.every((g) => g.items.every((it) => it.cat && it.det && (it.cat === 'challenge' || it.cat === 'amber' || it.cat === 'blackstone' || it.name)))
+      && table.groups.every((g) => g.items.filter((it) => it.cat !== 'bell').every((it) => !it.bell || table.bellNames[it.bell])),
+      `compact map table: ${table.groups.length} groups, ${(tjson.length / 1024).toFixed(0)} KB, no coordinates, names and nearest bells resolved`);
+    // Viewmodel: only reached groups, blurred missing rows, the nearest bell only in exact mode; nothing for a save
+    // that reached no map; a group becomes visible when one of its maps is unlocked.
+    const names = core.createNamesFrom({ uiLang: 'en', tables: nameTables.tables });
+    const rules = rulesInfo.rules;
+    const view = (s, exact) => toState({ ok: true, error: null, readAt: 'x', view: { st: s, result: build(s, rules, names), names, build: null, data: null, changes: [], exact } }).maps;
+    const plainMaps = view(st, false), exactMaps = view(st, true);
+    const reachedIds = ours.filter((g) => reached(st, g)).map((g) => g.id);
+    const stNone = { ...st, maps: new Set(), bellMaps: new Set(), region: null };
+    const stOne = { ...stNone, maps: new Set(['HouJie']) };
+    const withMissing = exactMaps.find((m) => m.missing.length);
+    check(plainMaps.map((m) => m.id).join() === reachedIds.join() && plainMaps.every((m) => m.name && m.categories.length && m.missing.every((x) => x.text && x.bell === null))
+      && view(stNone, true).length === 0 && view(stOne, false).map((m) => m.id).join() === 'pangzhen'
+      && (!withMissing || withMissing.missing.some((x) => typeof x.bell === 'string' && x.bell)) && exactMaps.every((m) => m.missing.every((x) => x.cat !== 'bell' || x.bell === null)),
+      `viewmodel maps: ${plainMaps.length} reached groups (${plainMaps.map((m) => `${m.name} ${m.percent}%`).join(', ')}), bells named only in exact mode${withMissing ? ` (e.g. "${withMissing.missing[0].text}" → ${withMissing.missing[0].bell})` : ''}, nothing for an unreached save, HouJie alone shows Pangzhen`);
+    // Journal rows carry their kind.
+    const jr = toState({ ok: true, error: null, readAt: 'x', view: { st, result: build(st, rules, names), names, build: null, data: null, changes: [] } }).journal.sections.flatMap((s2) => s2.rows);
+    const kinds = new Set(jr.map((r) => r.kind));
+    check(jr.length > 0 && jr.every((r) => ['quest', 'item', 'accessory', 'flower', 'chest', 'weapon'].includes(r.kind)) && kinds.has('quest'),
+      `journal rows carry a kind (${[...kinds].join(', ')})`);
+  }
+
   // ---- save-independent checks (synthetic state, rules file only) ----
   {
     const sb = loadSandbox();

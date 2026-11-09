@@ -3,7 +3,7 @@
 // Strict CSP: no inline scripts/styles, no style attributes. All transport strings go through textContent.
 
 (() => {
-  const TABS = ['warnings', 'journal', 'settings', 'about'];
+  const TABS = ['warnings', 'journal', 'settings', 'about', 'maps'];
 
   // ---- Chrome strings (content strings come localized from the transport) ----
   const I18N = {
@@ -12,6 +12,7 @@
       'tab.journal': 'Günlük',
       'tab.settings': 'Ayarlar',
       'tab.about': 'Hakkında',
+      'tab.maps': 'Haritalar',
       'tabs.label': 'Bölümler',
       'lang.group': 'Arayüz dili',
       'loading': 'Yükleniyor…',
@@ -38,6 +39,19 @@
       'journal.changes': 'Son okumadan beri değişenler',
       'journal.empty': 'Günlükte gösterilecek bir şey yok.',
       'journal.escHint': 'Esc: hepsini yeniden gizle',
+      'kind.quest': 'Görev',
+      'kind.item': 'Eşya',
+      'kind.accessory': 'Aksesuar',
+      'kind.flower': 'Anı çiçeği yaprağı',
+      'kind.chest': 'Sandık',
+      'kind.weapon': 'Silah',
+      'kind.info': 'İpucu',
+      'maps.notice': 'Oyunun harita tamamlanma sayımı. Eksik kalemler bulanık; satıra tıklayınca açılır.',
+      'maps.empty': 'Henüz ulaşılan bir harita yok.',
+      'maps.missing': 'Eksik ({n})',
+      'maps.complete': 'Bu haritada eksik yok.',
+      'maps.near': 'yakın çan: {bell}',
+      'maps.progress': '{name}: yüzde {p}',
       'set.paths': 'Oyun ve save',
       'set.pick': 'Seç…',
       'set.forget': 'Unut',
@@ -76,7 +90,7 @@
       'about.openFailed': 'Bağlantı açılamadı.',
       'about.loadFailed': 'Bilgiler alınamadı.',
       'about.keys': 'Kısayollar',
-      'about.keysText': '1–4: sekmeler · Esc: günlüğü yeniden gizle',
+      'about.keysText': '1–5: sekmeler · Esc: günlüğü ve haritaları yeniden gizle',
       'about.readOnly': 'Salt okunur: save dosyasına, oyuna ya da yamalara hiçbir şey yazmaz.',
       'set.exact': 'Uyarılarda yer ve boss adlarını göster',
       'set.exactHint': 'Ulaştığın bölgelerde yer ve boss adlarını yazar.',
@@ -130,6 +144,7 @@
       'tab.journal': 'Journal',
       'tab.settings': 'Settings',
       'tab.about': 'About',
+      'tab.maps': 'Maps',
       'tabs.label': 'Sections',
       'lang.group': 'Interface language',
       'loading': 'Loading…',
@@ -156,6 +171,19 @@
       'journal.changes': 'Changed since last read',
       'journal.empty': 'Nothing to show in the journal.',
       'journal.escHint': 'Esc: hide everything again',
+      'kind.quest': 'Quest',
+      'kind.item': 'Item',
+      'kind.accessory': 'Accessory',
+      'kind.flower': 'Memory flower petal',
+      'kind.chest': 'Chest',
+      'kind.weapon': 'Weapon',
+      'kind.info': 'Tip',
+      'maps.notice': 'The game\'s own map completion count. Missing entries are blurred; click a row to reveal it.',
+      'maps.empty': 'No map reached yet.',
+      'maps.missing': 'Missing ({n})',
+      'maps.complete': 'Nothing missing on this map.',
+      'maps.near': 'nearest bell: {bell}',
+      'maps.progress': '{name}: {p} percent',
       'set.paths': 'Game and save',
       'set.pick': 'Choose…',
       'set.forget': 'Forget',
@@ -194,7 +222,7 @@
       'about.openFailed': 'Could not open the link.',
       'about.loadFailed': 'Could not load this page.',
       'about.keys': 'Shortcuts',
-      'about.keysText': '1–4: tabs · Esc: hide the journal again',
+      'about.keysText': '1–5: tabs · Esc: hide the journal and the maps again',
       'about.readOnly': 'Read-only: never writes to your save, the game or any patch.',
       'set.exact': 'Show place and boss names in warnings',
       'set.exactHint': 'Names places and bosses only in areas you have reached.',
@@ -246,6 +274,7 @@
   };
 
   const STATUSES = new Set(['open', 'notStarted', 'done', 'missed', 'unknown']);
+  const KINDS = new Set(['quest', 'item', 'accessory', 'flower', 'chest', 'weapon', 'info']);
 
   const app = {
     lang: 'en', // until the first state arrives (the transport decides: English by default)
@@ -304,6 +333,19 @@
     error: ['M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z', 'M12 7.5v6', 'M12 16.5h.01'],
     external: ['M14 4h6v6', 'M20 4l-9 9', 'M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'],
     lock: ['M7 11V8a5 5 0 0 1 10 0v3', 'M5 11h14v10H5z', 'M12 15v3'],
+    // Journal row kinds (what a row is about): scroll, pouch, ring, petal, chest, sword, lantern.
+    quest: ['M7 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7', 'M7 4a2 2 0 0 0-2 2v10a2 2 0 0 1-2 2h4', 'M7 4v14a2 2 0 0 1-2 2', 'M10 9h6', 'M10 13h6'],
+    item: ['M8 7h8l3 4v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7l3-4z', 'M9 7a3 3 0 0 1 6 0', 'M5 11h14'],
+    accessory: ['M12 9a6 6 0 1 0 0 12a6 6 0 1 0 0-12z', 'M9.5 9.6 8 5.5h8l-1.5 4.1', 'M8 5.5 12 3l4 2.5'],
+    flower: ['M12 21c-4-3-6-6-6-9a6 6 0 0 1 12 0c0 3-2 6-6 9z', 'M12 21V9', 'M12 13c1.5-1 3-1.2 4.5-.5', 'M12 16.5c-1.5-1-3-1.2-4.5-.5'],
+    chest: ['M4 10h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9z', 'M4 10a8 4 0 0 1 16 0', 'M10 13h4v3h-4z'],
+    weapon: ['M14.5 4 20 9.5 10.5 19 5 13.5 14.5 4z', 'M8 16l-4 4', 'M6 11l7 7'],
+    // Map completion categories: bell, flask (medicine), flag (challenge), gem (amber / blackstone shard).
+    bell: ['M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z', 'M10 21h4', 'M12 3v2'],
+    flask: ['M9 3h6', 'M10 3v6L4.5 18.5A2 2 0 0 0 6.3 21h11.4a2 2 0 0 0 1.8-2.5L14 9V3', 'M7 15h10'],
+    flag: ['M5 21V4', 'M5 4h12l-2.5 4L17 12H5'],
+    gem: ['M7 3h10l4 6-9 12L3 9l4-6z', 'M3 9h18', 'M12 21 8 9l3-6', 'M12 21l4-12-3-6'],
+    hint: ['M9 3h6', 'M12 3v2', 'M8 5h8l1.5 3-1.5 9a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3L6.5 8 8 5z', 'M9 21h6', 'M10 10c1 1 3 1 4 0'],
   };
   function icon(name, cls) {
     const svg = document.createElementNS(SVG_NS, 'svg');
@@ -338,6 +380,7 @@
     renderChrome();
     renderWarnings();
     renderJournal(); // re-creating the rows re-blurs everything
+    renderMaps();    // same: a new state re-blurs the missing entries
     renderRefresh();
     if (langChanged) {
       renderSettings();
@@ -405,6 +448,7 @@
             renderChrome();
             renderWarnings();
             renderJournal();
+            renderMaps();
             renderRefresh();
             renderSettings();
             renderAbout();
@@ -423,6 +467,7 @@
     if (!TABS.includes(name)) return;
     const prev = app.tab;
     if (prev === 'journal' && name !== 'journal') reblurJournal();
+    if (prev === 'maps' && name !== 'maps') reblurMaps();
     if (prev === 'settings' && name !== 'settings') { app.pickMsg = null; app.settingsMsg = null; }
     app.tab = name;
     for (const btn of document.querySelectorAll('.tab')) {
@@ -608,13 +653,13 @@
       }
       out.push(h('section', { class: 'jsection' }, h('h2', { class: 'jsection-title', text: sec.title || '' }), rows.length ? list : null));
     }
-    const plain = (title, lines) => {
+    const plain = (title, lines, kind) => {
       const list = h('ul', { class: 'jrows' });
-      for (const line of lines) { list.append(h('li', null, journalRow({ name: line }, true))); total++; }
+      for (const line of lines) { list.append(h('li', null, journalRow({ name: line, kind }, true))); total++; }
       out.push(h('section', { class: 'jsection' }, h('h2', { class: 'jsection-title', text: title }), list));
     };
-    if (info.length) plain(t('journal.info'), info);
-    if (changes.length) plain(t('journal.changes'), changes);
+    if (info.length) plain(t('journal.info'), info, 'info');
+    if (changes.length) plain(t('journal.changes'), changes, null);
 
     if (!total) out.push(h('p', { class: 'muted', text: t('journal.empty') }));
     if (j.legend) out.push(h('p', { class: 'legend', text: j.legend }));
@@ -638,6 +683,10 @@
     const text = h('span', { class: 'jtext' + (nameBlur ? ' blur' : '') },
       h('span', { class: 'jname', text: r.name || '' }), detail);
     const children = [];
+    // What the row is about (docs/ui-api.md rows[].kind; info rows are 'info'): a small icon with a title, never
+    // blurred (it names a kind, not the thing). Rows without a kind (changes) leave the column out.
+    const kind = KINDS.has(r.kind) ? r.kind : null;
+    const kindEl = kind ? h('span', { class: 'jkind jkind-' + kind, attrs: { role: 'img', 'aria-label': t('kind.' + kind), title: t('kind.' + kind) } }, icon(kind === 'info' ? 'hint' : kind)) : null;
     const blurred = nameBlur ? [text] : (detail && detailBlur ? [detail] : []);
     if (!plain) {
       // The badge belongs to the "whole row": blurred (in a neutral colour, see style.css) with the name.
@@ -648,9 +697,10 @@
     }
     for (const el of blurred) el.setAttribute('aria-hidden', 'true');
     const sr = blurred.length ? h('span', { class: 'sr-only jhidden', text: t(nameBlur ? 'journal.hidden' : 'journal.detailsHidden') }) : null;
+    if (kindEl) children.push(kindEl);
     children.push(text, sr);
     return h('button', {
-      class: 'jrow' + (plain ? ' jrow-plain' : ''),
+      class: 'jrow' + (plain ? ' jrow-plain' : '') + (kind ? '' : ' jrow-nokind'),
       attrs: { type: 'button', 'aria-pressed': 'false' },
       on: { click: (e) => setRowRevealed(e.currentTarget, !e.currentTarget.classList.contains('revealed')) },
     }, ...children);
@@ -669,9 +719,81 @@
 
   function allRows() { return Array.from(panel('journal').querySelectorAll('.jrow')); }
 
+  // ---- Rendering: Maps ----
+  // Map completion per reached region map (State.maps, docs/ui-api.md): the game's own count. Missing entries are
+  // blurred like journal rows (the category icon stays readable: it names a kind, not the thing); a click reveals
+  // the row, Esc / leaving the tab / a new state blurs everything again.
+  const MAP_ICONS = { bell: 'bell', weapon: 'weapon', phantomEdge: 'weapon', accessory: 'accessory', medicine: 'flask', challenge: 'flag', amber: 'gem', blackstone: 'gem', flower: 'flower' };
+  function renderMaps() {
+    const p = panel('maps');
+    const s = app.state;
+    if (!s) { p.replaceChildren(h('p', { class: 'loading', text: t('loading') })); return; }
+    const maps = Array.isArray(s.maps) ? s.maps.filter((m) => m && typeof m === 'object') : [];
+    const out = [h('div', { class: 'journal-bar' },
+      h('p', { class: 'journal-notice' }, icon('eyeOff'), h('span', { text: t('maps.notice') })),
+      h('span', { class: 'journal-esc', text: t('journal.escHint') }))];
+    if (!maps.length) {
+      if (s.ok !== false) out.push(h('p', { class: 'muted', text: t('maps.empty') }));
+      p.replaceChildren(...out);
+      return;
+    }
+    for (const m of maps) {
+      const pct = Number.isFinite(m.percent) ? Math.max(0, Math.min(100, Math.floor(m.percent))) : 0;
+      const total = Number.isFinite(m.total) ? m.total : 0, cur = Number.isFinite(m.current) ? m.current : 0;
+      const full = total > 0 && cur >= total;
+      const card = h('section', { class: 'map-card' + (full ? ' map-full' : '') });
+      card.append(h('div', { class: 'map-head' },
+        h('h2', { class: 'map-name', text: m.name || '' }),
+        h('span', { class: 'map-pct', attrs: { 'aria-hidden': 'true' } }, h('span', { class: 'map-pct-n', text: String(pct) }), h('span', { class: 'map-pct-sign', text: '%' })),
+        h('span', { class: 'map-count mono', text: cur + '/' + total })));
+      // <progress> carries value/max as attributes: no inline style is needed under the page's CSP.
+      card.append(h('progress', { class: 'map-bar', attrs: { value: cur, max: Math.max(total, 1), 'aria-label': t('maps.progress', { name: m.name || '', p: pct }) } }));
+      const cats = Array.isArray(m.categories) ? m.categories : [];
+      if (cats.length) {
+        const ul = h('ul', { class: 'map-cats' });
+        for (const c of cats) {
+          ul.append(h('li', { class: 'map-cat' + (c.done >= c.total ? ' cat-full' : '') },
+            icon(MAP_ICONS[c.cat] || 'item', 'icon-sm'), h('span', { class: 'map-cat-label', text: c.label || c.cat || '' }), h('span', { class: 'map-cat-n mono', text: c.done + '/' + c.total })));
+        }
+        card.append(ul);
+      }
+      const missing = Array.isArray(m.missing) ? m.missing : [];
+      if (missing.length) {
+        card.append(h('h3', { class: 'map-missing-title', text: t('maps.missing', { n: missing.length }) }));
+        const ul = h('ul', { class: 'jrows mrows' });
+        for (const it of missing) ul.append(h('li', null, mapRow(it)));
+        card.append(ul);
+      } else {
+        card.append(h('p', { class: 'map-complete' }, icon('check', 'icon-sm'), h('span', { text: t('maps.complete') })));
+      }
+      out.push(card);
+    }
+    const note = maps.find((m) => m.note)?.note;
+    if (note) out.push(h('p', { class: 'legend', text: note }));
+    p.replaceChildren(...out);
+  }
+
+  function mapRow(it) {
+    const kindName = MAP_ICONS[it.cat] ? it.cat : 'item';
+    const kindEl = h('span', { class: 'jkind jkind-map jkind-' + kindName, attrs: { 'aria-hidden': 'true', title: '' } }, icon(MAP_ICONS[it.cat] || 'item'));
+    const text = h('span', { class: 'jtext blur', attrs: { 'aria-hidden': 'true' } },
+      h('span', { class: 'jname', text: it.text || '' }),
+      it.bell ? h('span', { class: 'jdetail' }, h('span', { class: 'jnote', text: t('maps.near', { bell: it.bell }) })) : null);
+    const sr = h('span', { class: 'sr-only jhidden', text: t('journal.hidden') });
+    return h('button', {
+      class: 'jrow mrow',
+      attrs: { type: 'button', 'aria-pressed': 'false' },
+      on: { click: (e) => setRowRevealed(e.currentTarget, !e.currentTarget.classList.contains('revealed')) },
+    }, kindEl, text, sr);
+  }
+
+  function reblurMaps() {
+    for (const r of panel('maps').querySelectorAll('.mrow.revealed')) setRowRevealed(r, false);
+  }
+
   function updateToggleAll() {
     const btn = document.getElementById('journal-toggle-all');
-    if (!btn) return;
+    if (!btn || app.tab === 'maps') return;
     const rows = allRows();
     const allOpen = rows.length > 0 && rows.every((r) => r.classList.contains('revealed'));
     btn.textContent = allOpen ? t('journal.hideAll') : t('journal.showAll');
@@ -1045,13 +1167,14 @@
   function onKeyDown(e) {
     if (e.key === 'Escape') {
       if (app.tab === 'journal') reblurJournal();
+      if (app.tab === 'maps') reblurMaps();
       return;
     }
     if (e.ctrlKey || e.altKey || e.metaKey) return;
     const tg = e.target;
     const typing = tg && (tg.tagName === 'INPUT' || tg.tagName === 'SELECT' || tg.tagName === 'TEXTAREA' || tg.isContentEditable);
     if (typing) return;
-    if (e.key >= '1' && e.key <= '4') {
+    if (e.key >= '1' && e.key <= '5') {
       e.preventDefault();
       setTab(TABS[Number(e.key) - 1], document.activeElement && document.activeElement.classList.contains('tab'));
     }
@@ -1085,6 +1208,7 @@
     renderChrome();
     renderWarnings();
     renderJournal();
+    renderMaps();
     renderSettings();
     renderAbout();
     renderRefresh();

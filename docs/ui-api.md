@@ -3,7 +3,9 @@
 The page is a static page (`ui/index.html`, `ui/app.js`, `ui/style.css`). It is only built for the web
 version: `node build/build.js` (or `--web`) writes `web/dist/`, where `web.js` (the bundle of `web/main.js`)
 is loaded before `app.js` and installs `window.PBZ_TRANSPORT` (`web/transport.js`). The page talks to that
-object only; there is no server, no `fetch` and no `EventSource`. Everything runs in the browser.
+object only; there is no server, no `fetch` and no `EventSource`. Everything runs in the browser. The bundle
+embeds the compact map-completion table (`lib/completion.js` `buildTable` over `data/game/`) in place of
+`lib/map-table.js`; the game-data tables themselves are never bundled.
 
 ## Page constraints
 
@@ -51,6 +53,7 @@ The web transport keeps the settings, the chosen file handles, the derived key a
 
 ```ts
 type Status = 'open' | 'notStarted' | 'done' | 'missed' | 'unknown';
+type Category = 'bell' | 'weapon' | 'phantomEdge' | 'accessory' | 'medicine' | 'challenge' | 'amber' | 'blackstone' | 'flower';
 
 interface State {
   ok: boolean;                 // false → show `error` prominently, keep the rest of the page usable (Settings!)
@@ -112,12 +115,36 @@ interface State {
       text: string;            // the whole item, localized: "stone wall (Tiger Cannon)", "gate (key item K_05007)", "locked door"
     }>;
   }>;
+  maps?: Array<{               // the game's own map completion (lib/completion.js, the in-game map panel's count) for the
+                               // region maps the player has REACHED (one of the group's maps unlocked, a bell of it used, or
+                               // it is the header's region map; pangzhen+houjie and meiguhu+meigu_yiji count as one), in the
+                               // game's registry order; unreached maps are never listed. [] when nothing was reached or read.
+                               // Missing (older transport) → no Maps content.
+    id: string;                // the group id ('pangzhen', 'XiGu', …): never shown
+    name: string;              // the header's region text (names.region), else the level name of the embedded table
+    percent: number;           // floor(current / total * 100), as the game shows it
+    current: number; total: number;
+    categories: Array<{ cat: Category; label: string; done: number; total: number }>;  // only categories present on the map
+    missing: Array<{           // the entries not yet counted, in registry order; the page blurs every row (layer 2)
+      cat: Category;
+      text: string;            // localized: the item / bell / flower name (the player's text patch when it has the key, else
+                               // the embedded en/tr name), or for challenges and shard chests a category phrase
+      bell: string | null;     // the nearest bell's name, only in exact mode (Settings.exact) and never for a bell row
+    }>;
+    note: string;              // localized footnote ("the same count as the game's; keys and primary chest items are not counted")
+  }>;
   // Layer 2 (blurred in the Journal tab)
   journal: {
     sections: Array<{
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
       rows: Array<{
         name: string; status: Status; statusText: string; progress: string | null; note: string | null;
+        kind: 'quest' | 'item' | 'accessory' | 'flower' | 'chest' | 'weapon';
+                               // what the row is about (lib/report.js kindOf): a quest, or for a rule without a quest the
+                               // thing its doneWhen looks for (an AC_* accessory, a memory-flower petal, a saved chest actor, a
+                               // weapon id, else a generic item). The page shows a small icon with a title; never blurred
+                               // (it names a kind, not the thing). Missing (older transport) → 'quest'. Journal info rows are
+                               // shown with the 'info' icon by the page itself (they are plain strings).
         nameBlur: boolean;     // false = status done or missed (any row, guesses * included), or the quest is in the player's journal (in the save,
                                // status open, not a guess): name readable. true = not started, unknown, open guess (*) or an item rule
                                // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
@@ -205,7 +232,10 @@ interface About {
 
 ## Page behaviour (summary)
 
-- Tabs: **Warnings** (default), **Journal**, **Settings**, **About**. Keys `1`-`4` switch tabs, `Esc` re-blurs the journal.
+- Tabs: **Warnings** (default), **Journal**, **Settings**, **About**, **Maps**. Keys `1`-`5` switch tabs, `Esc` re-blurs the journal or the maps.
+- Maps: one card per reached region (`State.maps`): name, percentage, count, a `<progress>` bar (value/max attributes, no inline
+  style), category chips and the missing entries as blurred rows with a category icon (the icon stays readable: it names a
+  kind, not the thing). Click a row → it unblurs; `Esc`, leaving the tab or a new `state` blurs everything again.
 - Settings: General has the "exact names" checkbox; a collapsible **Diagnostics** panel at the bottom (count of unmatched
   quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
   Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.
@@ -216,5 +246,9 @@ interface About {
   Click a row → every part of that row unblurs. "Show all" asks for confirmation. Leaving the tab, `Esc` or any
   new `state` re-blurs everything.
 - Language toggle (TR/EN) top right.
-- Dark theme, system fonts (Segoe UI; Cascadia Mono/Consolas for numbers), no external resources, no emoji
-  (inline SVG if an icon is needed). Works at 1100×760 and narrower (down to ~720 px wide).
+- Dark "ink and paper" theme (wuxia): paper grain, brush-stroke dividers and card edges, red seal marks (the brand,
+  the current region's heading, the active tab) and a serif stack for headings — all drawn with CSS and inline SVG data
+  URIs coloured through CSS masks (`ui/style.css` `:root`); system fonts only (Georgia/Noto Serif for headings, Segoe UI
+  for text, Cascadia Mono/Consolas for numbers), no external resources, no emoji (inline SVG if an icon is needed).
+  Status badges are stamp-like (uppercase; "missed" is a filled red seal). Journal rows carry a kind icon
+  (`rows[].kind`; info rows a lantern). Works at 1100×760 and down to phone width (375 px) without horizontal scrolling.

@@ -25,13 +25,15 @@ const stripComments = (src) => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|
 
 // Browser bundle. Every require must be relative (bundled); a Node built-in (or any package) left in it
 // fails the build, and the result is wrapped in a function so nothing leaks into globals.
-function bundle(entryFile) {
+// overrides: abs path → module code that replaces the file's own source (lib/map-table.js: the precomputed table).
+function bundle(entryFile, overrides = new Map()) {
   const mods = new Map(); // abs path → { id, code }
   const visit = (file) => {
     if (mods.has(file)) return mods.get(file).id;
     const id = mods.size;
     const entry = { id, code: '' };
     mods.set(file, entry);
+    if (overrides.has(file)) { entry.code = overrides.get(file); return id; }
     let src = fs.readFileSync(file, 'utf8');
     if (file.endsWith('.json')) {
       entry.code = `module.exports = ${JSON.stringify(JSON.parse(src))};`;
@@ -72,7 +74,7 @@ function webIndex(html) {
   swap('<meta name="google" content="notranslate">', [
     '<meta name="google" content="notranslate">',
     '<meta name="description" content="Spoiler-safe, read-only missables tracker for Phantom Blade Zero. Runs entirely in your browser; nothing is uploaded.">',
-    '<meta name="theme-color" content="#1b1b1d">',
+    '<meta name="theme-color" content="#1d1915">',
     '<link rel="manifest" href="manifest.webmanifest">',
   ].join('\n'));
   swap('<link rel="stylesheet" href="/style.css">', '<link rel="stylesheet" href="style.css">');
@@ -82,7 +84,13 @@ function webIndex(html) {
 }
 
 function buildWeb() {
-  const { code, files } = bundle(path.join(WEB, 'main.js'));
+  // The map-completion table is computed here from data/game (lib/map-table.js) and embedded compact; the game-data
+  // tables themselves never enter the bundle.
+  const mapTable = require('../lib/map-table');
+  const tableJson = JSON.stringify(mapTable);
+  if (/\[-?\d+,-?\d+,-?\d+\]/.test(tableJson)) throw new Error('map table: a coordinate triple is left in the embedded table');
+  const { code, files } = bundle(path.join(WEB, 'main.js'), new Map([[path.join(ROOT, 'lib', 'map-table.js'), `// lib/completion.js buildTable() output, computed by build/build.js (${(tableJson.length / 1024).toFixed(0)} KB)\nmodule.exports = ${tableJson};`]]));
+  if (files.some((f) => /data[\\/]game[\\/]/.test(f))) throw new Error('web bundle: a data/game table was bundled (lib/map-table.js override missing?)');
   new (require('vm').Script)(code, { filename: 'web.js' }); // syntax check
   const out = {
     'index.html': webIndex(fs.readFileSync(path.join(ROOT, 'ui', 'index.html'), 'utf8')),
@@ -97,8 +105,8 @@ function buildWeb() {
       start_url: './',
       scope: './',
       display: 'standalone',
-      background_color: '#121212',
-      theme_color: '#1b1b1d',
+      background_color: '#15120f',
+      theme_color: '#1d1915',
       icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
     }, null, 2)}\n`,
   };

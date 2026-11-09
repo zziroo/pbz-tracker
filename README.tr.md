@@ -33,11 +33,14 @@ Sayfayı oyunun yanında açık bırak. Save'i 3 saniyede bir kontrol eder (Ayar
 ![Uyarılar sekmesi](docs/screenshots/web-tr-warnings.png)
 
 - **Uyarılar** (varsayılan sekme): yalnız kaçırmak üzere olduğun şeyler, ya da "Şu an kaçırma riski yok."
-- **Günlük**: günlüğündeki görevlerin durumu, aşama sayaçları, kaçanlar ve mor görev sayımı. Satırlar bulanıktır, tıklayınca açılır (günlükte zaten başladığın görevlerin adı ve durumu açık kalır); her yenilemede yeniden bulanıklaşır.
+- **Günlük**: günlüğündeki görevlerin durumu, aşama sayaçları, kaçanlar ve mor görev sayımı. Satırlar bulanıktır, tıklayınca açılır (günlükte zaten başladığın görevlerin adı ve durumu açık kalır); her yenilemede yeniden bulanıklaşır. Küçük bir simge satırın neyle ilgili olduğunu söyler (görev, eşya, aksesuar, anı çiçeği yaprağı, sandık, silah, ipucu).
 - **Ayarlar**: dil (TR/EN), ad kaynağı, yenileme aralığı, dosya erişimi, oyun klasörü / save dosyası (seç ya da unut).
 - **Hakkında**: sürüm, doğrulanan oyun build'i, lisans, rehber bağlantıları.
+- **Haritalar**: ulaştığın her bölge için oyunun kendi harita tamamlanma hesabı: oyun içi harita panelindeki yüzde ve sayaç, kategori başına dağılım (çanlar, silahlar, Phantom Edge'ler, aksesuarlar, ilaçlar, sınav noktaları, Sha-Chi kehribarı ve karataş parçaları, anı çiçekleri) ve eksik kalemler; eksikler tıklayana kadar bulanıktır. "Yer ve boss adlarını göster" açıkken her eksik kalemin yanında en yakın çanın adı da yazar. Ulaşmadığın bölgeler listelenmez.
 
 ![Günlük sekmesi, bulanık](docs/screenshots/web-tr-journal.png)
+
+![Haritalar sekmesi](docs/screenshots/web-tr-maps.png)
 
 - Birden fazla Steam hesabı: hesabı Ayarlar'dan seç. Başka yerde duran bir save (ör. `%LOCALAPPDATA%\ProjectPBZ\Saved\SaveGames` altında): save dosyasını Ayarlar'dan seç.
 - Steam dışından mı kurulu? Oyun klasörünün kendisini seç. Steam manifesti yoksa oyun build'i "bilinmiyor" diye gösterilir; "doğrulanmadı" uyarısı çıkmaz.
@@ -45,7 +48,7 @@ Sayfayı oyunun yanında açık bırak. Save'i 3 saniyede bir kontrol eder (Ayar
 ## Spoiler politikası
 
 1. **Varsayılan görünüm:** yalnız eyleme dönük uyarılar, yani önünde bir kesim noktası olan ve hâlâ açık bir kaçırılabilir. Kesim noktası adıyla değil konumuyla anlatılır. Görev adı yalnız görev günlüğünde zaten başlamışsa yazılır; başlamamışsa yalnız konum ipucu verilir. Uyarı yoksa: "Şu an kaçırma riski yok."
-2. **Gizli (Günlük sekmesi):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı. Günlükte zaten başladığın görevlerin ve tamamlanan satırların adı ve durumu açık; aşama sayaçları, notlar ve henüz karşılaşmadığın her şey satıra tıklayana kadar bulanık. Sayılı bölüm başlıkları görünür kalır. Her yenilemede hepsi yeniden bulanıklaşır.
+2. **Gizli (Günlük ve Haritalar sekmeleri):** günlükteki görevlerin durumu, aşama sayaçları, kaçanlar, mor görev sayımı; haritalardaki eksik kalemler. Günlükte zaten başladığın görevlerin ve tamamlanan satırların adı ve durumu açık; aşama sayaçları, notlar, henüz karşılaşmadığın her şey ve haritalardaki her eksik kalem satıra tıklayana kadar bulanık. Bölüm başlıkları, yüzdeler ve sayaçlar görünür kalır. Her yenilemede hepsi yeniden bulanıklaşır.
 3. **Hiç gösterilmez:** save'e göre henüz ulaşılmamış her şey. Sınır her zaman aracı çalıştıranın kendi save'ine göre çizilir.
 
 **Tam adlar (isteğe bağlı, varsayılan kapalı):** Ayarlar → "Uyarılarda yer ve boss adlarını göster" kesim noktasını yer ve boss adlarıyla yazar, ama yalnız save'ine göre ulaştığın bölgelerde; diğer kesim noktaları konumla anlatılmaya devam eder.
@@ -112,12 +115,12 @@ Oyun Steam üzerinden bulunur (kayıt defterindeki `SteamPath` → `libraryfolde
 
 ### Web derlemesi
 
-`node build/build.js` statik siteyi `web/dist/` klasörüne yazar (`index.html`, değişmeden `ui/app.js` ve `ui/style.css`, `web.js` = motor ve `web/*.js` tarayıcı için paketlenmiş, `sw.js`, `manifest.webmanifest`, `icon.svg`). Sayfa `web/transport.js` ile konuşur (sözleşme: `docs/ui-api.md`). Tarayıcı paketine bir Node modülü girerse derleme başarısız olur. `.github/workflows/pages.yml` siteyi `main`'e her push'ta derleyip GitHub Pages'te yayınlar (bkz. `docs/publish.md`). Yerelde denemek için `web/dist/` klasörünü `http://localhost` üzerinden sun (herhangi bir statik sunucu); `file://` adresiyle açılan sayfa klasör erişimini ve service worker'ı kullanamaz.
+`node build/build.js` statik siteyi `web/dist/` klasörüne yazar (`index.html`, değişmeden `ui/app.js` ve `ui/style.css`, `web.js` = motor ve `web/*.js` tarayıcı için paketlenmiş, `sw.js`, `manifest.webmanifest`, `icon.svg`). Sayfa `web/transport.js` ile konuşur (sözleşme: `docs/ui-api.md`). Tarayıcı paketine bir Node modülü girerse derleme başarısız olur. Haritalar sekmesinin tablosu (`lib/completion.js` `buildTable`: bölge haritası başına sayılan kalemler; kategori, kod, ad, tespit anahtarı ve en yakın çan, koordinat yok) derleme sırasında `data/game/` içinden hesaplanır ve `lib/map-table.js` yerine gömülür; oyun-verisi tablolarının kendisi pakete girmez. `.github/workflows/pages.yml` siteyi `main`'e her push'ta derleyip GitHub Pages'te yayınlar (bkz. `docs/publish.md`). Yerelde denemek için `web/dist/` klasörünü `http://localhost` üzerinden sun (herhangi bir statik sunucu); `file://` adresiyle açılan sayfa klasör erişimini ve service worker'ı kullanamaz.
 
 ### Testler
 
 - `node test/core-portability.js`: motor çekirdeğinin tarayıcıda çalışabildiğini kanıtlar (Node modülü yok, tarayıcı benzeri bir kum havuzunda çalışır).
-- `node test/core-e2e.js [--game <PBZ klasörü>] [--save <PBZSaveGame.sav>]`: taşınabilir çekirdeği gerçek bir oyun klasörü ve save'e karşı çalıştırır, raporun `node pbz.js --cli --no-color` çıktısıyla aynı olduğunu kontrol eder. Salt okunur.
+- `node test/core-e2e.js [--game <PBZ klasörü>] [--save <PBZSaveGame.sav>]`: taşınabilir çekirdeği gerçek bir oyun klasörü ve save'e karşı çalıştırır, raporun `node pbz.js --cli --no-color` çıktısıyla aynı olduğunu kontrol eder; harita tamamlanmasını tam kayıt tablosu ve ham save'den yeniden sayıp `lib/completion.js` ile karşılaştırır (2026-11-09 referans save'inde `research/gamedata/build.js --save` çıktısındaki sayılarla da). Salt okunur.
 - `node test/oodle-compare.js --game <PBZ klasörü> --dll <dll>`: save açıcıyı Oodle DLL'ine karşı karşılaştırır (başka bir oyundan `oo2core_8_win64.dll` gerekir).
 
 ## Kural tablosu (`data/rules.json`, oyunun tamamı için SPOILER içerir)

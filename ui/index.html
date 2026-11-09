@@ -7,18 +7,19 @@
 <meta name="referrer" content="no-referrer">
 <meta name="google" content="notranslate">
 <title>pbz-tracker</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%231b1b1d'%2F%3E%3Cpath%20d%3D'M46%2010%20L54%2010%20L54%2018%20L27%2045%20L19%2037%20Z'%20fill%3D'%23e0a040'%2F%3E%3Cpath%20d%3D'M15%2041%20L23%2049%20L19%2053%20L11%2045%20Z'%20fill%3D'%23e0a040'%2F%3E%3Cpath%20d%3D'M13%2051%20L9%2055'%20stroke%3D'%23e0a040'%20stroke-width%3D'5'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%231d1915'%2F%3E%3Cpath%20d%3D'M46%2010%20L54%2010%20L54%2018%20L27%2045%20L19%2037%20Z'%20fill%3D'%23e0a040'%2F%3E%3Cpath%20d%3D'M15%2041%20L23%2049%20L19%2053%20L11%2045%20Z'%20fill%3D'%23e0a040'%2F%3E%3Cpath%20d%3D'M13%2051%20L9%2055'%20stroke%3D'%23e0a040'%20stroke-width%3D'5'%20stroke-linecap%3D'round'%2F%3E%3C%2Fsvg%3E">
 <link rel="stylesheet" href="/style.css">
 <script src="/app.js" defer></script>
 </head>
 <body class="notranslate" translate="no">
 <header class="topbar">
-  <div class="brand">pbz-tracker</div>
+  <div class="brand"><span class="brand-text">pbz-tracker</span></div>
   <nav class="tabs" role="tablist" id="tablist" aria-label="pbz-tracker">
     <button type="button" role="tab" class="tab" id="tab-warnings" data-tab="warnings" aria-controls="panel-warnings" aria-selected="true"><span class="tab-key">1</span><span class="tab-label" data-i18n="tab.warnings">Uyarılar</span></button>
     <button type="button" role="tab" class="tab" id="tab-journal" data-tab="journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1"><span class="tab-key">2</span><span class="tab-label" data-i18n="tab.journal">Günlük</span></button>
     <button type="button" role="tab" class="tab" id="tab-settings" data-tab="settings" aria-controls="panel-settings" aria-selected="false" tabindex="-1"><span class="tab-key">3</span><span class="tab-label" data-i18n="tab.settings">Ayarlar</span></button>
     <button type="button" role="tab" class="tab" id="tab-about" data-tab="about" aria-controls="panel-about" aria-selected="false" tabindex="-1"><span class="tab-key">4</span><span class="tab-label" data-i18n="tab.about">Hakkında</span></button>
+    <button type="button" role="tab" class="tab" id="tab-maps" data-tab="maps" aria-controls="panel-maps" aria-selected="false" tabindex="-1"><span class="tab-key">5</span><span class="tab-label" data-i18n="tab.maps">Haritalar</span></button>
   </nav>
   <div class="lang" role="group" id="lang-group" aria-label="Dil / Language">
     <button type="button" class="lang-btn" data-lang="tr" aria-pressed="true">TR</button>
@@ -31,6 +32,7 @@
   <section class="panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" tabindex="0" hidden></section>
   <section class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden></section>
   <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden></section>
+  <section class="panel" id="panel-maps" role="tabpanel" aria-labelledby="tab-maps" tabindex="0" hidden></section>
 </main>
 
 <footer class="footer">
