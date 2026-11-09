@@ -49,7 +49,7 @@ Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak zorunda; kör o
 [*][url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
 [*]Sayfayı oyunun yanında açık bırak (ikinci monitör ya da ara sıra alt-tab; kendi penceresinde dursun istersen uygulama olarak da kurabilirsin). Oyun her kayıt yaptığında (çan, otomatik kayıt) kendi kendine yenileniyor.
-[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık; küçük bir simge satırın görev mi, eşya mı, aksesuar mı, anı yaprağı mı, sandık mı, silah mı, ipucu mu olduğunu gösteriyor), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında, Haritalar (aşağıda).
+[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık; küçük bir simge satırın görev mi, eşya mı, aksesuar mı, anı yaprağı mı, sandık mı, silah mı, ipucu mu olduğunu gösteriyor), Haritalar (aşağıda), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında. 1'den 5'e tuşlar sekmeler arasında geçiş yapıyor.
 [*]Firefox/Safari: save dosyanı (ve bir kereliğine PBZ.exe'yi) sayfaya sürükleyip bırak. Çalışıyor ama otomatik yenileme yok; oyun kayıt yaptıktan sonra save'i tekrar bırakman gerekiyor.
 [/olist]
 

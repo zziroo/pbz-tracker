@@ -42,7 +42,7 @@ A guide has to tell you what's ahead to be of any use, and that's the exact thin
 [*]Open [url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] in Chrome or Edge.
 [*]Click Choose game folder and pick the game folder (or your whole Steam library folder, that works too). The browser asks for read access, allow it. Next time it's one click, "Continue with PBZ".
 [*]Leave it open next to the game. Second monitor, or just alt-tab now and then. You can also install it as an app if you want it in its own window. Every time the game saves (the bell, autosave) it refreshes by itself.
-[*]Tabs: Warnings (default, only what you're about to lose, grouped by region), Journal (quest status, step counters, missed items, blurred; a small icon says whether a row is a quest, an item, an accessory, a petal, a chest, a weapon or a tip), Settings (language, refresh interval, game folder), About, Maps (see below).
+[*]Tabs: Warnings (default, only what you're about to lose, grouped by region), Journal (quest status, step counters, missed items, blurred; a small icon says whether a row is a quest, an item, an accessory, a petal, a chest, a weapon or a tip), Maps (see below), Settings (language, refresh interval, game folder), About. Keys 1 to 5 switch between them.
 [*]Firefox/Safari: drag and drop your save onto the page (and PBZ.exe, once). Works, but there's no auto refresh, so you have to drop the save again after the game saves.
 [/olist]
 
