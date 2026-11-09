@@ -33,11 +33,14 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 ![Warnings tab](docs/screenshots/web-warnings.png)
 
 - **Warnings** (default tab): only what you are about to lose, or "No risk of missing anything right now."
-- **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Rows are blurred until you click them (quests already in your journal keep their name and status readable); any refresh blurs them again.
+- **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Rows are blurred until you click them (quests already in your journal keep their name and status readable); any refresh blurs them again. A small icon says what a row is about (quest, item, accessory, memory-flower petal, chest, weapon, tip).
 - **Settings**: language (TR/EN), name source, refresh interval, file access, and the game folder / save file (choose or forget).
 - **About**: version, tested game build, license, guide links.
+- **Maps**: the game's own map completion for every region you have reached: percentage and count as the in-game map panel shows them, the tally per category (bells, weapons, Phantom Edges, accessories, medicines, challenge locations, Sha-Chi amber and blackstone shards, memory flowers) and the missing entries, blurred until you click them. With "Show place and boss names" on, each missing entry also names the nearest bell. Regions you have not reached are not listed.
 
 ![Journal tab, blurred](docs/screenshots/web-journal.png)
+
+![Maps tab](docs/screenshots/web-maps.png)
 
 - Several Steam accounts: choose the account in Settings. A save stored elsewhere (for example under `%LOCALAPPDATA%\ProjectPBZ\Saved\SaveGames`): choose the save file in Settings.
 - Not installed through Steam? Choose the game folder itself. Without a Steam manifest the game build is shown as unknown, without an "untested" warning.
@@ -45,7 +48,7 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 ## Spoiler policy
 
 1. **Default view:** only actionable warnings, meaning a cutoff ahead of you with something still open. Cutoffs are described by position, never by name. A quest is named only if it already appears in your journal; otherwise you get a location hint. With nothing at risk you see: "No risk of missing anything right now."
-2. **Hidden (Journal tab):** journal status, step counters, missed items, purple-quest tally. Quests already in your journal and anything already done show their name and status; step counters, notes and anything you haven't met yet stay blurred until you click a row. Section titles with their counts stay visible. Everything is blurred again on every refresh.
+2. **Hidden (Journal and Maps tabs):** journal status, step counters, missed items, purple-quest tally; the missing map entries. Quests already in your journal and anything already done show their name and status; step counters, notes, anything you haven't met yet and every missing map entry stay blurred until you click a row. Section titles, percentages and counts stay visible. Everything is blurred again on every refresh.
 3. **Never shown:** anything your save says you have not reached. The line is always drawn from the save of the person running the tool.
 
 **Exact names (opt-in, off by default):** Settings → "Show place and boss names in warnings" writes the cutoff with its place and boss names, but only for areas your save shows you have reached; every other cutoff keeps its positional wording.
@@ -104,12 +107,12 @@ The game is found through Steam (registry `SteamPath` → `libraryfolders.vdf` �
 
 ### Web build
 
-`node build/build.js` writes the static site to `web/dist/` (`index.html`, the unchanged `ui/app.js` and `ui/style.css`, `web.js` = the engine plus `web/*.js` bundled for the browser, `sw.js`, `manifest.webmanifest`, `icon.svg`). The page talks to `web/transport.js` (contract: `docs/ui-api.md`). The build fails if a Node built-in ends up in the browser bundle. `.github/workflows/pages.yml` builds and publishes it on GitHub Pages on every push to `main` (see `docs/publish.md`). To try it locally, serve `web/dist/` over `http://localhost` (any static server); a page opened as a `file://` URL cannot use folder access or the service worker.
+`node build/build.js` writes the static site to `web/dist/` (`index.html`, the unchanged `ui/app.js` and `ui/style.css`, `web.js` = the engine plus `web/*.js` bundled for the browser, `sw.js`, `manifest.webmanifest`, `icon.svg`). The page talks to `web/transport.js` (contract: `docs/ui-api.md`). The build fails if a Node built-in ends up in the browser bundle. The Maps tab's table (`lib/completion.js` `buildTable`: per region map its countable entries with category, code, name, detection key and nearest bell, no coordinates) is computed at build time from `data/game/` and embedded in place of `lib/map-table.js`; the game-data tables themselves are not bundled. `.github/workflows/pages.yml` builds and publishes it on GitHub Pages on every push to `main` (see `docs/publish.md`). To try it locally, serve `web/dist/` over `http://localhost` (any static server); a page opened as a `file://` URL cannot use folder access or the service worker.
 
 ### Tests
 
 - `node test/core-portability.js`: proves the engine core is browser-safe (no Node built-ins, runs in a browser-style sandbox).
-- `node test/core-e2e.js [--game <PBZ folder>] [--save <PBZSaveGame.sav>]`: runs the portable core against a real game folder and save, and checks its report equals `node pbz.js --cli --no-color`. Read-only.
+- `node test/core-e2e.js [--game <PBZ folder>] [--save <PBZSaveGame.sav>]`: runs the portable core against a real game folder and save, and checks its report equals `node pbz.js --cli --no-color`; also recounts the map completion from the full registry and the raw save and checks `lib/completion.js` agrees (and, for the 2026-11-09 reference save, the numbers `research/gamedata/build.js --save` prints). Read-only.
 - `node test/oodle-compare.js --game <PBZ folder> --dll <dll>`: compares the save decompressor against the Oodle DLL (needs a copy of `oo2core_8_win64.dll` from another game).
 
 `data/rules.json` contains spoilers for the whole game.

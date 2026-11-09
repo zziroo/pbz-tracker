@@ -213,7 +213,7 @@ function createTransport() {
       const { result, changes } = evaluate(st);
       if (timelineOn()) await timeline.record(st); // never rejects
       if (my !== gen) return;
-      view = { st, result, changes, names, build: gameBuild, data: DATA_INFO };
+      view = { st, result, changes, names, build: gameBuild, data: DATA_INFO, exact: cfg.exact === true };
       readAt = new Date().toISOString(); ok = true; error = null; errorKind = null; actions = [];
       push();
     };
@@ -394,7 +394,7 @@ function createTransport() {
     if (!view || !names) return load(); // a setup or error text in the old language: start over (key is cached)
     names = makeNames();
     const { result, changes } = evaluate(view.st, { again: true });
-    view = { ...view, result, changes, names };
+    view = { ...view, result, changes, names, exact: cfg.exact === true };
     if (!ok && watch) watch.refresh(true); // an error text in the old language: try again
     push();
   }

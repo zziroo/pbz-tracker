@@ -3,7 +3,9 @@
 The page is a static page (`ui/index.html`, `ui/app.js`, `ui/style.css`). It is only built for the web
 version: `node build/build.js` (or `--web`) writes `web/dist/`, where `web.js` (the bundle of `web/main.js`)
 is loaded before `app.js` and installs `window.PBZ_TRANSPORT` (`web/transport.js`). The page talks to that
-object only; there is no server, no `fetch` and no `EventSource`. Everything runs in the browser.
+object only; there is no server, no `fetch` and no `EventSource`. Everything runs in the browser. The bundle
+embeds the compact map-completion table (`lib/completion.js` `buildTable` over `data/game/`) in place of
+`lib/map-table.js`; the game-data tables themselves are never bundled.
 
 ## Page constraints
 
@@ -51,6 +53,7 @@ The web transport keeps the settings, the chosen file handles, the derived key a
 
 ```ts
 type Status = 'open' | 'notStarted' | 'done' | 'missed' | 'unknown';
+type Category = 'bell' | 'weapon' | 'phantomEdge' | 'accessory' | 'medicine' | 'challenge' | 'amber' | 'blackstone' | 'flower';
 
 interface State {
   ok: boolean;                 // false → show `error` prominently, keep the rest of the page usable (Settings!)
@@ -111,6 +114,24 @@ interface State {
       needKind: 'weapon' | 'item' | 'none';
       text: string;            // the whole item, localized: "stone wall (Tiger Cannon)", "gate (key item K_05007)", "locked door"
     }>;
+  }>;
+  maps?: Array<{               // the game's own map completion (lib/completion.js, the in-game map panel's count) for the
+                               // region maps the player has REACHED (one of the group's maps unlocked, a bell of it used, or
+                               // it is the header's region map; pangzhen+houjie and meiguhu+meigu_yiji count as one), in the
+                               // game's registry order; unreached maps are never listed. [] when nothing was reached or read.
+                               // Missing (older transport) → no Maps content.
+    id: string;                // the group id ('pangzhen', 'XiGu', …): never shown
+    name: string;              // the header's region text (names.region), else the level name of the embedded table
+    percent: number;           // floor(current / total * 100), as the game shows it
+    current: number; total: number;
+    categories: Array<{ cat: Category; label: string; done: number; total: number }>;  // only categories present on the map
+    missing: Array<{           // the entries not yet counted, in registry order; the page blurs every row (layer 2)
+      cat: Category;
+      text: string;            // localized: the item / bell / flower name (the player's text patch when it has the key, else
+                               // the embedded en/tr name), or for challenges and shard chests a category phrase
+      bell: string | null;     // the nearest bell's name, only in exact mode (Settings.exact) and never for a bell row
+    }>;
+    note: string;              // localized footnote ("the same count as the game's; keys and primary chest items are not counted")
   }>;
   // Layer 2 (blurred in the Journal tab)
   journal: {
@@ -211,7 +232,10 @@ interface About {
 
 ## Page behaviour (summary)
 
-- Tabs: **Warnings** (default), **Journal**, **Settings**, **About**. Keys `1`-`4` switch tabs, `Esc` re-blurs the journal.
+- Tabs: **Warnings** (default), **Journal**, **Settings**, **About**, **Maps**. Keys `1`-`5` switch tabs, `Esc` re-blurs the journal or the maps.
+- Maps: one card per reached region (`State.maps`): name, percentage, count, a `<progress>` bar (value/max attributes, no inline
+  style), category chips and the missing entries as blurred rows with a category icon (the icon stays readable: it names a
+  kind, not the thing). Click a row → it unblurs; `Esc`, leaving the tab or a new `state` blurs everything again.
 - Settings: General has the "exact names" checkbox; a collapsible **Diagnostics** panel at the bottom (count of unmatched
   quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
   Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.

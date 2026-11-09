@@ -25,13 +25,15 @@ const stripComments = (src) => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|
 
 // Browser bundle. Every require must be relative (bundled); a Node built-in (or any package) left in it
 // fails the build, and the result is wrapped in a function so nothing leaks into globals.
-function bundle(entryFile) {
+// overrides: abs path → module code that replaces the file's own source (lib/map-table.js: the precomputed table).
+function bundle(entryFile, overrides = new Map()) {
   const mods = new Map(); // abs path → { id, code }
   const visit = (file) => {
     if (mods.has(file)) return mods.get(file).id;
     const id = mods.size;
     const entry = { id, code: '' };
     mods.set(file, entry);
+    if (overrides.has(file)) { entry.code = overrides.get(file); return id; }
     let src = fs.readFileSync(file, 'utf8');
     if (file.endsWith('.json')) {
       entry.code = `module.exports = ${JSON.stringify(JSON.parse(src))};`;
@@ -82,7 +84,13 @@ function webIndex(html) {
 }
 
 function buildWeb() {
-  const { code, files } = bundle(path.join(WEB, 'main.js'));
+  // The map-completion table is computed here from data/game (lib/map-table.js) and embedded compact; the game-data
+  // tables themselves never enter the bundle.
+  const mapTable = require('../lib/map-table');
+  const tableJson = JSON.stringify(mapTable);
+  if (/\[-?\d+,-?\d+,-?\d+\]/.test(tableJson)) throw new Error('map table: a coordinate triple is left in the embedded table');
+  const { code, files } = bundle(path.join(WEB, 'main.js'), new Map([[path.join(ROOT, 'lib', 'map-table.js'), `// lib/completion.js buildTable() output, computed by build/build.js (${(tableJson.length / 1024).toFixed(0)} KB)\nmodule.exports = ${tableJson};`]]));
+  if (files.some((f) => /data[\\/]game[\\/]/.test(f))) throw new Error('web bundle: a data/game table was bundled (lib/map-table.js override missing?)');
   new (require('vm').Script)(code, { filename: 'web.js' }); // syntax check
   const out = {
     'index.html': webIndex(fs.readFileSync(path.join(ROOT, 'ui', 'index.html'), 'utf8')),
