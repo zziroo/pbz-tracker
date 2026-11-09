@@ -1,0 +1,517 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "phantomEdges": {
+  "BrutalAxe": {
+   "code": "BrutalAxe",
+   "row": "巨凶斧",
+   "nameKey": "PhantomEdges_001",
+   "name": {
+    "key": "PhantomEdges_001",
+    "en": "DREAD AXE",
+    "zh": "巨凶斧",
+    "tr": "DEHŞET BALTASI"
+   },
+   "descKey": "PhantomEdgesDes_001",
+   "desc": {
+    "key": "PhantomEdgesDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_001"
+  },
+  "UnnamedBow": {
+   "code": "UnnamedBow",
+   "row": "羽弓",
+   "nameKey": "PhantomEdges_009",
+   "name": {
+    "key": "PhantomEdges_009",
+    "en": "FEATHER BOW",
+    "zh": "羽弓",
+    "tr": "TÜY YAY"
+   },
+   "descKey": "PhantomEdgesDes_009",
+   "desc": {
+    "key": "PhantomEdgesDes_009",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_009"
+  },
+  "ShachiHook": {
+   "code": "ShachiHook",
+   "row": "追命锁镰",
+   "nameKey": "PhantomEdges_014",
+   "name": {
+    "key": "PhantomEdges_014",
+    "en": "HUNTER'S CHAIN SICKLE",
+    "zh": "追命锁镰",
+    "tr": "AVCININ ZİNCİRLİ ORAĞI"
+   },
+   "descKey": "PhantomEdgesDes_014",
+   "desc": {
+    "key": "PhantomEdgesDes_014",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_014"
+  },
+  "MiaoShouFeiDao": {
+   "code": "MiaoShouFeiDao",
+   "row": "妙手飞刀",
+   "nameKey": "PhantomEdges_010",
+   "name": {
+    "key": "PhantomEdges_010",
+    "en": "FLYING DAGGER",
+    "zh": "妙手飞刀",
+    "tr": "UÇAN HANÇER"
+   },
+   "descKey": "PhantomEdgesDes_010",
+   "desc": {
+    "key": "PhantomEdgesDes_010",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_010"
+  },
+  "TieGongZhuQuanTao": {
+   "code": "TieGongZhuQuanTao",
+   "row": "铁狂拳套",
+   "nameKey": "PhantomEdges_017",
+   "name": {
+    "key": "PhantomEdges_017",
+    "en": "IRON GAUNTLETS",
+    "zh": "铁拳套",
+    "tr": "DEMİR ELDİVENLER"
+   },
+   "descKey": "PhantomEdgesDes_017",
+   "desc": {
+    "key": "PhantomEdgesDes_017",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_017"
+  },
+  "ZhuoBiDun": {
+   "code": "ZhuoBiDun",
+   "row": "拙壁盾",
+   "nameKey": "PhantomEdges_004",
+   "name": {
+    "key": "PhantomEdges_004",
+    "en": "BASTION",
+    "zh": "拙壁盾",
+    "tr": "SİPER"
+   },
+   "descKey": "PhantomEdgesDes_004",
+   "desc": {
+    "key": "PhantomEdgesDes_004",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_004"
+  },
+  "KuYeSiZhuChuan": {
+   "code": "KuYeSiZhuChuan",
+   "row": "苦叶寺珠串",
+   "nameKey": "PhantomEdges_013",
+   "name": {
+    "key": "PhantomEdges_013",
+    "en": "KUYE TEMPLE PRAYER BEADS",
+    "zh": "苦叶寺珠串",
+    "tr": "KUYE TAPINAĞI TESPİHİ"
+   },
+   "descKey": "PhantomEdgesDes_013",
+   "desc": {
+    "key": "PhantomEdgesDes_013",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_013"
+  },
+  "CaoOuSiXian": {
+   "code": "CaoOuSiXian",
+   "row": "操偶丝线",
+   "nameKey": "PhantomEdges_025",
+   "name": {
+    "key": "PhantomEdges_025",
+    "en": "PUPPETEER'S BELL",
+    "zh": "操偶铃铛",
+    "tr": "KUKLACININ ÇANI"
+   },
+   "descKey": "PhantomEdgesDes_025",
+   "desc": {
+    "key": "PhantomEdgesDes_025",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_025"
+  },
+  "CuiXinPiPa": {
+   "code": "CuiXinPiPa",
+   "row": "催心琵琶",
+   "nameKey": "PhantomEdges_024",
+   "name": {
+    "key": "PhantomEdges_024",
+    "en": "HEARTREND PIPA",
+    "zh": "催心琵琶",
+    "tr": "KALPYARAN PİPA"
+   },
+   "descKey": "PhantomEdgesDes_024",
+   "desc": {
+    "key": "PhantomEdgesDes_024",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_024",
+   "tierUpTargetKey": "PhantomEdges_124"
+  },
+  "HuoLiuXing": {
+   "code": "HuoLiuXing",
+   "row": "火流星_0",
+   "nameKey": "PhantomEdges_015",
+   "name": {
+    "key": "PhantomEdges_015",
+    "en": "FIRE METEOR",
+    "zh": "火流星",
+    "tr": "ATEŞ METEORU"
+   },
+   "descKey": "PhantomEdgesDes_015",
+   "desc": {
+    "key": "PhantomEdgesDes_015",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_015",
+   "variants": [
+    {
+     "code": "HuoLiuXing",
+     "row": "火流星",
+     "nameKey": "Character_PZ_78",
+     "name": {
+      "key": "Character_PZ_78",
+      "en": "Blaze",
+      "zh": "火流星",
+      "tr": "Kor"
+     },
+     "descKey": "PhantomEdgesDes_015",
+     "desc": {
+      "key": "PhantomEdgesDes_015",
+      "hasEn": true,
+      "hasTr": true
+     },
+     "uiDescKey": "PhantomEdgesDes_UI_015"
+    }
+   ]
+  },
+  "LionHead": {
+   "code": "LionHead",
+   "row": "烈焰狮头",
+   "nameKey": "PhantomEdges_012",
+   "name": {
+    "key": "PhantomEdges_012",
+    "en": "FLAMING MANE",
+    "zh": "烈焰狮头",
+    "tr": "ALEVLİ YELE"
+   },
+   "descKey": "PhantomEdgesDes_012",
+   "desc": {
+    "key": "PhantomEdgesDes_012",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_012"
+  },
+  "XuKongHuaShan": {
+   "code": "XuKongHuaShan",
+   "row": "虚空华扇",
+   "nameKey": "PhantomEdges_023",
+   "name": {
+    "key": "PhantomEdges_023",
+    "en": "INANIS' RADIANT FAN",
+    "zh": "虚空华扇",
+    "tr": "INANIS'İN PARLAK YELPAZESİ"
+   },
+   "descKey": "PhantomEdgesDes_023",
+   "desc": {
+    "key": "PhantomEdgesDes_023",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_023"
+  },
+  "JinGua": {
+   "code": "JinGua",
+   "row": "长柄金瓜",
+   "nameKey": "PhantomEdges_002",
+   "name": {
+    "key": "PhantomEdges_002",
+    "en": "BASHPOLE",
+    "zh": "长柄金瓜",
+    "tr": "YIKIM SIRIĞI"
+   },
+   "descKey": "PhantomEdgesDes_002",
+   "desc": {
+    "key": "PhantomEdgesDes_002",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_002"
+  },
+  "JianKeZhaoJiLing": {
+   "code": "JianKeZhaoJiLing",
+   "row": "剑客召集令",
+   "nameKey": "PhantomEdges_026",
+   "name": {
+    "key": "PhantomEdges_026",
+    "en": "SWORDSMAN'S SUMMON",
+    "zh": "剑客召集令",
+    "tr": "KILIÇ USTASININ ÇAĞRISI"
+   },
+   "descKey": "PhantomEdgesDes_026",
+   "desc": {
+    "key": "PhantomEdgesDes_026",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_026"
+  },
+  "DuYanGong": {
+   "code": "DuYanGong",
+   "row": "独眼弓",
+   "nameKey": "PhantomEdges_109",
+   "name": {
+    "key": "PhantomEdges_109",
+    "en": "ONE-EYED BOW",
+    "zh": "独眼弓",
+    "tr": "TEK GÖZLÜ YAY"
+   },
+   "descKey": "PhantomEdgesDes_109",
+   "desc": {
+    "key": "PhantomEdgesDes_109",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_109"
+  },
+  "YouLongCha": {
+   "code": "YouLongCha",
+   "row": "游龙叉",
+   "nameKey": "PhantomEdges_016",
+   "name": {
+    "key": "PhantomEdges_016",
+    "en": "LOONG TRIDENT",
+    "zh": "游龙叉",
+    "tr": "LOONG ÜÇ DİŞLİ MIZRAĞI"
+   },
+   "descKey": "PhantomEdgesDes_016",
+   "desc": {
+    "key": "PhantomEdgesDes_016",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_016"
+  },
+  "YouLongTou": {
+   "code": "YouLongTou",
+   "row": "游龙头",
+   "nameKey": "PhantomEdges_011",
+   "name": {
+    "key": "PhantomEdges_011",
+    "en": "YOU LOONG'S DELUGE",
+    "zh": "游龙头",
+    "tr": "YOU LOONG'UN TUFANI"
+   },
+   "descKey": "PhantomEdgesDes_011",
+   "desc": {
+    "key": "PhantomEdgesDes_011",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_011"
+  },
+  "HuangJinHuoChong": {
+   "code": "HuangJinHuoChong",
+   "row": "黄金火铳",
+   "nameKey": "PhantomEdges_008",
+   "name": {
+    "key": "PhantomEdges_008",
+    "en": "GOLDBLAZE",
+    "zh": "黄金火铳",
+    "tr": "ALTINALEV"
+   },
+   "descKey": "PhantomEdgesDes_008",
+   "desc": {
+    "key": "PhantomEdgesDes_008",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_008"
+  },
+  "Mojian": {
+   "code": "Mojian",
+   "row": "墨血无痕",
+   "nameKey": "PhantomEdges_018",
+   "name": {
+    "key": "PhantomEdges_018",
+    "en": "INK CUT",
+    "zh": "墨血无痕",
+    "tr": "MÜREKKEP KESİĞİ"
+   },
+   "descKey": "PhantomEdgesDes_018",
+   "desc": {
+    "key": "PhantomEdgesDes_018",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_018"
+  },
+  "TanLang": {
+   "code": "TanLang",
+   "row": "贪狼",
+   "nameKey": "PhantomEdges_005",
+   "name": {
+    "key": "PhantomEdges_005",
+    "en": "WOLFJAW",
+    "zh": "贪狼",
+    "tr": "KURTÇENESİ"
+   },
+   "descKey": "PhantomEdgesDes_005",
+   "desc": {
+    "key": "PhantomEdgesDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_005"
+  },
+  "XueDiZi": {
+   "code": "XueDiZi",
+   "row": "血滴子",
+   "nameKey": "PhantomEdges_020",
+   "name": {
+    "key": "PhantomEdges_020",
+    "en": "FLYING GUILLOTINE",
+    "zh": "血滴子",
+    "tr": "UÇAN GİYOTİN"
+   },
+   "descKey": "PhantomEdgesDes_020",
+   "desc": {
+    "key": "PhantomEdgesDes_020",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_020"
+  },
+  "ThunderSpear": {
+   "code": "ThunderSpear",
+   "row": "雷霆枪",
+   "nameKey": "PhantomEdges_019",
+   "name": {
+    "key": "PhantomEdges_019",
+    "en": "THUNDER SPEAR",
+    "zh": "雷霆枪",
+    "tr": "GÖK GÜRÜLTÜSÜ MIZRAĞI"
+   },
+   "descKey": "PhantomEdgesDes_019",
+   "desc": {
+    "key": "PhantomEdgesDes_019",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_019"
+  },
+  "XueSeLingDang": {
+   "code": "XueSeLingDang",
+   "row": "血色铃铛",
+   "nameKey": "PhantomEdges_021",
+   "name": {
+    "key": "PhantomEdges_021",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "descKey": null,
+   "desc": null,
+   "uiDescKey": null
+  },
+  "BaWangLianQiu": {
+   "code": "BaWangLianQiu",
+   "row": "霸王链球",
+   "nameKey": "PhantomEdges_003",
+   "name": {
+    "key": "PhantomEdges_003",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "descKey": "PhantomEdgesDes_003",
+   "desc": {
+    "key": "PhantomEdgesDes_003",
+    "hasEn": false,
+    "hasTr": false
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_003"
+  },
+  "TigerCannon": {
+   "code": "TigerCannon",
+   "row": "虎炮",
+   "nameKey": "PhantomEdges_006",
+   "name": {
+    "key": "PhantomEdges_006",
+    "en": "TIGER CANNON",
+    "zh": "虎炮",
+    "tr": "KAPLAN TOPU"
+   },
+   "descKey": "PhantomEdgesDes_006",
+   "desc": {
+    "key": "PhantomEdgesDes_006",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_006"
+  },
+  "NiTouChe": {
+   "code": "NiTouChe",
+   "row": "泥头车",
+   "nameKey": "PhantomEdges_022",
+   "name": {
+    "key": "PhantomEdges_022",
+    "en": "WAR WAGON",
+    "zh": "泥头车",
+    "tr": "SAVAŞ ARABASI"
+   },
+   "descKey": "PhantomEdgesDes_022",
+   "desc": {
+    "key": "PhantomEdgesDes_022",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_022"
+  },
+  "MoShou": {
+   "code": "MoShou",
+   "row": "魔手",
+   "nameKey": "PhantomEdges_007",
+   "name": {
+    "key": "PhantomEdges_007",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "descKey": "PhantomEdgesDes_007",
+   "desc": {
+    "key": "PhantomEdgesDes_007",
+    "hasEn": false,
+    "hasTr": false
+   },
+   "uiDescKey": "PhantomEdgesDes_UI_007"
+  }
+ }
+}

@@ -1,0 +1,609 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "weapons": {
+  "WoodenSword": {
+   "code": "WoodenSword",
+   "row": "木制黑伤",
+   "nameKey": "Weapon_000",
+   "name": {
+    "key": "Weapon_000",
+    "en": "WOODEN SANGUINE",
+    "zh": "木制黑伤",
+    "tr": "TAHTA SANGUINE"
+   },
+   "descKey": "WeaponDes_000",
+   "desc": {
+    "key": "WeaponDes_000",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_000"
+  },
+  "WoodenSwordHun": {
+   "code": "WoodenSwordHun",
+   "row": "木制黑伤(大魂用)",
+   "nameKey": "Weapon_000",
+   "name": {
+    "key": "Weapon_000",
+    "en": "WOODEN SANGUINE",
+    "zh": "木制黑伤",
+    "tr": "TAHTA SANGUINE"
+   },
+   "descKey": "WeaponDes_000",
+   "desc": {
+    "key": "WeaponDes_000",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_000"
+  },
+  "Tang": {
+   "code": "Tang",
+   "row": "黑伤",
+   "nameKey": "Weapon_001",
+   "name": {
+    "key": "Weapon_001",
+    "en": "SANGUINE",
+    "zh": "黑伤",
+    "tr": "SANGUINE"
+   },
+   "descKey": "WeaponDes_001",
+   "desc": {
+    "key": "WeaponDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_001",
+   "tierUpTargetKey": "Weapon_005"
+  },
+  "Tang_HorseCartCombat": {
+   "code": "Tang_HorseCartCombat",
+   "row": "黑伤(马车战)",
+   "nameKey": "Weapon_001",
+   "name": {
+    "key": "Weapon_001",
+    "en": "SANGUINE",
+    "zh": "黑伤",
+    "tr": "SANGUINE"
+   },
+   "descKey": "WeaponDes_001",
+   "desc": {
+    "key": "WeaponDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": null
+  },
+  "TangPrologue": {
+   "code": "TangPrologue",
+   "row": "黑伤(马车战后半段)",
+   "nameKey": "Weapon_001",
+   "name": {
+    "key": "Weapon_001",
+    "en": "SANGUINE",
+    "zh": "黑伤",
+    "tr": "SANGUINE"
+   },
+   "descKey": "WeaponDes_001",
+   "desc": {
+    "key": "WeaponDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_001"
+  },
+  "IronBlade": {
+   "code": "IronBlade",
+   "row": "残钢刃",
+   "nameKey": "Weapon_002",
+   "name": {
+    "key": "Weapon_002",
+    "en": "JAGGED STEEL",
+    "zh": "残钢刃",
+    "tr": "ÇENTİKLİ ÇELİK"
+   },
+   "descKey": "WeaponDes_002",
+   "desc": {
+    "key": "WeaponDes_002",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_002"
+  },
+  "Double": {
+   "code": "Double",
+   "row": "黑伤双刃",
+   "nameKey": "Weapon_022",
+   "name": {
+    "key": "Weapon_022",
+    "en": "SANGUINE TWIN",
+    "zh": "黑伤双刃",
+    "tr": "İKİZ SANGUINE "
+   },
+   "descKey": "WeaponDes_022",
+   "desc": {
+    "key": "WeaponDes_022",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_022",
+   "tierUpTargetKey": "Weapon_024"
+  },
+  "Long": {
+   "code": "Long",
+   "row": "长形黑伤",
+   "nameKey": "Weapon_012",
+   "name": {
+    "key": "Weapon_012",
+    "en": "SANGUINE REACH",
+    "zh": "长形黑伤",
+    "tr": "SANGUINE ERİŞİM"
+   },
+   "descKey": "WeaponDes_012",
+   "desc": {
+    "key": "WeaponDes_012",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_012",
+   "tierUpTargetKey": "Weapon_014"
+  },
+  "GuiTouBlade": {
+   "code": "GuiTouBlade",
+   "row": "红妆鬼斩",
+   "nameKey": "Weapon_017",
+   "name": {
+    "key": "Weapon_017",
+    "en": "SCARLET WRAITHBLADE",
+    "zh": "红妆鬼斩",
+    "tr": "KIZIL TAYF KILICI"
+   },
+   "descKey": "WeaponDes_017",
+   "desc": {
+    "key": "WeaponDes_017",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_017"
+  },
+  "ChiZheCanJian": {
+   "code": "ChiZheCanJian",
+   "row": "痴者残剑",
+   "nameKey": "Weapon_008",
+   "name": {
+    "key": "Weapon_008",
+    "en": "THE FANATIC'S BROKEN BLADE",
+    "zh": "痴者残剑",
+    "tr": "FANATİĞİN KIRIK KILICI"
+   },
+   "descKey": "WeaponDes_008",
+   "desc": {
+    "key": "WeaponDes_008",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_008",
+   "tierUpTargetKey": "Weapon_030"
+  },
+  "ZhanMaBlade": {
+   "code": "ZhanMaBlade",
+   "row": "亡命斩马刀",
+   "nameKey": "Weapon_013",
+   "name": {
+    "key": "Weapon_013",
+    "en": "OUTLAW WARBLADE",
+    "zh": "亡命斩马刀",
+    "tr": "HAYDUT SAVAŞ KILICI"
+   },
+   "descKey": "WeaponDes_013",
+   "desc": {
+    "key": "WeaponDes_013",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_013"
+  },
+  "SnakeDual": {
+   "code": "SnakeDual",
+   "row": "白蟒赤练",
+   "nameKey": "Weapon_027",
+   "name": {
+    "key": "Weapon_027",
+    "en": "WHITE SERPENT & CRIMSON VIPER",
+    "zh": "白蟒赤练",
+    "tr": "BEYAZ YILAN VE KIZIL ENGEREK"
+   },
+   "descKey": "WeaponDes_027",
+   "desc": {
+    "key": "WeaponDes_027",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_027"
+  },
+  "RenOuQingTongJian": {
+   "code": "RenOuQingTongJian",
+   "row": "天玄青铜剑",
+   "nameKey": "Weapon_007",
+   "name": {
+    "key": "Weapon_007",
+    "en": "TIANXUAN BRONZE SWORD",
+    "zh": "天玄青铜剑",
+    "tr": "TIANXUAN BRONZ KILICI"
+   },
+   "descKey": "WeaponDes_007",
+   "desc": {
+    "key": "WeaponDes_007",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_007"
+  },
+  "DualHook": {
+   "code": "DualHook",
+   "row": "别离残钩",
+   "nameKey": "Weapon_028",
+   "name": {
+    "key": "Weapon_028",
+    "en": "PARTING HOOKS",
+    "zh": "别离残钩",
+    "tr": "AYRILIK KANCALARI"
+   },
+   "descKey": "WeaponDes_028",
+   "desc": {
+    "key": "WeaponDes_028",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_028"
+  },
+  "TianShaShuangYue": {
+   "code": "TianShaShuangYue",
+   "row": "天煞双钺",
+   "nameKey": "Weapon_026",
+   "name": {
+    "key": "Weapon_026",
+    "en": "SUNDERING DUAL AXES",
+    "zh": "天煞双钺",
+    "tr": "PARÇALAYAN ÇİFT BALTA"
+   },
+   "descKey": "WeaponDes_026",
+   "desc": {
+    "key": "WeaponDes_026",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_026"
+  },
+  "PoJun": {
+   "code": "PoJun",
+   "row": "破军",
+   "nameKey": "Weapon_018",
+   "name": {
+    "key": "Weapon_018",
+    "en": "ARMYBREAKER",
+    "zh": "破军",
+    "tr": "ORDUKIRAN"
+   },
+   "descKey": "WeaponDes_018",
+   "desc": {
+    "key": "WeaponDes_018",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_018"
+  },
+  "SlitheringSword": {
+   "code": "SlitheringSword",
+   "row": "灵蛇软剑",
+   "nameKey": "Weapon_009",
+   "name": {
+    "key": "Weapon_009",
+    "en": "SOFT SNAKE SWORD",
+    "zh": "灵蛇软剑",
+    "tr": "YUMUŞAK YILAN KILICI"
+   },
+   "descKey": "WeaponDes_009",
+   "desc": {
+    "key": "WeaponDes_009",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_009"
+  },
+  "BaiShanShuangJian": {
+   "code": "BaiShanShuangJian",
+   "row": "白山风雷剑",
+   "nameKey": "Weapon_010",
+   "name": {
+    "key": "Weapon_010",
+    "en": "BAISHAN STORMSWORDS",
+    "zh": "白山风雷剑",
+    "tr": "BAISHAN FIRTINA KILIÇLARI"
+   },
+   "descKey": "WeaponDes_010",
+   "desc": {
+    "key": "WeaponDes_010",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_010"
+  },
+  "HorizontalBlade": {
+   "code": "HorizontalBlade",
+   "row": "荡寇凶刃",
+   "nameKey": "Weapon_019",
+   "name": {
+    "key": "Weapon_019",
+    "en": "JUGGERNAUT",
+    "zh": "荡寇凶刃",
+    "tr": "EZİCİ GÜÇ"
+   },
+   "descKey": "WeaponDes_019",
+   "desc": {
+    "key": "WeaponDes_019",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_019"
+  },
+  "JadeDualChakram": {
+   "code": "JadeDualChakram",
+   "row": "玉双环",
+   "nameKey": "Weapon_029",
+   "name": {
+    "key": "Weapon_029",
+    "en": "SEAMLESS DEATH",
+    "zh": "玉双环",
+    "tr": "KUSURSUZ ÖLÜM"
+   },
+   "descKey": "WeaponDes_029",
+   "desc": {
+    "key": "WeaponDes_029",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_029"
+  },
+  "ZhuGuangBaoQi": {
+   "code": "ZhuGuangBaoQi",
+   "row": "珠光宝气",
+   "nameKey": "Weapon_006",
+   "name": {
+    "key": "Weapon_006",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "descKey": null,
+   "desc": null,
+   "uiDescKey": "WeaponDes_UI_000"
+  },
+  "XieHuo": {
+   "code": "XieHuo",
+   "row": "邪火",
+   "nameKey": "Weapon_014",
+   "name": {
+    "key": "Weapon_014",
+    "en": "BLAZING EDGE",
+    "zh": "炽刃",
+    "tr": "ALEVLİ KILIÇ"
+   },
+   "descKey": "WeaponDes_014",
+   "desc": {
+    "key": "WeaponDes_014",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_014"
+  },
+  "YuuBlade": {
+   "code": "YuuBlade",
+   "row": "妖锯",
+   "nameKey": "Weapon_023",
+   "name": {
+    "key": "Weapon_023",
+    "en": "FIEND SAWS",
+    "zh": "妖锯",
+    "tr": "İBLİS TESTERELERİ"
+   },
+   "descKey": "WeaponDes_023",
+   "desc": {
+    "key": "WeaponDes_023",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_023"
+  },
+  "Jigsaw": {
+   "code": "Jigsaw",
+   "row": "断肢锯",
+   "nameKey": "Weapon_015",
+   "name": {
+    "key": "Weapon_015",
+    "en": "BONESAW",
+    "zh": "断肢锯",
+    "tr": "KEMİK TESTERESİ"
+   },
+   "descKey": "WeaponDes_015",
+   "desc": {
+    "key": "WeaponDes_015",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_015"
+  },
+  "RenOuYanYueDao": {
+   "code": "RenOuYanYueDao",
+   "row": "偃月刀",
+   "nameKey": "Weapon_020",
+   "name": {
+    "key": "Weapon_020",
+    "en": "CRESCENT BLADE",
+    "zh": "偃月刀",
+    "tr": "HİLAL BIÇAK"
+   },
+   "descKey": "WeaponDes_020",
+   "desc": {
+    "key": "WeaponDes_020",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_020"
+  },
+  "CiGuHunDun": {
+   "code": "CiGuHunDun",
+   "row": "刺骨混沌",
+   "nameKey": "Weapon_004",
+   "name": {
+    "key": "Weapon_004",
+    "en": "FREEZING CHAOS",
+    "zh": "刺骨混沌",
+    "tr": "DONDURAN KAOS"
+   },
+   "descKey": "WeaponDes_004",
+   "desc": {
+    "key": "WeaponDes_004",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_004"
+  },
+  "BaiYing": {
+   "code": "BaiYing",
+   "row": "白影",
+   "nameKey": "Weapon_016",
+   "name": {
+    "key": "Weapon_016",
+    "en": "WHITESHADOW",
+    "zh": "白影",
+    "tr": "BEYAZGÖLGE"
+   },
+   "descKey": "WeaponDes_016",
+   "desc": {
+    "key": "WeaponDes_016",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_016"
+  },
+  "FangHuaXieShan": {
+   "code": "FangHuaXieShan",
+   "row": "圣母邪扇",
+   "nameKey": "Weapon_031",
+   "name": {
+    "key": "Weapon_031",
+    "en": "THE LADY'S FAN",
+    "zh": "圣母邪扇",
+    "tr": "HANIMIN YELPAZESİ"
+   },
+   "descKey": "WeaponDes_031",
+   "desc": {
+    "key": "WeaponDes_031",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_031"
+  },
+  "ZiMingJian": {
+   "code": "ZiMingJian",
+   "row": "紫冥剑",
+   "nameKey": "Weapon_011",
+   "name": {
+    "key": "Weapon_011",
+    "en": "AUREATE",
+    "zh": "紫冥剑",
+    "tr": "ALTIN KILIÇ"
+   },
+   "descKey": "WeaponDes_011",
+   "desc": {
+    "key": "WeaponDes_011",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_011"
+  },
+  "MoQie": {
+   "code": "MoQie",
+   "row": "魔切",
+   "nameKey": "Weapon_021",
+   "name": {
+    "key": "Weapon_021",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "descKey": "WeaponDes_021",
+   "desc": {
+    "key": "WeaponDes_021",
+    "hasEn": false,
+    "hasTr": false
+   },
+   "uiDescKey": "WeaponDes_UI_021"
+  },
+  "LuanYing": {
+   "code": "LuanYing",
+   "row": "乱莺",
+   "nameKey": "Weapon_003",
+   "name": {
+    "key": "Weapon_003",
+    "en": "WILD ORIOLE SWORD",
+    "zh": "乱莺剑",
+    "tr": "YABAN SARIASMASI KILICI"
+   },
+   "descKey": "WeaponDes_003",
+   "desc": {
+    "key": "WeaponDes_003",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_003",
+   "tierUpTargetKey": "Weapon_103"
+  },
+  "HeiMoShang": {
+   "code": "HeiMoShang",
+   "row": "黑魔伤",
+   "nameKey": "Weapon_005",
+   "name": {
+    "key": "Weapon_005",
+    "en": "INFERNAL ROUGE",
+    "zh": "黑魔伤",
+    "tr": "CEHENNEM KIZILI"
+   },
+   "descKey": "WeaponDes_005",
+   "desc": {
+    "key": "WeaponDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_005"
+  },
+  "HeiMoShangPrologue": {
+   "code": "HeiMoShangPrologue",
+   "row": "黑魔伤（序章）",
+   "nameKey": "Weapon_001",
+   "name": {
+    "key": "Weapon_001",
+    "en": "SANGUINE",
+    "zh": "黑伤",
+    "tr": "SANGUINE"
+   },
+   "descKey": "WeaponDes_005",
+   "desc": {
+    "key": "WeaponDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "WeaponDes_UI_005"
+  }
+ }
+}

@@ -1,0 +1,2224 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "accessories": {
+  "AC_Loot": {
+   "code": "AC_Loot",
+   "row": "Loot",
+   "nameKey": "Item_Accessory_048",
+   "name": {
+    "key": "Item_Accessory_048",
+    "en": "Treasure Basin",
+    "zh": "聚宝盆",
+    "tr": "Hazine Çanağı"
+   },
+   "descKey": "Item_AccessoryDes_048",
+   "desc": {
+    "key": "Item_AccessoryDes_048",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_048",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_048",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_048",
+   "refinedNameKey": "Item_Accessory_048_1",
+   "refinedName": {
+    "key": "Item_Accessory_048_1",
+    "en": "",
+    "zh": "聚宝盆·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_SummonDuration": {
+   "code": "AC_SummonDuration",
+   "row": "SummonDuration",
+   "nameKey": "QuestRumor_028",
+   "name": {
+    "key": "QuestRumor_028",
+    "en": "A PUPPET'S WOODEN HEART",
+    "zh": "人偶木心",
+    "tr": "BİR KUKLANIN TAHTA KALBİ"
+   },
+   "descKey": "Item_AccessoryDes_021",
+   "desc": {
+    "key": "Item_AccessoryDes_021",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_021",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_021",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_021",
+   "refinedNameKey": "Item_Accessory_021_1",
+   "refinedName": {
+    "key": "Item_Accessory_021_1",
+    "en": "PUPPET'S WOODEN HEART·REFINE",
+    "zh": "人偶木心·改",
+    "tr": "KUKLANIN TAHTA KALBİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_PerfectFrame": {
+   "code": "AC_PerfectFrame",
+   "row": "PerfectFrame",
+   "nameKey": "Item_Accessory_007",
+   "name": {
+    "key": "Item_Accessory_007",
+    "en": "REFLEX DEVICE",
+    "zh": "浑源经脉仪",
+    "tr": "REFLEKS CİHAZI"
+   },
+   "descKey": "Item_AccessoryDes_007",
+   "desc": {
+    "key": "Item_AccessoryDes_007",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_007",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_007",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_007",
+   "refinedNameKey": "Item_Accessory_007_1",
+   "refinedName": {
+    "key": "Item_Accessory_007_1",
+    "en": "REFLEX TALISMAN·REFINE",
+    "zh": "浑源经脉仪·改",
+    "tr": "REFLEKS TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_BreakRegen": {
+   "code": "AC_BreakRegen",
+   "row": "BreakRegen",
+   "nameKey": "Item_Accessory_023",
+   "name": {
+    "key": "Item_Accessory_023",
+    "en": "MOTHER'S TALISMAN",
+    "zh": "慈母护符",
+    "tr": "ANNENİN TILSIMI"
+   },
+   "descKey": "Item_AccessoryDes_023",
+   "desc": {
+    "key": "Item_AccessoryDes_023",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_023",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_023",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_023",
+   "refinedNameKey": "Item_Accessory_023_1",
+   "refinedName": {
+    "key": "Item_Accessory_023_1",
+    "en": "MOTHER'S TALISMAN·REFINE",
+    "zh": "慈母护符·改",
+    "tr": "ANNENİN TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Execution": {
+   "code": "AC_Execution",
+   "row": "Execution",
+   "nameKey": "Item_Accessory_022",
+   "name": {
+    "key": "Item_Accessory_022",
+    "en": "DEATHLOCK",
+    "zh": "万杀巧锁",
+    "tr": "ÖLÜM KİLİDİ"
+   },
+   "descKey": "Item_AccessoryDes_022",
+   "desc": {
+    "key": "Item_AccessoryDes_022",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_022",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_022",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_022",
+   "refinedNameKey": "Item_Accessory_022_1",
+   "refinedName": {
+    "key": "Item_Accessory_022_1",
+    "en": "WROUGHT TALISMAN·REFINE",
+    "zh": "万杀巧锁·改",
+    "tr": "DÖVME TILSIM·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Health": {
+   "code": "AC_Health",
+   "row": "Health",
+   "nameKey": "Item_Accessory_019",
+   "name": {
+    "key": "Item_Accessory_019",
+    "en": "JEWEL'S KNOT",
+    "zh": "珍玩妖织",
+    "tr": "JEWEL'İN DÜĞÜMÜ"
+   },
+   "descKey": "Item_AccessoryDes_019",
+   "desc": {
+    "key": "Item_AccessoryDes_019",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_019",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_019",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_019",
+   "refinedNameKey": "Item_Accessory_019_1",
+   "refinedName": {
+    "key": "Item_Accessory_019_1",
+    "en": "TREASURED WEAVE·REFINE",
+    "zh": "珍玩妖织·改",
+    "tr": "DEĞERLİ ÖRGÜ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Shachi": {
+   "code": "AC_Shachi",
+   "row": "Shachi",
+   "nameKey": "Item_Accessory_017",
+   "name": {
+    "key": "Item_Accessory_017",
+    "en": "RESONANCE TALISMAN",
+    "zh": "弦音护符",
+    "tr": "YANKI TILSIMI"
+   },
+   "descKey": "Item_AccessoryDes_017",
+   "desc": {
+    "key": "Item_AccessoryDes_017",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_017",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_017",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_017",
+   "refinedNameKey": "Item_Accessory_017_1",
+   "refinedName": {
+    "key": "Item_Accessory_017_1",
+    "en": "",
+    "zh": "弦音护符·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ShachiRegen": {
+   "code": "AC_ShachiRegen",
+   "row": "ShachiRegen",
+   "nameKey": "Item_Accessory_028",
+   "name": {
+    "key": "Item_Accessory_028",
+    "en": "Sha-Chi Headscarf",
+    "zh": "杀气头巾",
+    "tr": "Sha-Chi Başörtüsü"
+   },
+   "descKey": "Item_AccessoryDes_028",
+   "desc": {
+    "key": "Item_AccessoryDes_028",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_028",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_028",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_028",
+   "refinedNameKey": "Item_Accessory_028_1",
+   "refinedName": {
+    "key": "Item_Accessory_028_1",
+    "en": "SHA-CHI HEADBAND·REFINE",
+    "zh": "杀气头巾·改",
+    "tr": "SHA-CHI SAÇ BANDI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ShachiCool": {
+   "code": "AC_ShachiCool",
+   "row": "ShachiCool",
+   "nameKey": "Item_Accessory_055",
+   "name": {
+    "key": "Item_Accessory_055",
+    "en": "Rouge Box",
+    "zh": "胭脂盒",
+    "tr": "Allık Kutusu"
+   },
+   "descKey": "Item_AccessoryDes_055",
+   "desc": {
+    "key": "Item_AccessoryDes_055",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_055",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_055",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_055",
+   "refinedNameKey": "Item_Accessory_055_1",
+   "refinedName": {
+    "key": "Item_Accessory_055_1",
+    "en": "",
+    "zh": "胭脂盒·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_BreakRecover": {
+   "code": "AC_BreakRecover",
+   "row": "BreakRecover",
+   "nameKey": "Item_Accessory_020",
+   "name": {
+    "key": "Item_Accessory_020",
+    "en": "AGARWOOD PRAYER BEADS",
+    "zh": "沉香念珠",
+    "tr": "ÖD AĞACI TESPİHİ"
+   },
+   "descKey": "Item_AccessoryDes_020",
+   "desc": {
+    "key": "Item_AccessoryDes_020",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_020",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_020",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_020",
+   "refinedNameKey": "Item_Accessory_020_1",
+   "refinedName": {
+    "key": "Item_Accessory_020_1",
+    "en": "AGARWOOD PRAYER BEADS·REFINE",
+    "zh": "沉香念珠·改",
+    "tr": "ÖD AĞACI TESPİHİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_UltimateCharge": {
+   "code": "AC_UltimateCharge",
+   "row": "UltimateCharge",
+   "nameKey": "Item_Accessory_067",
+   "name": {
+    "key": "Item_Accessory_067",
+    "en": "Nameless Thumb Ring",
+    "zh": "无名大师的扳指",
+    "tr": "İsimsiz Okçu Yüzüğü"
+   },
+   "descKey": "Item_AccessoryDes_067",
+   "desc": {
+    "key": "Item_AccessoryDes_067",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_067",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_067",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_067",
+   "refinedNameKey": "Item_Accessory_067_1",
+   "refinedName": {
+    "key": "Item_Accessory_067_1",
+    "en": "Nameless Thumb Ring+",
+    "zh": "无名大师的扳指·改",
+    "tr": "İsimsiz Okçu Yüzüğü+"
+   },
+   "unused": false
+  },
+  "AC_SpiritShadow": {
+   "code": "AC_SpiritShadow",
+   "row": "SpiritShadow",
+   "nameKey": "Item_Accessory_026",
+   "name": {
+    "key": "Item_Accessory_026",
+    "en": "REMNANT SPARK CAGE",
+    "zh": "暗源小笼",
+    "tr": "KALINTI KIVILCIMI KAFESİ"
+   },
+   "descKey": "Item_AccessoryDes_026",
+   "desc": {
+    "key": "Item_AccessoryDes_026",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_026",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_026",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_026",
+   "refinedNameKey": "Item_Accessory_026_1",
+   "refinedName": {
+    "key": "Item_Accessory_026_1",
+    "en": "UNCLE LU'S CRICKET CAGE·REFINE",
+    "zh": "暗源小笼·改",
+    "tr": "LU AMCA'NIN CIRCIR BÖCEĞİ KAFESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Attack": {
+   "code": "AC_Attack",
+   "row": "Attack",
+   "nameKey": "Item_Accessory_001",
+   "name": {
+    "key": "Item_Accessory_001",
+    "en": "BATTLE WRAPS",
+    "zh": "筋力绑带",
+    "tr": "SAVAŞ SARGILARI"
+   },
+   "descKey": "Item_AccessoryDes_001",
+   "desc": {
+    "key": "Item_AccessoryDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_001",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_001",
+   "refinedNameKey": "Item_Accessory_001_1",
+   "refinedName": {
+    "key": "Item_Accessory_001_1",
+    "en": "STRENGTH WRAP·REFINE",
+    "zh": "筋力绑带·改",
+    "tr": "GÜÇ SARGISI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ShachiAttack": {
+   "code": "AC_ShachiAttack",
+   "row": "ShachiAttack",
+   "nameKey": "Item_Accessory_043",
+   "name": {
+    "key": "Item_Accessory_043",
+    "en": "BAISHAN WRIT",
+    "zh": "白山密令",
+    "tr": "BAISHAN FERMANI"
+   },
+   "descKey": "Item_AccessoryDes_043",
+   "desc": {
+    "key": "Item_AccessoryDes_043",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_043",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_043",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_043",
+   "refinedNameKey": "Item_Accessory_043_1",
+   "refinedName": {
+    "key": "Item_Accessory_043_1",
+    "en": "BAISHAN WRIT·REFINE",
+    "zh": "白山密令·改",
+    "tr": "BAISHAN FERMANI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Stealth": {
+   "code": "AC_Stealth",
+   "row": "Stealth",
+   "nameKey": "Item_Accessory_016",
+   "name": {
+    "key": "Item_Accessory_016",
+    "en": "SILENT WRAP",
+    "zh": "屏息绑带",
+    "tr": "SESSİZ SARGI"
+   },
+   "descKey": "Item_AccessoryDes_016",
+   "desc": {
+    "key": "Item_AccessoryDes_016",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_016",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_016",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_016",
+   "refinedNameKey": "Item_Accessory_016_1",
+   "refinedName": {
+    "key": "Item_Accessory_016_1",
+    "en": "",
+    "zh": "屏息绑带·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ExecutionSwitchCool": {
+   "code": "AC_ExecutionSwitchCool",
+   "row": "ExecutionSwitchCool",
+   "nameKey": "Item_Accessory_057",
+   "name": {
+    "key": "Item_Accessory_057",
+    "en": "Executioner's Headscarf",
+    "zh": "刽子手头巾",
+    "tr": "Celladın Başörtüsü"
+   },
+   "descKey": "Item_AccessoryDes_057",
+   "desc": {
+    "key": "Item_AccessoryDes_057",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_057",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_057",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_057",
+   "refinedNameKey": "Item_Accessory_057_1",
+   "refinedName": {
+    "key": "Item_Accessory_057_1",
+    "en": "",
+    "zh": "刽子手头巾·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Stance": {
+   "code": "AC_Stance",
+   "row": "Stance",
+   "nameKey": "Item_Accessory_018",
+   "name": {
+    "key": "Item_Accessory_018",
+    "en": "BRASS CHEST GUARD",
+    "zh": "机簧护心镜",
+    "tr": "PİRİNÇ GÖĞÜS ZIRHI"
+   },
+   "descKey": "Item_AccessoryDes_018",
+   "desc": {
+    "key": "Item_AccessoryDes_018",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_018",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_018",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_018",
+   "refinedNameKey": "Item_Accessory_018_1",
+   "refinedName": {
+    "key": "Item_Accessory_018_1",
+    "en": "",
+    "zh": "机簧护心镜·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Deflect": {
+   "code": "AC_Deflect",
+   "row": "Deflect",
+   "nameKey": "Item_Accessory_004",
+   "name": {
+    "key": "Item_Accessory_004",
+    "en": "SHENJI'S RING",
+    "zh": "神机指环",
+    "tr": "SHENJI'NİN YÜZÜĞÜ"
+   },
+   "descKey": "Item_AccessoryDes_004",
+   "desc": {
+    "key": "Item_AccessoryDes_004",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_004",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_004",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_004",
+   "refinedNameKey": "Item_Accessory_004_1",
+   "refinedName": {
+    "key": "Item_Accessory_004_1",
+    "en": "Holding<InputAction id=\"Stance\" height=\"26\" RightPadding=\"5\" LeftPadding=\"5\"/>to block attacks reduces Sha-Chi consumption by 30%.",
+    "zh": "神机指环·改",
+    "tr": "Saldırıları bloklamak için<InputAction id=\"Stance\" height=\"26\" RightPadding=\"5\" LeftPadding=\"5\"/>tuşuna basılı tutmak Sha-Chi tüketimini %30 azaltır."
+   },
+   "unused": false
+  },
+  "AC_HeavyAttackCost": {
+   "code": "AC_HeavyAttackCost",
+   "row": "HeavyAttackCost",
+   "nameKey": "Item_Accessory_005",
+   "name": {
+    "key": "Item_Accessory_005",
+    "en": "LINGRAN'S PENDANT",
+    "zh": "正气凌然",
+    "tr": "LINGRAN'IN KOLYESİ"
+   },
+   "descKey": "Item_AccessoryDes_005",
+   "desc": {
+    "key": "Item_AccessoryDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_005",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_005",
+   "refinedNameKey": "Item_Accessory_005_1",
+   "refinedName": {
+    "key": "Item_Accessory_005_1",
+    "en": "PENDANT OF RIGHTEOUSNESS·REFINE",
+    "zh": "正气凌然·改",
+    "tr": "DOĞRULUK KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_HeavyAttackDamage": {
+   "code": "AC_HeavyAttackDamage",
+   "row": "HeavyAttackDamage",
+   "nameKey": "Item_Accessory_039",
+   "name": {
+    "key": "Item_Accessory_039",
+    "en": "Broken Vessel",
+    "zh": "残破容器",
+    "tr": "Kırık Taşıyıcı"
+   },
+   "descKey": "Item_AccessoryDes_039",
+   "desc": {
+    "key": "Item_AccessoryDes_039",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_039",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_039",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_039",
+   "refinedNameKey": "Item_Accessory_039_1",
+   "refinedName": {
+    "key": "Item_Accessory_039_1",
+    "en": "",
+    "zh": "残破容器·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_HeavyAttackShachi": {
+   "code": "AC_HeavyAttackShachi",
+   "row": "HeavyAttackShachi",
+   "nameKey": "Item_Accessory_014",
+   "name": {
+    "key": "Item_Accessory_014",
+    "en": "SEAL OF DUGU",
+    "zh": "独孤绝印",
+    "tr": "DUGU MÜHRÜ"
+   },
+   "descKey": "Item_AccessoryDes_014",
+   "desc": {
+    "key": "Item_AccessoryDes_014",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_014",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_014",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_014",
+   "refinedNameKey": "Item_Accessory_014_1",
+   "refinedName": {
+    "key": "Item_Accessory_014_1",
+    "en": "SEAL OF DUGU LINGHE",
+    "zh": "独孤绝印·改",
+    "tr": "DUGU LINGHE MÜHRÜ"
+   },
+   "unused": false
+  },
+  "AC_EvadePhantom": {
+   "code": "AC_EvadePhantom",
+   "row": "EvadePhantom",
+   "nameKey": "Item_Accessory_060",
+   "name": {
+    "key": "Item_Accessory_060",
+    "en": "Wraith Mask",
+    "zh": "影魅面具",
+    "tr": "Tayf Maskesi"
+   },
+   "descKey": "Item_AccessoryDes_060",
+   "desc": {
+    "key": "Item_AccessoryDes_060",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_060",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_060",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_060",
+   "refinedNameKey": "Item_Accessory_060_1",
+   "refinedName": {
+    "key": "Item_Accessory_060_1",
+    "en": "",
+    "zh": "影魅面具·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_SwitchEndure": {
+   "code": "AC_SwitchEndure",
+   "row": "SwitchEndure",
+   "nameKey": "Item_Accessory_047",
+   "name": {
+    "key": "Item_Accessory_047",
+    "en": "Miraculous Scabbard",
+    "zh": "神奇刀鞘",
+    "tr": "Mucizevi Kın"
+   },
+   "descKey": "Item_AccessoryDes_047",
+   "desc": {
+    "key": "Item_AccessoryDes_047",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_047",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_047",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_047",
+   "refinedNameKey": "Item_Accessory_047_1",
+   "refinedName": {
+    "key": "Item_Accessory_047_1",
+    "en": "",
+    "zh": "神奇刀鞘·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_UltimateBreak": {
+   "code": "AC_UltimateBreak",
+   "row": "UltimateBreak",
+   "nameKey": "Item_Accessory_044",
+   "name": {
+    "key": "Item_Accessory_044",
+    "en": "Ultimate Talisman",
+    "zh": "绝技护符",
+    "tr": "Nihai Tılsım"
+   },
+   "descKey": "Item_AccessoryDes_044",
+   "desc": {
+    "key": "Item_AccessoryDes_044",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_044",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_044",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_044",
+   "refinedNameKey": "Item_Accessory_044_1",
+   "refinedName": {
+    "key": "Item_Accessory_044_1",
+    "en": "LOTUS TALISMAN·REFINE",
+    "zh": "绝技护符·改",
+    "tr": "NİLÜFER TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Double": {
+   "code": "AC_Double",
+   "row": "Double",
+   "nameKey": "Item_Accessory_009",
+   "name": {
+    "key": "Item_Accessory_009",
+    "en": "QUICK HAND PAIR",
+    "zh": "妙手连环",
+    "tr": "ÇABUK EL ÇİFTİ"
+   },
+   "descKey": "Item_AccessoryDes_009",
+   "desc": {
+    "key": "Item_AccessoryDes_009",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_009",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_009",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_009",
+   "refinedNameKey": "Item_Accessory_009_1",
+   "refinedName": {
+    "key": "Item_Accessory_009_1",
+    "en": "PAIRED PENDANT OF THE QUICK HAND·REFINE",
+    "zh": "妙手连环·改",
+    "tr": "ÇABUK EL ÇİFT KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Long": {
+   "code": "AC_Long",
+   "row": "Long",
+   "nameKey": "Item_Accessory_010",
+   "name": {
+    "key": "Item_Accessory_010",
+    "en": "QUICK HAND MIGHT",
+    "zh": "妙手千钧",
+    "tr": "ÇABUK EL KUDRETİ"
+   },
+   "descKey": "Item_AccessoryDes_010",
+   "desc": {
+    "key": "Item_AccessoryDes_010",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_010",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_010",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_010",
+   "refinedNameKey": "Item_Accessory_010_1",
+   "refinedName": {
+    "key": "Item_Accessory_010_1",
+    "en": "HEAVY PENDANT OF THE QUICK HAND·REFINE",
+    "zh": "妙手千钧·改",
+    "tr": "ÇABUK EL AĞIR KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Tang": {
+   "code": "AC_Tang",
+   "row": "Tang",
+   "nameKey": "Item_Accessory_008",
+   "name": {
+    "key": "Item_Accessory_008",
+    "en": "QUICK HAND PENDANT",
+    "zh": "妙手在握",
+    "tr": "ÇABUK EL KOLYESİ"
+   },
+   "descKey": "Item_AccessoryDes_008",
+   "desc": {
+    "key": "Item_AccessoryDes_008",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_008",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_008",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_008",
+   "refinedNameKey": "Item_Accessory_008_1",
+   "refinedName": {
+    "key": "Item_Accessory_008_1",
+    "en": "PENDANT OF THE QUICK HAND·REFINE",
+    "zh": "妙手在握·改",
+    "tr": "ÇABUK EL KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_LowShachi": {
+   "code": "AC_LowShachi",
+   "row": "LowShachi",
+   "nameKey": "Item_Accessory_040",
+   "name": {
+    "key": "Item_Accessory_040",
+    "en": "Twin Fish Pendant",
+    "zh": "同心双鱼佩",
+    "tr": "İkiz Balık Kolyesi"
+   },
+   "descKey": "Item_AccessoryDes_040",
+   "desc": {
+    "key": "Item_AccessoryDes_040",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_040",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_040",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_040",
+   "refinedNameKey": "Item_Accessory_040_1",
+   "refinedName": {
+    "key": "Item_Accessory_040_1",
+    "en": "TWIN-FISH PENDANT·REFINE",
+    "zh": "同心双鱼佩·改",
+    "tr": "İKİZ BALIK KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_LowHealth": {
+   "code": "AC_LowHealth",
+   "row": "LowHealth",
+   "nameKey": "Item_Accessory_045",
+   "name": {
+    "key": "Item_Accessory_045",
+    "en": "Desperate Stand",
+    "zh": "绝地求生令",
+    "tr": "Umutsuz Direniş"
+   },
+   "descKey": "Item_AccessoryDes_045",
+   "desc": {
+    "key": "Item_AccessoryDes_045",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_045",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_045",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_045",
+   "refinedNameKey": "Item_Accessory_045_1",
+   "refinedName": {
+    "key": "Item_Accessory_045_1",
+    "en": "DESPERATE STAND·REFINE",
+    "zh": "绝地求生令·改",
+    "tr": "UMUTSUZ DİRENİŞ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Combo": {
+   "code": "AC_Combo",
+   "row": "Combo",
+   "nameKey": "Item_Accessory_030",
+   "name": {
+    "key": "Item_Accessory_030",
+    "en": "Crimson Resolve",
+    "zh": "碧血云天",
+    "tr": "Kızıl Kararlılık"
+   },
+   "descKey": "Item_AccessoryDes_030",
+   "desc": {
+    "key": "Item_AccessoryDes_030",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_030",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_030",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_030",
+   "refinedNameKey": "Item_Accessory_030_1",
+   "refinedName": {
+    "key": "Item_Accessory_030_1",
+    "en": "",
+    "zh": "碧血云天·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_AnimMovement": {
+   "code": "AC_AnimMovement",
+   "row": "AnimMovement",
+   "nameKey": "Item_Accessory_032",
+   "name": {
+    "key": "Item_Accessory_032",
+    "en": "Dance Fan",
+    "zh": "舞扇",
+    "tr": "Dans Yelpazesi"
+   },
+   "descKey": "Item_AccessoryDes_032",
+   "desc": {
+    "key": "Item_AccessoryDes_032",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_032",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_032",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_032",
+   "refinedNameKey": "Item_Accessory_032_1",
+   "refinedName": {
+    "key": "Item_Accessory_032_1",
+    "en": "",
+    "zh": "舞扇·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ActHit": {
+   "code": "AC_ActHit",
+   "row": "ActHit",
+   "nameKey": "Item_Accessory_056",
+   "name": {
+    "key": "Item_Accessory_056",
+    "en": "HUNTER'S INSIGHT",
+    "zh": "影动猎杀仪",
+    "tr": "AVCININ SEZGİSİ"
+   },
+   "descKey": "Item_AccessoryDes_056",
+   "desc": {
+    "key": "Item_AccessoryDes_056",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_056",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_056",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_056",
+   "refinedNameKey": "Item_Accessory_056_1",
+   "refinedName": {
+    "key": "Item_Accessory_056_1",
+    "en": "PENDANT OF INSIGHT·REFINE",
+    "zh": "影动猎杀仪·改",
+    "tr": "SEZGİ KOLYESİ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Counter": {
+   "code": "AC_Counter",
+   "row": "Counter",
+   "nameKey": "Item_Accessory_037",
+   "name": {
+    "key": "Item_Accessory_037",
+    "en": "Counterstrike Bracers",
+    "zh": "反击护腕",
+    "tr": "Karşı Saldırı Kollukları"
+   },
+   "descKey": "Item_AccessoryDes_037",
+   "desc": {
+    "key": "Item_AccessoryDes_037",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_037",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_037",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_037",
+   "refinedNameKey": "Item_Accessory_037_1",
+   "refinedName": {
+    "key": "Item_Accessory_037_1",
+    "en": "",
+    "zh": "反击护腕·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Ranged": {
+   "code": "AC_Ranged",
+   "row": "Ranged",
+   "nameKey": "Item_Accessory_049",
+   "name": {
+    "key": "Item_Accessory_049",
+    "en": "Sharpshooter's Eye",
+    "zh": "神射之眼",
+    "tr": "Keskin Nişancının Gözü"
+   },
+   "descKey": "Item_AccessoryDes_049",
+   "desc": {
+    "key": "Item_AccessoryDes_049",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_049",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_049",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_049",
+   "refinedNameKey": "Item_Accessory_049_1",
+   "refinedName": {
+    "key": "Item_Accessory_049_1",
+    "en": "",
+    "zh": "神射之眼·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Elemental": {
+   "code": "AC_Elemental",
+   "row": "Elemental",
+   "nameKey": "Item_Accessory_058",
+   "name": {
+    "key": "Item_Accessory_058",
+    "en": "Feather Fan Plume",
+    "zh": "羽扇残羽",
+    "tr": "Tüy Yelpaze Sorgucu"
+   },
+   "descKey": "Item_AccessoryDes_058",
+   "desc": {
+    "key": "Item_AccessoryDes_058",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_058",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_058",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_058",
+   "refinedNameKey": "Item_Accessory_058_1",
+   "refinedName": {
+    "key": "Item_Accessory_058_1",
+    "en": "",
+    "zh": "羽扇残羽·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Control": {
+   "code": "AC_Control",
+   "row": "Control",
+   "nameKey": "Item_Accessory_024",
+   "name": {
+    "key": "Item_Accessory_024",
+    "en": "FINE THREAD",
+    "zh": "细线球",
+    "tr": "İNCE İPLİK"
+   },
+   "descKey": "Item_AccessoryDes_024",
+   "desc": {
+    "key": "Item_AccessoryDes_024",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_024",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_024",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_024",
+   "refinedNameKey": "Item_Accessory_024_1",
+   "refinedName": {
+    "key": "Item_Accessory_024_1",
+    "en": "BALL OF FINE THREAD·REFINE",
+    "zh": "细线球·改",
+    "tr": "İNCE İPLİK YUMAĞI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_HealthResistance": {
+   "code": "AC_HealthResistance",
+   "row": "HealthResistance",
+   "nameKey": "Item_Accessory_050",
+   "name": {
+    "key": "Item_Accessory_050",
+    "en": "ANCIENT ARMOR FRAGMENT",
+    "zh": "古甲残片",
+    "tr": "KADİM ZIRH PARÇASI"
+   },
+   "descKey": "Item_AccessoryDes_050",
+   "desc": {
+    "key": "Item_AccessoryDes_050",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_050",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_050",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_050",
+   "refinedNameKey": "Item_Accessory_050_1",
+   "refinedName": {
+    "key": "Item_Accessory_050_1",
+    "en": "ANCIENT ARMOR FRAGMENT·REFINE",
+    "zh": "古甲残片·改",
+    "tr": "KADİM ZIRH PARÇASI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_TimerEndure": {
+   "code": "AC_TimerEndure",
+   "row": "TimerEndure",
+   "nameKey": "Item_Accessory_051",
+   "name": {
+    "key": "Item_Accessory_051",
+    "en": "Battleforged",
+    "zh": "百战魔躯",
+    "tr": "Savaşta Dövülmüş"
+   },
+   "descKey": "Item_AccessoryDes_051",
+   "desc": {
+    "key": "Item_AccessoryDes_051",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_051",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_051",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_051",
+   "refinedNameKey": "Item_Accessory_051_1",
+   "refinedName": {
+    "key": "Item_Accessory_051_1",
+    "en": "",
+    "zh": "百战魔躯·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_BigHit": {
+   "code": "AC_BigHit",
+   "row": "BigHit",
+   "nameKey": "Item_Accessory_042",
+   "name": {
+    "key": "Item_Accessory_042",
+    "en": "Talisman of Despair",
+    "zh": "绝望护符",
+    "tr": "Umutsuzluk Tılsımı"
+   },
+   "descKey": "Item_AccessoryDes_042",
+   "desc": {
+    "key": "Item_AccessoryDes_042",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_042",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_042",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_042",
+   "refinedNameKey": "Item_Accessory_042_1",
+   "refinedName": {
+    "key": "Item_Accessory_042_1",
+    "en": "TALISMAN OF DESPAIR·REFINE",
+    "zh": "绝望护符·改",
+    "tr": "UMUTSUZLUK TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ActHitShachi": {
+   "code": "AC_ActHitShachi",
+   "row": "ActHitShachi",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": null,
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_BreakAttack": {
+   "code": "AC_BreakAttack",
+   "row": "BreakAttack",
+   "nameKey": "Item_Accessory_002",
+   "name": {
+    "key": "Item_Accessory_002",
+    "en": "TOKEN OF PURSUIT",
+    "zh": "追杀令",
+    "tr": "TAKİP NİŞANI"
+   },
+   "descKey": "Item_AccessoryDes_002",
+   "desc": {
+    "key": "Item_AccessoryDes_002",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_002",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_002",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_002",
+   "refinedNameKey": "Item_Accessory_002_1",
+   "refinedName": {
+    "key": "Item_Accessory_002_1",
+    "en": "TOKEN OF PURSUIT·REFINE",
+    "zh": "追杀令·改",
+    "tr": "TAKİP NİŞANI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ResistNonBreak": {
+   "code": "AC_ResistNonBreak",
+   "row": "ResistNonBreak",
+   "nameKey": "Item_Accessory_006",
+   "name": {
+    "key": "Item_Accessory_006",
+    "en": "BOULDERGUARD",
+    "zh": "坚岩护腕",
+    "tr": "KAYAKORUYAN"
+   },
+   "descKey": "Item_AccessoryDes_006",
+   "desc": {
+    "key": "Item_AccessoryDes_006",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_006",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_006",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_006",
+   "refinedNameKey": "Item_Accessory_006_1",
+   "refinedName": {
+    "key": "Item_Accessory_006_1",
+    "en": "BOULDERGUARD·REFINE",
+    "zh": "坚岩护腕·改",
+    "tr": "KAYAKORUYAN·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Rider": {
+   "code": "AC_Rider",
+   "row": "Rider",
+   "nameKey": "Item_Accessory_038",
+   "name": {
+    "key": "Item_Accessory_038",
+    "en": "Cavalrybane",
+    "zh": "斩骑符",
+    "tr": "Süvarikıran"
+   },
+   "descKey": "Item_AccessoryDes_038",
+   "desc": {
+    "key": "Item_AccessoryDes_038",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_038",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_038",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_038",
+   "refinedNameKey": "Item_Accessory_038_1",
+   "refinedName": {
+    "key": "Item_Accessory_038_1",
+    "en": "",
+    "zh": "斩骑符·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_BreakShield": {
+   "code": "AC_BreakShield",
+   "row": "BreakShield",
+   "nameKey": "Item_Accessory_012",
+   "name": {
+    "key": "Item_Accessory_012",
+    "en": "SHIELDBREAKER TALISMAN",
+    "zh": "破盾符",
+    "tr": "KALKANKIRAN TILSIMI"
+   },
+   "descKey": "Item_AccessoryDes_012",
+   "desc": {
+    "key": "Item_AccessoryDes_012",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_012",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_012",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_012",
+   "refinedNameKey": "Item_Accessory_012_1",
+   "refinedName": {
+    "key": "Item_Accessory_012_1",
+    "en": "BULWARK TALISMAN·REFINE",
+    "zh": "破盾符·改",
+    "tr": "SİPER TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ResistRanged": {
+   "code": "AC_ResistRanged",
+   "row": "ResistRanged",
+   "nameKey": "Item_Accessory_025",
+   "name": {
+    "key": "Item_Accessory_025",
+    "en": "ARROWWARD",
+    "zh": "避箭护符",
+    "tr": "OKSAVAR"
+   },
+   "descKey": "Item_AccessoryDes_025",
+   "desc": {
+    "key": "Item_AccessoryDes_025",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_025",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_025",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_025",
+   "refinedNameKey": "Item_Accessory_025_1",
+   "refinedName": {
+    "key": "Item_Accessory_025_1",
+    "en": "ARROWWARD·REFINE",
+    "zh": "避箭护符·改",
+    "tr": "OKSAVAR·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ShachiWeapon": {
+   "code": "AC_ShachiWeapon",
+   "row": "ShachiWeapon",
+   "nameKey": "Item_Accessory_052",
+   "name": {
+    "key": "Item_Accessory_052",
+    "en": "Remnant Spark Cube",
+    "zh": "暗源方块",
+    "tr": "Kalıntı Kıvılcımı Küpü"
+   },
+   "descKey": "Item_AccessoryDes_052",
+   "desc": {
+    "key": "Item_AccessoryDes_052",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_052",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_052",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_052",
+   "refinedNameKey": "Item_Accessory_052_1",
+   "refinedName": {
+    "key": "Item_Accessory_052_1",
+    "en": "",
+    "zh": "暗源方块·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_MagicWeapon": {
+   "code": "AC_MagicWeapon",
+   "row": "MagicWeapon",
+   "nameKey": "Item_Accessory_061",
+   "name": {
+    "key": "Item_Accessory_061",
+    "en": "Nuo Mask",
+    "zh": "百相傩面",
+    "tr": "Nuo Maskesi"
+   },
+   "descKey": "Item_AccessoryDes_061",
+   "desc": {
+    "key": "Item_AccessoryDes_061",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_061",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_061",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_061",
+   "refinedNameKey": "Item_Accessory_061_1",
+   "refinedName": {
+    "key": "Item_Accessory_061_1",
+    "en": "",
+    "zh": "百相傩面·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_PowerWeapon": {
+   "code": "AC_PowerWeapon",
+   "row": "PowerWeapon",
+   "nameKey": "Item_Accessory_041",
+   "name": {
+    "key": "Item_Accessory_041",
+    "en": "Guardian Idol",
+    "zh": "力士神像",
+    "tr": "Muhafız İdolü"
+   },
+   "descKey": "Item_AccessoryDes_041",
+   "desc": {
+    "key": "Item_AccessoryDes_041",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_041",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_041",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_041",
+   "refinedNameKey": "Item_Accessory_041_1",
+   "refinedName": {
+    "key": "Item_Accessory_041_1",
+    "en": "STRONGMAN IDOL·REFINE",
+    "zh": "力士神像·改",
+    "tr": "PEHLİVAN İDOLÜ·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_RangedWeapon": {
+   "code": "AC_RangedWeapon",
+   "row": "RangedWeapon",
+   "nameKey": "Item_Accessory_036",
+   "name": {
+    "key": "Item_Accessory_036",
+    "en": "Formless Divine Mirror",
+    "zh": "无相神镜",
+    "tr": "Biçimsiz İlahi Ayna"
+   },
+   "descKey": "Item_AccessoryDes_036",
+   "desc": {
+    "key": "Item_AccessoryDes_036",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_036",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_036",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_036",
+   "refinedNameKey": "Item_Accessory_036_1",
+   "refinedName": {
+    "key": "Item_Accessory_036_1",
+    "en": "",
+    "zh": "无相神镜·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_MartialWeapon": {
+   "code": "AC_MartialWeapon",
+   "row": "MartialWeapon",
+   "nameKey": "Item_Accessory_046",
+   "name": {
+    "key": "Item_Accessory_046",
+    "en": "Crude Radiant Heart",
+    "zh": "粗糙煌心",
+    "tr": "Kaba Parlak Kalp"
+   },
+   "descKey": "Item_AccessoryDes_046",
+   "desc": {
+    "key": "Item_AccessoryDes_046",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_046",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_046",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_046",
+   "refinedNameKey": "Item_Accessory_046_1",
+   "refinedName": {
+    "key": "Item_Accessory_046_1",
+    "en": "",
+    "zh": "粗糙煌心·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ElementRegen": {
+   "code": "AC_ElementRegen",
+   "row": "ElementRegen",
+   "nameKey": "Item_Accessory_063",
+   "name": {
+    "key": "Item_Accessory_063",
+    "en": "Acolyte Whisk",
+    "zh": "灭法拂尘丝",
+    "tr": "Mürit Püskülü"
+   },
+   "descKey": "Item_AccessoryDes_063",
+   "desc": {
+    "key": "Item_AccessoryDes_063",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_063",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_063",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_063",
+   "refinedNameKey": "Item_Accessory_063_1",
+   "refinedName": {
+    "key": "Item_Accessory_063_1",
+    "en": "",
+    "zh": "灭法拂尘丝·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Ignite": {
+   "code": "AC_Ignite",
+   "row": "Ignite",
+   "nameKey": "Item_Accessory_034",
+   "name": {
+    "key": "Item_Accessory_034",
+    "en": "Auspicious Lion Fireball",
+    "zh": "瑞狮火球",
+    "tr": "Uğurlu Aslan Ateş Topu"
+   },
+   "descKey": "Item_AccessoryDes_034",
+   "desc": {
+    "key": "Item_AccessoryDes_034",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_034",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_034",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_034",
+   "refinedNameKey": "Item_Accessory_034_1",
+   "refinedName": {
+    "key": "Item_Accessory_034_1",
+    "en": "AUSPICIOUS LION FIREBALL·REFINE",
+    "zh": "瑞狮火球·改",
+    "tr": "UĞURLU ASLAN ATEŞ TOPU·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Electrified": {
+   "code": "AC_Electrified",
+   "row": "Electrified",
+   "nameKey": "Item_Accessory_059",
+   "name": {
+    "key": "Item_Accessory_059",
+    "en": "Thundermoon Lantern",
+    "zh": "月雷华灯",
+    "tr": "Gökgürültüsü Ayı Feneri"
+   },
+   "descKey": "Item_AccessoryDes_059",
+   "desc": {
+    "key": "Item_AccessoryDes_059",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_059",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_059",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_059",
+   "refinedNameKey": "Item_Accessory_059_1",
+   "refinedName": {
+    "key": "Item_Accessory_059_1",
+    "en": "",
+    "zh": "月雷华灯·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Frost": {
+   "code": "AC_Frost",
+   "row": "Frost",
+   "nameKey": "Item_Accessory_062",
+   "name": {
+    "key": "Item_Accessory_062",
+    "en": "Acolyte Icicle",
+    "zh": "灭法冰棱",
+    "tr": "Mürit Buz Sarkıtı"
+   },
+   "descKey": "Item_AccessoryDes_062",
+   "desc": {
+    "key": "Item_AccessoryDes_062",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_062",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_062",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_062",
+   "refinedNameKey": "Item_Accessory_062_1",
+   "refinedName": {
+    "key": "Item_Accessory_062_1",
+    "en": "",
+    "zh": "灭法冰棱·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Bleed": {
+   "code": "AC_Bleed",
+   "row": "Bleed",
+   "nameKey": "Item_Accessory_033",
+   "name": {
+    "key": "Item_Accessory_033",
+    "en": "Snow and Blood",
+    "zh": "雪与血",
+    "tr": "Kar ve Kan"
+   },
+   "descKey": "Item_AccessoryDes_033",
+   "desc": {
+    "key": "Item_AccessoryDes_033",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_033",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_033",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_033",
+   "refinedNameKey": "Item_Accessory_033_1",
+   "refinedName": {
+    "key": "Item_Accessory_033_1",
+    "en": "",
+    "zh": "雪与血·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Poison": {
+   "code": "AC_Poison",
+   "row": "Poison",
+   "nameKey": "Item_Accessory_054",
+   "name": {
+    "key": "Item_Accessory_054",
+    "en": "Venom Pouch",
+    "zh": "猛毒袋",
+    "tr": "Zehir Kesesi"
+   },
+   "descKey": "Item_AccessoryDes_054",
+   "desc": {
+    "key": "Item_AccessoryDes_054",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_054",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_054",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_054",
+   "refinedNameKey": "Item_Accessory_054_1",
+   "refinedName": {
+    "key": "Item_Accessory_054_1",
+    "en": "",
+    "zh": "猛毒袋·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ResistFire": {
+   "code": "AC_ResistFire",
+   "row": "ResistFire",
+   "nameKey": "Item_Accessory_027",
+   "name": {
+    "key": "Item_Accessory_027",
+    "en": "Flameward",
+    "zh": "辟火符",
+    "tr": "Alevsavar"
+   },
+   "descKey": "Item_AccessoryDes_027",
+   "desc": {
+    "key": "Item_AccessoryDes_027",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_027",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_027",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_027",
+   "refinedNameKey": "Item_Accessory_027_1",
+   "refinedName": {
+    "key": "Item_Accessory_027_1",
+    "en": "AZUREWARD·REFINE",
+    "zh": "辟火符·改",
+    "tr": "GÖKMAVİSİ KORUMA·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ResistThunder": {
+   "code": "AC_ResistThunder",
+   "row": "ResistThunder",
+   "nameKey": "Item_Accessory_053",
+   "name": {
+    "key": "Item_Accessory_053",
+    "en": "Thunderward",
+    "zh": "避雷符",
+    "tr": "Gök Gürültüsü Koruması"
+   },
+   "descKey": "Item_AccessoryDes_053",
+   "desc": {
+    "key": "Item_AccessoryDes_053",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_053",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_053",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_053",
+   "refinedNameKey": "Item_Accessory_053_1",
+   "refinedName": {
+    "key": "Item_Accessory_053_1",
+    "en": "",
+    "zh": "避雷符·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ResistIce": {
+   "code": "AC_ResistIce",
+   "row": "ResistIce",
+   "nameKey": "Item_Accessory_064",
+   "name": {
+    "key": "Item_Accessory_064",
+    "en": "Frostward",
+    "zh": "防冰符",
+    "tr": "Kırağısavar"
+   },
+   "descKey": "Item_AccessoryDes_064",
+   "desc": {
+    "key": "Item_AccessoryDes_064",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_064",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_064",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_064",
+   "refinedNameKey": "Item_Accessory_064_1",
+   "refinedName": {
+    "key": "Item_Accessory_064_1",
+    "en": "",
+    "zh": "防冰符·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_ResistBleed": {
+   "code": "AC_ResistBleed",
+   "row": "ResistBleed",
+   "nameKey": "Item_Accessory_029",
+   "name": {
+    "key": "Item_Accessory_029",
+    "en": "Congeal talisman",
+    "zh": "凝血符",
+    "tr": "Pıhtılaştırma Tılsımı"
+   },
+   "descKey": "Item_AccessoryDes_029",
+   "desc": {
+    "key": "Item_AccessoryDes_029",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_029",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_029",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_029",
+   "refinedNameKey": "Item_Accessory_029_1",
+   "refinedName": {
+    "key": "Item_Accessory_029_1",
+    "en": "CLOTTING TALISMAN·REFINE",
+    "zh": "凝血符·改",
+    "tr": "PIHTILAŞTIRMA TILSIMI·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_ResistPoison": {
+   "code": "AC_ResistPoison",
+   "row": "ResistPoison",
+   "nameKey": "Item_Accessory_013",
+   "name": {
+    "key": "Item_Accessory_013",
+    "en": "PRESERVATION JAR",
+    "zh": "食物防腐罐",
+    "tr": "MUHAFAZA KAVANOZU"
+   },
+   "descKey": "Item_AccessoryDes_013",
+   "desc": {
+    "key": "Item_AccessoryDes_013",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_013",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_013",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_013",
+   "refinedNameKey": "Item_Accessory_013_1",
+   "refinedName": {
+    "key": "Item_Accessory_013_1",
+    "en": "PRESERVATION JAR·REFINE",
+    "zh": "食物防腐罐·改",
+    "tr": "MUHAFAZA KAVANOZU·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_Chaos": {
+   "code": "AC_Chaos",
+   "row": "Chaos",
+   "nameKey": "Item_Accessory_066",
+   "name": {
+    "key": "Item_Accessory_066",
+    "en": "Chaos Ring",
+    "zh": "混沌狂戒",
+    "tr": "Kaos Yüzüğü"
+   },
+   "descKey": "Item_AccessoryDes_066",
+   "desc": {
+    "key": "Item_AccessoryDes_066",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_066",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_066",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_066",
+   "refinedNameKey": "Item_Accessory_066_1",
+   "refinedName": {
+    "key": "Item_Accessory_066_1",
+    "en": "Chaosfire+",
+    "zh": "混沌狂戒·改",
+    "tr": "Kaos Ateşi+"
+   },
+   "unused": false
+  },
+  "AC_Drink": {
+   "code": "AC_Drink",
+   "row": "Drink",
+   "nameKey": "Item_Accessory_003",
+   "name": {
+    "key": "Item_Accessory_003",
+    "en": "MEDICINE CASE",
+    "zh": "香薰药盒",
+    "tr": "İLAÇ KUTUSU"
+   },
+   "descKey": "Item_AccessoryDes_003",
+   "desc": {
+    "key": "Item_AccessoryDes_003",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_003",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_003",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_003",
+   "refinedNameKey": "Item_Accessory_003_1",
+   "refinedName": {
+    "key": "Item_Accessory_003_1",
+    "en": "HERBAL MEDICINE BOX·REFINE",
+    "zh": "香薰药盒·改",
+    "tr": "BİTKİSEL İLAÇ KUTUSU·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_RandomDrink": {
+   "code": "AC_RandomDrink",
+   "row": "RandomDrink",
+   "nameKey": "Item_Accessory_035",
+   "name": {
+    "key": "Item_Accessory_035",
+    "en": "Blessed Jade Pendant",
+    "zh": "开光玉佩",
+    "tr": "Kutsanmış Yeşim Kolye"
+   },
+   "descKey": "Item_AccessoryDes_035",
+   "desc": {
+    "key": "Item_AccessoryDes_035",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_035",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_035",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_035",
+   "refinedNameKey": "Item_Accessory_035_1",
+   "refinedName": {
+    "key": "Item_Accessory_035_1",
+    "en": "LUSTROUS JADE PENDANT·REFINE",
+    "zh": "开光玉佩·改",
+    "tr": "PARLAK YEŞİM KOLYE·İŞLENMİŞ"
+   },
+   "unused": false
+  },
+  "AC_DrinkCost": {
+   "code": "AC_DrinkCost",
+   "row": "DrinkCost",
+   "nameKey": "Item_Accessory_031",
+   "name": {
+    "key": "Item_Accessory_031",
+    "en": "Manor Medicine Pot",
+    "zh": "深宅药罐",
+    "tr": "Malikâne İlaç Çömleği"
+   },
+   "descKey": "Item_AccessoryDes_031",
+   "desc": {
+    "key": "Item_AccessoryDes_031",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_031",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_031",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_031",
+   "refinedNameKey": "Item_Accessory_031_1",
+   "refinedName": {
+    "key": "Item_Accessory_031_1",
+    "en": "",
+    "zh": "深宅药罐·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_BreakDrink": {
+   "code": "AC_BreakDrink",
+   "row": "BreakDrink",
+   "nameKey": "Item_Accessory_015",
+   "name": {
+    "key": "Item_Accessory_015",
+    "en": "CALMING GOURD",
+    "zh": "静心小葫芦",
+    "tr": "YATIŞTIRICI MATARA"
+   },
+   "descKey": "Item_AccessoryDes_015",
+   "desc": {
+    "key": "Item_AccessoryDes_015",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_015",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_015",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_015",
+   "refinedNameKey": "Item_Accessory_015_1",
+   "refinedName": {
+    "key": "Item_Accessory_015_1",
+    "en": "",
+    "zh": "静心小葫芦·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_PoisonRegen": {
+   "code": "AC_PoisonRegen",
+   "row": "PoisonRegen",
+   "nameKey": "Item_Accessory_068",
+   "name": {
+    "key": "Item_Accessory_068",
+    "en": "Livingwood Talisman",
+    "zh": "活木符",
+    "tr": "Canlıağaç Tılsımı"
+   },
+   "descKey": "Item_AccessoryDes_068",
+   "desc": {
+    "key": "Item_AccessoryDes_068",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Accessory_FunctionDes_068",
+   "func": {
+    "key": "Item_Accessory_FunctionDes_068",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "uiDescKey": "Item_AccessoryDes_UI_068",
+   "refinedNameKey": "Item_Accessory_068_1",
+   "refinedName": {
+    "key": "Item_Accessory_068_1",
+    "en": "",
+    "zh": "活木符·改",
+    "tr": ""
+   },
+   "unused": false
+  },
+  "AC_Summon": {
+   "code": "AC_Summon",
+   "row": "Summon",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": null,
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_Regen": {
+   "code": "AC_Regen",
+   "row": "Regen",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": null,
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_Resistance": {
+   "code": "AC_Resistance",
+   "row": "Resistance",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": "Item_AccessoryDes_UI_018",
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_PhysicalResistance": {
+   "code": "AC_PhysicalResistance",
+   "row": "PhysicalResistance",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": null,
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_ElementalResistance": {
+   "code": "AC_ElementalResistance",
+   "row": "ElementalResistance",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": "Item_AccessoryDes_UI_058",
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  },
+  "AC_EasyExecution": {
+   "code": "AC_EasyExecution",
+   "row": "EasyExecution",
+   "nameKey": null,
+   "name": null,
+   "descKey": null,
+   "desc": null,
+   "funcKey": null,
+   "func": null,
+   "uiDescKey": null,
+   "refinedNameKey": null,
+   "refinedName": null,
+   "unused": true
+  }
+ }
+}

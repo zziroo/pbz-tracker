@@ -27,3 +27,6 @@ pbz-tracker.timeline.json
 pbz-tracker.timeline.json.tmp
 # --archive ile saklanan save kopyaları (kişisel; depoya girmez)
 archive/
+# Game-data pipeline (research/gamedata): extracted game assets and per-save reports never enter the repo
+data/game/raw/
+research/gamedata/out/

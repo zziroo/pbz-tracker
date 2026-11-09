@@ -4,27 +4,34 @@
     "XueMaiJueXing": {
       "locres": "QuestMaze_004",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "HongFangZi": {
-      "locres": "QuestMaze_010",
+      "locres": "Bell_NLES_021",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "previousLocres": "QuestMaze_010",
+      "source": "game-data",
+      "note": "Game data 2026-11-09: DT_QuestText title key = Bell_NLES_021 \"Crimson Manor\" (the quest is titled after the location); earlier guess QuestMaze_010."
     },
     "HuanShuPiPa": {
       "locres": "QuestMaze_006",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "HuXinMiMi": {
       "locres": "QuestMaze_008",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "XuKongHuanXiang": {
       "locres": "QuestMaze_005",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "XiGuShenChu": {
       "locres": "QuestMaze_012",
@@ -34,112 +41,138 @@
     "QiShengHeLai": {
       "locres": "QuestMaze_001",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "KunLunSanJie": {
       "locres": "QuestMaze_003",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "SanMianHunDun": {
       "locres": "QuestMaze_017",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "XueRouHua": {
       "locres": "QuestMaze_002",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "XiongFu": {
       "locres": "QuestRumor_001",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "GeJueXieZi": {
       "locres": "QuestRumor_002",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "BaiShanMiWen": {
       "locres": "QuestRumor_003",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "GuiTu": {
       "locres": "QuestRumor_005",
-      "guessKey": true,
-      "guessEn": false
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     },
     "LanJiaGongZi": {
       "locres": "QuestRumor_006",
-      "guessKey": true,
-      "guessEn": false
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     },
     "YiGeBuLiu": {
       "locres": "QuestRumor_022",
-      "guessKey": true,
-      "guessEn": false
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     },
     "NanYanZhiYin": {
       "locres": "QuestRumor_024",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "QingLiMenHu": {
       "locres": "QuestRumor_025",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "JianXiYiShi": {
       "locres": "QuestRumor_026",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "JiuSiFuShang": {
       "locres": "QuestRumor_027",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "JiaoTuSanKu": {
       "locres": "QuestCollect_002",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "RongShuZhiXin": {
       "locres": "QuestCollect_004",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "XianYin": {
       "locres": "QuestCollect_006",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "ShaoZhu": {
       "locres": "QuestCollect_010",
-      "guessKey": true,
-      "guessEn": false
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     },
     "MainCh1-NiLiuErShang": {
       "locres": "QuestStory_01_1",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "note": "DT_QuestText uses Chapter_01 (same text).",
+      "source": "game-data"
     },
     "MainCh1-LinZhongShaJi": {
-      "locres": "QuestStory_01_2",
-      "guessKey": true,
-      "guessEn": true
+      "locres": "Chapter_02",
+      "guessKey": false,
+      "guessEn": false,
+      "previousLocres": "QuestStory_01_2",
+      "source": "game-data",
+      "note": "Game data 2026-11-09: DT_QuestText title key = Chapter_02 \"Snake's Reflection\"; earlier guess QuestStory_01_2."
     },
     "MainCh1-ShiXinCun": {
       "locres": "QuestStory_01_3",
-      "guessKey": true,
-      "guessEn": false
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     },
     "MainCh1-2-GangTieJuTa": {
       "locres": "QuestStory_01_4",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "note": "DT_QuestText uses Chapter_01_1 (same text).",
+      "source": "game-data"
     },
     "MainCh2-SiDaSheWu": {
       "locres": "QuestStory_02_3",
@@ -150,203 +183,256 @@
     "RenOuMuXin": {
       "locres": "QuestRumor_028",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "RenOuZhongShu": {
       "locres": "QuestMaze_007",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "DaHuang": {
       "locres": "QuestRumor_009",
       "guessKey": false,
-      "guessEn": true
+      "guessEn": false,
+      "source": "game-data"
     },
     "XiaoCui": {
       "locres": "QuestRumor_018",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "MiaoShouKongKong": {
       "locres": "QuestCollect_003",
       "guessKey": false,
-      "guessEn": false
+      "guessEn": false,
+      "source": "game-data"
     },
     "MainCh2-SiZhen": {
       "locres": "QuestStory_02_1",
-      "guessKey": true,
-      "guessEn": true,
-      "note": "死镇 \"dead town\" = patch \"ÖLÜM KASABASI\" (QuestStory_02_1); English name from Steam reports (Town of Death)."
-    },
-    "WuShiZunZhu": {
-      "locres": "QuestCollect_008",
       "guessKey": false,
       "guessEn": false,
-      "note": "舞狮尊主; patch \"ASLAN DANSI BÜYÜK USTASI\"; Game8 \"Lion Dance Grandmaster\" (collectible quest, Pangzhen). Seen in a save 2026-11-06."
+      "note": "死镇 \"dead town\" = patch \"ÖLÜM KASABASI\" (QuestStory_02_1); English name from Steam reports (Town of Death). DT_QuestText uses Chapter_06 (same text).",
+      "source": "game-data"
+    },
+    "WuShiZunZhu": {
+      "locres": "Bell_SZ_025",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "舞狮尊主. Game data 2026-11-09: DT_QuestText row title key = Bell_SZ_025 \"Lion Dance Hall Depths\" (desc QuestCollectDes_008_01); QuestCollect_008 \"Lion Dance Grandmaster\" (Game8 name, patch string) exists in locres but no quest row references it. Collectible quest, Pangzhen; seen in a save 2026-11-06.",
+      "previousLocres": "QuestCollect_008",
+      "source": "game-data"
     },
     "JiGuanChuan": {
       "locres": "QuestMaze_011",
       "guessKey": false,
       "guessEn": false,
-      "note": "机关船; patch \"SHA-CHI İLE ÇALIŞAN TEKNE\"; purple tale (true ending). Seen in a save 2026-11-06."
+      "note": "机关船; patch \"SHA-CHI İLE ÇALIŞAN TEKNE\"; purple tale (true ending). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "DaoJianFoXin": {
       "locres": "QuestRumor_030",
       "guessKey": false,
       "guessEn": false,
-      "note": "道剑佛心; patch \"KILIÇ VE YOL\"; keengamer/wiki \"The Sword and the Way\" (Pangzhen, Myst's Tavern). Seen in a save 2026-11-06."
+      "note": "道剑佛心; patch \"KILIÇ VE YOL\"; keengamer/wiki \"The Sword and the Way\" (Pangzhen, Myst's Tavern). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "BuMieXiaDan": {
       "locres": "QuestRumor_032",
       "guessKey": false,
       "guessEn": false,
-      "note": "不灭侠胆; patch \"ÖLMEZ KAHRAMANLIK RUHU\"; \"The Undying Heroic Spirit\" (keengamer/allthings). Seen in a save 2026-11-06."
+      "note": "不灭侠胆; patch \"ÖLMEZ KAHRAMANLIK RUHU\"; \"The Undying Heroic Spirit\" (keengamer/allthings). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "TouPaiHuaDan": {
       "locres": "QuestRumor_033",
       "guessKey": false,
       "guessEn": false,
-      "note": "头牌花旦; patch \"YILDIZ OYUNCU\"; \"The Star Performer\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06."
+      "note": "头牌花旦; patch \"YILDIZ OYUNCU\"; \"The Star Performer\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "FangKuai": {
       "locres": "QuestRumor_031",
       "guessKey": false,
       "guessEn": false,
-      "note": "方块; patch \"KÜP\"; \"The Cube\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06."
+      "note": "方块; patch \"KÜP\"; \"The Cube\" (Myst's Tavern, Pangzhen). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "ZaiHuiXiongZhang": {
       "locres": "QuestRumor_010",
       "guessKey": false,
       "guessEn": false,
-      "note": "再会兄长; patch \"YENİDEN KARDEŞ\"; \"A Brother Once More\" (Steam/keengamer). Seen in a save 2026-11-06."
+      "note": "再会兄长; patch \"YENİDEN KARDEŞ\"; \"A Brother Once More\" (Steam/keengamer). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "MainCh2-XinZhiZongJi": {
       "locres": "QuestStory_02_2",
       "guessKey": false,
-      "guessEn": true,
-      "note": "心之踪迹; patch \"KALBİN İZİ\" (QuestStory_02_2); English \"The Heart's Trail\" from guides (Steam reports). Seen in a save 2026-11-06 (Pangzhen backstreet, map HouJie)."
+      "guessEn": false,
+      "note": "心之踪迹; patch \"KALBİN İZİ\" (QuestStory_02_2); English \"The Heart's Trail\" from guides (Steam reports). Seen in a save 2026-11-06 (Pangzhen backstreet, map HouJie). DT_QuestText uses Chapter_06_1 (same text).",
+      "source": "game-data"
     },
     "QiXingJianZhen": {
       "locres": "QuestCollect_005",
       "guessKey": false,
       "guessEn": false,
-      "note": "七星剑阵; patch \"YEDİ YILDIZ DÜZENİ\" (collect the Seven Stars disciples' memory flowers); \"Seven Stars Formation\" (guides). Seen in a save 2026-11-06 (Mandate Encampment)."
+      "note": "七星剑阵; patch \"YEDİ YILDIZ DÜZENİ\" (collect the Seven Stars disciples' memory flowers); \"Seven Stars Formation\" (guides). Seen in a save 2026-11-06 (Mandate Encampment).",
+      "source": "game-data"
     },
     "XiaoXue": {
       "locres": "QuestRumor_004",
       "guessKey": false,
       "guessEn": false,
-      "note": "小雪; patch \"KAHRAMANLARIN HAYRANI XUE\"; \"Xue, Admirer of Heroes\" (keengamer). Boss BP_Monster_XiaoXue. Seen in a save 2026-11-06 (Mandate Encampment)."
+      "note": "小雪; patch \"KAHRAMANLARIN HAYRANI XUE\"; \"Xue, Admirer of Heroes\" (keengamer). Boss BP_Monster_XiaoXue. Seen in a save 2026-11-06 (Mandate Encampment).",
+      "source": "game-data"
     },
     "MoJiaoZhiNv": {
       "locres": "QuestRumor_015",
       "guessKey": false,
       "guessEn": false,
-      "note": "魔教之女; patch \"KARANLIK TARİKATIN KIZI\"; \"Daughter of the Dark Sect\" (allthings.how, keengamer): Red's tale at the Mandate Encampment. Seen in a save 2026-11-06."
+      "note": "魔教之女; patch \"KARANLIK TARİKATIN KIZI\"; \"Daughter of the Dark Sect\" (allthings.how, keengamer): Red's tale at the Mandate Encampment. Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "XiangJianHeJi": {
       "locres": "QuestRumor_012",
       "guessKey": false,
       "guessEn": false,
-      "note": "相煎何急 (the \"why fry each other\" idiom about brothers turning on each other); patch \"AKRABAYA KARŞI AKRABA\"; \"Kin Against Kin\" (allthings.how). Starts at a memory flower near the Ancestral Shrine Square bell in Pangzhen (Blackwater Gang brothers), ends at Meigu Lake. Seen in a save 2026-11-07 (Simple, Started) right after BP_Monster_YouLong_SecondBrother was killed."
+      "note": "相煎何急 (the \"why fry each other\" idiom about brothers turning on each other); patch \"AKRABAYA KARŞI AKRABA\"; \"Kin Against Kin\" (allthings.how). Starts at a memory flower near the Ancestral Shrine Square bell in Pangzhen (Blackwater Gang brothers), ends at Meigu Lake. Seen in a save 2026-11-07 (Simple, Started) right after BP_Monster_YouLong_SecondBrother was killed.",
+      "source": "game-data"
     },
     "CiMuXin": {
       "locres": "QuestRumor_011",
       "guessKey": false,
       "guessEn": false,
-      "note": "慈母心 (a kind mother's heart); patch \"BİR ANNENİN KALBİ\", subtitle about the crow repaying its mother; \"A Mother's Heart\" (allthings.how). Pangzhen tale: starts at a memory flower ~66 m from the Pangzhen Slums bell (\"find the woman's son\"), ends at a guarded flower ~85 m from Pond of Fading Song. Seen in a save 2026-11-07 15:34 (Started, branch 1) right after the Slums bell was activated."
+      "note": "慈母心 (a kind mother's heart); patch \"BİR ANNENİN KALBİ\", subtitle about the crow repaying its mother; \"A Mother's Heart\" (allthings.how). Pangzhen tale: starts at a memory flower ~66 m from the Pangzhen Slums bell (\"find the woman's son\"), ends at a guarded flower ~85 m from Pond of Fading Song. Seen in a save 2026-11-07 15:34 (Started, branch 1) right after the Slums bell was activated.",
+      "source": "game-data"
     },
     "XiLouFeiXu": {
       "locres": "QuestMaze_013",
       "guessKey": false,
       "guessEn": false,
-      "note": "西楼飞絮 (willow catkins drifting past the west tower); patch \"KİBRİN CAZİBESİ\", subtitle \"Uyanıkken bin bir biçim; rüyalarda her şey boş\", tasks \"Meigu Gölündeki tüm Hatıra Çiçeklerini topla\" / \"adada Yan Qiansui'yi bul\"; \"Allure of Vanity\" (allthings.how). Purple tale (true ending). Seen in a save 2026-11-07 21:39 (Succeded, 6/6 flowers F_08011–016 + FA_0801, BP_Monster_YanQianSui killed)."
+      "note": "西楼飞絮 (willow catkins drifting past the west tower); patch \"KİBRİN CAZİBESİ\", subtitle \"Uyanıkken bin bir biçim; rüyalarda her şey boş\", tasks \"Meigu Gölündeki tüm Hatıra Çiçeklerini topla\" / \"adada Yan Qiansui'yi bul\"; \"Allure of Vanity\" (allthings.how). Purple tale (true ending). Seen in a save 2026-11-07 21:39 (Succeded, 6/6 flowers F_08011–016 + FA_0801, BP_Monster_YanQianSui killed).",
+      "source": "game-data"
     },
     "WuXiangWang": {
       "locres": "QuestRumor_034",
       "guessKey": false,
       "guessEn": false,
-      "note": "勿相忘 (do not forget each other); patch \"BENİ UNUTMA\", subtitle \"Yaşam ya da Ölüm\", tasks: woman on the Pangzhen inn roof murmuring \"Kıdemli Kardeş Zhou\" / deliver Zhou Ping's last letter to Yuling in Pangzhen; \"Don't Forget Me\" (keengamer, Tale 23, Pangzhen Inn Rooftop; hand-in: Illusory Pipa at the Marketplace bell, building to the east, upper floor). Letter = Reading item R_12017 (ReadingDes_DDSD_Letter_017, signed Zhou Pingzi). Seen in a save 2026-11-07 22:51 (Simple, Started, S1 Activating) right after R_12017 was picked up at 21:49."
+      "note": "勿相忘 (do not forget each other); patch \"BENİ UNUTMA\", subtitle \"Yaşam ya da Ölüm\", tasks: woman on the Pangzhen inn roof murmuring \"Kıdemli Kardeş Zhou\" / deliver Zhou Ping's last letter to Yuling in Pangzhen; \"Don't Forget Me\" (keengamer, Tale 23, Pangzhen Inn Rooftop; hand-in: Illusory Pipa at the Marketplace bell, building to the east, upper floor). Letter = Reading item R_12017 (ReadingDes_DDSD_Letter_017, signed Zhou Pingzi). Seen in a save 2026-11-07 22:51 (Simple, Started, S1 Activating) right after R_12017 was picked up at 21:49.",
+      "source": "game-data"
     },
     "LiuYi": {
       "locres": "QuestRumor_020",
       "guessKey": false,
       "guessEn": false,
-      "note": "柳义 Liu Yi (the NPC); patch \"KAHRAMANIN AĞIDI\", tasks Moji's relic → bloodstained sword to Liu Yi → draw Moji's sword; \"Hero's Lament\" (keengamer/allthings). Starts from the imprisoned NPC in Hanging Cage Cavern, Mountain of Imprisonment. Reward Ink Cut. Seen in a save 2026-11-08 03:38 (Started)."
+      "note": "柳义 Liu Yi (the NPC); patch \"KAHRAMANIN AĞIDI\", tasks Moji's relic → bloodstained sword to Liu Yi → draw Moji's sword; \"Hero's Lament\" (keengamer/allthings). Starts from the imprisoned NPC in Hanging Cage Cavern, Mountain of Imprisonment. Reward Ink Cut. Seen in a save 2026-11-08 03:38 (Started).",
+      "source": "game-data"
     },
     "JiangHuRenShi": {
       "locres": "QuestRumor_019",
       "guessKey": false,
       "guessEn": false,
-      "note": "江湖人士 (a person of the jianghu / Wulin fighter); patch \"GENİŞ PALA\", tasks \"return to the Wulin fighter after defeating the Old Commander\" (= Bi Feng) / \"return to the Wulin fighter in the caves\"; \"The Broad Saber\" (keengamer/allthings). Starts in Hanging Cage Cavern. Seen in a save 2026-11-08 03:38 (Started)."
+      "note": "江湖人士 (a person of the jianghu / Wulin fighter); patch \"GENİŞ PALA\", tasks \"return to the Wulin fighter after defeating the Old Commander\" (= Bi Feng) / \"return to the Wulin fighter in the caves\"; \"The Broad Saber\" (keengamer/allthings). Starts in Hanging Cage Cavern. Seen in a save 2026-11-08 03:38 (Started).",
+      "source": "game-data"
     },
     "ZhengYiMengChen": {
       "locres": "QuestCollect_009",
       "guessKey": false,
       "guessEn": false,
-      "note": "正义蒙尘 (justice covered in dust); patch \"LEKELENMİŞ ADALET\", subtitle \"Bir Zamanlar Kunlun'un Kılıç Ustasıydı\", task \"collect Huangxing's memory flowers\" (6); \"Justice Tarnished\" (allthings.how). Seen in a save 2026-11-08 03:38 (Collect, Started, 2/6)."
+      "note": "正义蒙尘 (justice covered in dust); patch \"LEKELENMİŞ ADALET\", subtitle \"Bir Zamanlar Kunlun'un Kılıç Ustasıydı\", task \"collect Huangxing's memory flowers\" (6); \"Justice Tarnished\" (allthings.how). Seen in a save 2026-11-08 03:38 (Collect, Started, 2/6).",
+      "source": "game-data"
     },
     "BaiYing": {
       "locres": "QuestCollect_007",
       "guessKey": false,
-      "guessEn": true,
-      "note": "白影 (white shadow); patch \"BEYAZGÖLGE\", task QuestCollectDes_007_01 \"collect the Blizzard Blademaster's memory flowers\" (6 flowers, tracked task points MemoryFlower_Baiying_1..6). Collection quest in the Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells on the Meigu map). English name guessed from the weapon \"Whiteshadow\" and the achievement \"The White Shadow\"; no guide names the quest. Seen in a save 2026-11-08 15:37 (Started, branch 1 Activating 5/6)."
+      "guessEn": false,
+      "note": "白影 (white shadow); patch \"BEYAZGÖLGE\", task QuestCollectDes_007_01 \"collect the Blizzard Blademaster's memory flowers\" (6 flowers, tracked task points MemoryFlower_Baiying_1..6). Collection quest in the Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells on the Meigu map). English name guessed from the weapon \"Whiteshadow\" and the achievement \"The White Shadow\"; no guide names the quest. Seen in a save 2026-11-08 15:37 (Started, branch 1 Activating 5/6).",
+      "source": "game-data"
     },
     "MainCh3-PoJu": {
       "locres": "QuestStory_03_3",
       "guessKey": false,
-      "guessEn": true,
-      "note": "破局 (break the deadlock); chapter 3 main quest, patch \"İLERİYE GİDEN YOL\" (QuestStory_03_3); tasks QuestStoryDes_03_06 enter Mirage Estate → 03_02 find a wall you can blast → 03_07 blast it with the Tiger Cannon; next main quest is QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff). English title guessed (\"The Way Forward\"). First seen in a save 2026-11-08 18:12 on entering Mirage Estate (Started, branch 1 Completed)."
+      "guessEn": false,
+      "note": "破局 (break the deadlock); chapter 3 main quest, patch \"İLERİYE GİDEN YOL\" (QuestStory_03_3); tasks QuestStoryDes_03_06 enter Mirage Estate → 03_02 find a wall you can blast → 03_07 blast it with the Tiger Cannon; next main quest is QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff). English title guessed (\"The Way Forward\"). First seen in a save 2026-11-08 18:12 on entering Mirage Estate (Started, branch 1 Completed). DT_QuestText uses Chapter_14 (same text).",
+      "source": "game-data"
     },
     "QuanXin": {
       "locres": "QuestRumor_036",
       "guessKey": false,
       "guessEn": false,
-      "note": "拳心 (heart of the fist); patch \"YUMRUĞUN KALBİ\", task QuestRumorDes_036_01 find the Iron Fist Master's gravestone in the snow-covered Mirrorwood; \"Heart of the Fist\" (keengamer). Starts with Iron Fiend on the Crimson Forest Sha-Chi Tower roof (key by the furnace at the Tower Base bell). Seen Succeded in a save 2026-11-09 00:48 (Fist Fragment: Shell → Worldbreaker Fist, Iron Gauntlets tempering)."
+      "note": "拳心 (heart of the fist); patch \"YUMRUĞUN KALBİ\", task QuestRumorDes_036_01 find the Iron Fist Master's gravestone in the snow-covered Mirrorwood; \"Heart of the Fist\" (keengamer). Starts with Iron Fiend on the Crimson Forest Sha-Chi Tower roof (key by the furnace at the Tower Base bell). Seen Succeded in a save 2026-11-09 00:48 (Fist Fragment: Shell → Worldbreaker Fist, Iron Gauntlets tempering).",
+      "source": "game-data"
     },
     "YiBiZhiDao": {
       "locres": "QuestRumor_035",
       "guessKey": false,
       "guessEn": false,
-      "note": "以彼之道 (use their own way against them); patch \"ONLARA KARŞI KULLAN\", task QuestRumorDes_035_01 challenge Jade Dancer and Iron Fiend using only Fiend Saws + Iron Gauntlets; \"Use It Against Them\" (keengamer). Rooftop spar of the Crimson Forest Sha-Chi Tower; reward Heel Reinforcement Part (Fiend Saws tempering). Seen Succeded in a save 2026-11-09 00:48."
+      "note": "以彼之道 (use their own way against them); patch \"ONLARA KARŞI KULLAN\", task QuestRumorDes_035_01 challenge Jade Dancer and Iron Fiend using only Fiend Saws + Iron Gauntlets; \"Use It Against Them\" (keengamer). Rooftop spar of the Crimson Forest Sha-Chi Tower; reward Heel Reinforcement Part (Fiend Saws tempering). Seen Succeded in a save 2026-11-09 00:48.",
+      "source": "game-data"
     },
     "YongShengDaoZhu": {
       "locres": "QuestRumor_021",
-      "guessKey": true,
+      "guessKey": false,
       "guessEn": false,
-      "note": "Ledger of Atonement (patch \"KEFARET DEFTERİ\"). Pinyin 永生刀主? Seen Succeded in a save 2026-11-09 01:17 together with BaiXue, right after BP_Monster_IronMaskMan_Boss was killed (01:11, Backstreet Courtyard Key K_05007 dropped); the id→title link is inferred from that timing, not from the pinyin."
+      "note": "Ledger of Atonement (patch \"KEFARET DEFTERİ\"). Pinyin 永生刀主? Seen Succeded in a save 2026-11-09 01:17 together with BaiXue, right after BP_Monster_IronMaskMan_Boss was killed (01:11, Backstreet Courtyard Key K_05007 dropped); the id→title link is inferred from that timing, not from the pinyin.",
+      "source": "game-data"
     },
     "BaiXue": {
       "locres": "QuestRumor_014",
       "guessKey": false,
       "guessEn": false,
-      "note": "白雪 Bai Xue; patch \"BAI XUE\". Opens after the Ironmask fight on Mountain of Imprisonment (talk to the puppet behind him). Seen Succeded 2026-11-09 01:17."
+      "note": "白雪 Bai Xue; patch \"BAI XUE\". Opens after the Ironmask fight on Mountain of Imprisonment (talk to the puppet behind him). Seen Succeded 2026-11-09 01:17.",
+      "source": "game-data"
     },
     "MainCh3-LongYuZuo": {
-      "locres": "QuestStory_03_4",
-      "guessKey": true,
-      "guessEn": true,
-      "note": "Chapter 3 main quest after The Way Forward; patch title QuestStory_03_4 \"RUHYARAN UÇURUMU\" (Soulrend Cliff) is the only remaining chapter-3 story title, so the link is inferred. Seen Started 2026-11-09 02:08 on entering DuanHunYa."
+      "locres": "Chapter_17",
+      "guessKey": false,
+      "guessEn": false,
+      "note": "Chapter 3 main quest after The Way Forward. Game data 2026-11-09: DT_QuestText title key = Chapter_17 \"A Soul's Worth\" (main quests use Chapter_* titles); the earlier QuestStory_03_4 \"Soulrend Cliff\" link was an inference. Seen Started 2026-11-09 02:08 on entering DuanHunYa.",
+      "previousLocres": "QuestStory_03_4",
+      "source": "game-data"
+    },
+    "LongZhu": {
+      "locres": "UI_Map_23",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "DaoYiYouDao": {
+      "locres": "QuestRumor_029",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "RuMengQiZi": {
+      "locres": "QuestRumor_016",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     }
   },
   "regions": {
     "XiGu": {
       "locres": "Levelname_NLES_001",
-      "guessKey": true,
+      "guessKey": false,
       "guessEn": false,
       "bellPrefixes": [
         "NLES",
         "XG"
-      ]
+      ],
+      "source": "game-data"
     },
     "FuJiZhiLin": {
       "locres": "Levelname_LZSJ_001",
-      "guessKey": true,
+      "guessKey": false,
       "guessEn": false,
       "bellPrefixes": [
         "FJZL",
         "LZSJ"
-      ]
+      ],
+      "source": "game-data"
     },
     "LuJiaCun": {
       "locres": "Levelname_SXC_01",
@@ -355,7 +441,8 @@
       "bellPrefixes": [
         "LJC",
         "SXC"
-      ]
+      ],
+      "source": "game-data"
     },
     "Zhengdaodaying": {
       "locres": "Levelname_YXZR_003",
@@ -364,7 +451,8 @@
       "bellPrefixes": [
         "YXZR",
         "ZDDY"
-      ]
+      ],
+      "source": "game-data"
     },
     "PangZhen": {
       "locres": "Levelname_SZ_001",
@@ -372,14 +460,16 @@
       "guessEn": false,
       "bellPrefixes": [
         "SZ"
-      ]
+      ],
+      "source": "game-data"
     },
     "HouJie": {
       "locres": "Levelname_SZ_001",
       "guessKey": false,
       "guessEn": false,
       "bellPrefixes": [],
-      "note": "Pangzhen backstreet (后街, level Houjie): its own map code, but the patch has no separate level name, so it shows as Pangzhen. Bells keep the SZ prefix (Bell_SZ_005 seen). Seen in a save 2026-11-06."
+      "note": "Pangzhen backstreet (后街, level Houjie): its own map code, but the patch has no separate level name, so it shows as Pangzhen. Bells keep the SZ prefix (Bell_SZ_005 seen). Seen in a save 2026-11-06.",
+      "source": "game-data"
     },
     "_comment": "Region map code (RecentlyInteractedAtByMap / UnLockBigMapMaskWidgetNames) → locres key. bellPrefixes: bell id prefixes (Bell_<prefix>_…) of that region, used for the header when the map code itself is not known yet; a known map code always wins.",
     "MeiGuHu": {
@@ -389,7 +479,8 @@
       "bellPrefixes": [
         "MGH"
       ],
-      "note": "Meigu Lake (美姑湖). Map code MeiGuHu and bells Bell_MGH_… (001 Ağlayan Sis Kapısı, 004 Meigu Şarkıevi İskelesi, 008 Lu Köyü Sığlıkları İskelesi, 011/013 Beyaz Yılan Evi) seen in a save 2026-11-07 21:39."
+      "note": "Meigu Lake (美姑湖). Map code MeiGuHu and bells Bell_MGH_… (001 Ağlayan Sis Kapısı, 004 Meigu Şarkıevi İskelesi, 008 Lu Köyü Sığlıkları İskelesi, 011/013 Beyaz Yılan Evi) seen in a save 2026-11-07 21:39.",
+      "source": "game-data"
     },
     "DengDingShanDao": {
       "locres": "Levelname_DDSD_001",
@@ -398,28 +489,34 @@
       "bellPrefixes": [
         "DDSD"
       ],
-      "note": "Mountain of Imprisonment (登顶山道 / Dengding mountain path); patch \"HAPİS DAĞI\". Map code seen in RecentlyInteractedAtByMap 2026-11-08 01:32 with Bell_DDSD_001."
+      "note": "Mountain of Imprisonment (登顶山道 / Dengding mountain path); patch \"HAPİS DAĞI\". Map code seen in RecentlyInteractedAtByMap 2026-11-08 01:32 with Bell_DDSD_001.",
+      "source": "game-data"
     },
     "MeiGu_YiJi": {
       "locres": "Levelname_YGYW_001",
       "guessKey": false,
       "guessEn": false,
       "bellPrefixes": [],
-      "note": "Forbidden Ruins inside Meigu Lake (幻术遗迹, level PBZ_Huanshuyiji2_WP; broken bell BrokenBell_HSSYJ_01 \"Hayalet İllüzyonist Harabeleri\"). No level name of its own in the patch, shown as Meigu Lake. Seen 2026-11-08 05:23."
+      "note": "Forbidden Ruins inside Meigu Lake (幻术遗迹, level PBZ_Huanshuyiji2_WP; broken bell BrokenBell_HSSYJ_01 \"Hayalet İllüzyonist Harabeleri\"). No level name of its own in the patch, shown as Meigu Lake. Seen 2026-11-08 05:23.",
+      "source": "game-data"
     },
     "XiMeng": {
       "locres": "Levelname_XM_001",
       "bellPrefixes": [
         "XM"
       ],
-      "note": "Map code of Mirage Estate (level PBZ_Ximeng_WP), first seen in RecentlyInteractedAtByMap on 2026-11-08 18:15 at Bell_XM_001."
+      "note": "Map code of Mirage Estate (level PBZ_Ximeng_WP), first seen in RecentlyInteractedAtByMap on 2026-11-08 18:15 at Bell_XM_001.",
+      "guessKey": false,
+      "source": "game-data"
     },
     "DuanHunYa": {
       "locres": "Levelname_LYZ_001",
       "bellPrefixes": [
         "DH"
       ],
-      "note": "Mount Soulrend map code (level PBZ_Duanhun_WP, 断魂崖 Soulrend Cliff); bells Bell_DH_001..012 (+ Bell_DH_DP_008 pillar) and Bell_LYZ_008 (Mountain God Temple) light on this map. Bell_DH_008 = \"Son Şans\" (Last Chance). First seen 2026-11-09 02:08."
+      "note": "Mount Soulrend map code (level PBZ_Duanhun_WP, 断魂崖 Soulrend Cliff); bells Bell_DH_001..012 (+ Bell_DH_DP_008 pillar) and Bell_LYZ_008 (Mountain God Temple) light on this map. Bell_DH_008 = \"Son Şans\" (Last Chance). First seen 2026-11-09 02:08.",
+      "guessKey": false,
+      "source": "game-data"
     }
   },
   "unmappedMissables": {
@@ -454,55 +551,154 @@
       "locres": "PhantomEdges_006",
       "guessKey": false,
       "guessEn": false,
-      "note": "KAPLAN TOPU; taş duvarları (StoneWall) kırar."
+      "note": "KAPLAN TOPU; taş duvarları (StoneWall) kırar.",
+      "source": "game-data"
     },
     "ThunderSpear": {
       "locres": "PhantomEdges_019",
       "guessKey": false,
       "guessEn": false,
-      "note": "GÖK GÜRÜLTÜSÜ MIZRAĞI; PhantomBarrier kilitleri."
+      "note": "GÖK GÜRÜLTÜSÜ MIZRAĞI; PhantomBarrier kilitleri.",
+      "source": "game-data"
     },
     "CuiXinPiPa": {
       "locres": "PhantomEdges_024",
       "guessKey": false,
       "guessEn": false,
-      "note": "KALPYARAN PİPA (Heartrend Pipa)."
+      "note": "KALPYARAN PİPA (Heartrend Pipa).",
+      "source": "game-data"
     },
     "KuYeSiZhuChuan": {
       "locres": "PhantomEdges_013",
       "guessKey": false,
       "guessEn": false,
-      "note": "KUYE TAPINAĞI TESPİHİ."
+      "note": "KUYE TAPINAĞI TESPİHİ.",
+      "source": "game-data"
     },
     "BrutalAxe": {
       "locres": "PhantomEdges_001",
       "guessKey": false,
-      "guessEn": true,
-      "note": "DEHŞET BALTASI; ChainBlocker kilitleri."
+      "guessEn": false,
+      "note": "DEHŞET BALTASI; ChainBlocker kilitleri.",
+      "source": "game-data"
     },
     "XueDiZi": {
       "locres": "PhantomEdges_020",
       "guessKey": false,
-      "guessEn": true,
-      "note": "UÇAN GİYOTİN (血滴子)."
+      "guessEn": false,
+      "note": "UÇAN GİYOTİN (血滴子).",
+      "source": "game-data"
     },
     "LionHead": {
       "locres": "PhantomEdges_012",
-      "guessKey": true,
-      "guessEn": true,
-      "note": "ALEVLİ YELE (aslan dansı ustasının silahı); ThornyVine kilitleri."
+      "guessKey": false,
+      "guessEn": false,
+      "note": "ALEVLİ YELE (aslan dansı ustasının silahı); ThornyVine kilitleri.",
+      "source": "game-data"
     },
     "JinGua": {
       "locres": "PhantomEdges_002",
       "guessKey": false,
       "guessEn": false,
-      "note": "金瓜 (golden melon mace) = Bashpole, patch \"YIKIM SIRIĞI\"; dropped by Wan Jun (BP_Monster_WanJun_JinGua, Mandate Encampment); acquired 2026-11-06 20:24 in a real save. Aerial Sha-Chi attack = Gökyıkımı Darbesi (level 5) → achievement Heavenfall Strike."
+      "note": "金瓜 (golden melon mace) = Bashpole, patch \"YIKIM SIRIĞI\"; dropped by Wan Jun (BP_Monster_WanJun_JinGua, Mandate Encampment); acquired 2026-11-06 20:24 in a real save. Aerial Sha-Chi attack = Gökyıkımı Darbesi (level 5) → achievement Heavenfall Strike.",
+      "source": "game-data"
     },
     "UnnamedBow": {
       "locres": "PhantomEdges_009",
-      "guessKey": true,
-      "guessEn": true,
-      "note": "TÜY YAY (yaşlı okçunun onardığı yay); HangingGift kilitleri."
+      "guessKey": false,
+      "guessEn": false,
+      "note": "TÜY YAY (yaşlı okçunun onardığı yay); HangingGift kilitleri.",
+      "source": "game-data"
+    },
+    "ShachiHook": {
+      "locres": "PhantomEdges_014",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "MiaoShouFeiDao": {
+      "locres": "PhantomEdges_010",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "TieGongZhuQuanTao": {
+      "locres": "PhantomEdges_017",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "ZhuoBiDun": {
+      "locres": "PhantomEdges_004",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "CaoOuSiXian": {
+      "locres": "PhantomEdges_025",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "HuoLiuXing": {
+      "locres": "PhantomEdges_015",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "XuKongHuaShan": {
+      "locres": "PhantomEdges_023",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "JianKeZhaoJiLing": {
+      "locres": "PhantomEdges_026",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "DuYanGong": {
+      "locres": "PhantomEdges_109",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "YouLongCha": {
+      "locres": "PhantomEdges_016",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "YouLongTou": {
+      "locres": "PhantomEdges_011",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "HuangJinHuoChong": {
+      "locres": "PhantomEdges_008",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "Mojian": {
+      "locres": "PhantomEdges_018",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "TanLang": {
+      "locres": "PhantomEdges_005",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
+    },
+    "NiTouChe": {
+      "locres": "PhantomEdges_022",
+      "guessKey": false,
+      "guessEn": false,
+      "source": "game-data"
     }
   },
   "trWordCase": {

@@ -1,0 +1,1136 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "achievements": {
+  "ACH_001": {
+   "id": "ACH_001",
+   "nameKey": "Achievement_Name_1",
+   "name": {
+    "key": "Achievement_Name_1",
+    "en": "The Heart's Journey",
+    "zh": "寻心路",
+    "tr": "Kalbin Yolculuğu"
+   },
+   "descKey": "Achievement_Des_1",
+   "desc": {
+    "key": "Achievement_Des_1",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.寻心路.完成"
+  },
+  "ACH_002": {
+   "id": "ACH_002",
+   "nameKey": "Achievement_Name_2",
+   "name": {
+    "key": "Achievement_Name_2",
+    "en": "An Unwavering Heart",
+    "zh": "逆行不逆心",
+    "tr": "Sarsılmaz Bir Kalp"
+   },
+   "descKey": "Achievement_Des_2",
+   "desc": {
+    "key": "Achievement_Des_2",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.逆行不逆心.完成"
+  },
+  "ACH_003": {
+   "id": "ACH_003",
+   "nameKey": "Achievement_Name_3",
+   "name": {
+    "key": "Achievement_Name_3",
+    "en": "Blotting Out the Sky",
+    "zh": "黑塔蔽天光",
+    "tr": "Gökyüzünü Karartan"
+   },
+   "descKey": "Achievement_Des_3",
+   "desc": {
+    "key": "Achievement_Des_3",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.黑塔蔽天光.完成"
+  },
+  "ACH_004": {
+   "id": "ACH_004",
+   "nameKey": "Achievement_Name_4",
+   "name": {
+    "key": "Achievement_Name_4",
+    "en": "Nowhere to Stand",
+    "zh": "茫茫无立处",
+    "tr": "Duracak Yer Yok"
+   },
+   "descKey": "Achievement_Des_4",
+   "desc": {
+    "key": "Achievement_Des_4",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.茫茫无立处.完成"
+  },
+  "ACH_005": {
+   "id": "ACH_005",
+   "nameKey": "Achievement_Name_5",
+   "name": {
+    "key": "Achievement_Name_5",
+    "en": "Blossom of False Salvation",
+    "zh": "蒙花不解厄",
+    "tr": "Sahte Kurtuluş Çiçeği"
+   },
+   "descKey": "Achievement_Des_5",
+   "desc": {
+    "key": "Achievement_Des_5",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.蒙花不解厄.完成"
+  },
+  "ACH_006": {
+   "id": "ACH_006",
+   "nameKey": "Achievement_Name_6",
+   "name": {
+    "key": "Achievement_Name_6",
+    "en": "Into the Deadly Trap",
+    "zh": "纵身赴危局",
+    "tr": "Ölümcül Tuzağın İçine"
+   },
+   "descKey": "Achievement_Des_6",
+   "desc": {
+    "key": "Achievement_Des_6",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.纵身赴危局.完成"
+  },
+  "ACH_007": {
+   "id": "ACH_007",
+   "nameKey": "Achievement_Name_7",
+   "name": {
+    "key": "Achievement_Name_7",
+    "en": "A World Gone Hollow",
+    "zh": "世浊人心空",
+    "tr": "İçi Boşalmış Bir Dünya"
+   },
+   "descKey": "Achievement_Des_7",
+   "desc": {
+    "key": "Achievement_Des_7",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.世浊人心空.完成"
+  },
+  "ACH_008": {
+   "id": "ACH_008",
+   "nameKey": "Achievement_Name_8",
+   "name": {
+    "key": "Achievement_Name_8",
+    "en": "Who Can Judge?",
+    "zh": "是非谁人定",
+    "tr": "Kim Hüküm Verebilir?"
+   },
+   "descKey": "Achievement_Des_8",
+   "desc": {
+    "key": "Achievement_Des_8",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.是非谁人定.完成"
+  },
+  "ACH_009": {
+   "id": "ACH_009",
+   "nameKey": "Achievement_Name_9",
+   "name": {
+    "key": "Achievement_Name_9",
+    "en": "Where Have Old Friends Gone?",
+    "zh": "故人今何处",
+    "tr": "Eski Dostlar Nereye Gitti?"
+   },
+   "descKey": "Achievement_Des_9",
+   "desc": {
+    "key": "Achievement_Des_9",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.一念坠长渊.完成"
+  },
+  "ACH_010": {
+   "id": "ACH_010",
+   "nameKey": "Achievement_Name_10",
+   "name": {
+    "key": "Achievement_Name_10",
+    "en": "Muddy Waters Run Deep",
+    "zh": "水天纵浊流",
+    "tr": "Bulanık Sular Derin Akar"
+   },
+   "descKey": "Achievement_Des_10",
+   "desc": {
+    "key": "Achievement_Des_10",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.水天纵浊流.完成"
+  },
+  "ACH_011": {
+   "id": "ACH_011",
+   "nameKey": "Achievement_Name_11",
+   "name": {
+    "key": "Achievement_Name_11",
+    "en": "Blood Heralds the Dawn",
+    "zh": "碧血照重明",
+    "tr": "Kan Şafağı Müjdeler"
+   },
+   "descKey": "Achievement_Des_11",
+   "desc": {
+    "key": "Achievement_Des_11",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.碧血照重明.完成"
+  },
+  "ACH_012": {
+   "id": "ACH_012",
+   "nameKey": "Achievement_Name_12",
+   "name": {
+    "key": "Achievement_Name_12",
+    "en": "Through Frost and Snow",
+    "zh": "霜雪正堪行",
+    "tr": "Kırağı ve Karın İçinden"
+   },
+   "descKey": "Achievement_Des_12",
+   "desc": {
+    "key": "Achievement_Des_12",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.霜雪正堪行.完成"
+  },
+  "ACH_013": {
+   "id": "ACH_013",
+   "nameKey": "Achievement_Name_13",
+   "name": {
+    "key": "Achievement_Name_13",
+    "en": "With Heart and Blood",
+    "zh": "昭昭心与血",
+    "tr": "Kalp ve Kanla"
+   },
+   "descKey": "Achievement_Des_13",
+   "desc": {
+    "key": "Achievement_Des_13",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.昭昭心与血.完成"
+  },
+  "ACH_014": {
+   "id": "ACH_014",
+   "nameKey": "Achievement_Name_14",
+   "name": {
+    "key": "Achievement_Name_14",
+    "en": "The Axe's Grudge",
+    "zh": "巨斧余恨",
+    "tr": "Baltanın Kini"
+   },
+   "descKey": "Achievement_Des_14",
+   "desc": {
+    "key": "Achievement_Des_14",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.巨斧余恨.完成"
+  },
+  "ACH_015": {
+   "id": "ACH_015",
+   "nameKey": "Weapon_017",
+   "name": {
+    "key": "Weapon_017",
+    "en": "SCARLET WRAITHBLADE",
+    "zh": "红妆鬼斩",
+    "tr": "KIZIL TAYF KILICI"
+   },
+   "descKey": "Achievement_Des_15",
+   "desc": {
+    "key": "Achievement_Des_15",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.红妆鬼斩.完成"
+  },
+  "ACH_016": {
+   "id": "ACH_016",
+   "nameKey": "Achievement_Name_16",
+   "name": {
+    "key": "Achievement_Name_16",
+    "en": "The Hunt",
+    "zh": "猎杀",
+    "tr": "Avcı"
+   },
+   "descKey": "Achievement_Des_16",
+   "desc": {
+    "key": "Achievement_Des_16",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.猎杀.完成"
+  },
+  "ACH_017": {
+   "id": "ACH_017",
+   "nameKey": "Achievement_Name_17",
+   "name": {
+    "key": "Achievement_Name_17",
+    "en": "A Thousand Cups Drained",
+    "zh": "千杯散尽",
+    "tr": "Dibi Görülen Bin Kadeh"
+   },
+   "descKey": "Achievement_Des_17",
+   "desc": {
+    "key": "Achievement_Des_17",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.千杯散尽.完成"
+  },
+  "ACH_018": {
+   "id": "ACH_018",
+   "nameKey": "Achievement_Name_18",
+   "name": {
+    "key": "Achievement_Name_18",
+    "en": "The Shattered Mirror",
+    "zh": "镜碎蛇影无",
+    "tr": "Parçalanmış Ayna"
+   },
+   "descKey": "Achievement_Des_18",
+   "desc": {
+    "key": "Achievement_Des_18",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.镜碎蛇影无.完成"
+  },
+  "ACH_019": {
+   "id": "ACH_019",
+   "nameKey": "Achievement_Name_19",
+   "name": {
+    "key": "Achievement_Name_19",
+    "en": "Will We Meet Again?",
+    "zh": "来日可如约？",
+    "tr": "Tekrar Buluşacak mıyız?"
+   },
+   "descKey": "Achievement_Des_19",
+   "desc": {
+    "key": "Achievement_Des_19",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.来日可如约.完成"
+  },
+  "ACH_020": {
+   "id": "ACH_020",
+   "nameKey": "Achievement_Name_20",
+   "name": {
+    "key": "Achievement_Name_20",
+    "en": "The Lion's Spirit Lives On",
+    "zh": "焰尽狮魂传",
+    "tr": "Aslanın Ruhu Yaşamaya Devam Ediyor"
+   },
+   "descKey": "Achievement_Des_20",
+   "desc": {
+    "key": "Achievement_Des_20",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.焰尽狮魂传.完成"
+  },
+  "ACH_021": {
+   "id": "ACH_021",
+   "nameKey": "Achievement_Name_21",
+   "name": {
+    "key": "Achievement_Name_21",
+    "en": "Sword Against the Seven-Stars",
+    "zh": "剑横北斗",
+    "tr": "Yedi Yıldıza Karşı Kılıç"
+   },
+   "descKey": "Achievement_Des_21",
+   "desc": {
+    "key": "Achievement_Des_21",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.剑横北斗.完成"
+  },
+  "ACH_022": {
+   "id": "ACH_022",
+   "nameKey": "Achievement_Name_22",
+   "name": {
+    "key": "Achievement_Name_22",
+    "en": "Crossroads of Blood",
+    "zh": "血滴歧路",
+    "tr": "Kan Kavşağı"
+   },
+   "descKey": "Achievement_Des_22",
+   "desc": {
+    "key": "Achievement_Des_22",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.血滴歧路.完成"
+  },
+  "ACH_023": {
+   "id": "ACH_023",
+   "nameKey": "Achievement_Name_23",
+   "name": {
+    "key": "Achievement_Name_23",
+    "en": "Nothing Goes to Waste",
+    "zh": "物善其用",
+    "tr": "Hiçbir Şey Boşa Gitmez"
+   },
+   "descKey": "Achievement_Des_23",
+   "desc": {
+    "key": "Achievement_Des_23",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.物善其用.完成"
+  },
+  "ACH_024": {
+   "id": "ACH_024",
+   "nameKey": "Achievement_Name_24",
+   "name": {
+    "key": "Achievement_Name_24",
+    "en": "All Return to Dust",
+    "zh": "皆归尘土",
+    "tr": "Her Şey Toza Döner"
+   },
+   "descKey": "Achievement_Des_24",
+   "desc": {
+    "key": "Achievement_Des_24",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.皆归尘土.完成"
+  },
+  "ACH_025": {
+   "id": "ACH_025",
+   "nameKey": "Achievement_Name_25",
+   "name": {
+    "key": "Achievement_Name_25",
+    "en": "The White Shadow",
+    "zh": "白影巍巍",
+    "tr": "Beyaz Gölge"
+   },
+   "descKey": "Achievement_Des_25",
+   "desc": {
+    "key": "Achievement_Des_25",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.白影巍巍.完成"
+  },
+  "ACH_026": {
+   "id": "ACH_026",
+   "nameKey": "Achievement_Name_26",
+   "name": {
+    "key": "Achievement_Name_26",
+    "en": "Saw It Through",
+    "zh": "“锯理力争”",
+    "tr": "Sonuna Kadar Götür"
+   },
+   "descKey": "Achievement_Des_26",
+   "desc": {
+    "key": "Achievement_Des_26",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.锯理力争.完成"
+  },
+  "ACH_027": {
+   "id": "ACH_027",
+   "nameKey": "Achievement_Name_27",
+   "name": {
+    "key": "Achievement_Name_27",
+    "en": "All Dreams Must End",
+    "zh": "大梦终须醒",
+    "tr": "Tüm Rüyalar Sona Ermeli"
+   },
+   "descKey": "Achievement_Des_27",
+   "desc": {
+    "key": "Achievement_Des_27",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "achievment.大梦终须醒.完成"
+  },
+  "ACH_028": {
+   "id": "ACH_028",
+   "nameKey": "Achievement_Name_28",
+   "name": {
+    "key": "Achievement_Name_28",
+    "en": "Master of the Misty Waters",
+    "zh": "独步烟波",
+    "tr": "Sisli Suların Ustası"
+   },
+   "descKey": "Achievement_Des_28",
+   "desc": {
+    "key": "Achievement_Des_28",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "mgxl.击杀.烟千岁"
+  },
+  "ACH_029": {
+   "id": "ACH_029",
+   "nameKey": "Achievement_Name_29",
+   "name": {
+    "key": "Achievement_Name_29",
+    "en": "The Four Freed",
+    "zh": "四释“玉”囚",
+    "tr": "Özgür Kalan Dörtlü"
+   },
+   "descKey": "Achievement_Des_29",
+   "desc": {
+    "key": "Achievement_Des_29",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "ljc.击杀.玉瓒"
+  },
+  "ACH_030": {
+   "id": "ACH_030",
+   "nameKey": "Achievement_Name_30",
+   "name": {
+    "key": "Achievement_Name_30",
+    "en": "The Two Blade Masters",
+    "zh": "刀冠双绝",
+    "tr": "İki Kılıç Ustası"
+   },
+   "descKey": "Achievement_Des_30",
+   "desc": {
+    "key": "Achievement_Des_30",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "pz.杀气塔.击杀火刀队长"
+  },
+  "ACH_031": {
+   "id": "ACH_031",
+   "nameKey": "Achievement_Name_31",
+   "name": {
+    "key": "Achievement_Name_31",
+    "en": "Three Wardens Fall",
+    "zh": "力挫三差",
+    "tr": "Üç Muhafız Düşer"
+   },
+   "descKey": "Achievement_Des_31",
+   "desc": {
+    "key": "Achievement_Des_31",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "pz.击杀.鬼差断肠"
+  },
+  "ACH_032": {
+   "id": "ACH_032",
+   "nameKey": "Achievement_Name_32",
+   "name": {
+    "key": "Achievement_Name_32",
+    "en": "Forbidden Arts Beneath the Lake",
+    "zh": "禁法湖底沉",
+    "tr": "Gölün Altındaki Yasak Sanatlar"
+   },
+   "descKey": "Achievement_Des_32",
+   "desc": {
+    "key": "Achievement_Des_32",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_033": {
+   "id": "ACH_033",
+   "nameKey": "Achievement_Name_33",
+   "name": {
+    "key": "Achievement_Name_33",
+    "en": "Phantom and Blade",
+    "zh": "“影”承血，“刃”同源",
+    "tr": "Hayalet ve Kılıç"
+   },
+   "descKey": "Achievement_Des_33",
+   "desc": {
+    "key": "Achievement_Des_33",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_034": {
+   "id": "ACH_034",
+   "nameKey": "Achievement_Name_34",
+   "name": {
+    "key": "Achievement_Name_34",
+    "en": "The Last of Baishan",
+    "zh": "白山遗烈",
+    "tr": "Baishan'ın Sonuncusu"
+   },
+   "descKey": "Achievement_Des_34",
+   "desc": {
+    "key": "Achievement_Des_34",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_035": {
+   "id": "ACH_035",
+   "nameKey": "Achievement_Name_35",
+   "name": {
+    "key": "Achievement_Name_35",
+    "en": "Together Till the End",
+    "zh": "白首不相离",
+    "tr": "Sonuna Kadar Birlikte"
+   },
+   "descKey": "Achievement_Des_35",
+   "desc": {
+    "key": "Achievement_Des_35",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_036": {
+   "id": "ACH_036",
+   "nameKey": "Achievement_Name_36",
+   "name": {
+    "key": "Achievement_Name_36",
+    "en": "A Wanderer's Honor",
+    "zh": "浪子侠心",
+    "tr": "Bir Gezginin Onuru"
+   },
+   "descKey": "Achievement_Des_36",
+   "desc": {
+    "key": "Achievement_Des_36",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_037": {
+   "id": "ACH_037",
+   "nameKey": "Character_EX_1",
+   "name": {
+    "key": "Character_EX_1",
+    "en": "Spectral Blade",
+    "zh": "鬼斩客",
+    "tr": "Tayf Kılıcı"
+   },
+   "descKey": "Achievement_Des_37",
+   "desc": {
+    "key": "Achievement_Des_37",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_038": {
+   "id": "ACH_038",
+   "nameKey": "Achievement_Name_38",
+   "name": {
+    "key": "Achievement_Name_38",
+    "en": "The Healer’s Legacy",
+    "zh": "杏林有继",
+    "tr": "Şifacının Mirası"
+   },
+   "descKey": "Achievement_Des_38",
+   "desc": {
+    "key": "Achievement_Des_38",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_039": {
+   "id": "ACH_039",
+   "nameKey": "Achievement_Name_39",
+   "name": {
+    "key": "Achievement_Name_39",
+    "en": "Lost and Found",
+    "zh": "妙手拾遗",
+    "tr": "Kayıp ve Bulunan"
+   },
+   "descKey": "Achievement_Des_39",
+   "desc": {
+    "key": "Achievement_Des_39",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_040": {
+   "id": "ACH_040",
+   "nameKey": "Achievement_Name_40",
+   "name": {
+    "key": "Achievement_Name_40",
+    "en": "Even Trees Know Sorrow",
+    "zh": "草木也知愁",
+    "tr": "Ağaçlar Bile Kederi Bilir"
+   },
+   "descKey": "Achievement_Des_40",
+   "desc": {
+    "key": "Achievement_Des_40",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_041": {
+   "id": "ACH_041",
+   "nameKey": "Achievement_Name_41",
+   "name": {
+    "key": "Achievement_Name_41",
+    "en": "A Tempered Ten",
+    "zh": "神“器”十足",
+    "tr": "Tavlanmış Onlu"
+   },
+   "descKey": "Achievement_Des_41",
+   "desc": {
+    "key": "Achievement_Des_41",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_042": {
+   "id": "ACH_042",
+   "nameKey": "Achievement_Name_42",
+   "name": {
+    "key": "Achievement_Name_42",
+    "en": "Overwhelming Force",
+    "zh": "一力降十会",
+    "tr": "Ezici Güç"
+   },
+   "descKey": "Achievement_Des_42",
+   "desc": {
+    "key": "Achievement_Des_42",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_043": {
+   "id": "ACH_043",
+   "nameKey": "Achievement_Name_43",
+   "name": {
+    "key": "Achievement_Name_43",
+    "en": "Complete Mastery",
+    "zh": "珀力非凡",
+    "tr": "Tam Ustalık"
+   },
+   "descKey": "Achievement_Des_43",
+   "desc": {
+    "key": "Achievement_Des_43",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_044": {
+   "id": "ACH_044",
+   "nameKey": "Achievement_Name_44",
+   "name": {
+    "key": "Achievement_Name_44",
+    "en": "Listen to Every Flower",
+    "zh": "且听花声",
+    "tr": "Her Çiçeği Dinle"
+   },
+   "descKey": "Achievement_Des_44",
+   "desc": {
+    "key": "Achievement_Des_44",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_045": {
+   "id": "ACH_045",
+   "nameKey": "Achievement_Name_45",
+   "name": {
+    "key": "Achievement_Name_45",
+    "en": "Leave No Stone Unturned",
+    "zh": "取石有道",
+    "tr": "Çevrilmedik Taş Bırakma"
+   },
+   "descKey": "Achievement_Des_45",
+   "desc": {
+    "key": "Achievement_Des_45",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_046": {
+   "id": "ACH_046",
+   "nameKey": "Achievement_Name_46",
+   "name": {
+    "key": "Achievement_Name_46",
+    "en": "Collector’s Notes",
+    "zh": "博物杂记",
+    "tr": "Koleksiyoncunun Notları"
+   },
+   "descKey": "Achievement_Des_46",
+   "desc": {
+    "key": "Achievement_Des_46",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_047": {
+   "id": "ACH_047",
+   "nameKey": "Achievement_Name_47",
+   "name": {
+    "key": "Achievement_Name_47",
+    "en": "Phantom Arsenal",
+    "zh": "“影”多不压身",
+    "tr": "Hayalet Cephaneliği"
+   },
+   "descKey": "Achievement_Des_47",
+   "desc": {
+    "key": "Achievement_Des_47",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_048": {
+   "id": "ACH_048",
+   "nameKey": "Achievement_Name_48",
+   "name": {
+    "key": "Achievement_Name_48",
+    "en": "Skill Over Strength",
+    "zh": "一巧破百拙",
+    "tr": "Güçten Üstün Beceri"
+   },
+   "descKey": "Achievement_Des_48",
+   "desc": {
+    "key": "Achievement_Des_48",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  },
+  "ACH_049": {
+   "id": "ACH_049",
+   "nameKey": "Achievement_Name_49",
+   "name": {
+    "key": "Achievement_Name_49",
+    "en": "Way of the Phantom",
+    "zh": "“影”之道",
+    "tr": "Hayaletin Yolu"
+   },
+   "descKey": "Achievement_Des_49",
+   "desc": {
+    "key": "Achievement_Des_49",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "Ability.Action.Execution.Stealth.Continuous"
+  },
+  "ACH_050": {
+   "id": "ACH_050",
+   "nameKey": "Achievement_Name_50",
+   "name": {
+    "key": "Achievement_Name_50",
+    "en": "Way of the Blade",
+    "zh": "“刃”之道",
+    "tr": "Kılıcın Yolu"
+   },
+   "descKey": "Achievement_Des_50",
+   "desc": {
+    "key": "Achievement_Des_50",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "CharacterState.Achievement.ContinuousExecution"
+  },
+  "ACH_051": {
+   "id": "ACH_051",
+   "nameKey": "Achievement_Name_51",
+   "name": {
+    "key": "Achievement_Name_51",
+    "en": "The Rusted Blade",
+    "zh": "破伤风之刃",
+    "tr": "Paslı Kılıç"
+   },
+   "descKey": "Achievement_Des_51",
+   "desc": {
+    "key": "Achievement_Des_51",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.IronBloodBurst"
+  },
+  "ACH_052": {
+   "id": "ACH_052",
+   "nameKey": "Achievement_Name_52",
+   "name": {
+    "key": "Achievement_Name_52",
+    "en": "A Drunken Dream",
+    "zh": "醉生梦死",
+    "tr": "Sarhoş Bir Rüya"
+   },
+   "descKey": "Achievement_Des_52",
+   "desc": {
+    "key": "Achievement_Des_52",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "CharacterState.AbilityState.HuaQianXiao.ZuiJian"
+  },
+  "ACH_053": {
+   "id": "ACH_053",
+   "nameKey": "Achievement_Name_53",
+   "name": {
+    "key": "Achievement_Name_53",
+    "en": "Bloodless Victory",
+    "zh": "兵不血刃",
+    "tr": "Kansız Zafer"
+   },
+   "descKey": "Achievement_Des_53",
+   "desc": {
+    "key": "Achievement_Des_53",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "CharacterState.AbilityState.SlitheringSword.DeflectReinforced"
+  },
+  "ACH_054": {
+   "id": "ACH_054",
+   "nameKey": "Achievement_Name_54",
+   "name": {
+    "key": "Achievement_Name_54",
+    "en": "The Flame Within",
+    "zh": "灭烛见真火",
+    "tr": "İçerideki Alev"
+   },
+   "descKey": "Achievement_Des_54",
+   "desc": {
+    "key": "Achievement_Des_54",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "Ability.Action.Hun.CombatArt.HeiMoShang.Release"
+  },
+  "ACH_055": {
+   "id": "ACH_055",
+   "nameKey": "Achievement_Name_55",
+   "name": {
+    "key": "Achievement_Name_55",
+    "en": "The Blade's Thirst",
+    "zh": "渴饮刀头血",
+    "tr": "Kılıcın Susuzluğu"
+   },
+   "descKey": "Achievement_Des_55",
+   "desc": {
+    "key": "Achievement_Des_55",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.ZhanMaLifeSteal"
+  },
+  "ACH_056": {
+   "id": "ACH_056",
+   "nameKey": "Achievement_Name_56",
+   "name": {
+    "key": "Achievement_Name_56",
+    "en": "Snow and Frost",
+    "zh": "御雪凝霜",
+    "tr": "Kar ve Kırağı"
+   },
+   "descKey": "Achievement_Des_56",
+   "desc": {
+    "key": "Achievement_Des_56",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.BaiYingFrost"
+  },
+  "ACH_057": {
+   "id": "ACH_057",
+   "nameKey": "Weapon_FunctionName_020_Re",
+   "name": {
+    "key": "Weapon_FunctionName_020_Re",
+    "en": "Sundering Stroke",
+    "zh": "一刀两断",
+    "tr": "Parçalayan Darbe"
+   },
+   "descKey": "Achievement_Des_57",
+   "desc": {
+    "key": "Achievement_Des_57",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Ability.YanYueDao.CutSuccess"
+  },
+  "ACH_058": {
+   "id": "ACH_058",
+   "nameKey": "Achievement_Name_58",
+   "name": {
+    "key": "Achievement_Name_58",
+    "en": "Delayed Blast",
+    "zh": "延时爆破",
+    "tr": "Gecikmeli Patlama"
+   },
+   "descKey": "Achievement_Des_58",
+   "desc": {
+    "key": "Achievement_Des_58",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Ability.YaoJu.Explode"
+  },
+  "ACH_059": {
+   "id": "ACH_059",
+   "nameKey": "Achievement_Name_59",
+   "name": {
+    "key": "Achievement_Name_59",
+    "en": "Perfectly Linked",
+    "zh": "环环相扣",
+    "tr": "Kusursuz Bağlantı"
+   },
+   "descKey": "Achievement_Des_59",
+   "desc": {
+    "key": "Achievement_Des_59",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.Jade"
+  },
+  "ACH_060": {
+   "id": "ACH_060",
+   "nameKey": "Achievement_Name_60",
+   "name": {
+    "key": "Achievement_Name_60",
+    "en": "Baishan Tempest",
+    "zh": "白山风雷动",
+    "tr": "Baishan Fırtınası"
+   },
+   "descKey": "Achievement_Des_60",
+   "desc": {
+    "key": "Achievement_Des_60",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "Ability.Action.Hun.FengLeiJian.FengLeiState.SpecialAttack01"
+  },
+  "ACH_061": {
+   "id": "ACH_061",
+   "nameKey": "PhantomEdges_FunctionName_002_5",
+   "name": {
+    "key": "PhantomEdges_FunctionName_002_5",
+    "en": "Skyfall Bash",
+    "zh": "天降金瓜",
+    "tr": "Gökyıkımı Darbesi"
+   },
+   "descKey": "Achievement_Des_61",
+   "desc": {
+    "key": "Achievement_Des_61",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievement.TianJiangJinGua"
+  },
+  "ACH_062": {
+   "id": "ACH_062",
+   "nameKey": "Achievement_Name_62",
+   "name": {
+    "key": "Achievement_Name_62",
+    "en": "Turning the Tide",
+    "zh": "翻江倒海",
+    "tr": "Gidişatı Değiştirmek"
+   },
+   "descKey": "Achievement_Des_62",
+   "desc": {
+    "key": "Achievement_Des_62",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "pz.击杀.游龙帮主"
+  },
+  "ACH_063": {
+   "id": "ACH_063",
+   "nameKey": "Achievement_Name_63",
+   "name": {
+    "key": "Achievement_Name_63",
+    "en": "Fists of Fury",
+    "zh": "拳力以赴",
+    "tr": "Öfke Yumrukları"
+   },
+   "descKey": "Achievement_Des_63",
+   "desc": {
+    "key": "Achievement_Des_63",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievement.QuanLiYiFu"
+  },
+  "ACH_064": {
+   "id": "ACH_064",
+   "nameKey": "Achievement_Name_64",
+   "name": {
+    "key": "Achievement_Name_64",
+    "en": "Lightning Fast",
+    "zh": "电光石火",
+    "tr": "Şimşek Hızında"
+   },
+   "descKey": "Achievement_Des_64",
+   "desc": {
+    "key": "Achievement_Des_64",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.ThunderSpear"
+  },
+  "ACH_065": {
+   "id": "ACH_065",
+   "nameKey": "Achievement_Name_65",
+   "name": {
+    "key": "Achievement_Name_65",
+    "en": "A Friend from Thin Air",
+    "zh": "无中生友",
+    "tr": "Yoktan Var Olan Bir Dost"
+   },
+   "descKey": "Achievement_Des_65",
+   "desc": {
+    "key": "Achievement_Des_65",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": "GameplayEvent.Achievements.Summon"
+  },
+  "ACH_066": {
+   "id": "ACH_066",
+   "nameKey": "Achievement_Name_66",
+   "name": {
+    "key": "Achievement_Name_66",
+    "en": "Defy Destiny",
+    "zh": "逆天改命",
+    "tr": "Kadere Meydan Oku"
+   },
+   "descKey": "Achievement_Des_66",
+   "desc": {
+    "key": "Achievement_Des_66",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "tag": null
+  }
+ }
+}

@@ -1,0 +1,405 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "medicines": {
+  "Hulu": {
+   "code": "Hulu",
+   "row": "药葫芦",
+   "nameKey": "Item_Medicine_001",
+   "name": {
+    "key": "Item_Medicine_001",
+    "en": "Healing Gourd",
+    "zh": "药葫芦",
+    "tr": "Şifa Matarası"
+   },
+   "descKey": "Item_MedicineDes_001",
+   "desc": {
+    "key": "Item_MedicineDes_001",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_001",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_001",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "GuiShen": {
+   "code": "GuiShen",
+   "row": "归神汤",
+   "nameKey": "Item_Medicine_002",
+   "name": {
+    "key": "Item_Medicine_002",
+    "en": "Spirit-Returning Broth",
+    "zh": "归神汤",
+    "tr": "Ruh Döndüren Kaynatma"
+   },
+   "descKey": "Item_MedicineDes_002",
+   "desc": {
+    "key": "Item_MedicineDes_002",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_002",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_002",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "RongQi": {
+   "code": "RongQi",
+   "row": "容器维护液体",
+   "nameKey": "Item_Medicine_003",
+   "name": {
+    "key": "Item_Medicine_003",
+    "en": "Vessel Restorative",
+    "zh": "容器维护液体",
+    "tr": "Taşıyıcı Canlandırıcısı"
+   },
+   "descKey": "Item_MedicineDes_003",
+   "desc": {
+    "key": "Item_MedicineDes_003",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_003",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_003",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "NingFengDan": {
+   "code": "NingFengDan",
+   "row": "凝锋丹",
+   "nameKey": "Item_Medicine_004",
+   "name": {
+    "key": "Item_Medicine_004",
+    "en": "Focus Pill",
+    "zh": "凝锋丹",
+    "tr": "Odak Hapı"
+   },
+   "descKey": "Item_MedicineDes_004",
+   "desc": {
+    "key": "Item_MedicineDes_004",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_004",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_004",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Duration": {
+   "code": "Medicine_Duration",
+   "row": "慈花甘露",
+   "nameKey": "Item_Medicine_005",
+   "name": {
+    "key": "Item_Medicine_005",
+    "en": "Merciful Dew",
+    "zh": "慈花甘露",
+    "tr": "Merhamet Çiyi"
+   },
+   "descKey": "Item_MedicineDes_005",
+   "desc": {
+    "key": "Item_MedicineDes_005",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_005",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_005",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Recover": {
+   "code": "Medicine_Recover",
+   "row": "不尽水",
+   "nameKey": "Item_Medicine_006",
+   "name": {
+    "key": "Item_Medicine_006",
+    "en": "Everflow",
+    "zh": "不尽水",
+    "tr": "Sonsuz Akış"
+   },
+   "descKey": "Item_MedicineDes_006",
+   "desc": {
+    "key": "Item_MedicineDes_006",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_006",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_006",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_ResistanceElement": {
+   "code": "Medicine_ResistanceElement",
+   "row": "青蛇药剂",
+   "nameKey": "Item_Medicine_016",
+   "name": {
+    "key": "Item_Medicine_016",
+    "en": "Green Serpent Brew",
+    "zh": "青蛇药剂",
+    "tr": "Yeşil Yılan İksiri"
+   },
+   "descKey": "Item_MedicineDes_016",
+   "desc": {
+    "key": "Item_MedicineDes_016",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_016",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_016",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Interrupt": {
+   "code": "Medicine_Interrupt",
+   "row": "幽冥鬼药",
+   "nameKey": "Item_Medicine_008",
+   "name": {
+    "key": "Item_Medicine_008",
+    "en": "Phantom Remedy",
+    "zh": "幽冥鬼药",
+    "tr": "Hayalet Devası"
+   },
+   "descKey": "Item_MedicineDes_008",
+   "desc": {
+    "key": "Item_MedicineDes_008",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_008",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_008",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_ShachiAttack": {
+   "code": "Medicine_ShachiAttack",
+   "row": "杀气溶血催化剂",
+   "nameKey": "Item_Medicine_007",
+   "name": {
+    "key": "Item_Medicine_007",
+    "en": "Sha-Chi Blood Catalyst",
+    "zh": "杀气溶血催化剂",
+    "tr": "Sha-Chi Kan Katalizörü"
+   },
+   "descKey": "Item_MedicineDes_007",
+   "desc": {
+    "key": "Item_MedicineDes_007",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_007",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_007",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_AdditionalRecover": {
+   "code": "Medicine_AdditionalRecover",
+   "row": "济生神药",
+   "nameKey": "Item_Medicine_010",
+   "name": {
+    "key": "Item_Medicine_010",
+    "en": "Miracle Remedy",
+    "zh": "济生神药",
+    "tr": "Mucizevi Deva"
+   },
+   "descKey": "Item_MedicineDes_010",
+   "desc": {
+    "key": "Item_MedicineDes_010",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_010",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_010",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "KuYe": {
+   "code": "KuYe",
+   "row": "苦叶露",
+   "nameKey": "Item_Medicine_009",
+   "name": {
+    "key": "Item_Medicine_009",
+    "en": "Kuye Dew",
+    "zh": "苦叶露",
+    "tr": "Kuye Çiyi"
+   },
+   "descKey": "Item_MedicineDes_009",
+   "desc": {
+    "key": "Item_MedicineDes_009",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_009",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_009",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "FeiJiu": {
+   "code": "FeiJiu",
+   "row": "沸酒散",
+   "nameKey": "Item_Medicine_011",
+   "name": {
+    "key": "Item_Medicine_011",
+    "en": "Simmering Brew",
+    "zh": "沸酒酿",
+    "tr": "Kaynayan İçki"
+   },
+   "descKey": "Item_MedicineDes_011",
+   "desc": {
+    "key": "Item_MedicineDes_011",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_011",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_011",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Ghost": {
+   "code": "Medicine_Ghost",
+   "row": "幻体灵药",
+   "nameKey": "Item_Medicine_013",
+   "name": {
+    "key": "Item_Medicine_013",
+    "en": "Phantom Brew",
+    "zh": "幻体灵药",
+    "tr": "Hayalet İksiri"
+   },
+   "descKey": "Item_MedicineDes_013",
+   "desc": {
+    "key": "Item_MedicineDes_013",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_013",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_013",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Element": {
+   "code": "Medicine_Element",
+   "row": "法事药酒",
+   "nameKey": "Item_Medicine_012",
+   "name": {
+    "key": "Item_Medicine_012",
+    "en": "Ritual Wine",
+    "zh": "法事药酒",
+    "tr": "Ritüel Şarabı"
+   },
+   "descKey": "Item_MedicineDes_012",
+   "desc": {
+    "key": "Item_MedicineDes_012",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_012",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_012",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_UltimateCharge": {
+   "code": "Medicine_UltimateCharge",
+   "row": "长生饮",
+   "nameKey": "Item_Medicine_015",
+   "name": {
+    "key": "Item_Medicine_015",
+    "en": "Longevity Tonic",
+    "zh": "长生饮",
+    "tr": "Uzun Ömür Toniği"
+   },
+   "descKey": "Item_MedicineDes_015",
+   "desc": {
+    "key": "Item_MedicineDes_015",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_015",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_015",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "JinJiHeJi": {
+   "code": "JinJiHeJi",
+   "row": "禁忌合剂",
+   "nameKey": "Item_Medicine_014",
+   "name": {
+    "key": "Item_Medicine_014",
+    "en": "Forbidden Concoction",
+    "zh": "禁忌合剂",
+    "tr": "Yasak Karışım"
+   },
+   "descKey": "Item_MedicineDes_014",
+   "desc": {
+    "key": "Item_MedicineDes_014",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_014",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_014",
+    "hasEn": true,
+    "hasTr": true
+   }
+  },
+  "Medicine_Attack": {
+   "code": "Medicine_Attack",
+   "row": "悲鸣药",
+   "nameKey": "Item_Medicine_017",
+   "name": {
+    "key": "Item_Medicine_017",
+    "en": "Lament Draught",
+    "zh": "悲鸣药",
+    "tr": "Ağıt İksiri"
+   },
+   "descKey": "Item_MedicineDes_017",
+   "desc": {
+    "key": "Item_MedicineDes_017",
+    "hasEn": true,
+    "hasTr": true
+   },
+   "funcKey": "Item_Medicine_FunctionDes_017",
+   "func": {
+    "key": "Item_Medicine_FunctionDes_017",
+    "hasEn": true,
+    "hasTr": true
+   }
+  }
+ }
+}

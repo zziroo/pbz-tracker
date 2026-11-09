@@ -1,0 +1,453 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "maps": {
+  "BigMap": {
+   "id": "BigMap",
+   "idLower": "BigMap",
+   "levelNameKey": "Levelname_NLES_001",
+   "levelName": {
+    "key": "Levelname_NLES_001",
+    "en": "WEEPING CREEK VALLEY",
+    "zh": "悲泣溪谷",
+    "tr": "AĞLAYAN DERE VADİSİ"
+   },
+   "chapterRow": null,
+   "worldPartition": null,
+   "bigMap": null,
+   "textures": [
+    "T_Jianghu_BigMap_Ground",
+    "T_Jianghu_BigMap_Underground",
+    "T_QuestMask_BigMap"
+   ]
+  },
+  "ZhuLinGuwu": {
+   "id": "ZhuLinGuwu",
+   "idLower": "zhulinguwu",
+   "levelNameKey": "UI_LoadGame_08",
+   "levelName": {
+    "key": "UI_LoadGame_08",
+    "en": "Prologue",
+    "zh": "序章",
+    "tr": "Giriş Bölümü"
+   },
+   "chapterRow": null,
+   "worldPartition": null,
+   "bigMap": null,
+   "textures": [
+    "T_Chapter_XuZhang"
+   ]
+  },
+  "XiGu": {
+   "id": "XiGu",
+   "idLower": "XiGu",
+   "levelNameKey": "Levelname_NLES_001",
+   "levelName": {
+    "key": "Levelname_NLES_001",
+    "en": "WEEPING CREEK VALLEY",
+    "zh": "悲泣溪谷",
+    "tr": "AĞLAYAN DERE VADİSİ"
+   },
+   "chapterRow": "NiLiuerShang",
+   "worldPartition": "PBZ_Xigu_WP",
+   "bigMap": "XiGu",
+   "textures": [
+    "T_MapTest_Xigu_0710",
+    "T_QuestMap_XG",
+    "T_QuestMask_XiGu",
+    "T_Chapter_Beiqixigu",
+    "T_Map_XiGu"
+   ]
+  },
+  "FuJiZhiLin": {
+   "id": "FuJiZhiLin",
+   "idLower": "FuJiZhiLin",
+   "levelNameKey": "Levelname_LZSJ_001",
+   "levelName": {
+    "key": "Levelname_LZSJ_001",
+    "en": "CRIMSON FOREST",
+    "zh": "血色森林",
+    "tr": "KIZIL ORMAN"
+   },
+   "chapterRow": "LinZhongShaJi",
+   "worldPartition": "PBZ_Fujizhilin_WP",
+   "bigMap": "FuJiZhiLin",
+   "textures": [
+    "T_MapTest_Fujizhilin_0717",
+    "T_MapTest_winterFujizhilin_0717",
+    "T_QuestMap_FJZL",
+    "T_QuestMap_FJZL_Snow",
+    "T_QuestMask_FJZL",
+    "T_Chapter_Xuesesenlin",
+    "T_Map_XueSeSenLin"
+   ]
+  },
+  "LuJiaCun": {
+   "id": "LuJiaCun",
+   "idLower": "LuJiaCun",
+   "levelNameKey": "Levelname_SXC_01",
+   "levelName": {
+    "key": "Levelname_SXC_01",
+    "en": "VILLAGE OF LU",
+    "zh": "陆家村地区",
+    "tr": "LU KÖYÜ"
+   },
+   "chapterRow": "ShiXinCun",
+   "worldPartition": "PBZ_Zhengdaodaying_WP",
+   "bigMap": "LuJiaCun",
+   "textures": [
+    "T_MapTest_Lujiacun_0710",
+    "T_QuestMap_LJC",
+    "T_QuestMask_LJC",
+    "T_Chapter_Lujiacun",
+    "T_Map_LuJiaCun"
+   ]
+  },
+  "PangZhen": {
+   "id": "PangZhen",
+   "idLower": "PangZhen",
+   "levelNameKey": "Levelname_SZ_001",
+   "levelName": {
+    "key": "Levelname_SZ_001",
+    "en": "PANGZHEN",
+    "zh": "庞镇地区",
+    "tr": "PANGZHEN"
+   },
+   "chapterRow": "SiZhen",
+   "worldPartition": "PBZ_Pangzhen_WP",
+   "bigMap": "PangZhen",
+   "textures": [
+    "T_Map_PZ_8k",
+    "T_QuestMap_PZ",
+    "T_QuestMask_PangZhen",
+    "T_Chapter_Pangzhen",
+    "T_Map_PangZhen"
+   ]
+  },
+  "HouJie": {
+   "id": "HouJie",
+   "idLower": "HouJie",
+   "levelNameKey": "Levelname_SZ_001",
+   "levelName": {
+    "key": "Levelname_SZ_001",
+    "en": "PANGZHEN",
+    "zh": "庞镇地区",
+    "tr": "PANGZHEN"
+   },
+   "chapterRow": "SiZhen",
+   "worldPartition": "PBZ_Houjie_WP",
+   "bigMap": "PangZhen",
+   "textures": [
+    "T_Map_PZ_8k",
+    "T_QuestMap_PZ",
+    "T_QuestMask_PangZhen",
+    "T_Chapter_Pangzhen",
+    "T_Map_HouJie"
+   ]
+  },
+  "ZhengDaoDaYing": {
+   "id": "ZhengDaoDaYing",
+   "idLower": "ZhengDaoDaYing",
+   "levelNameKey": "Levelname_YXZR_003",
+   "levelName": {
+    "key": "Levelname_YXZR_003",
+    "en": "MANDATE ENCAMPMENT",
+    "zh": "正道大营",
+    "tr": "FERMAN ORDUGÂHI"
+   },
+   "chapterRow": "YingxiongZuiren",
+   "worldPartition": "PBZ_Zhengdaodaying_WP",
+   "bigMap": "ZhengDaoDaYing",
+   "textures": [
+    "T_Map_DaYing_8k",
+    "T_QuestMap_ZDDY",
+    "T_QuestMask_ZDDY",
+    "T_Chapter_Zhengdaodaying",
+    "T_Map_ZhengDaoDaYing"
+   ]
+  },
+  "MeiGuHu": {
+   "id": "MeiGuHu",
+   "idLower": "MeiGuHu",
+   "levelNameKey": "Levelname_YGYW_001",
+   "levelName": {
+    "key": "Levelname_YGYW_001",
+    "en": "MEIGU LAKE",
+    "zh": "梅谷湖",
+    "tr": "MEIGU GÖLÜ"
+   },
+   "chapterRow": "MeiGuHu",
+   "worldPartition": "PBZ_Pangzhen_WP",
+   "bigMap": null,
+   "textures": [
+    "T_MapTest_MGH0717",
+    "T_QuestMap_MGH",
+    "T_QuestMask_MGH",
+    "T_Chapter_Meiguhu",
+    "T_Map_MeiGuHu"
+   ]
+  },
+  "DengDingShanDao": {
+   "id": "DengDingShanDao",
+   "idLower": "DengDingShanDao",
+   "levelNameKey": "Levelname_DDSD_001",
+   "levelName": {
+    "key": "Levelname_DDSD_001",
+    "en": "MOUNTAIN OF IMPRISONMENT",
+    "zh": "枷笼山",
+    "tr": "HAPİS DAĞI"
+   },
+   "chapterRow": "BeiPanYuJianJin",
+   "worldPartition": "PBZ_DengDingShanDao_WP",
+   "bigMap": "DengDingShanDao",
+   "textures": [
+    "T_Map_DDSD",
+    "T_QuestMap_DDSD",
+    "T_QuestMask_DDSD",
+    "T_Chapter_Jialongshan",
+    "T_Map_JiaLongShan"
+   ]
+  },
+  "HuanShuShi": {
+   "id": "HuanShuShi",
+   "idLower": "MeiGu_YiJi",
+   "levelNameKey": "Levelname_YGYW_001",
+   "levelName": {
+    "key": "Levelname_YGYW_001",
+    "en": "MEIGU LAKE",
+    "zh": "梅谷湖",
+    "tr": "MEIGU GÖLÜ"
+   },
+   "chapterRow": "MeiGuHu",
+   "worldPartition": "PBZ_Huanshuyiji2_WP",
+   "bigMap": null,
+   "textures": [
+    "T_MapTest_MGH0717",
+    "T_Chapter_Meiguhu",
+    "T_Map_HuanShuShiYiJi"
+   ]
+  },
+  "XiMeng": {
+   "id": "XiMeng",
+   "idLower": "XiMeng",
+   "levelNameKey": "Levelname_XM_001",
+   "levelName": {
+    "key": "Levelname_XM_001",
+    "en": "MIRAGE ESTATE",
+    "zh": "戏梦山庄",
+    "tr": "SERAP MALİKÂNESİ"
+   },
+   "chapterRow": "PoJu",
+   "worldPartition": "PBZ_Ximeng_WP",
+   "bigMap": "PangZhen",
+   "textures": [
+    "T_Map_PZ_8k",
+    "T_QuestMap_PZ",
+    "T_QuestMask_PangZhen",
+    "T_Chapter_Ximengshanzhuang",
+    "T_Map_XiMengShanZhuang"
+   ]
+  },
+  "DuanHunYa": {
+   "id": "DuanHunYa",
+   "idLower": "DuanHunYa",
+   "levelNameKey": "Levelname_LYZ_001",
+   "levelName": {
+    "key": "Levelname_LYZ_001",
+    "en": "MOUNT SOULREND",
+    "zh": "断魂山",
+    "tr": "RUHYARAN DAĞI"
+   },
+   "chapterRow": "DuanHun",
+   "worldPartition": "PBZ_Duanhun_WP",
+   "bigMap": "DuanHunShan",
+   "textures": [
+    "T_MapTest_DH",
+    "T_QuestMap_DH",
+    "T_QuestMask_DHS",
+    "T_Chapter_Duanhunshan",
+    "T_Map_DuanHun"
+   ]
+  },
+  "DuanHunShan": {
+   "id": "DuanHunShan",
+   "idLower": "DuanHunShan",
+   "levelNameKey": "Levelname_LYZ_001",
+   "levelName": {
+    "key": "Levelname_LYZ_001",
+    "en": "MOUNT SOULREND",
+    "zh": "断魂山",
+    "tr": "RUHYARAN DAĞI"
+   },
+   "chapterRow": "LongYuZhuo",
+   "worldPartition": "PBZ_Duanhun_WP",
+   "bigMap": "DuanHunShan",
+   "textures": [
+    "T_MapTest_DH",
+    "T_QuestMap_DH",
+    "T_QuestMask_DHS",
+    "T_Chapter_Duanhunshan",
+    "T_Map_DuanHun"
+   ]
+  },
+  "Test": {
+   "id": "Test",
+   "idLower": "Test",
+   "levelNameKey": "Levelname_YXZR_003",
+   "levelName": {
+    "key": "Levelname_YXZR_003",
+    "en": "MANDATE ENCAMPMENT",
+    "zh": "正道大营",
+    "tr": "FERMAN ORDUGÂHI"
+   },
+   "chapterRow": null,
+   "worldPartition": null,
+   "bigMap": "Rhm_Test",
+   "textures": [
+    "T_Map_DaYing_8k"
+   ]
+  }
+ },
+ "chapters": {
+  "NiLiuerShang": {
+   "id": "NiLiuerShang",
+   "row": "NewRow",
+   "titleKey": "Chapter_01",
+   "title": {
+    "key": "Chapter_01",
+    "en": "AGAINST THE FLOW",
+    "zh": "逆流而上",
+    "tr": "AKINTIYA KARŞI"
+   }
+  },
+  "LinZhongShaJi": {
+   "id": "LinZhongShaJi",
+   "row": "NewRow_0",
+   "titleKey": "Chapter_02",
+   "title": {
+    "key": "Chapter_02",
+    "en": "SNAKE'S REFLECTION",
+    "zh": "林中血，镜中蛇",
+    "tr": "YILANIN YANSIMASI"
+   }
+  },
+  "ShiXinCun": {
+   "id": "ShiXinCun",
+   "row": "NewRow_2",
+   "titleKey": "Chapter_05",
+   "title": {
+    "key": "Chapter_05",
+    "en": "HEARTLESS REMNANTS",
+    "zh": "失心村",
+    "tr": "KALPSİZ KALINTILAR"
+   }
+  },
+  "SiZhen": {
+   "id": "SiZhen",
+   "row": "NewRow_3",
+   "titleKey": "Chapter_06",
+   "title": {
+    "key": "Chapter_06",
+    "en": "TOWN OF DEATH",
+    "zh": "死镇",
+    "tr": "ÖLÜM KASABASI"
+   }
+  },
+  "YingxiongZuiren": {
+   "id": "YingxiongZuiren",
+   "row": "NewRow_4",
+   "titleKey": "Chapter_03",
+   "title": {
+    "key": "Chapter_03",
+    "en": "HERO OR HERETIC",
+    "zh": "英雄？罪人？",
+    "tr": "KAHRAMAN MI SAPKIN MI"
+   }
+  },
+  "BeiPanYuJianJin": {
+   "id": "BeiPanYuJianJin",
+   "row": "NewRow_1",
+   "titleKey": "Other_01-DDSD_Chapter_001",
+   "title": {
+    "key": "Other_01-DDSD_Chapter_001",
+    "en": "TREASON AND CONFINEMENT",
+    "zh": "背叛与监禁",
+    "tr": "İHANET VE HAPİS"
+   }
+  },
+  "MeiGuHu": {
+   "id": "MeiGuHu",
+   "row": "NewRow_5",
+   "titleKey": "Chapter_07",
+   "title": {
+    "key": "Chapter_07",
+    "en": "THE LAKE",
+    "zh": "湖",
+    "tr": "GÖL"
+   }
+  },
+  "DieXueZhiLu": {
+   "id": "DieXueZhiLu",
+   "row": "NewRow_6",
+   "titleKey": "Chapter_13",
+   "title": {
+    "key": "Chapter_13",
+    "en": null,
+    "zh": null,
+    "tr": null
+   }
+  },
+  "HouShou": {
+   "id": "HouShou",
+   "row": "NewRow_7",
+   "titleKey": "Chapter_10",
+   "title": {
+    "key": "Chapter_10",
+    "en": null,
+    "zh": null,
+    "tr": null
+   }
+  },
+  "PoJu": {
+   "id": "PoJu",
+   "row": "NewRow_8",
+   "titleKey": "Chapter_14",
+   "title": {
+    "key": "Chapter_14",
+    "en": "THE WAY FORWARD",
+    "zh": "破局",
+    "tr": "İLERİYE GİDEN YOL"
+   }
+  },
+  "LongYuZhuo": {
+   "id": "LongYuZhuo",
+   "row": "NewRow_9",
+   "titleKey": "Chapter_16",
+   "title": {
+    "key": "Chapter_16",
+    "en": null,
+    "zh": null,
+    "tr": null
+   }
+  },
+  "DuanHun": {
+   "id": "DuanHun",
+   "row": "NewRow_10",
+   "titleKey": "Chapter_17",
+   "title": {
+    "key": "Chapter_17",
+    "en": "A SOUL'S WORTH",
+    "zh": "断魂",
+    "tr": "BİR RUHUN DEĞERİ"
+   }
+  }
+ }
+}

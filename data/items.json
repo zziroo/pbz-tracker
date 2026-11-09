@@ -1,99 +1,131 @@
 {
-  "_comment": "SPOILER İÇERİR. Save Inventory codes → display names, for rule work and the diagnostics (the patch locres has no names for these codes). Key: the code as it appears in Inventory.MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (lib/state.js items). en: official English name; tr: Turkish name from the Turkish patch (title-cased), or null when not certain (the UI then shows English); guess: true = the code ↔ item mapping is not verified. Mappings verified by acquisition time on a real save (2026-11-06). Not bundled into the web build (the page only shows codes).",
+  "_comment": "SPOILER İÇERİR. Save Inventory codes → display names, for rule work and the diagnostics (the patch locres has no names for these codes). Key: the code as it appears in Inventory.MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (lib/state.js items). en: official English name; tr: Turkish name from the Turkish patch (title-cased), or null when not certain (the UI then shows English); guess: false everywhere since 2026-11-09: every mapping was verified against the game tables (data/game/, built by research/gamedata; source \"game-data\", gameKey = the Game.locres key). Not bundled into the web build (the page only shows codes).",
   "LuanYing": {
     "en": "Wild Oriole Sword",
     "tr": "Yaban Sarıasması Kılıcı",
     "guess": false,
-    "note": "Main weapon. The sword on the pier after Mu Xiaokui (Village of Lu, before the lift); rule lu-elevator-sword."
+    "note": "Main weapon. The sword on the pier after Mu Xiaokui (Village of Lu, before the lift); rule lu-elevator-sword.",
+    "source": "game-data",
+    "gameKey": "Weapon_003"
   },
   "YuuBlade": {
     "en": "Fiend Saws",
     "tr": "İblis Testereleri",
-    "guess": true,
-    "note": "Main weapon, Mu Xiaokui's reward (acquired just before LuanYing). Fiend Saws is likely (the five-ribbon reward) but not verified."
+    "guess": false,
+    "note": "Main weapon, Mu Xiaokui's reward (acquired just before LuanYing). Fiend Saws is likely (the five-ribbon reward) but not verified. 2026-11-09: confirmed by the game table (DataTable row name key Weapon_023).",
+    "source": "game-data",
+    "gameKey": "Weapon_023"
   },
   "RenOuQingTongJian": {
     "en": "Tianxuan Bronze Sword",
     "tr": "Tianxuan Bronz Kılıcı",
     "guess": false,
-    "note": "Main weapon, from Bi Yuan."
+    "note": "Main weapon, from Bi Yuan.",
+    "source": "game-data",
+    "gameKey": "Weapon_007"
   },
   "CuiXinPiPa": {
     "en": "Heartrend Pipa",
-    "tr": "Yürek Dağlayan Pipa",
+    "tr": "Kalpyaran Pipa",
     "guess": false,
-    "note": "Sha-chi weapon (Phantom Edge), from Yuzan."
+    "note": "Sha-chi weapon (Phantom Edge), from Yuzan.",
+    "source": "game-data",
+    "gameKey": "PhantomEdges_024"
   },
   "KuYeSiZhuChuan": {
     "en": "Kuye Temple Prayer Beads",
     "tr": "Kuye Tapınağı Tespihi",
     "guess": false,
-    "note": "Sha-chi weapon (Phantom Edge), from Bi Hai."
+    "note": "Sha-chi weapon (Phantom Edge), from Bi Hai.",
+    "source": "game-data",
+    "gameKey": "PhantomEdges_013"
   },
   "CaoOuSiXian": {
     "en": "Puppeteer's Bell",
     "tr": "Kuklacının Çanı",
-    "guess": true,
-    "note": "Sha-chi weapon (Phantom Edge) acquired after the Dusk fight; the name is a guess."
+    "guess": false,
+    "note": "Sha-chi weapon (Phantom Edge) acquired after the Dusk fight; the name is a guess. 2026-11-09: confirmed by the game table (DataTable row name key PhantomEdges_025).",
+    "source": "game-data",
+    "gameKey": "PhantomEdges_025"
   },
   "AC_ResistRanged": {
     "en": "Arrowward",
     "tr": "Oksavar",
     "guess": false,
-    "note": "Accessory, the wounded thief's reward for the Thief's Manual; rule lu-wounded-thief-manual (doneWhen)."
+    "note": "Accessory, the wounded thief's reward for the Thief's Manual; rule lu-wounded-thief-manual (doneWhen).",
+    "source": "game-data",
+    "gameKey": "Item_Accessory_025"
   },
   "AC_SummonDuration": {
-    "en": "Agarwood Prayer Beads",
-    "tr": null,
-    "guess": true,
-    "note": "Accessory acquired at 01:46 on the mapping save; the name is a guess."
+    "en": "A Puppet's Wooden Heart",
+    "tr": "Bir Kuklanın Tahta Kalbi",
+    "guess": false,
+    "note": "Accessory acquired at 01:46 on the mapping save; the name is a guess. 2026-11-09: confirmed by the game table (DataTable row name key QuestRumor_028).",
+    "source": "game-data",
+    "gameKey": "QuestRumor_028"
   },
   "T_02001": {
-    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
-    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
-    "guess": true,
-    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+    "en": "Bloodstained Seal",
+    "tr": "Kan Lekeli Mühür",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start. 2026-11-09: confirmed by the game table (DataTable row name key Item_Treasure_FJZL_001).",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_FJZL_001"
   },
   "T_02002": {
-    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
-    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
-    "guess": true,
-    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+    "en": "Sect Leader's Snuff Bottle",
+    "tr": "Tarikat Liderinin Enfiye Şişesi",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start. 2026-11-09: confirmed by the game table (DataTable row name key Item_Treasure_FJZL_002).",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_FJZL_002"
   },
   "T_02003": {
-    "en": "Crimson Forest treasure (one of: Sect Leader's Snuff Bottle, Bloodstained Seal, Ancient Crossbow)",
-    "tr": "Kızıl Orman hazinesi (biri: Tarikat Liderinin Enfiye Şişesi, Kan Lekeli Mühür, Kadim Arbalet)",
-    "guess": true,
-    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start."
+    "en": "Ancient Crossbow",
+    "tr": "Kadim Arbalet",
+    "guess": false,
+    "note": "Quick Hand Zhang treasure, Crimson Forest; which code is which item is unknown (the patch lists Item_Treasure_FJZL_001 Bloodstained Seal, _002 Sect Leader's Snuff Bottle, _003 Ancient Crossbow; by analogy with the Village of Lu codes T_0200N may be FJZL_00N, not verified). Rule quickhand-request-start. 2026-11-09: confirmed by the game table (DataTable row name key Item_Treasure_FJZL_003).",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_FJZL_003"
   },
   "T_05001": {
     "en": "Wedding Candles",
     "tr": "Düğün Mumları",
     "guess": false,
-    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_001); rule lu-quick-hand-treasures."
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_001); rule lu-quick-hand-treasures.",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_LJC_001"
   },
   "T_05002": {
     "en": "White Jade Twins",
     "tr": "Beyaz Yeşim İkizler",
     "guess": false,
-    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_002); rule lu-quick-hand-treasures."
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_002); rule lu-quick-hand-treasures.",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_LJC_002"
   },
   "T_05003": {
     "en": "Unveiled Statue",
     "tr": "Peçesiz Heykel",
     "guess": false,
-    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_003; the lu rule text says Açığa Çıkan Heykel); rule lu-quick-hand-treasures."
+    "note": "Quick Hand Zhang treasure, Village of Lu (Item_Treasure_LJC_003; the lu rule text says Açığa Çıkan Heykel); rule lu-quick-hand-treasures.",
+    "source": "game-data",
+    "gameKey": "Item_Treasure_LJC_003"
   },
   "AC_Control": {
     "en": "Fine Thread",
     "tr": "İnce İplik",
-    "guess": true,
-    "note": "acquired right after the Village of Lu hand-in to Quick Hand Zhang (2026-11-06 03:46)"
+    "guess": false,
+    "note": "acquired right after the Village of Lu hand-in to Quick Hand Zhang (2026-11-06 03:46) 2026-11-09: confirmed by the game table (DataTable row name key Item_Accessory_024).",
+    "source": "game-data",
+    "gameKey": "Item_Accessory_024"
   },
   "I_06006": {
-    "en": "Shattered Hero's Courage",
-    "tr": "Kırık Kahraman Cesareti",
-    "guess": true,
-    "note": "InventoryInfos. Identified by timing on a real save (2026-11-07 03:21:20): acquired in Pangzhen right after the Chief Disciple was reported to the Wolf Leader, at the same second BuMieXiaDan went S1 Completed → branch 1 Activating (petal counter). The Turkish name is a guess (no locres entry for item codes)."
+    "en": "Shattered \"Hero's Courage\"",
+    "tr": "Parçalanmış \"Kahramanın Cesareti\"",
+    "guess": false,
+    "note": "InventoryInfos. Identified by timing on a real save (2026-11-07 03:21:20): acquired in Pangzhen right after the Chief Disciple was reported to the Wolf Leader, at the same second BuMieXiaDan went S1 Completed → branch 1 Activating (petal counter). The Turkish name is a guess (no locres entry for item codes). 2026-11-09: confirmed by the game table (DataTable row name key Item_Plot_Pangzhen_006).",
+    "source": "game-data",
+    "gameKey": "Item_Plot_Pangzhen_006"
   }
 }

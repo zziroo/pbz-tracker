@@ -1,0 +1,1054 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "quests": {
+  "/Game/PBZstory/PBZQuest/Simple/LanJiaGongZi.LanJiaGongZi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/LanJiaGongZi.LanJiaGongZi_C",
+   "className": "LanJiaGongZi_C",
+   "id": "LanJiaGongZi",
+   "titleKey": "QuestRumor_006",
+   "title": {
+    "key": "QuestRumor_006",
+    "en": "YOUNG MASTER LAN",
+    "zh": "兰家大少",
+    "tr": "GENÇ EFENDİ LAN"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Attack.Tutorial_CaveBattle_Attack_C": {
+   "classPath": "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Attack.Tutorial_CaveBattle_Attack_C",
+   "className": "Tutorial_CaveBattle_Attack_C",
+   "id": "Tutorial_CaveBattle_Attack",
+   "titleKey": "Tutorial_Quest_Attack_0",
+   "title": {
+    "key": "Tutorial_Quest_Attack_0",
+    "en": "ATTACK",
+    "zh": "攻击",
+    "tr": "SALDIRI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Defend.Tutorial_CaveBattle_Defend_C": {
+   "classPath": "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Defend.Tutorial_CaveBattle_Defend_C",
+   "className": "Tutorial_CaveBattle_Defend_C",
+   "id": "Tutorial_CaveBattle_Defend",
+   "titleKey": "Tutorial_Quest_Defend_0",
+   "title": {
+    "key": "Tutorial_Quest_Defend_0",
+    "en": "Block & Dodge",
+    "zh": "防御与闪避",
+    "tr": "Blok ve Kaçınma"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Skill.Tutorial_CaveBattle_Skill_C": {
+   "classPath": "/Game/PBZstory/Tutorial/Tutorial_CaveBattle_Skill.Tutorial_CaveBattle_Skill_C",
+   "className": "Tutorial_CaveBattle_Skill_C",
+   "id": "Tutorial_CaveBattle_Skill",
+   "titleKey": "Tutorial_Quest_SKill_0",
+   "title": {
+    "key": "Tutorial_Quest_SKill_0",
+    "en": "SKILLS",
+    "zh": "技巧",
+    "tr": "BECERİLER"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/FengYuHuo.FengYuHuo_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/FengYuHuo.FengYuHuo_C",
+   "className": "FengYuHuo_C",
+   "id": "FengYuHuo",
+   "titleKey": "QuestMaze_016",
+   "title": {
+    "key": "QuestMaze_016",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/GuYouDeRenWu.GuYouDeRenWu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/GuYouDeRenWu.GuYouDeRenWu_C",
+   "className": "GuYouDeRenWu_C",
+   "id": "GuYouDeRenWu",
+   "titleKey": "QuestMaze_014",
+   "title": {
+    "key": "QuestMaze_014",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/HongFangZi.HongFangZi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/HongFangZi.HongFangZi_C",
+   "className": "HongFangZi_C",
+   "id": "HongFangZi",
+   "titleKey": "Bell_NLES_021",
+   "title": {
+    "key": "Bell_NLES_021",
+    "en": "Crimson Manor",
+    "zh": "红房子",
+    "tr": "Kızıl Malikâne"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/HuanShuPiPa.HuanShuPiPa_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/HuanShuPiPa.HuanShuPiPa_C",
+   "className": "HuanShuPiPa_C",
+   "id": "HuanShuPiPa",
+   "titleKey": "QuestMaze_006",
+   "title": {
+    "key": "QuestMaze_006",
+    "en": "ILLUSORY PIPA",
+    "zh": "幻术琵琶",
+    "tr": "HAYALİ PİPA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/HuXinMiMi.HuXinMiMi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/HuXinMiMi.HuXinMiMi_C",
+   "className": "HuXinMiMi_C",
+   "id": "HuXinMiMi",
+   "titleKey": "QuestMaze_008",
+   "title": {
+    "key": "QuestMaze_008",
+    "en": "SECRETS AT THE HEART OF THE LAKE",
+    "zh": "湖心秘密",
+    "tr": "GÖLÜN KALBİNDEKİ SIRLAR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/JiGuanChuan.JiGuanChuan_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/JiGuanChuan.JiGuanChuan_C",
+   "className": "JiGuanChuan_C",
+   "id": "JiGuanChuan",
+   "titleKey": "QuestMaze_011",
+   "title": {
+    "key": "QuestMaze_011",
+    "en": "SHA-CHI POWERED BOAT",
+    "zh": "机关船",
+    "tr": "SHA-CHI İLE ÇALIŞAN TEKNE"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/KunLunSanJie.KunLunSanJie_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/KunLunSanJie.KunLunSanJie_C",
+   "className": "KunLunSanJie_C",
+   "id": "KunLunSanJie",
+   "titleKey": "QuestMaze_003",
+   "title": {
+    "key": "QuestMaze_003",
+    "en": "PILLARS OF KUNLUN",
+    "zh": "昆仑三杰",
+    "tr": "KUNLUN SÜTUNLARI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/QiShengHeLai.QiShengHeLai_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/QiShengHeLai.QiShengHeLai_C",
+   "className": "QiShengHeLai_C",
+   "id": "QiShengHeLai",
+   "titleKey": "QuestMaze_001",
+   "title": {
+    "key": "QuestMaze_001",
+    "en": "WHENCE THE WEEPING",
+    "zh": "泣声何来",
+    "tr": "AĞLAYIŞ NEREDEN GELİR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/RenOuZhongShu.RenOuZhongShu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/RenOuZhongShu.RenOuZhongShu_C",
+   "className": "RenOuZhongShu_C",
+   "id": "RenOuZhongShu",
+   "titleKey": "QuestMaze_007",
+   "title": {
+    "key": "QuestMaze_007",
+    "en": "THE HERALD'S ILLUSION",
+    "zh": "梦差幻境",
+    "tr": "HABERCİ'NİN İLLÜZYONU"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/SanMianHunDun.SanMianHunDun_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/SanMianHunDun.SanMianHunDun_C",
+   "className": "SanMianHunDun_C",
+   "id": "SanMianHunDun",
+   "titleKey": "QuestMaze_017",
+   "title": {
+    "key": "QuestMaze_017",
+    "en": "TRIPLE THREAT",
+    "zh": "三面混沌",
+    "tr": "ÜÇLÜ TEHDİT"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/XiLouFeiXu.XiLouFeiXu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/XiLouFeiXu.XiLouFeiXu_C",
+   "className": "XiLouFeiXu_C",
+   "id": "XiLouFeiXu",
+   "titleKey": "QuestMaze_013",
+   "title": {
+    "key": "QuestMaze_013",
+    "en": "ALLURE OF VANITY",
+    "zh": "浮华引",
+    "tr": "KİBRİN CAZİBESİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/XueMaiJueXing.XueMaiJueXing_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/XueMaiJueXing.XueMaiJueXing_C",
+   "className": "XueMaiJueXing_C",
+   "id": "XueMaiJueXing",
+   "titleKey": "QuestMaze_004",
+   "title": {
+    "key": "QuestMaze_004",
+    "en": "BLOODLINE AWAKENING",
+    "zh": "血脉觉醒",
+    "tr": "KAN BAĞI UYANIŞI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/XueRouHua.XueRouHua_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/XueRouHua.XueRouHua_C",
+   "className": "XueRouHua_C",
+   "id": "XueRouHua",
+   "titleKey": "QuestMaze_002",
+   "title": {
+    "key": "QuestMaze_002",
+    "en": "FLESH LILY",
+    "zh": "血肉花",
+    "tr": "ET ZAMBAĞI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Branch/XuKongHuanXiang.XuKongHuanXiang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Branch/XuKongHuanXiang.XuKongHuanXiang_C",
+   "className": "XuKongHuanXiang_C",
+   "id": "XuKongHuanXiang",
+   "titleKey": "QuestMaze_005",
+   "title": {
+    "key": "QuestMaze_005",
+    "en": "ILLUSION OF INANIS",
+    "zh": "虚空幻象",
+    "tr": "INANIS'İN İLLÜZYONU"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/BaiYing.BaiYing_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/BaiYing.BaiYing_C",
+   "className": "BaiYing_C",
+   "id": "BaiYing",
+   "titleKey": "QuestCollect_007",
+   "title": {
+    "key": "QuestCollect_007",
+    "en": "WHITESHADOW",
+    "zh": "白影",
+    "tr": "BEYAZGÖLGE"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/JiaoTuSanKu.JiaoTuSanKu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/JiaoTuSanKu.JiaoTuSanKu_C",
+   "className": "JiaoTuSanKu_C",
+   "id": "JiaoTuSanKu",
+   "titleKey": "QuestCollect_002",
+   "title": {
+    "key": "QuestCollect_002",
+    "en": "THE WILY HARE'S THREE DENS",
+    "zh": "狡兔三窟",
+    "tr": "KURNAZ TAVŞANIN ÜÇ İNİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/LongZhu.LongZhu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/LongZhu.LongZhu_C",
+   "className": "LongZhu_C",
+   "id": "LongZhu",
+   "titleKey": "UI_Map_23",
+   "title": {
+    "key": "UI_Map_23",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/MiaoShouKongKong.MiaoShouKongKong_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/MiaoShouKongKong.MiaoShouKongKong_C",
+   "className": "MiaoShouKongKong_C",
+   "id": "MiaoShouKongKong",
+   "titleKey": "QuestCollect_003",
+   "title": {
+    "key": "QuestCollect_003",
+    "en": "QUICK HAND'S REQUEST",
+    "zh": "妙手空空",
+    "tr": "ÇABUK EL'İN İSTEĞİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/QiXingJianZhen.QiXingJianZhen_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/QiXingJianZhen.QiXingJianZhen_C",
+   "className": "QiXingJianZhen_C",
+   "id": "QiXingJianZhen",
+   "titleKey": "QuestCollect_005",
+   "title": {
+    "key": "QuestCollect_005",
+    "en": "THE SEVEN-STARS FORMATION",
+    "zh": "七星剑阵",
+    "tr": "YEDİ YILDIZ DÜZENİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/RongShuZhiXin.RongShuZhiXin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/RongShuZhiXin.RongShuZhiXin_C",
+   "className": "RongShuZhiXin_C",
+   "id": "RongShuZhiXin",
+   "titleKey": "QuestCollect_004",
+   "title": {
+    "key": "QuestCollect_004",
+    "en": "HEART OF THE BANYAN",
+    "zh": "榕树之心",
+    "tr": "BANYANIN KALBİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/ShaoZhu.ShaoZhu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/ShaoZhu.ShaoZhu_C",
+   "className": "ShaoZhu_C",
+   "id": "ShaoZhu",
+   "titleKey": "QuestCollect_010",
+   "title": {
+    "key": "QuestCollect_010",
+    "en": "YOUNG MISTRESS",
+    "zh": "少主",
+    "tr": "GENÇ HANIM"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/WuShiZunZhu.WuShiZunZhu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/WuShiZunZhu.WuShiZunZhu_C",
+   "className": "WuShiZunZhu_C",
+   "id": "WuShiZunZhu",
+   "titleKey": "Bell_SZ_025",
+   "title": {
+    "key": "Bell_SZ_025",
+    "en": "Lion Dance Hall Depths",
+    "zh": "舞狮馆深处",
+    "tr": "Aslan Dansı Salonu Derinlikleri"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/XianYin.XianYin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/XianYin.XianYin_C",
+   "className": "XianYin_C",
+   "id": "XianYin",
+   "titleKey": "QuestCollect_006",
+   "title": {
+    "key": "QuestCollect_006",
+    "en": "RESONANT STRINGS",
+    "zh": "弦音",
+    "tr": "YANKILANAN TELLER"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Collect/ZhengYiMengChen.ZhengYiMengChen_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Collect/ZhengYiMengChen.ZhengYiMengChen_C",
+   "className": "ZhengYiMengChen_C",
+   "id": "ZhengYiMengChen",
+   "titleKey": "QuestCollect_009",
+   "title": {
+    "key": "QuestCollect_009",
+    "en": "JUSTICE TARNISHED",
+    "zh": "正义蒙尘",
+    "tr": "LEKELENMİŞ ADALET"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh1-2-GangTieJuTa.MainCh1-2-GangTieJuTa_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh1-2-GangTieJuTa.MainCh1-2-GangTieJuTa_C",
+   "className": "MainCh1-2-GangTieJuTa_C",
+   "id": "MainCh1-2-GangTieJuTa",
+   "titleKey": "Chapter_01_1",
+   "title": {
+    "key": "Chapter_01_1",
+    "en": "STEEL AND STEAM",
+    "zh": "钢铁巨塔",
+    "tr": "ÇELİK VE BUHAR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh1-LinZhongShaJi.MainCh1-LinZhongShaJi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh1-LinZhongShaJi.MainCh1-LinZhongShaJi_C",
+   "className": "MainCh1-LinZhongShaJi_C",
+   "id": "MainCh1-LinZhongShaJi",
+   "titleKey": "Chapter_02",
+   "title": {
+    "key": "Chapter_02",
+    "en": "SNAKE'S REFLECTION",
+    "zh": "林中血，镜中蛇",
+    "tr": "YILANIN YANSIMASI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh1-NiLiuErShang.MainCh1-NiLiuErShang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh1-NiLiuErShang.MainCh1-NiLiuErShang_C",
+   "className": "MainCh1-NiLiuErShang_C",
+   "id": "MainCh1-NiLiuErShang",
+   "titleKey": "Chapter_01",
+   "title": {
+    "key": "Chapter_01",
+    "en": "AGAINST THE FLOW",
+    "zh": "逆流而上",
+    "tr": "AKINTIYA KARŞI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh1-ShiXinCun.MainCh1-ShiXinCun_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh1-ShiXinCun.MainCh1-ShiXinCun_C",
+   "className": "MainCh1-ShiXinCun_C",
+   "id": "MainCh1-ShiXinCun",
+   "titleKey": "QuestStory_01_3",
+   "title": {
+    "key": "QuestStory_01_3",
+    "en": "HEARTLESS REMNANTS",
+    "zh": "失心村",
+    "tr": "KALPSİZ KALINTILAR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh2-SiZhen.MainCh2-SiZhen_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh2-SiZhen.MainCh2-SiZhen_C",
+   "className": "MainCh2-SiZhen_C",
+   "id": "MainCh2-SiZhen",
+   "titleKey": "Chapter_06",
+   "title": {
+    "key": "Chapter_06",
+    "en": "TOWN OF DEATH",
+    "zh": "死镇",
+    "tr": "ÖLÜM KASABASI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh2-XinZhiZongJi.MainCh2-XinZhiZongJi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh2-XinZhiZongJi.MainCh2-XinZhiZongJi_C",
+   "className": "MainCh2-XinZhiZongJi_C",
+   "id": "MainCh2-XinZhiZongJi",
+   "titleKey": "Chapter_06_1",
+   "title": {
+    "key": "Chapter_06_1",
+    "en": "THE HEART'S TRAIL",
+    "zh": "心之踪迹",
+    "tr": "KALBİN İZİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh3-DieXueZhiLu.MainCh3-DieXueZhiLu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh3-DieXueZhiLu.MainCh3-DieXueZhiLu_C",
+   "className": "MainCh3-DieXueZhiLu_C",
+   "id": "MainCh3-DieXueZhiLu",
+   "titleKey": "Chapter_13",
+   "title": {
+    "key": "Chapter_13",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh3-LongYuZuo.MainCh3-LongYuZuo_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh3-LongYuZuo.MainCh3-LongYuZuo_C",
+   "className": "MainCh3-LongYuZuo_C",
+   "id": "MainCh3-LongYuZuo",
+   "titleKey": "Chapter_17",
+   "title": {
+    "key": "Chapter_17",
+    "en": "A SOUL'S WORTH",
+    "zh": "断魂",
+    "tr": "BİR RUHUN DEĞERİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Main/MainCh3-PoJu.MainCh3-PoJu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Main/MainCh3-PoJu.MainCh3-PoJu_C",
+   "className": "MainCh3-PoJu_C",
+   "id": "MainCh3-PoJu",
+   "titleKey": "Chapter_14",
+   "title": {
+    "key": "Chapter_14",
+    "en": "THE WAY FORWARD",
+    "zh": "破局",
+    "tr": "İLERİYE GİDEN YOL"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Quest_Branchline/MemoryFlower.MemoryFlower_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Quest_Branchline/MemoryFlower.MemoryFlower_C",
+   "className": "MemoryFlower_C",
+   "id": "MemoryFlower",
+   "titleKey": "QuestRumor_01-DDSD_006",
+   "title": {
+    "key": "QuestRumor_01-DDSD_006",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/BaiShanMiWen.BaiShanMiWen_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/BaiShanMiWen.BaiShanMiWen_C",
+   "className": "BaiShanMiWen_C",
+   "id": "BaiShanMiWen",
+   "titleKey": "QuestRumor_003",
+   "title": {
+    "key": "QuestRumor_003",
+    "en": "SECRETS OF THE BAISHAN SECT",
+    "zh": "白山秘闻",
+    "tr": "BAISHAN TARİKATININ SIRLARI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/BaiTouKe.BaiTouKe_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/BaiTouKe.BaiTouKe_C",
+   "className": "BaiTouKe_C",
+   "id": "BaiTouKe",
+   "titleKey": "QuestRumor_008",
+   "title": {
+    "key": "QuestRumor_008",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/BaiXue.BaiXue_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/BaiXue.BaiXue_C",
+   "className": "BaiXue_C",
+   "id": "BaiXue",
+   "titleKey": "QuestRumor_014",
+   "title": {
+    "key": "QuestRumor_014",
+    "en": "BAI XUE",
+    "zh": "白雪儿",
+    "tr": "BAI XUE"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/BuMieXiaDan.BuMieXiaDan_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/BuMieXiaDan.BuMieXiaDan_C",
+   "className": "BuMieXiaDan_C",
+   "id": "BuMieXiaDan",
+   "titleKey": "QuestRumor_032",
+   "title": {
+    "key": "QuestRumor_032",
+    "en": "THE UNDYING HEROIC SPIRIT",
+    "zh": "不灭侠胆",
+    "tr": "ÖLMEZ KAHRAMANLIK RUHU"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/CanCunZhiWu.CanCunZhiWu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/CanCunZhiWu.CanCunZhiWu_C",
+   "className": "CanCunZhiWu_C",
+   "id": "CanCunZhiWu",
+   "titleKey": "QuestRumor_017",
+   "title": {
+    "key": "QuestRumor_017",
+    "en": "",
+    "zh": "残存之物",
+    "tr": ""
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/CiMuXin.CiMuXin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/CiMuXin.CiMuXin_C",
+   "className": "CiMuXin_C",
+   "id": "CiMuXin",
+   "titleKey": "QuestRumor_011",
+   "title": {
+    "key": "QuestRumor_011",
+    "en": "A MOTHER'S HEART",
+    "zh": "慈母心",
+    "tr": "BİR ANNENİN KALBİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/DaHuang.DaHuang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/DaHuang.DaHuang_C",
+   "className": "DaHuang_C",
+   "id": "DaHuang",
+   "titleKey": "QuestRumor_009",
+   "title": {
+    "key": "QuestRumor_009",
+    "en": "DAHUANG",
+    "zh": "大黄",
+    "tr": "DAHUANG"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/DaoJianFoXin.DaoJianFoXin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/DaoJianFoXin.DaoJianFoXin_C",
+   "className": "DaoJianFoXin_C",
+   "id": "DaoJianFoXin",
+   "titleKey": "QuestRumor_030",
+   "title": {
+    "key": "QuestRumor_030",
+    "en": "THE SWORD AND THE WAY",
+    "zh": "道剑佛心",
+    "tr": "KILIÇ VE YOL"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/DaoYiYouDao.DaoYiYouDao_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/DaoYiYouDao.DaoYiYouDao_C",
+   "className": "DaoYiYouDao_C",
+   "id": "DaoYiYouDao",
+   "titleKey": "QuestRumor_029",
+   "title": {
+    "key": "QuestRumor_029",
+    "en": "HONOR AMONG THIEVES",
+    "zh": "盗亦有道",
+    "tr": "HIRSIZLAR ARASINDA ONUR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/DuanZhi.DuanZhi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/DuanZhi.DuanZhi_C",
+   "className": "DuanZhi_C",
+   "id": "DuanZhi",
+   "titleKey": "QuestRumor_037",
+   "title": {
+    "key": "QuestRumor_037",
+    "en": "",
+    "zh": "断指",
+    "tr": ""
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/FangKuai.FangKuai_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/FangKuai.FangKuai_C",
+   "className": "FangKuai_C",
+   "id": "FangKuai",
+   "titleKey": "QuestRumor_031",
+   "title": {
+    "key": "QuestRumor_031",
+    "en": "THE CUBE",
+    "zh": "方块",
+    "tr": "KÜP"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/FengChe.FengChe_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/FengChe.FengChe_C",
+   "className": "FengChe_C",
+   "id": "FengChe",
+   "titleKey": "QuestRumor_023",
+   "title": {
+    "key": "QuestRumor_023",
+    "en": "",
+    "zh": "风车",
+    "tr": ""
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/GeJueXieZi.GeJueXieZi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/GeJueXieZi.GeJueXieZi_C",
+   "className": "GeJueXieZi_C",
+   "id": "GeJueXieZi",
+   "titleKey": "QuestRumor_002",
+   "title": {
+    "key": "QuestRumor_002",
+    "en": "A SEVERED MINDSEAL",
+    "zh": "隔绝楔子",
+    "tr": "KOPMUŞ ZİHİN MÜHRÜ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/GuiTu.GuiTu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/GuiTu.GuiTu_C",
+   "className": "GuiTu_C",
+   "id": "GuiTu",
+   "titleKey": "QuestRumor_005",
+   "title": {
+    "key": "QuestRumor_005",
+    "en": "THE JOURNEY HOME",
+    "zh": "归途",
+    "tr": "EVE YOLCULUK"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/JiangHuRenShi.JiangHuRenShi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/JiangHuRenShi.JiangHuRenShi_C",
+   "className": "JiangHuRenShi_C",
+   "id": "JiangHuRenShi",
+   "titleKey": "QuestRumor_019",
+   "title": {
+    "key": "QuestRumor_019",
+    "en": "THE BROAD SABER",
+    "zh": "横刀",
+    "tr": "GENİŞ PALA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/JianXiYiShi.JianXiYiShi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/JianXiYiShi.JianXiYiShi_C",
+   "className": "JianXiYiShi_C",
+   "id": "JianXiYiShi",
+   "titleKey": "QuestRumor_026",
+   "title": {
+    "key": "QuestRumor_026",
+    "en": "APPRENTICE HEALER",
+    "zh": "见习医师",
+    "tr": "ÇIRAK ŞİFACI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/JiuSiFuShang.JiuSiFuShang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/JiuSiFuShang.JiuSiFuShang_C",
+   "className": "JiuSiFuShang_C",
+   "id": "JiuSiFuShang",
+   "titleKey": "QuestRumor_027",
+   "title": {
+    "key": "QuestRumor_027",
+    "en": "A HEALER'S MERCY",
+    "zh": "救死扶伤",
+    "tr": "BİR ŞİFACININ MERHAMETİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/LiuYi.LiuYi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/LiuYi.LiuYi_C",
+   "className": "LiuYi_C",
+   "id": "LiuYi",
+   "titleKey": "QuestRumor_020",
+   "title": {
+    "key": "QuestRumor_020",
+    "en": "HERO'S LAMENT",
+    "zh": "英雄悲歌",
+    "tr": "KAHRAMANIN AĞIDI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/MoJiaoZhiNv.MoJiaoZhiNv_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/MoJiaoZhiNv.MoJiaoZhiNv_C",
+   "className": "MoJiaoZhiNv_C",
+   "id": "MoJiaoZhiNv",
+   "titleKey": "QuestRumor_015",
+   "title": {
+    "key": "QuestRumor_015",
+    "en": "DAUGHTER OF THE DARK SECT",
+    "zh": "魔教之女",
+    "tr": "KARANLIK TARİKATIN KIZI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/NanYanZhiYin.NanYanZhiYin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/NanYanZhiYin.NanYanZhiYin_C",
+   "className": "NanYanZhiYin_C",
+   "id": "NanYanZhiYin",
+   "titleKey": "QuestRumor_024",
+   "title": {
+    "key": "QuestRumor_024",
+    "en": "FESTERING SECRET",
+    "zh": "难言之隐",
+    "tr": "İLTİHAPLI SIR"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/PiPaTanZou.PiPaTanZou_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/PiPaTanZou.PiPaTanZou_C",
+   "className": "PiPaTanZou_C",
+   "id": "PiPaTanZou",
+   "titleKey": "QuestRumor_007",
+   "title": {
+    "key": "QuestRumor_007",
+    "en": null,
+    "zh": null,
+    "tr": null
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/QingLiMenHu.QingLiMenHu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/QingLiMenHu.QingLiMenHu_C",
+   "className": "QingLiMenHu_C",
+   "id": "QingLiMenHu",
+   "titleKey": "QuestRumor_025",
+   "title": {
+    "key": "QuestRumor_025",
+    "en": "PURGE THE SECT",
+    "zh": "清理门户",
+    "tr": "TARİKATI TEMİZLE"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/QuanXin.QuanXin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/QuanXin.QuanXin_C",
+   "className": "QuanXin_C",
+   "id": "QuanXin",
+   "titleKey": "QuestRumor_036",
+   "title": {
+    "key": "QuestRumor_036",
+    "en": "HEART OF THE FIST",
+    "zh": "拳心",
+    "tr": "YUMRUĞUN KALBİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/RenOuMuXin.RenOuMuXin_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/RenOuMuXin.RenOuMuXin_C",
+   "className": "RenOuMuXin_C",
+   "id": "RenOuMuXin",
+   "titleKey": "QuestRumor_028",
+   "title": {
+    "key": "QuestRumor_028",
+    "en": "A PUPPET'S WOODEN HEART",
+    "zh": "人偶木心",
+    "tr": "BİR KUKLANIN TAHTA KALBİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/RuMengQiZi.RuMengQiZi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/RuMengQiZi.RuMengQiZi_C",
+   "className": "RuMengQiZi_C",
+   "id": "RuMengQiZi",
+   "titleKey": "QuestRumor_016",
+   "title": {
+    "key": "QuestRumor_016",
+    "en": "A DREAM OF MOTHERHOOD",
+    "zh": "入梦祈子",
+    "tr": "ANNELİK RÜYASI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/TouPaiHuaDan.TouPaiHuaDan_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/TouPaiHuaDan.TouPaiHuaDan_C",
+   "className": "TouPaiHuaDan_C",
+   "id": "TouPaiHuaDan",
+   "titleKey": "QuestRumor_033",
+   "title": {
+    "key": "QuestRumor_033",
+    "en": "THE STAR PERFORMER",
+    "zh": "头牌花旦",
+    "tr": "YILDIZ OYUNCU"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/WuXiangWang.WuXiangWang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/WuXiangWang.WuXiangWang_C",
+   "className": "WuXiangWang_C",
+   "id": "WuXiangWang",
+   "titleKey": "QuestRumor_034",
+   "title": {
+    "key": "QuestRumor_034",
+    "en": "DON'T FORGET ME",
+    "zh": "勿相忘",
+    "tr": "BENİ UNUTMA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/XiangJianHeJi.XiangJianHeJi_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/XiangJianHeJi.XiangJianHeJi_C",
+   "className": "XiangJianHeJi_C",
+   "id": "XiangJianHeJi",
+   "titleKey": "QuestRumor_012",
+   "title": {
+    "key": "QuestRumor_012",
+    "en": "KIN AGAINST KIN",
+    "zh": "相煎何急",
+    "tr": "AKRABAYA KARŞI AKRABA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/XiaoCui.XiaoCui_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/XiaoCui.XiaoCui_C",
+   "className": "XiaoCui_C",
+   "id": "XiaoCui",
+   "titleKey": "QuestRumor_018",
+   "title": {
+    "key": "QuestRumor_018",
+    "en": "CUI",
+    "zh": "小翠",
+    "tr": "CUI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/XiaoXue.XiaoXue_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/XiaoXue.XiaoXue_C",
+   "className": "XiaoXue_C",
+   "id": "XiaoXue",
+   "titleKey": "QuestRumor_004",
+   "title": {
+    "key": "QuestRumor_004",
+    "en": "XUE, ADMIRER OF HEROES",
+    "zh": "崇拜大侠的小雪",
+    "tr": "KAHRAMANLARIN HAYRANI XUE"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/XiongFu.XiongFu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/XiongFu.XiongFu_C",
+   "className": "XiongFu_C",
+   "id": "XiongFu",
+   "titleKey": "QuestRumor_001",
+   "title": {
+    "key": "QuestRumor_001",
+    "en": "FOUR FIERCE AXES",
+    "zh": "凶斧",
+    "tr": "DÖRT KESKİN BALTA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/YiBiZhiDao.YiBiZhiDao_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/YiBiZhiDao.YiBiZhiDao_C",
+   "className": "YiBiZhiDao_C",
+   "id": "YiBiZhiDao",
+   "titleKey": "QuestRumor_035",
+   "title": {
+    "key": "QuestRumor_035",
+    "en": "USE IT AGAINST THEM",
+    "zh": "以彼之道",
+    "tr": "ONLARA KARŞI KULLAN"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/YiGeBuLiu.YiGeBuLiu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/YiGeBuLiu.YiGeBuLiu_C",
+   "className": "YiGeBuLiu_C",
+   "id": "YiGeBuLiu",
+   "titleKey": "QuestRumor_022",
+   "title": {
+    "key": "QuestRumor_022",
+    "en": "LEAVE NONE ALIVE",
+    "zh": "一个不留",
+    "tr": "KİMSEYİ SAĞ BIRAKMA"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/YongShengDaoZhu.YongShengDaoZhu_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/YongShengDaoZhu.YongShengDaoZhu_C",
+   "className": "YongShengDaoZhu_C",
+   "id": "YongShengDaoZhu",
+   "titleKey": "QuestRumor_021",
+   "title": {
+    "key": "QuestRumor_021",
+    "en": "LEDGER OF ATONEMENT",
+    "zh": "赎罪名单",
+    "tr": "KEFARET DEFTERİ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Simple/ZaiHuiXiongZhang.ZaiHuiXiongZhang_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Simple/ZaiHuiXiongZhang.ZaiHuiXiongZhang_C",
+   "className": "ZaiHuiXiongZhang_C",
+   "id": "ZaiHuiXiongZhang",
+   "titleKey": "QuestRumor_010",
+   "title": {
+    "key": "QuestRumor_010",
+    "en": "A BROTHER ONCE MORE",
+    "zh": "再会兄长",
+    "tr": "YENİDEN KARDEŞ"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Attack.Tutorial_ZLGW_Attack_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Attack.Tutorial_ZLGW_Attack_C",
+   "className": "Tutorial_ZLGW_Attack_C",
+   "id": "Tutorial_ZLGW_Attack",
+   "titleKey": "Tutorial_Quest_Attack_0",
+   "title": {
+    "key": "Tutorial_Quest_Attack_0",
+    "en": "ATTACK",
+    "zh": "攻击",
+    "tr": "SALDIRI"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_CavalryFight.Tutorial_ZLGW_CavalryFight_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_CavalryFight.Tutorial_ZLGW_CavalryFight_C",
+   "className": "Tutorial_ZLGW_CavalryFight_C",
+   "id": "Tutorial_ZLGW_CavalryFight",
+   "titleKey": "Tutorial_Prologue_Title_2",
+   "title": {
+    "key": "Tutorial_Prologue_Title_2",
+    "en": "",
+    "zh": "骑兵迎击战",
+    "tr": ""
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_CavalryShoot.Tutorial_ZLGW_CavalryShoot_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_CavalryShoot.Tutorial_ZLGW_CavalryShoot_C",
+   "className": "Tutorial_ZLGW_CavalryShoot_C",
+   "id": "Tutorial_ZLGW_CavalryShoot",
+   "titleKey": "Tutorial_Prologue_Title_1",
+   "title": {
+    "key": "Tutorial_Prologue_Title_1",
+    "en": "Under Fire",
+    "zh": "抵挡射击战斗",
+    "tr": "Ateş Altında"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Defend.Tutorial_ZLGW_Defend_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Defend.Tutorial_ZLGW_Defend_C",
+   "className": "Tutorial_ZLGW_Defend_C",
+   "id": "Tutorial_ZLGW_Defend",
+   "titleKey": "Tutorial_Quest_Defend_0",
+   "title": {
+    "key": "Tutorial_Quest_Defend_0",
+    "en": "Block & Dodge",
+    "zh": "防御与闪避",
+    "tr": "Blok ve Kaçınma"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Defend2.Tutorial_ZLGW_Defend2_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Defend2.Tutorial_ZLGW_Defend2_C",
+   "className": "Tutorial_ZLGW_Defend2_C",
+   "id": "Tutorial_ZLGW_Defend2",
+   "titleKey": "Tutorial_Prologue_Quest_2",
+   "title": {
+    "key": "Tutorial_Prologue_Quest_2",
+    "en": "To the Death!",
+    "zh": "决一死战！",
+    "tr": "Ölümüne!"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Skill.Tutorial_ZLGW_Skill_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Tutorial/Tutorial_ZLGW_Skill.Tutorial_ZLGW_Skill_C",
+   "className": "Tutorial_ZLGW_Skill_C",
+   "id": "Tutorial_ZLGW_Skill",
+   "titleKey": "Tutorial_Quest_SKill_0",
+   "title": {
+    "key": "Tutorial_Quest_SKill_0",
+    "en": "SKILLS",
+    "zh": "技巧",
+    "tr": "BECERİLER"
+   },
+   "branches": {}
+  },
+  "/Game/PBZstory/PBZQuest/Demo/ZDDY/Demo-ZDDY.Demo-ZDDY_C": {
+   "classPath": "/Game/PBZstory/PBZQuest/Demo/ZDDY/Demo-ZDDY.Demo-ZDDY_C",
+   "className": "Demo-ZDDY_C",
+   "id": "Demo-ZDDY",
+   "titleKey": "QuestStory_Demo_1",
+   "title": {
+    "key": "QuestStory_Demo_1",
+    "en": "MANDATE ENCAMPMENT",
+    "zh": "正道大营",
+    "tr": "FERMAN ORDUGÂHI"
+   },
+   "branches": {}
+  }
+ }
+}

@@ -1,0 +1,2819 @@
+{
+ "_meta": {
+  "generated": "2026-11-09",
+  "source": "Phantom Blade Zero, Steam build 26367565 (2026-11-04): ProjectPBZ-Windows.utoc/.pak and the Turkish text patch ProjectPBZ-Windows_C.pak",
+  "method": "IoStore/pak indexes decrypted with the public pak AES key; DataTable exports scanned for FString/FText/FName tokens (schema-free, no usmap); names resolved through Game.locres. See research/gamedata/README.md.",
+  "languages": {
+   "en": "en-US Game.locres",
+   "zh": "zh-Hans Game.locres",
+   "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
+  }
+ },
+ "bells": {
+  "Bell_NLES_001": {
+   "id": "Bell_NLES_001",
+   "row": "NLES_001",
+   "nameKey": "Bell_NLES_001",
+   "name": {
+    "key": "Bell_NLES_001",
+    "en": "The Beginning",
+    "zh": "开端之地",
+    "tr": "Başlangıç"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_001",
+   "linkedBell": "Bell_NLES_019_18943",
+   "broken": false
+  },
+  "Bell_NLES_002": {
+   "id": "Bell_NLES_002",
+   "row": "NLES_002",
+   "nameKey": "Bell_NLES_002",
+   "name": {
+    "key": "Bell_NLES_002",
+    "en": "Rustblade Pavilion",
+    "zh": "锈刃凉亭",
+    "tr": "Paslıkılıç Köşkü"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_006",
+   "linkedBell": "Bell_NLES_019_19199",
+   "broken": false
+  },
+  "Bell_NLES_003": {
+   "id": "Bell_NLES_003",
+   "row": "NLES_003",
+   "nameKey": "Bell_NLES_003",
+   "name": {
+    "key": "Bell_NLES_003",
+    "en": "Outpost",
+    "zh": "驿站",
+    "tr": "Karakol"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_008",
+   "linkedBell": "Bell_NLES_019_19455",
+   "broken": false
+  },
+  "Bell_NLES_004": {
+   "id": "Bell_NLES_004",
+   "row": "NLES_004",
+   "nameKey": "Bell_NLES_004",
+   "name": {
+    "key": "Bell_NLES_004",
+    "en": "Creek Valley Plains Entrance",
+    "zh": "溪谷平原入口",
+    "tr": "Dere Vadisi Ovaları Girişi"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_012",
+   "linkedBell": "Bell_NLES_019_19711",
+   "broken": false
+  },
+  "Bell_NLES_005": {
+   "id": "Bell_NLES_005",
+   "row": "NLES_005",
+   "nameKey": "Bell_NLES_005",
+   "name": {
+    "key": "Bell_NLES_005",
+    "en": "Valley Sha-Chi Tower 1st Floor",
+    "zh": "溪谷杀气塔一层",
+    "tr": "Vadi Sha-Chi Kulesi 1. Kat"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_015",
+   "linkedBell": "Bell_NLES_019_19967",
+   "broken": false
+  },
+  "Bell_NLES_006": {
+   "id": "Bell_NLES_006",
+   "row": "NLES_006",
+   "nameKey": "Bell_NLES_006",
+   "name": {
+    "key": "Bell_NLES_006",
+    "en": "Lóng Pillar Overlook",
+    "zh": "远眺龙柱处",
+    "tr": "Lóng Sütunu Seyir Noktası"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_017",
+   "linkedBell": "Bell_NLES_019_20223",
+   "broken": false
+  },
+  "Bell_NLES_007": {
+   "id": "Bell_NLES_007",
+   "row": "NLES_007",
+   "nameKey": "Bell_NLES_007",
+   "name": {
+    "key": "Bell_NLES_007",
+    "en": "Great Waterfall",
+    "zh": "大瀑布",
+    "tr": "Büyük Şelale"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_020",
+   "linkedBell": "Bell_NLES_019_20479",
+   "broken": false
+  },
+  "Bell_NLES_009": {
+   "id": "Bell_NLES_009",
+   "row": "NLES_009",
+   "nameKey": "Bell_NLES_DP_001",
+   "name": {
+    "key": "Bell_NLES_DP_001",
+    "en": "Weeping Creek Lóng Pillar",
+    "zh": "悲泣溪谷龙柱",
+    "tr": "Ağlayan Dere Lóng Sütunu"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_018",
+   "linkedBell": "Bell_NLES_019_255",
+   "broken": false
+  },
+  "Bell_NLES_010": {
+   "id": "Bell_NLES_010",
+   "row": "NLES_010",
+   "nameKey": "Bell_NLES_010",
+   "name": {
+    "key": "Bell_NLES_010",
+    "en": "The Lady's Cave",
+    "zh": "圣母像山洞",
+    "tr": "Hanımın Mağarası"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_009",
+   "linkedBell": "Bell_NLES_019_20735",
+   "broken": false
+  },
+  "Bell_NLES_011": {
+   "id": "Bell_NLES_011",
+   "row": "NLES_011",
+   "nameKey": "Bell_NLES_011",
+   "name": {
+    "key": "Bell_NLES_011",
+    "en": "The Axemaster's Holding Cell",
+    "zh": "斧老大关押处",
+    "tr": "Balta Ustasının Hücresi"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_011",
+   "linkedBell": "Bell_NLES_019_20991",
+   "broken": false
+  },
+  "Bell_NLES_012": {
+   "id": "Bell_NLES_012",
+   "row": "NLES_012",
+   "nameKey": "Bell_NLES_012",
+   "name": {
+    "key": "Bell_NLES_012",
+    "en": "Valley Sha-Chi Tower Summit",
+    "zh": "溪谷杀气塔顶",
+    "tr": "Vadi Sha-Chi Kulesi Zirvesi"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_015",
+   "linkedBell": "Bell_NLES_019_21247",
+   "broken": false
+  },
+  "Bell_NLES_013": {
+   "id": "Bell_NLES_013",
+   "row": "NLES_013",
+   "nameKey": "Bell_NLES_013",
+   "name": {
+    "key": "Bell_NLES_013",
+    "en": "Red Thread Barrier",
+    "zh": "红丝线障壁",
+    "tr": "Kızıl İplik Bariyeri"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_004",
+   "linkedBell": "Bell_NLES_019_21503",
+   "broken": false
+  },
+  "Bell_NLES_014": {
+   "id": "Bell_NLES_014",
+   "row": "NLES_014",
+   "nameKey": "Bell_NLES_014",
+   "name": {
+    "key": "Bell_NLES_014",
+    "en": "The Lady's Rift",
+    "zh": "圣母像裂缝",
+    "tr": "Hanımın Yarığı"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_002",
+   "linkedBell": "Bell_NLES_019_21759",
+   "broken": false
+  },
+  "Bell_NLES_015": {
+   "id": "Bell_NLES_015",
+   "row": "NLES_015",
+   "nameKey": "Bell_NLES_015",
+   "name": {
+    "key": "Bell_NLES_015",
+    "en": "Broken Puppet Valley",
+    "zh": "残偶谷底",
+    "tr": "Kırık Kukla Vadisi"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_005",
+   "linkedBell": "Bell_NLES_019_22015",
+   "broken": false
+  },
+  "Bell_NLES_016": {
+   "id": "Bell_NLES_016",
+   "row": "NLES_016",
+   "nameKey": "Bell_NLES_016",
+   "name": {
+    "key": "Bell_NLES_016",
+    "en": "Valley Sha-Chi Tower Base",
+    "zh": "溪谷杀气塔底",
+    "tr": "Vadi Sha-Chi Kulesi Tabanı"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_016",
+   "linkedBell": "Bell_NLES_019_22271",
+   "broken": false
+  },
+  "Bell_NLES_017": {
+   "id": "Bell_NLES_017",
+   "row": "NLES_017",
+   "nameKey": "Bell_NLES_017",
+   "name": {
+    "key": "Bell_NLES_017",
+    "en": "Flesh Lily Fields",
+    "zh": "血肉花田",
+    "tr": "Et Zambağı Tarlaları"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_014",
+   "linkedBell": "Bell_NLES_019_22527",
+   "broken": false
+  },
+  "Bell_NLES_018": {
+   "id": "Bell_NLES_018",
+   "row": "NLES_018",
+   "nameKey": "Bell_NLES_018",
+   "name": {
+    "key": "Bell_NLES_018",
+    "en": "Waterfall Bridge",
+    "zh": "瀑布吊桥",
+    "tr": "Şelale Köprüsü"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_019",
+   "linkedBell": "Bell_NLES_019_22783",
+   "broken": false
+  },
+  "Bell_NLES_019": {
+   "id": "Bell_NLES_019",
+   "row": "NLES_019",
+   "nameKey": "Bell_NLES_019",
+   "name": {
+    "key": "Bell_NLES_019",
+    "en": "Ruthless Archer Camp",
+    "zh": "恶弓手营地",
+    "tr": "Acımasız Okçu Kampı"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_013",
+   "linkedBell": "Bell_NLES_019_23039",
+   "broken": false
+  },
+  "Bell_NLES_020": {
+   "id": "Bell_NLES_020",
+   "row": "NLES_020",
+   "nameKey": "Bell_NLES_020",
+   "name": {
+    "key": "Bell_NLES_020",
+    "en": "Outpost Courtyard",
+    "zh": "驿站前小院",
+    "tr": "Karakol Avlusu"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_007",
+   "linkedBell": "Bell_NLES_019_23295",
+   "broken": false
+  },
+  "Bell_NLES_021": {
+   "id": "Bell_NLES_021",
+   "row": "NLES_021",
+   "nameKey": "Bell_NLES_021",
+   "name": {
+    "key": "Bell_NLES_021",
+    "en": "Crimson Manor",
+    "zh": "红房子",
+    "tr": "Kızıl Malikâne"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_021",
+   "linkedBell": "Bell_NLES_019_23551",
+   "broken": false
+  },
+  "Bell_NLES_022": {
+   "id": "Bell_NLES_022",
+   "row": "NLES_022",
+   "nameKey": "Bell_NLES_022",
+   "name": {
+    "key": "Bell_NLES_022",
+    "en": "First Meeting with Yu'er",
+    "zh": "初见玉儿处",
+    "tr": "Yu'er ile İlk Karşılaşma"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_003",
+   "linkedBell": "Bell_NLES_019_23807",
+   "broken": false
+  },
+  "Bell_NLES_023": {
+   "id": "Bell_NLES_023",
+   "row": "NLES_023",
+   "nameKey": "Bell_NLES_023",
+   "name": {
+    "key": "Bell_NLES_023",
+    "en": "The Axemaster's Fall",
+    "zh": "斧老大斩落处",
+    "tr": "Balta Ustasının Düşüşü"
+   },
+   "map": "XiGu",
+   "fogRegion": "WorldMapFog_XG_010",
+   "linkedBell": "Bell_NLES_019_24063",
+   "broken": false
+  },
+  "Bell_LZSJ_001": {
+   "id": "Bell_LZSJ_001",
+   "row": "LZSJ_001",
+   "nameKey": "Levelname_LZSJ_001",
+   "name": {
+    "key": "Levelname_LZSJ_001",
+    "en": "CRIMSON FOREST",
+    "zh": "血色森林",
+    "tr": "KIZIL ORMAN"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_001",
+   "linkedBell": "Bell_NLES_019_10495",
+   "broken": false
+  },
+  "Bell_LZSJ_002": {
+   "id": "Bell_LZSJ_002",
+   "row": "LZSJ_002",
+   "nameKey": "Bell_LZSJ_002",
+   "name": {
+    "key": "Bell_LZSJ_002",
+    "en": "Abandoned Main Road",
+    "zh": "荒废官道",
+    "tr": "Terk Edilmiş Ana Yol"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_002",
+   "linkedBell": "Bell_NLES_019_10751",
+   "broken": false
+  },
+  "Bell_LZSJ_003": {
+   "id": "Bell_LZSJ_003",
+   "row": "LZSJ_003",
+   "nameKey": "Bell_LZSJ_003",
+   "name": {
+    "key": "Bell_LZSJ_003",
+    "en": "Pangzhen Bridge Overlook",
+    "zh": "远眺庞镇之桥",
+    "tr": "Pangzhen Köprüsü Seyir Noktası"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_003",
+   "linkedBell": "Bell_NLES_019_11007",
+   "broken": false
+  },
+  "Bell_LZSJ_004": {
+   "id": "Bell_LZSJ_004",
+   "row": "LZSJ_004",
+   "nameKey": "Bell_LZSJ_004",
+   "name": {
+    "key": "Bell_LZSJ_004",
+    "en": "Outlaw Trap",
+    "zh": "亡命徒陷阱",
+    "tr": "Haydut Tuzağı"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_005",
+   "linkedBell": "Bell_NLES_019_11263",
+   "broken": false
+  },
+  "Bell_LZSJ_005": {
+   "id": "Bell_LZSJ_005",
+   "row": "LZSJ_005",
+   "nameKey": "Bell_LZSJ_005",
+   "name": {
+    "key": "Bell_LZSJ_005",
+    "en": "Thieves' Camp",
+    "zh": "飞贼营地",
+    "tr": "Hırsızlar Kampı"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_006",
+   "linkedBell": "Bell_NLES_019_11519",
+   "broken": false
+  },
+  "Bell_LZSJ_006": {
+   "id": "Bell_LZSJ_006",
+   "row": "LZSJ_006",
+   "nameKey": "Bell_LZSJ_006",
+   "name": {
+    "key": "Bell_LZSJ_006",
+    "en": "Cliff of Longing",
+    "zh": "人偶思乡之崖",
+    "tr": "Özlem Uçurumu"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_009",
+   "linkedBell": "Bell_NLES_019_11775",
+   "broken": false
+  },
+  "Bell_LZSJ_007": {
+   "id": "Bell_LZSJ_007",
+   "row": "LZSJ_007",
+   "nameKey": "Bell_LZSJ_007",
+   "name": {
+    "key": "Bell_LZSJ_007",
+    "en": "Mirrorwood Entrance",
+    "zh": "镜林入口",
+    "tr": "Ayna Korusu Girişi"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_011",
+   "linkedBell": "Bell_NLES_019_12031",
+   "broken": false
+  },
+  "Bell_LZSJ_008": {
+   "id": "Bell_LZSJ_008",
+   "row": "LZSJ_008",
+   "nameKey": "Bell_LZSJ_008",
+   "name": {
+    "key": "Bell_LZSJ_008",
+    "en": "Parting Mists",
+    "zh": "迷雾消散处",
+    "tr": "Dağılan Sisler"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_013",
+   "linkedBell": "Bell_NLES_019_12287",
+   "broken": false
+  },
+  "Bell_LZSJ_009": {
+   "id": "Bell_LZSJ_009",
+   "row": "LZSJ_009",
+   "nameKey": "Bell_LZSJ_009",
+   "name": {
+    "key": "Bell_LZSJ_009",
+    "en": "Mirrorwood Depths",
+    "zh": "镜林深处",
+    "tr": "Ayna Korusu Derinlikleri"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_014",
+   "linkedBell": "Bell_NLES_019_12543",
+   "broken": false
+  },
+  "Bell_LZSJ_010": {
+   "id": "Bell_LZSJ_010",
+   "row": "LZSJ_010",
+   "nameKey": "Bell_LZSJ_010",
+   "name": {
+    "key": "Bell_LZSJ_010",
+    "en": "Threadbound Great Tree",
+    "zh": "丝线缠绕的巨树",
+    "tr": "İpliklerle Bağlı Ulu Ağaç"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_014",
+   "linkedBell": "Bell_NLES_019_12799",
+   "broken": false
+  },
+  "Bell_FJZL_GP_002": {
+   "id": "Bell_FJZL_GP_002",
+   "row": "FJZL_GP_002",
+   "nameKey": "Bell_FJZL_DP_002",
+   "name": {
+    "key": "Bell_FJZL_DP_002",
+    "en": "Mirrorwood Lóng Pillar",
+    "zh": "镜林龙柱",
+    "tr": "Ayna Korusu Lóng Sütunu"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_012",
+   "linkedBell": "Bell_NLES_019_5887",
+   "broken": false
+  },
+  "Bell_LZSJ_011": {
+   "id": "Bell_LZSJ_011",
+   "row": "LZSJ_011",
+   "nameKey": "Bell_LZSJ_011",
+   "name": {
+    "key": "Bell_LZSJ_011",
+    "en": "Crossroads",
+    "zh": "岔路口",
+    "tr": "Kavşak"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_001",
+   "linkedBell": "Bell_NLES_019_13055",
+   "broken": false
+  },
+  "Bell_LZSJ_012": {
+   "id": "Bell_LZSJ_012",
+   "row": "LZSJ_012",
+   "nameKey": "Bell_LZSJ_012",
+   "name": {
+    "key": "Bell_LZSJ_012",
+    "en": "Place of Awakening",
+    "zh": "梦醒之地",
+    "tr": "Uyanış Yeri"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_001",
+   "linkedBell": "Bell_NLES_019_13311",
+   "broken": false
+  },
+  "Bell_LZSJ_013": {
+   "id": "Bell_LZSJ_013",
+   "row": "LZSJ_013",
+   "nameKey": "Bell_LZSJ_013",
+   "name": {
+    "key": "Bell_LZSJ_013",
+    "en": "Trail of Cages",
+    "zh": "挂笼小道",
+    "tr": "Kafesler Patikası"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_004",
+   "linkedBell": "Bell_NLES_019_13567",
+   "broken": false
+  },
+  "Bell_LZSJ_014": {
+   "id": "Bell_LZSJ_014",
+   "row": "LZSJ_014",
+   "nameKey": "Bell_LZSJ_014",
+   "name": {
+    "key": "Bell_LZSJ_014",
+    "en": "Ambush Trail",
+    "zh": "伏击林路",
+    "tr": "Pusu Patikası"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_008",
+   "linkedBell": "Bell_NLES_019_13823",
+   "broken": false
+  },
+  "Bell_LZSJ_015": {
+   "id": "Bell_LZSJ_015",
+   "row": "LZSJ_015",
+   "nameKey": "Bell_LZSJ_015",
+   "name": {
+    "key": "Bell_LZSJ_015",
+    "en": "Lakeside Arch Bridge",
+    "zh": "湖岸拱桥",
+    "tr": "Göl Kenarı Kemerli Köprü"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_015",
+   "linkedBell": "Bell_NLES_019_14079",
+   "broken": false
+  },
+  "Bell_LZSJ_016": {
+   "id": "Bell_LZSJ_016",
+   "row": "LZSJ_016",
+   "nameKey": "Bell_LZSJ_016",
+   "name": {
+    "key": "Bell_LZSJ_016",
+    "en": "Red Serpent House",
+    "zh": "赤蛇屋",
+    "tr": "Kızıl Yılan Evi"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_007",
+   "linkedBell": "Bell_NLES_019_14335",
+   "broken": false
+  },
+  "Bell_LZSJ_017": {
+   "id": "Bell_LZSJ_017",
+   "row": "LZSJ_017",
+   "nameKey": "Bell_LZSJ_017",
+   "name": {
+    "key": "Bell_LZSJ_017",
+    "en": "Crimson Forest Sha-Chi Tower Gate",
+    "zh": "血色森林杀气塔大门",
+    "tr": "Kızıl Orman Sha-Chi Kulesi Kapısı"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_016",
+   "linkedBell": "Bell_NLES_019_14591",
+   "broken": false
+  },
+  "Bell_LZSJ_018": {
+   "id": "Bell_LZSJ_018",
+   "row": "LZSJ_018",
+   "nameKey": "Bell_LZSJ_018",
+   "name": {
+    "key": "Bell_LZSJ_018",
+    "en": "Crimson Forest Sha-Chi Tower Base",
+    "zh": "血色森林杀气塔底",
+    "tr": "Kızıl Orman Sha-Chi Kulesi Tabanı"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_016",
+   "linkedBell": "Bell_NLES_019_14847",
+   "broken": false
+  },
+  "Bell_LZSJ_019": {
+   "id": "Bell_LZSJ_019",
+   "row": "LZSJ_019",
+   "nameKey": "Bell_LZSJ_019",
+   "name": {
+    "key": "Bell_LZSJ_019",
+    "en": "Crimson Forest Sha-Chi Tower 6th Floor",
+    "zh": "血色森林杀气塔六层",
+    "tr": "Kızıl Orman Sha-Chi Kulesi 6. Kat"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_017",
+   "linkedBell": "Bell_NLES_019_15103",
+   "broken": false
+  },
+  "Bell_LZSJ_021": {
+   "id": "Bell_LZSJ_021",
+   "row": "LZSJ_021",
+   "nameKey": "Bell_LZSJ_021",
+   "name": {
+    "key": "Bell_LZSJ_021",
+    "en": "Burial Grounds",
+    "zh": "遗冢地",
+    "tr": "Mezarlık"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_15359",
+   "broken": false
+  },
+  "Bell_SXC_01_01": {
+   "id": "Bell_SXC_01_01",
+   "row": "SXC_01_01",
+   "nameKey": "Bell_SXC_01_01",
+   "name": {
+    "key": "Bell_SXC_01_01",
+    "en": "Well of the Three Puppets",
+    "zh": "三人偶水井",
+    "tr": "Üç Kukla Kuyusu"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_004",
+   "linkedBell": "Bell_NLES_019_25087",
+   "broken": false
+  },
+  "Bell_SXC_01_02": {
+   "id": "Bell_SXC_01_02",
+   "row": "SXC_01_02",
+   "nameKey": "Bell_SXC_01_02",
+   "name": {
+    "key": "Bell_SXC_01_02",
+    "en": "Black Serpent House",
+    "zh": "黑蛇屋",
+    "tr": "Kara Yılan Evi"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_006",
+   "linkedBell": "Bell_NLES_019_25343",
+   "broken": false
+  },
+  "Bell_SXC_01_03": {
+   "id": "Bell_SXC_01_03",
+   "row": "SXC_01_03",
+   "nameKey": "Bell_SXC_01_03",
+   "name": {
+    "key": "Bell_SXC_01_03",
+    "en": "Broken Puppet Pit Entrance",
+    "zh": "残偶弃置坑口",
+    "tr": "Kırık Kukla Çukuru Girişi"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_010",
+   "linkedBell": "Bell_NLES_019_25599",
+   "broken": false
+  },
+  "Bell_SXC_01_04": {
+   "id": "Bell_SXC_01_04",
+   "row": "SXC_01_04",
+   "nameKey": "Bell_SXC_01_04",
+   "name": {
+    "key": "Bell_SXC_01_04",
+    "en": "Broken Puppet Pit Bottom",
+    "zh": "残偶弃置坑底",
+    "tr": "Kırık Kukla Çukuru Dibi"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_010",
+   "linkedBell": "Bell_NLES_019_25855",
+   "broken": false
+  },
+  "Bell_SXC_01_06": {
+   "id": "Bell_SXC_01_06",
+   "row": "SXC_01_06",
+   "nameKey": "Bell_SXC_01_06",
+   "name": {
+    "key": "Bell_SXC_01_06",
+    "en": "The Lady Grounds",
+    "zh": "圣母雕像场",
+    "tr": "Hanımın Toprakları"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_007",
+   "linkedBell": "Bell_NLES_019_26111",
+   "broken": false
+  },
+  "Bell_SXC_01_07": {
+   "id": "Bell_SXC_01_07",
+   "row": "SXC_01_07",
+   "nameKey": "Bell_SXC_01_07",
+   "name": {
+    "key": "Bell_SXC_01_07",
+    "en": "Young Master Lan's Hideout",
+    "zh": "兰公子藏身处",
+    "tr": "Genç Efendi Lan'in Sığınağı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_003",
+   "linkedBell": "Bell_NLES_019_26367",
+   "broken": false
+  },
+  "Bell_SXC_01_08": {
+   "id": "Bell_SXC_01_08",
+   "row": "SXC_01_08",
+   "nameKey": "Bell_SXC_01_08",
+   "name": {
+    "key": "Bell_SXC_01_08",
+    "en": "Old Man Gen's Hideout",
+    "zh": "老根头藏身处",
+    "tr": "İhtiyar Gen'in Sığınağı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_002",
+   "linkedBell": "Bell_NLES_019_26623",
+   "broken": false
+  },
+  "Bell_SXC_01_09": {
+   "id": "Bell_SXC_01_09",
+   "row": "SXC_01_09",
+   "nameKey": "Bell_SXC_01_09",
+   "name": {
+    "key": "Bell_SXC_01_09",
+    "en": "Engine Giant Remains",
+    "zh": "机关巨怪残骸",
+    "tr": "Makine Dev Kalıntıları"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_009",
+   "linkedBell": "Bell_NLES_019_26879",
+   "broken": false
+  },
+  "Bell_SXC_01_10": {
+   "id": "Bell_SXC_01_10",
+   "row": "SXC_01_10",
+   "nameKey": "Bell_SXC_01_10",
+   "name": {
+    "key": "Bell_SXC_01_10",
+    "en": "Terraces",
+    "zh": "梯田",
+    "tr": "Teraslar"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_009",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_01_11": {
+   "id": "Bell_SXC_01_11",
+   "row": "SXC_01_11",
+   "nameKey": "Bell_SXC_01_11",
+   "name": {
+    "key": "Bell_SXC_01_11",
+    "en": "Covered Bridge",
+    "zh": "大廊桥",
+    "tr": "Kapalı Köprü"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_005",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_01_12": {
+   "id": "Bell_SXC_01_12",
+   "row": "SXC_01_12",
+   "nameKey": "Bell_SXC_01_12",
+   "name": {
+    "key": "Bell_SXC_01_12",
+    "en": "Smuggler's Treasure Cellar",
+    "zh": "飞贼藏宝地窖",
+    "tr": "Kaçakçının Hazine Mahzeni"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_007",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_01_13": {
+   "id": "Bell_SXC_01_13",
+   "row": "SXC_01_13",
+   "nameKey": "Bell_SXC_01_13",
+   "name": {
+    "key": "Bell_SXC_01_13",
+    "en": "Survivors' Courtyard",
+    "zh": "幸存者小院",
+    "tr": "Hayatta Kalanların Avlusu"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_013",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_01_14": {
+   "id": "Bell_SXC_01_14",
+   "row": "SXC_01_14",
+   "nameKey": "Bell_SXC_01_14",
+   "name": {
+    "key": "Bell_SXC_01_14",
+    "en": "Temple of Blue Fireflies",
+    "zh": "幽蓝萤火之庙",
+    "tr": "Mavi Ateşböcekleri Tapınağı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_010",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_02_01": {
+   "id": "Bell_SXC_02_01",
+   "row": "SXC_02_01",
+   "nameKey": "Bell_SXC_02_01",
+   "name": {
+    "key": "Bell_SXC_02_01",
+    "en": "Smuggler's Tunnel Entrance",
+    "zh": "飞贼密道入口",
+    "tr": "Kaçakçı Tüneli Girişi"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_008",
+   "linkedBell": "Bell_NLES_019_27135",
+   "broken": false
+  },
+  "Bell_SXC_02_02": {
+   "id": "Bell_SXC_02_02",
+   "row": "SXC_02_02",
+   "nameKey": "Bell_SXC_02_02",
+   "name": {
+    "key": "Bell_SXC_02_02",
+    "en": "Hidden Passage to Pangzhen",
+    "zh": "通向庞镇的密道",
+    "tr": "Pangzhen'e Gizli Geçit"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_011",
+   "linkedBell": "Bell_NLES_019_27391",
+   "broken": false
+  },
+  "Bell_SXC_02_03": {
+   "id": "Bell_SXC_02_03",
+   "row": "SXC_02_03",
+   "nameKey": "Bell_SXC_02_03",
+   "name": {
+    "key": "Bell_SXC_02_03",
+    "en": "Puppet Testing Grounds",
+    "zh": "人偶试验场",
+    "tr": "Kukla Test Alanı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_011",
+   "linkedBell": "Bell_NLES_019_27647",
+   "broken": false
+  },
+  "Bell_YXZR_001": {
+   "id": "Bell_YXZR_001",
+   "row": "YXZR_001",
+   "nameKey": "Bell_YXZR_001",
+   "name": {
+    "key": "Bell_YXZR_001",
+    "en": "Sunset Path",
+    "zh": "夕阳小径",
+    "tr": "Gün Batımı Patikası"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_real001",
+   "linkedBell": "Bell_NLES_019_40703",
+   "broken": false
+  },
+  "Bell_YXZR_002": {
+   "id": "Bell_YXZR_002",
+   "row": "YXZR_002",
+   "nameKey": "Bell_YXZR_002",
+   "name": {
+    "key": "Bell_YXZR_002",
+    "en": "Cliffside Walkway Entrance",
+    "zh": "栈道入口",
+    "tr": "Yamaç Geçidi Girişi"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_003",
+   "linkedBell": "Bell_NLES_019_40959",
+   "broken": false
+  },
+  "Bell_YXZR_003": {
+   "id": "Bell_YXZR_003",
+   "row": "YXZR_003",
+   "nameKey": "Bell_YXZR_003",
+   "name": {
+    "key": "Bell_YXZR_003",
+    "en": "Mass Grave",
+    "zh": "乱葬岗",
+    "tr": "Toplu Mezar"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_004",
+   "linkedBell": "Bell_NLES_019_41215",
+   "broken": false
+  },
+  "Bell_YXZR_004": {
+   "id": "Bell_YXZR_004",
+   "row": "YXZR_004",
+   "nameKey": "Bell_YXZR_004",
+   "name": {
+    "key": "Bell_YXZR_004",
+    "en": "Moji's Cenotaph",
+    "zh": "墨玑子衣冠冢",
+    "tr": "Moji'nin Anıt Mezarı"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_005",
+   "linkedBell": "Bell_NLES_019_41471",
+   "broken": false
+  },
+  "Bell_YXZR_005": {
+   "id": "Bell_YXZR_005",
+   "row": "YXZR_005",
+   "nameKey": "Bell_YXZR_005",
+   "name": {
+    "key": "Bell_YXZR_005",
+    "en": "Main Encampment Gate",
+    "zh": "大营正门",
+    "tr": "Ana Ordugâh Kapısı"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_005",
+   "linkedBell": "Bell_NLES_019_41727",
+   "broken": false
+  },
+  "Bell_YXZR_006": {
+   "id": "Bell_YXZR_006",
+   "row": "YXZR_006",
+   "nameKey": "Bell_YXZR_006",
+   "name": {
+    "key": "Bell_YXZR_006",
+    "en": "Tower Rear Exit",
+    "zh": "高塔后方出口",
+    "tr": "Kule Arka Çıkışı"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_007",
+   "linkedBell": "Bell_NLES_019_41983",
+   "broken": false
+  },
+  "Bell_YXZR_007": {
+   "id": "Bell_YXZR_007",
+   "row": "YXZR_007",
+   "nameKey": "Bell_YXZR_007",
+   "name": {
+    "key": "Bell_YXZR_007",
+    "en": "Behind the Encampment Waterfall",
+    "zh": "大营瀑布后方",
+    "tr": "Ordugâh Şelalesinin Arkası"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_009",
+   "linkedBell": "Bell_NLES_019_42239",
+   "broken": false
+  },
+  "Bell_YXZR_008": {
+   "id": "Bell_YXZR_008",
+   "row": "YXZR_008",
+   "nameKey": "Bell_YXZR_009",
+   "name": {
+    "key": "Bell_YXZR_009",
+    "en": "Road to the Training Grounds",
+    "zh": "通往校场的路",
+    "tr": "Eğitim Alanı Yolu"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_010",
+   "linkedBell": "Bell_NLES_019_42495",
+   "broken": false
+  },
+  "Bell_YXZR_009": {
+   "id": "Bell_YXZR_009",
+   "row": "YXZR_009",
+   "nameKey": "Bell_YXZR_008",
+   "name": {
+    "key": "Bell_YXZR_008",
+    "en": "Training Grounds",
+    "zh": "校场",
+    "tr": "Eğitim Alanı"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_010",
+   "linkedBell": "Bell_NLES_019_42751",
+   "broken": false
+  },
+  "Bell_YXZR_010": {
+   "id": "Bell_YXZR_010",
+   "row": "YXZR_010",
+   "nameKey": "Bell_YXZR_019",
+   "name": {
+    "key": "Bell_YXZR_019",
+    "en": "The Confinement",
+    "zh": "幽禁之地",
+    "tr": "Hapis Yeri"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_009",
+   "linkedBell": "Bell_NLES_019_43007",
+   "broken": false
+  },
+  "Bell_YXZR_011": {
+   "id": "Bell_YXZR_011",
+   "row": "YXZR_011",
+   "nameKey": "Bell_YXZR_011",
+   "name": {
+    "key": "Bell_YXZR_011",
+    "en": "Dovecote",
+    "zh": "鸽舍",
+    "tr": "Güvercinlik"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_006",
+   "linkedBell": "Bell_NLES_019_43263",
+   "broken": false
+  },
+  "Bell_YXZR_012": {
+   "id": "Bell_YXZR_012",
+   "row": "YXZR_012",
+   "nameKey": "Bell_YXZR_012",
+   "name": {
+    "key": "Bell_YXZR_012",
+    "en": "Three Towers",
+    "zh": "三高塔",
+    "tr": "Üç Kule"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_007",
+   "linkedBell": "Bell_NLES_019_43519",
+   "broken": false
+  },
+  "Bell_YXZR_013": {
+   "id": "Bell_YXZR_013",
+   "row": "YXZR_013",
+   "nameKey": "Bell_YXZR_013",
+   "name": {
+    "key": "Bell_YXZR_013",
+    "en": "Cliffside Walkway Overlook",
+    "zh": "栈道眺望台",
+    "tr": "Yamaç Geçidi Seyir Noktası"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_003",
+   "linkedBell": "Bell_NLES_019_43775",
+   "broken": false
+  },
+  "Bell_YXZR_015": {
+   "id": "Bell_YXZR_015",
+   "row": "YXZR_015",
+   "nameKey": "Bell_YXZR_015",
+   "name": {
+    "key": "Bell_YXZR_015",
+    "en": "Battlefield Ruins",
+    "zh": "战场遗迹",
+    "tr": "Savaş Alanı Harabeleri"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_005",
+   "linkedBell": "Bell_NLES_019_44031",
+   "broken": false
+  },
+  "Bell_YXZR_016": {
+   "id": "Bell_YXZR_016",
+   "row": "YXZR_016",
+   "nameKey": "Bell_YXZR_016",
+   "name": {
+    "key": "Bell_YXZR_016",
+    "en": "Beneath the Watchtower",
+    "zh": "箭塔之下",
+    "tr": "Gözetleme Kulesinin Altı"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_005",
+   "linkedBell": "Bell_NLES_019_44287",
+   "broken": false
+  },
+  "Bell_YXZR_017": {
+   "id": "Bell_YXZR_017",
+   "row": "YXZR_017",
+   "nameKey": "Bell_YXZR_017",
+   "name": {
+    "key": "Bell_YXZR_017",
+    "en": "Training Grounds Depths",
+    "zh": "校场深处",
+    "tr": "Eğitim Alanı Derinlikleri"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_010",
+   "linkedBell": "Bell_NLES_019_44543",
+   "broken": false
+  },
+  "Bell_YXZR_018": {
+   "id": "Bell_YXZR_018",
+   "row": "YXZR_018",
+   "nameKey": "Bell_YXZR_018",
+   "name": {
+    "key": "Bell_YXZR_018",
+    "en": "Mandate Encampment Outer Gate",
+    "zh": "正道大营外门",
+    "tr": "Ferman Ordugâhı Dış Kapısı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_001",
+   "linkedBell": "Bell_NLES_019_44799",
+   "broken": false
+  },
+  "Bell_YXZR_019": {
+   "id": "Bell_YXZR_019",
+   "row": "YXZR_019",
+   "nameKey": "Bell_YXZR_010",
+   "name": {
+    "key": "Bell_YXZR_010",
+    "en": "Path of the Baishan's Fall",
+    "zh": "白山派的覆灭之路",
+    "tr": "Baishan'ın Düşüşü Patikası"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": "WorldMapFog_ZDDY_009",
+   "linkedBell": "Bell_NLES_019_45055",
+   "broken": false
+  },
+  "Bell_DDSD_001": {
+   "id": "Bell_DDSD_001",
+   "row": "JJYBP_001",
+   "nameKey": "Bell_DDSD_001",
+   "name": {
+    "key": "Bell_DDSD_001",
+    "en": "The Lady's Path",
+    "zh": "祭拜圣母之路",
+    "tr": "Hanımın Yolu"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_001",
+   "linkedBell": "Bell_NLES_019_1535",
+   "broken": false
+  },
+  "Bell_DDSD_002": {
+   "id": "Bell_DDSD_002",
+   "row": "JJYBP_002",
+   "nameKey": "Bell_DDSD_002",
+   "name": {
+    "key": "Bell_DDSD_002",
+    "en": "Iron Butcher's Camp",
+    "zh": "铁杀营地",
+    "tr": "Demir Kasap'ın Kampı"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_002",
+   "linkedBell": "Bell_NLES_019_1791",
+   "broken": false
+  },
+  "Bell_DDSD_003": {
+   "id": "Bell_DDSD_003",
+   "row": "JJYBP_003",
+   "nameKey": "Bell_DDSD_003",
+   "name": {
+    "key": "Bell_DDSD_003",
+    "en": "Hanging Cage Cavern",
+    "zh": "囚笼洞口",
+    "tr": "Asılı Kafes Mağarası"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_003",
+   "linkedBell": "Bell_NLES_019_2047",
+   "broken": false
+  },
+  "Bell_DDSD_004": {
+   "id": "Bell_DDSD_004",
+   "row": "JJYBP_004",
+   "nameKey": "Bell_DDSD_004",
+   "name": {
+    "key": "Bell_DDSD_004",
+    "en": "Cavern Passage",
+    "zh": "囚笼道",
+    "tr": "Mağara Geçidi"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_003",
+   "linkedBell": "Bell_NLES_019_2303",
+   "broken": false
+  },
+  "Bell_DDSD_005": {
+   "id": "Bell_DDSD_005",
+   "row": "JJYBP_005",
+   "nameKey": "Bell_DDSD_005",
+   "name": {
+    "key": "Bell_DDSD_005",
+    "en": "Commander's Platform",
+    "zh": "横刀平台",
+    "tr": "Komutan Platformu"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_004",
+   "linkedBell": "Bell_NLES_019_2559",
+   "broken": false
+  },
+  "Bell_DDSD_006": {
+   "id": "Bell_DDSD_006",
+   "row": "JJYBP_006",
+   "nameKey": "Bell_DDSD_006",
+   "name": {
+    "key": "Bell_DDSD_006",
+    "en": "Shrine Outer Gate",
+    "zh": "宗祠外山门",
+    "tr": "Tapınak Dış Kapısı"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_005",
+   "linkedBell": "Bell_NLES_019_2815",
+   "broken": false
+  },
+  "Bell_DDSD_007": {
+   "id": "Bell_DDSD_007",
+   "row": "JJYBP_007",
+   "nameKey": "Bell_DDSD_007",
+   "name": {
+    "key": "Bell_DDSD_007",
+    "en": "The Lady's Shrine",
+    "zh": "圣母娘娘宗祠",
+    "tr": "Hanımın Tapınağı"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_006",
+   "linkedBell": "Bell_NLES_019_3071",
+   "broken": false
+  },
+  "Bell_DDSD_008": {
+   "id": "Bell_DDSD_008",
+   "row": "JJYBP_008",
+   "nameKey": "Bell_JJYBP_007",
+   "name": {
+    "key": "Bell_JJYBP_007",
+    "en": "Puppet Cell",
+    "zh": "人偶囚室",
+    "tr": "Kukla Hücresi"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": "WorldMapFog_DDSD_006",
+   "linkedBell": "Bell_NLES_019_3327",
+   "broken": false
+  },
+  "JJYBP_Brokenbell_01": {
+   "id": "JJYBP_Brokenbell_01",
+   "row": "JJYBP_Brokenbell_01",
+   "nameKey": "Bell_DDSD_007",
+   "name": {
+    "key": "Bell_DDSD_007",
+    "en": "The Lady's Shrine",
+    "zh": "圣母娘娘宗祠",
+    "tr": "Hanımın Tapınağı"
+   },
+   "map": "DengDingShanDao",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_8703",
+   "broken": false
+  },
+  "Bell_SZ_001": {
+   "id": "Bell_SZ_001",
+   "row": "SZ_001",
+   "nameKey": "Bell_SZ_001",
+   "name": {
+    "key": "Bell_SZ_001",
+    "en": "Abandoned Wine Cellar",
+    "zh": "废弃酒窖",
+    "tr": "Terk Edilmiş Şarap Mahzeni"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_001",
+   "linkedBell": "Bell_NLES_019_28159",
+   "broken": false
+  },
+  "Bell_SZ_002": {
+   "id": "Bell_SZ_002",
+   "row": "SZ_002",
+   "nameKey": "Bell_SZ_002",
+   "name": {
+    "key": "Bell_SZ_002",
+    "en": "South Gate Bridge",
+    "zh": "南门廊桥",
+    "tr": "Güney Kapısı Köprüsü"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_002",
+   "linkedBell": "Bell_NLES_019_28415",
+   "broken": false
+  },
+  "Bell_SZ_003": {
+   "id": "Bell_SZ_003",
+   "row": "SZ_003",
+   "nameKey": "Bell_SZ_003",
+   "name": {
+    "key": "Bell_SZ_003",
+    "en": "Marketplace",
+    "zh": "市集",
+    "tr": "Pazar Yeri"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_004",
+   "linkedBell": "Bell_NLES_019_28671",
+   "broken": false
+  },
+  "Bell_SZ_004": {
+   "id": "Bell_SZ_004",
+   "row": "SZ_004",
+   "nameKey": "Bell_SZ_004",
+   "name": {
+    "key": "Bell_SZ_004",
+    "en": "Myst's Tavern",
+    "zh": "幻鬼酒馆",
+    "tr": "Myst'in Meyhanesi"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_009",
+   "linkedBell": "Bell_NLES_019_28927",
+   "broken": false
+  },
+  "Bell_SZ_005": {
+   "id": "Bell_SZ_005",
+   "row": "SZ_005",
+   "nameKey": "Bell_SZ_005",
+   "name": {
+    "key": "Bell_SZ_005",
+    "en": "Backstreet Archway",
+    "zh": "后街牌坊",
+    "tr": "Arka Sokak Kemeri"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_001",
+   "linkedBell": "Bell_NLES_019_29183",
+   "broken": false
+  },
+  "Bell_SZ_006": {
+   "id": "Bell_SZ_006",
+   "row": "SZ_006",
+   "nameKey": "Bell_SZ_006",
+   "name": {
+    "key": "Bell_SZ_006",
+    "en": "Backstreet Rest",
+    "zh": "后街乘凉处",
+    "tr": "Arka Sokak Dinlenme Yeri"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_002",
+   "linkedBell": "Bell_NLES_019_29439",
+   "broken": false
+  },
+  "Bell_SZ_007": {
+   "id": "Bell_SZ_007",
+   "row": "SZ_007",
+   "nameKey": "Bell_SZ_007",
+   "name": {
+    "key": "Bell_SZ_007",
+    "en": "Pond of Fading Song",
+    "zh": "戏声缥缈的水塘",
+    "tr": "Solan Şarkı Göleti"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_004",
+   "linkedBell": "Bell_NLES_019_29695",
+   "broken": false
+  },
+  "Bell_SZ_008": {
+   "id": "Bell_SZ_008",
+   "row": "SZ_008",
+   "nameKey": "Bell_SZ_008",
+   "name": {
+    "key": "Bell_SZ_008",
+    "en": "Pangzhen Slums",
+    "zh": "贫民窟",
+    "tr": "Pangzhen Kenar Mahalleleri"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_008",
+   "linkedBell": "Bell_NLES_019_29951",
+   "broken": false
+  },
+  "Bell_SZ_009": {
+   "id": "Bell_SZ_009",
+   "row": "SZ_009",
+   "nameKey": "Bell_SZ_009",
+   "name": {
+    "key": "Bell_SZ_009",
+    "en": "Well of Wei Sanchuan",
+    "zh": "三船殉难井底",
+    "tr": "Wei Sanchuan Kuyusu"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_005",
+   "linkedBell": "Bell_NLES_019_30207",
+   "broken": false
+  },
+  "Bell_SZ_010": {
+   "id": "Bell_SZ_010",
+   "row": "SZ_010",
+   "nameKey": "Bell_SZ_010",
+   "name": {
+    "key": "Bell_SZ_010",
+    "en": "Green Serpent House",
+    "zh": "青蛇屋",
+    "tr": "Yeşil Yılan Evi"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_006",
+   "linkedBell": "Bell_NLES_019_30463",
+   "broken": false
+  },
+  "Bell_SZ_011": {
+   "id": "Bell_SZ_011",
+   "row": "SZ_011",
+   "nameKey": "Bell_SZ_011",
+   "name": {
+    "key": "Bell_SZ_011",
+    "en": "Lion Dance Hall",
+    "zh": "舞狮馆大门",
+    "tr": "Aslan Dansı Salonu"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_009",
+   "linkedBell": "Bell_NLES_019_30719",
+   "broken": false
+  },
+  "Bell_SZ_012": {
+   "id": "Bell_SZ_012",
+   "row": "SZ_012",
+   "nameKey": "Bell_SZ_012",
+   "name": {
+    "key": "Bell_SZ_012",
+    "en": "Yu'er's House",
+    "zh": "玉儿家",
+    "tr": "Yu'er'in Evi"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_010",
+   "linkedBell": "Bell_NLES_019_30975",
+   "broken": false
+  },
+  "Bell_SZ_013": {
+   "id": "Bell_SZ_013",
+   "row": "SZ_013",
+   "nameKey": "Bell_SZ_013",
+   "name": {
+    "key": "Bell_SZ_013",
+    "en": "Pangzhen Docks",
+    "zh": "庞镇船坞",
+    "tr": "Pangzhen İskeleleri"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_007",
+   "linkedBell": "Bell_NLES_019_31231",
+   "broken": false
+  },
+  "Bell_SZ_014": {
+   "id": "Bell_SZ_014",
+   "row": "SZ_014",
+   "nameKey": "Bell_SZ_014",
+   "name": {
+    "key": "Bell_SZ_014",
+    "en": "Back Hill Pavilion",
+    "zh": "后山凉亭",
+    "tr": "Arka Tepe Köşkü"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_012",
+   "linkedBell": "Bell_NLES_019_31487",
+   "broken": false
+  },
+  "Bell_SZ_015": {
+   "id": "Bell_SZ_015",
+   "row": "SZ_015",
+   "nameKey": "Bell_SZ_015",
+   "name": {
+    "key": "Bell_SZ_015",
+    "en": "South Town Pond",
+    "zh": "镇南水塘",
+    "tr": "Güney Kasabası Göleti"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_010",
+   "linkedBell": "Bell_NLES_019_31743",
+   "broken": false
+  },
+  "Bell_SZ_016": {
+   "id": "Bell_SZ_016",
+   "row": "SZ_016",
+   "nameKey": "Bell_SZ_016",
+   "name": {
+    "key": "Bell_SZ_016",
+    "en": "Huang Manor Crossroads",
+    "zh": "黄家宅邸前路口",
+    "tr": "Huang Malikânesi Kavşağı"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_005",
+   "linkedBell": "Bell_NLES_019_31999",
+   "broken": false
+  },
+  "Bell_SZ_017": {
+   "id": "Bell_SZ_017",
+   "row": "SZ_017",
+   "nameKey": "Bell_SZ_017",
+   "name": {
+    "key": "Bell_SZ_017",
+    "en": "Pavilion of Knowledge Crossroads",
+    "zh": "八卦阁前路口",
+    "tr": "Bilgi Köşkü Kavşağı"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_006",
+   "linkedBell": "Bell_NLES_019_32255",
+   "broken": false
+  },
+  "Bell_SZ_018": {
+   "id": "Bell_SZ_018",
+   "row": "SZ_018",
+   "nameKey": "Bell_SZ_018",
+   "name": {
+    "key": "Bell_SZ_018",
+    "en": "Mandate Lodgings",
+    "zh": "正道临时居所",
+    "tr": "Ferman Konakları"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_006",
+   "linkedBell": "Bell_NLES_019_32511",
+   "broken": false
+  },
+  "Bell_SZ_019": {
+   "id": "Bell_SZ_019",
+   "row": "SZ_019",
+   "nameKey": "Bell_SZ_019",
+   "name": {
+    "key": "Bell_SZ_019",
+    "en": "Jingyang Hall",
+    "zh": "景炀轩",
+    "tr": "Jingyang Salonu"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_003",
+   "linkedBell": "Bell_NLES_019_32767",
+   "broken": false
+  },
+  "Bell_SZ_020": {
+   "id": "Bell_SZ_020",
+   "row": "SZ_020",
+   "nameKey": "Bell_SZ_020",
+   "name": {
+    "key": "Bell_SZ_020",
+    "en": "Pangzhen Sha-Chi Tower Upper Level 1",
+    "zh": "庞镇杀气塔上部一层",
+    "tr": "Pangzhen Sha-Chi Kulesi Üst Seviye 1"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_002",
+   "linkedBell": "Bell_NLES_019_33023",
+   "broken": false
+  },
+  "Bell_SZ_021": {
+   "id": "Bell_SZ_021",
+   "row": "SZ_021",
+   "nameKey": "Bell_SZ_021",
+   "name": {
+    "key": "Bell_SZ_021",
+    "en": "The Sealed Lion",
+    "zh": "尊主封印地",
+    "tr": "Mühürlü Aslan"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_011",
+   "linkedBell": "Bell_NLES_019_33279",
+   "broken": false
+  },
+  "Bell_SZ_022": {
+   "id": "Bell_SZ_022",
+   "row": "SZ_022",
+   "nameKey": "Bell_SZ_022",
+   "name": {
+    "key": "Bell_SZ_022",
+    "en": "Pangzhen Sha-Chi Tower Dock",
+    "zh": "庞镇杀气塔底部船坞",
+    "tr": "Pangzhen Sha-Chi Kulesi İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_003",
+   "linkedBell": "Bell_NLES_019_33535",
+   "broken": false
+  },
+  "Bell_SZ_023": {
+   "id": "Bell_SZ_023",
+   "row": "SZ_023",
+   "nameKey": "Bell_SZ_023",
+   "name": {
+    "key": "Bell_SZ_023",
+    "en": "Ancestral Shrine Square",
+    "zh": "祠堂广场",
+    "tr": "Atalar Tapınağı Meydanı"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_010",
+   "linkedBell": "Bell_NLES_019_33791",
+   "broken": false
+  },
+  "Bell_SZ_024": {
+   "id": "Bell_SZ_024",
+   "row": "SZ_024",
+   "nameKey": "Bell_SZ_024",
+   "name": {
+    "key": "Bell_SZ_024",
+    "en": "Old Man Gen's House",
+    "zh": "老根头家",
+    "tr": "İhtiyar Gen'in Evi"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_007",
+   "linkedBell": "Bell_NLES_019_34047",
+   "broken": false
+  },
+  "Bell_SZ_025": {
+   "id": "Bell_SZ_025",
+   "row": "SZ_025",
+   "nameKey": "Bell_SZ_025",
+   "name": {
+    "key": "Bell_SZ_025",
+    "en": "Lion Dance Hall Depths",
+    "zh": "舞狮馆深处",
+    "tr": "Aslan Dansı Salonu Derinlikleri"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_011",
+   "linkedBell": "Bell_NLES_019_34303",
+   "broken": false
+  },
+  "Bell_SZ_026": {
+   "id": "Bell_SZ_026",
+   "row": "SZ_026",
+   "nameKey": "Bell_SZ_026",
+   "name": {
+    "key": "Bell_SZ_026",
+    "en": "Hidden Storehouse",
+    "zh": "秘密卸货处",
+    "tr": "Gizli Ambar"
+   },
+   "map": "PangZhen",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_34559",
+   "broken": false
+  },
+  "Bell_SZ_027": {
+   "id": "Bell_SZ_027",
+   "row": "SZ_027",
+   "nameKey": "Bell_SZ_027",
+   "name": {
+    "key": "Bell_SZ_027",
+    "en": "Pangzhen Sha-Chi Tower Lower Passage",
+    "zh": "庞镇杀气塔下部通道",
+    "tr": "Pangzhen Sha-Chi Kulesi Alt Geçidi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_003",
+   "linkedBell": "Bell_NLES_019_34815",
+   "broken": false
+  },
+  "Bell_SZ_028": {
+   "id": "Bell_SZ_028",
+   "row": "SZ_028",
+   "nameKey": "Bell_SZ_028",
+   "name": {
+    "key": "Bell_SZ_028",
+    "en": "Pangzhen Sha-Chi Tower Lower Exterior",
+    "zh": "庞镇杀气塔下部外侧",
+    "tr": "Pangzhen Sha-Chi Kulesi Alt Dış Kısmı"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_004",
+   "linkedBell": "Bell_NLES_019_35071",
+   "broken": false
+  },
+  "Bell_SZ_029": {
+   "id": "Bell_SZ_029",
+   "row": "SZ_029",
+   "nameKey": "Bell_SZ_029",
+   "name": {
+    "key": "Bell_SZ_029",
+    "en": "Pangzhen Sha-Chi Tower Summit",
+    "zh": "庞镇杀气塔顶",
+    "tr": "Pangzhen Sha-Chi Kulesi Zirvesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_002",
+   "linkedBell": "Bell_NLES_019_35327",
+   "broken": false
+  },
+  "Bell_SZ_030": {
+   "id": "Bell_SZ_030",
+   "row": "SZ_030",
+   "nameKey": "Bell_SZ_030",
+   "name": {
+    "key": "Bell_SZ_030",
+    "en": "Pangzhen Sha-Chi Tower Furnace",
+    "zh": "庞镇杀气塔炉内",
+    "tr": "Pangzhen Sha-Chi Kulesi Ocağı"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_35583",
+   "broken": false
+  },
+  "Bell_SZ_031": {
+   "id": "Bell_SZ_031",
+   "row": "SZ_031",
+   "nameKey": "Bell_SZ_031",
+   "name": {
+    "key": "Bell_SZ_031",
+    "en": "Narrow Alley Residence 2nd Floor",
+    "zh": "窄巷民居二楼",
+    "tr": "Dar Sokak Konutu 2. Kat"
+   },
+   "map": "HouJie",
+   "fogRegion": "WorldMapFog_HJ_003",
+   "linkedBell": "Bell_NLES_019_35839",
+   "broken": false
+  },
+  "Bell_SZ_032": {
+   "id": "Bell_SZ_032",
+   "row": "SZ_032",
+   "nameKey": "Bell_SZ_032",
+   "name": {
+    "key": "Bell_SZ_032",
+    "en": "Dockside Warehouse",
+    "zh": "码头货栈",
+    "tr": "İskele Deposu"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_007",
+   "linkedBell": "Bell_NLES_019_36095",
+   "broken": false
+  },
+  "Bell_PZ_XiaoZhang_003": {
+   "id": "Bell_PZ_XiaoZhang_003",
+   "row": "Bell_PZ_XiaoZhang",
+   "nameKey": "Bell_PZ_XiaoZhang_003",
+   "name": {
+    "key": "Bell_PZ_XiaoZhang_003",
+    "en": "Zhang's Hideout (Pangzhen)",
+    "zh": "庞镇小张藏身处",
+    "tr": "Zhang'in Sığınağı (Pangzhen)"
+   },
+   "map": "HouJie",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_35839",
+   "broken": false
+  },
+  "Bell_XM_001": {
+   "id": "Bell_XM_001",
+   "row": "Bell_XM_001",
+   "nameKey": "Bell_XM_001",
+   "name": {
+    "key": "Bell_XM_001",
+    "en": "Estate Rear Gate",
+    "zh": "山庄后门",
+    "tr": "Malikâne Arka Kapısı"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_001",
+   "linkedBell": "Bell_NLES_019_36607",
+   "broken": false
+  },
+  "Bell_XM_003": {
+   "id": "Bell_XM_003",
+   "row": "Bell_XM_003",
+   "nameKey": "Bell_XM_003",
+   "name": {
+    "key": "Bell_XM_003",
+    "en": "Mourning Hall",
+    "zh": "灵堂",
+    "tr": "Yas Salonu"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_005",
+   "linkedBell": "Bell_NLES_019_36863",
+   "broken": false
+  },
+  "Bell_XM_004": {
+   "id": "Bell_XM_004",
+   "row": "Bell_XM_004",
+   "nameKey": "Bell_XM_004",
+   "name": {
+    "key": "Bell_XM_004",
+    "en": "Leng Tu's Study",
+    "zh": "冷荼书房",
+    "tr": "Leng Tu'nun Çalışma Odası"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_007",
+   "linkedBell": "Bell_NLES_019_37119",
+   "broken": false
+  },
+  "Bell_XM_DP_005": {
+   "id": "Bell_XM_DP_005",
+   "row": "Bell_XM_DP_005",
+   "nameKey": "Bell_XM_DP_005",
+   "name": {
+    "key": "Bell_XM_DP_005",
+    "en": "Mirage Estate Lóng Pillar",
+    "zh": "戏梦山庄龙柱",
+    "tr": "Serap Malikânesi Lóng Sütunu"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_006",
+   "linkedBell": "Bell_NLES_019_40191",
+   "broken": false
+  },
+  "Bell_XM_006": {
+   "id": "Bell_XM_006",
+   "row": "Bell_XM_006",
+   "nameKey": "Bell_XM_014",
+   "name": {
+    "key": "Bell_XM_014",
+    "en": "Perfect Vessel Estate",
+    "zh": "圣躯府邸",
+    "tr": "Kusursuz Taşıyıcı Malikânesi"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_007",
+   "linkedBell": "Bell_NLES_019_37375",
+   "broken": false
+  },
+  "Bell_XM_007": {
+   "id": "Bell_XM_007",
+   "row": "Bell_XM_007",
+   "nameKey": "Bell_XM_007",
+   "name": {
+    "key": "Bell_XM_007",
+    "en": "Perfect Vessel Pond",
+    "zh": "圣躯心池",
+    "tr": "Kusursuz Taşıyıcı Göleti"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_004",
+   "linkedBell": "Bell_NLES_019_37631",
+   "broken": false
+  },
+  "Bell_XM_010": {
+   "id": "Bell_XM_010",
+   "row": "Bell_XM_010",
+   "nameKey": "Bell_XM_010",
+   "name": {
+    "key": "Bell_XM_010",
+    "en": "Back Hill",
+    "zh": "后山",
+    "tr": "Arka Tepe"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_002",
+   "linkedBell": "Bell_NLES_019_37887",
+   "broken": false
+  },
+  "Bell_XM_011": {
+   "id": "Bell_XM_011",
+   "row": "Bell_XM_011",
+   "nameKey": "Bell_XM_011",
+   "name": {
+    "key": "Bell_XM_011",
+    "en": "Opera House",
+    "zh": "戏园",
+    "tr": "Opera Binası"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_008",
+   "linkedBell": "Bell_NLES_019_38143",
+   "broken": false
+  },
+  "Bell_XM_012": {
+   "id": "Bell_XM_012",
+   "row": "Bell_XM_012",
+   "nameKey": "Bell_XM_012",
+   "name": {
+    "key": "Bell_XM_012",
+    "en": "Training Grounds",
+    "zh": "演武场",
+    "tr": "Eğitim Alanı"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_003",
+   "linkedBell": "Bell_NLES_019_38399",
+   "broken": false
+  },
+  "Bell_XM_013": {
+   "id": "Bell_XM_013",
+   "row": "Bell_XM_013",
+   "nameKey": "Bell_XM_013",
+   "name": {
+    "key": "Bell_XM_013",
+    "en": "Covered Corridor",
+    "zh": "连廊",
+    "tr": "Kapalı Koridor"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_006",
+   "linkedBell": "Bell_NLES_019_38655",
+   "broken": false
+  },
+  "Bell_XM_015": {
+   "id": "Bell_XM_015",
+   "row": "Bell_XM_015",
+   "nameKey": "Bell_XM_015",
+   "name": {
+    "key": "Bell_XM_015",
+    "en": "Mirage Estate",
+    "zh": "戏梦山庄正门",
+    "tr": "Serap Malikânesi"
+   },
+   "map": "PangZhen",
+   "fogRegion": "WorldMapFog_PZ_008",
+   "linkedBell": "Bell_NLES_019_38911",
+   "broken": false
+  },
+  "Bell_XM_016": {
+   "id": "Bell_XM_016",
+   "row": "Bell_XM_016",
+   "nameKey": "Bell_XM_020",
+   "name": {
+    "key": "Bell_XM_020",
+    "en": "Below the Fire Tower",
+    "zh": "吹火楼下",
+    "tr": "Ateş Kulesinin Altı"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_001",
+   "linkedBell": "Bell_NLES_019_39167",
+   "broken": false
+  },
+  "Bell_XM_017": {
+   "id": "Bell_XM_017",
+   "row": "Bell_XM_017",
+   "nameKey": "Bell_XM_021",
+   "name": {
+    "key": "Bell_XM_021",
+    "en": "Shaded Bamboo Path",
+    "zh": "竹影道",
+    "tr": "Gölgeli Bambu Patikası"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_002",
+   "linkedBell": "Bell_NLES_019_39423",
+   "broken": false
+  },
+  "Bell_XM_018": {
+   "id": "Bell_XM_018",
+   "row": "Bell_XM_018",
+   "nameKey": "Bell_XM_022",
+   "name": {
+    "key": "Bell_XM_022",
+    "en": "Willow Pavilion",
+    "zh": "柳风亭",
+    "tr": "Söğüt Köşkü"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_006",
+   "linkedBell": "Bell_NLES_019_39679",
+   "broken": false
+  },
+  "Bell_XM_019": {
+   "id": "Bell_XM_019",
+   "row": "Bell_XM_019",
+   "nameKey": "Bell_XM_019",
+   "name": {
+    "key": "Bell_XM_019",
+    "en": "Nuo Mask Altar",
+    "zh": "傩面祭台",
+    "tr": "Nuo Maskesi Sunağı"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_001",
+   "linkedBell": "Bell_NLES_019_39935",
+   "broken": false
+  },
+  "Bell_MGH_DP_004": {
+   "id": "Bell_MGH_DP_004",
+   "row": "MGH_DP_004",
+   "nameKey": "Bell_MGH_DP_004",
+   "name": {
+    "key": "Bell_MGH_DP_004",
+    "en": "Midlake Lóng Pillar Dock",
+    "zh": "湖中龙柱船坞",
+    "tr": "Orta Göl Lóng Sütunu İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_014",
+   "linkedBell": "Bell_NLES_019_18431",
+   "broken": false
+  },
+  "Bell_LYZ_008": {
+   "id": "Bell_LYZ_008",
+   "row": "LYZ_008",
+   "nameKey": "Bell_LYZ_008",
+   "name": {
+    "key": "Bell_LYZ_008",
+    "en": "Mountain God Temple",
+    "zh": "山神庙",
+    "tr": "Dağ Tanrısı Tapınağı"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_002",
+   "linkedBell": "Bell_NLES_019_9215",
+   "broken": false
+  },
+  "Bell_LYZ_010": {
+   "id": "Bell_LYZ_010",
+   "row": "LYZ_010",
+   "nameKey": "Bell_LYZ_010",
+   "name": {
+    "key": "Bell_LYZ_010",
+    "en": "Frozen Lake Dock",
+    "zh": "冰湖船坞",
+    "tr": "Donmuş Göl İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_011",
+   "linkedBell": "Bell_NLES_019_9471",
+   "broken": false
+  },
+  "Bell_LYZ_011": {
+   "id": "Bell_LYZ_011",
+   "row": "LYZ_011",
+   "nameKey": "Bell_LYZ_011",
+   "name": {
+    "key": "Bell_LYZ_011",
+    "en": "Four Guardians' Mirror",
+    "zh": "护法四像镜",
+    "tr": "Dört Muhafızın Aynası"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_011",
+   "linkedBell": "Bell_NLES_019_9727",
+   "broken": false
+  },
+  "Bell_LYZ_013": {
+   "id": "Bell_LYZ_013",
+   "row": "LYZ_013",
+   "nameKey": "Bell_LYZ_013",
+   "name": {
+    "key": "Bell_LYZ_013",
+    "en": "Forbidden Path",
+    "zh": "禁忌之径",
+    "tr": "Yasak Patika"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_011",
+   "linkedBell": "Bell_NLES_019_9983",
+   "broken": false
+  },
+  "Bell_LYZ_014": {
+   "id": "Bell_LYZ_014",
+   "row": "LYZ_014",
+   "nameKey": "Bell_LYZ_014",
+   "name": {
+    "key": "Bell_LYZ_014",
+    "en": "Whiteshadow's Fall",
+    "zh": "白影陨落之处",
+    "tr": "Beyazgölge'nin Düşüşü"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_011",
+   "linkedBell": "Bell_NLES_019_10239",
+   "broken": false
+  },
+  "Bell_LJC_XiaoZhang_002": {
+   "id": "Bell_LJC_XiaoZhang_002",
+   "row": "LJC_XiaoZhang_002",
+   "nameKey": "Bell_LJC_XiaoZhang_002",
+   "name": {
+    "key": "Bell_LJC_XiaoZhang_002",
+    "en": "Zhang's Hideout (Village of Lu)",
+    "zh": "陆家村小张藏身处",
+    "tr": "Zhang'in Sığınağı (Lu Köyü)"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_005",
+   "linkedBell": "Bell_NLES_019_8959",
+   "broken": false
+  },
+  "Bell_MGH_001": {
+   "id": "Bell_MGH_001",
+   "row": "Bell_MGH_001",
+   "nameKey": "Bell_MGH_001",
+   "name": {
+    "key": "Bell_MGH_001",
+    "en": "Weeping Mistgate",
+    "zh": "泣声传来的雾门",
+    "tr": "Ağlayan Sis Kapısı"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_012",
+   "linkedBell": "Bell_NLES_019_15615",
+   "broken": false
+  },
+  "Bell_MGH_003": {
+   "id": "Bell_MGH_003",
+   "row": "Bell_MGH_003",
+   "nameKey": "Bell_MGH_003",
+   "name": {
+    "key": "Bell_MGH_003",
+    "en": "One-Eyed Isle Dock",
+    "zh": "独眼之岛船坞",
+    "tr": "Tek Gözlü Ada İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_015",
+   "linkedBell": "Bell_NLES_019_15871",
+   "broken": false
+  },
+  "Bell_MGH_004": {
+   "id": "Bell_MGH_004",
+   "row": "Bell_MGH_004",
+   "nameKey": "Bell_MGH_004",
+   "name": {
+    "key": "Bell_MGH_004",
+    "en": "Meigu Songhouse Dock",
+    "zh": "梅谷乐坊船坞",
+    "tr": "Meigu Şarkıevi İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_006",
+   "linkedBell": "Bell_NLES_019_16127",
+   "broken": false
+  },
+  "Bell_MGH_005": {
+   "id": "Bell_MGH_005",
+   "row": "Bell_MGH_005",
+   "nameKey": "Bell_MGH_005",
+   "name": {
+    "key": "Bell_MGH_005",
+    "en": "Lake Banyan Dock",
+    "zh": "湖中榕树船坞",
+    "tr": "Göl Banyanı İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_008",
+   "linkedBell": "Bell_NLES_019_16383",
+   "broken": false
+  },
+  "Bell_MGH_007": {
+   "id": "Bell_MGH_007",
+   "row": "Bell_MGH_007",
+   "nameKey": "Bell_MGH_007",
+   "name": {
+    "key": "Bell_MGH_007",
+    "en": "Blackwater Crew Dock",
+    "zh": "水行帮船坞",
+    "tr": "Karasu Tayfası İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_010",
+   "linkedBell": "Bell_NLES_019_16639",
+   "broken": false
+  },
+  "Bell_MGH_008": {
+   "id": "Bell_MGH_008",
+   "row": "Bell_MGH_008",
+   "nameKey": "Bell_MGH_008",
+   "name": {
+    "key": "Bell_MGH_008",
+    "en": "Village of Lu Shallows Dock",
+    "zh": "陆家村浅滩船坞",
+    "tr": "Lu Köyü Sığlıkları İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_007",
+   "linkedBell": "Bell_NLES_019_16895",
+   "broken": false
+  },
+  "Bell_MGH_011": {
+   "id": "Bell_MGH_011",
+   "row": "Bell_MGH_011",
+   "nameKey": "Bell_MGH_011",
+   "name": {
+    "key": "Bell_MGH_011",
+    "en": "White Serpent House",
+    "zh": "白蛇屋",
+    "tr": "Beyaz Yılan Evi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_013",
+   "linkedBell": "Bell_NLES_019_17407",
+   "broken": false
+  },
+  "Bell_MGH_012": {
+   "id": "Bell_MGH_012",
+   "row": "Bell_MGH_012",
+   "nameKey": "Bell_MGH_012",
+   "name": {
+    "key": "Bell_MGH_012",
+    "en": "Meigu Village East Dock",
+    "zh": "梅谷村东岛船坞",
+    "tr": "Meigu Köyü Doğu İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_009",
+   "linkedBell": "Bell_NLES_019_17663",
+   "broken": false
+  },
+  "Bell_DH_001": {
+   "id": "Bell_DH_001",
+   "row": "DH_001",
+   "nameKey": "Bell_DH_001",
+   "name": {
+    "key": "Bell_DH_001",
+    "en": "Path of Silver",
+    "zh": "银白之路",
+    "tr": "Gümüş Patika"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_003",
+   "linkedBell": "Bell_NLES_019_3839",
+   "broken": false
+  },
+  "Bell_DH_002": {
+   "id": "Bell_DH_002",
+   "row": "DH_002",
+   "nameKey": "Bell_DH_002",
+   "name": {
+    "key": "Bell_DH_002",
+    "en": "The Last Mandate Encampment",
+    "zh": "最后的正道营地",
+    "tr": "Son Ferman Ordugâhı"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_004",
+   "linkedBell": "Bell_NLES_019_4095",
+   "broken": false
+  },
+  "Bell_DH_003": {
+   "id": "Bell_DH_003",
+   "row": "DH_003",
+   "nameKey": "Bell_DH_010",
+   "name": {
+    "key": "Bell_DH_010",
+    "en": "The Giant's Lair",
+    "zh": "巨物盘踞处",
+    "tr": "Devin İni"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_005",
+   "linkedBell": "Bell_NLES_019_4351",
+   "broken": false
+  },
+  "Bell_DH_004": {
+   "id": "Bell_DH_004",
+   "row": "DH_004",
+   "nameKey": "Bell_DH_004",
+   "name": {
+    "key": "Bell_DH_004",
+    "en": "Soulrend Cliff",
+    "zh": "断魂崖",
+    "tr": "Ruhyaran Uçurumu"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_006",
+   "linkedBell": "Bell_NLES_019_4607",
+   "broken": false
+  },
+  "Bell_DH_006": {
+   "id": "Bell_DH_006",
+   "row": "DH_006",
+   "nameKey": "Bell_DH_006",
+   "name": {
+    "key": "Bell_DH_006",
+    "en": "Frostcliff Cavern",
+    "zh": "寒崖冰窟",
+    "tr": "Ayazuçurum Mağarası"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_005",
+   "linkedBell": "Bell_NLES_019_4863",
+   "broken": false
+  },
+  "Bell_DH_007": {
+   "id": "Bell_DH_007",
+   "row": "DH_007",
+   "nameKey": "Bell_DH_007",
+   "name": {
+    "key": "Bell_DH_007",
+    "en": "The Fallen Dream",
+    "zh": "大梦倾颓处",
+    "tr": "Yıkılan Rüya"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_006",
+   "linkedBell": "Bell_NLES_019_5119",
+   "broken": false
+  },
+  "Bell_DH_010": {
+   "id": "Bell_DH_010",
+   "row": "DH_010",
+   "nameKey": "Bell_DH_008",
+   "name": {
+    "key": "Bell_DH_008",
+    "en": "The Last Chance",
+    "zh": "最后的挽回之地",
+    "tr": "Son Şans"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": "WorldMapFog_DH_005",
+   "linkedBell": "Bell_NLES_019_5375",
+   "broken": false
+  },
+  "Bell_MGXL_XiaoZhang_004": {
+   "id": "Bell_MGXL_XiaoZhang_004",
+   "row": "MGXL_XiaoZhang_004",
+   "nameKey": "Bell_MGXL_XiaoZhang_004",
+   "name": {
+    "key": "Bell_MGXL_XiaoZhang_004",
+    "en": "Zhang's Hideout (Meigu Village)",
+    "zh": "梅谷村小张藏身处",
+    "tr": "Zhang'in Sığınağı (Meigu Köyü)"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_005",
+   "linkedBell": "Bell_NLES_019_18687",
+   "broken": false
+  },
+  "Brokenbell_FujiDaronngshu": {
+   "id": "Brokenbell_FujiDaronngshu",
+   "row": "Brokenbell_FujiDaronngshu",
+   "nameKey": "Bell_DaRongShu_001",
+   "name": {
+    "key": "Bell_DaRongShu_001",
+    "en": "Human-Faced Banyan",
+    "zh": "人面榕树",
+    "tr": "İnsan Yüzlü Banyan"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_6143",
+   "broken": true
+  },
+  "Brokenbell_DaYingDaronngshu": {
+   "id": "Brokenbell_DaYingDaronngshu",
+   "row": "Brokenbell_DaYingDaronngshu",
+   "nameKey": "Bell_DaRongShu_001",
+   "name": {
+    "key": "Bell_DaRongShu_001",
+    "en": "Human-Faced Banyan",
+    "zh": "人面榕树",
+    "tr": "İnsan Yüzlü Banyan"
+   },
+   "map": "ZhengDaoDaYing",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_1279",
+   "broken": true
+  },
+  "Brokenbell_HuMianDaronngshu": {
+   "id": "Brokenbell_HuMianDaronngshu",
+   "row": "Brokenbell_HuMianDaronngshu",
+   "nameKey": "Bell_DaRongShu_001",
+   "name": {
+    "key": "Bell_DaRongShu_001",
+    "en": "Human-Faced Banyan",
+    "zh": "人面榕树",
+    "tr": "İnsan Yüzlü Banyan"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_8447",
+   "broken": true
+  },
+  "Brokenbell_HouJieDaronngshu": {
+   "id": "Brokenbell_HouJieDaronngshu",
+   "row": "Brokenbell_HouJieDaronngshu",
+   "nameKey": "Bell_DaRongShu_001",
+   "name": {
+    "key": "Bell_DaRongShu_001",
+    "en": "Human-Faced Banyan",
+    "zh": "人面榕树",
+    "tr": "İnsan Yüzlü Banyan"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_6399",
+   "broken": true
+  },
+  "Brokenbell_DDSDDaronngshu": {
+   "id": "Brokenbell_DDSDDaronngshu",
+   "row": "Brokenbell_DDSDDaronngshu",
+   "nameKey": "Bell_DaRongShu_001",
+   "name": {
+    "key": "Bell_DaRongShu_001",
+    "en": "Human-Faced Banyan",
+    "zh": "人面榕树",
+    "tr": "İnsan Yüzlü Banyan"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_3583",
+   "broken": true
+  },
+  "BrokenBell_LJC_01": {
+   "id": "BrokenBell_LJC_01",
+   "row": "BrokenBell_LJC_01",
+   "nameKey": "Bell_SXC_01_15",
+   "name": {
+    "key": "Bell_SXC_01_15",
+    "en": "The Acolytes",
+    "zh": "灭法之法",
+    "tr": "Müritler"
+   },
+   "map": null,
+   "fogRegion": "WorldMapFog_ZDDY_002",
+   "linkedBell": "Bell_NLES_019_767",
+   "broken": true
+  },
+  "BrokenBell_LJC_02": {
+   "id": "BrokenBell_LJC_02",
+   "row": "BrokenBell_LJC_02",
+   "nameKey": "Bell_SXC_01_16",
+   "name": {
+    "key": "Bell_SXC_01_16",
+    "en": "Lakeside",
+    "zh": "湖畔",
+    "tr": "Göl Kenarı"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_1023",
+   "broken": true
+  },
+  "BrokenBell_MGH_01": {
+   "id": "BrokenBell_MGH_01",
+   "row": "BrokenBell_GuHe",
+   "nameKey": "Bell_SXC_01_15",
+   "name": {
+    "key": "Bell_SXC_01_15",
+    "en": "The Acolytes",
+    "zh": "灭法之法",
+    "tr": "Müritler"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_17151",
+   "broken": true
+  },
+  "BrokenBell_Houjie_01": {
+   "id": "BrokenBell_Houjie_01",
+   "row": "BrokenBell_Houjie_01",
+   "nameKey": "Bell_SXC_01_15",
+   "name": {
+    "key": "Bell_SXC_01_15",
+    "en": "The Acolytes",
+    "zh": "灭法之法",
+    "tr": "Müritler"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_511",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_01": {
+   "id": "BrokenBell_HSSYJ_01",
+   "row": "BrokenBell_HSSYJ_01",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_6655",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_02": {
+   "id": "BrokenBell_HSSYJ_02",
+   "row": "BrokenBell_HSSYJ_02",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_6911",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_03": {
+   "id": "BrokenBell_HSSYJ_03",
+   "row": "BrokenBell_HSSYJ_03",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_7167",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_04": {
+   "id": "BrokenBell_HSSYJ_04",
+   "row": "BrokenBell_HSSYJ_04",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_7423",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_05": {
+   "id": "BrokenBell_HSSYJ_05",
+   "row": "BrokenBell_HSSYJ_05",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_7679",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_06": {
+   "id": "BrokenBell_HSSYJ_06",
+   "row": "BrokenBell_HSSYJ_06",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_7935",
+   "broken": true
+  },
+  "BrokenBell_HSSYJ_07": {
+   "id": "BrokenBell_HSSYJ_07",
+   "row": "BrokenBell_HSSYJ_07",
+   "nameKey": "BrokenBell_HSSYJ_01",
+   "name": {
+    "key": "BrokenBell_HSSYJ_01",
+    "en": "Phantom Illusionist Ruins",
+    "zh": "幻术师遗迹",
+    "tr": "Hayalet İllüzyonist Harabeleri"
+   },
+   "map": "HuanShuShi",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_8191",
+   "broken": true
+  },
+  "BrokenBell_PZShaQiTa_01": {
+   "id": "BrokenBell_PZShaQiTa_01",
+   "row": "BrokenBell_PZShaQiTa_01",
+   "nameKey": "Bell_SZ_028",
+   "name": {
+    "key": "Bell_SZ_028",
+    "en": "Pangzhen Sha-Chi Tower Lower Exterior",
+    "zh": "庞镇杀气塔下部外侧",
+    "tr": "Pangzhen Sha-Chi Kulesi Alt Dış Kısmı"
+   },
+   "map": null,
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_24319",
+   "broken": true
+  },
+  "Bell_QingDaoFu": {
+   "id": "Bell_QingDaoFu",
+   "row": "Bell_QingDaoFu",
+   "nameKey": "Bell_QingDaoFu",
+   "name": {
+    "key": "Bell_QingDaoFu",
+    "en": "Scavenger Pens",
+    "zh": "清道夫豢养处",
+    "tr": "Leşçi Ağılları"
+   },
+   "map": "XiGu",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_24575",
+   "broken": false
+  },
+  "Bell_XM_XiaoZhang_005": {
+   "id": "Bell_XM_XiaoZhang_005",
+   "row": "Bell_XM_XiaoZhang_005",
+   "nameKey": "Bell_XM_XiaoZhang_005",
+   "name": {
+    "key": "Bell_XM_XiaoZhang_005",
+    "en": "Zhang's Hideout (Mirage Estate)",
+    "zh": "戏梦山庄小张藏身处",
+    "tr": "Zhang'in Sığınağı (Serap Malikânesi)"
+   },
+   "map": "XiMeng",
+   "fogRegion": "WorldMapFog_XMSZ_002",
+   "linkedBell": "Bell_NLES_019_40447",
+   "broken": false
+  },
+  "BrokenBell_TheEnd01": {
+   "id": "BrokenBell_TheEnd01",
+   "row": "BrokenBell_TheEnd01",
+   "nameKey": "Bell_DH_012",
+   "name": {
+    "key": "Bell_DH_012",
+    "en": "Phantom of The Old House",
+    "zh": "故屋幻景",
+    "tr": "Eski Evin Hayaleti"
+   },
+   "map": "DuanHunYa",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_36351",
+   "broken": true
+  },
+  "Bell_DP_001": {
+   "id": "Bell_DP_001",
+   "row": "Bell_DP_001",
+   "nameKey": "Bell_DP_001",
+   "name": {
+    "key": "Bell_DP_001",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "map": "XiGu",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_5631",
+   "broken": false
+  },
+  "Bell_DP_002": {
+   "id": "Bell_DP_002",
+   "row": "Bell_DP_002",
+   "nameKey": "Bell_DP_001",
+   "name": {
+    "key": "Bell_DP_001",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_5631",
+   "broken": false
+  },
+  "Bell_DP_003": {
+   "id": "Bell_DP_003",
+   "row": "Bell_DP_003",
+   "nameKey": "Bell_DP_001",
+   "name": {
+    "key": "Bell_DP_001",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "map": "XiMeng",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_5631",
+   "broken": false
+  },
+  "Bell_DP_004": {
+   "id": "Bell_DP_004",
+   "row": "Bell_DP_004",
+   "nameKey": "Bell_DP_001",
+   "name": {
+    "key": "Bell_DP_001",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_5631",
+   "broken": false
+  },
+  "Bell_DP_005": {
+   "id": "Bell_DP_005",
+   "row": "Bell_DP_005",
+   "nameKey": "Bell_DP_001",
+   "name": {
+    "key": "Bell_DP_001",
+    "en": "Lóng Pillar",
+    "zh": "龙柱",
+    "tr": "Lóng Sütunu"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": null,
+   "linkedBell": "Bell_NLES_019_5631",
+   "broken": false
+  },
+  "Bell_LZSJ_020": {
+   "id": "Bell_LZSJ_020",
+   "row": "LZSJ_020",
+   "nameKey": "Bell_LZSJ_020",
+   "name": {
+    "key": "Bell_LZSJ_020",
+    "en": "Cliffside Lodge",
+    "zh": "悬崖山舍",
+    "tr": "Yamaç Kulübesi"
+   },
+   "map": "FuJiZhiLin",
+   "fogRegion": "WorldMapFog_XSSL_010",
+   "linkedBell": "Bell_NLES_019",
+   "broken": false
+  },
+  "Bell_SXC_01_17": {
+   "id": "Bell_SXC_01_17",
+   "row": "Bell_SXC_01_17",
+   "nameKey": "Bell_SXC_01_17",
+   "name": {
+    "key": "Bell_SXC_01_17",
+    "en": "Beneath the Well",
+    "zh": "水井之下",
+    "tr": "Kuyunun Altı"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_012",
+   "linkedBell": "Bell_NLES_019_24831",
+   "broken": false
+  },
+  "Bell_SXC_02_04": {
+   "id": "Bell_SXC_02_04",
+   "row": "Bell_SXC_02_04",
+   "nameKey": "Bell_SXC_02_04",
+   "name": {
+    "key": "Bell_SXC_02_04",
+    "en": "Statue Grounds Entrance",
+    "zh": "雕像场前",
+    "tr": "Heykel Alanı Girişi"
+   },
+   "map": "LuJiaCun",
+   "fogRegion": "WorldMapFog_LJC_007",
+   "linkedBell": "Bell_NLES_019_27903",
+   "broken": false
+  },
+  "Bell_MGH_013": {
+   "id": "Bell_MGH_013",
+   "row": "Bell_MGH_013",
+   "nameKey": "Bell_MGH_013",
+   "name": {
+    "key": "Bell_MGH_013",
+    "en": "White Serpent House Dock",
+    "zh": "白蛇屋船坞",
+    "tr": "Beyaz Yılan Evi İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_013",
+   "linkedBell": "Bell_NLES_019_17919",
+   "broken": false
+  },
+  "Bell_MGH_014": {
+   "id": "Bell_MGH_014",
+   "row": "Bell_MGH_014",
+   "nameKey": "Bell_MGH_014",
+   "name": {
+    "key": "Bell_MGH_014",
+    "en": "Meigu Village West  Dock",
+    "zh": "梅谷村西岛船坞",
+    "tr": "Meigu Köyü Batı İskelesi"
+   },
+   "map": "MeiGuHu",
+   "fogRegion": "WorldMapFog_MGH_005",
+   "linkedBell": "Bell_NLES_019_18175",
+   "broken": false
+  }
+ }
+}
