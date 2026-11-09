@@ -38,6 +38,13 @@
       'journal.changes': 'Son okumadan beri değişenler',
       'journal.empty': 'Günlükte gösterilecek bir şey yok.',
       'journal.escHint': 'Esc: hepsini yeniden gizle',
+      'kind.quest': 'Görev',
+      'kind.item': 'Eşya',
+      'kind.accessory': 'Aksesuar',
+      'kind.flower': 'Anı çiçeği yaprağı',
+      'kind.chest': 'Sandık',
+      'kind.weapon': 'Silah',
+      'kind.info': 'İpucu',
       'set.paths': 'Oyun ve save',
       'set.pick': 'Seç…',
       'set.forget': 'Unut',
@@ -156,6 +163,13 @@
       'journal.changes': 'Changed since last read',
       'journal.empty': 'Nothing to show in the journal.',
       'journal.escHint': 'Esc: hide everything again',
+      'kind.quest': 'Quest',
+      'kind.item': 'Item',
+      'kind.accessory': 'Accessory',
+      'kind.flower': 'Memory flower petal',
+      'kind.chest': 'Chest',
+      'kind.weapon': 'Weapon',
+      'kind.info': 'Tip',
       'set.paths': 'Game and save',
       'set.pick': 'Choose…',
       'set.forget': 'Forget',
@@ -246,6 +260,7 @@
   };
 
   const STATUSES = new Set(['open', 'notStarted', 'done', 'missed', 'unknown']);
+  const KINDS = new Set(['quest', 'item', 'accessory', 'flower', 'chest', 'weapon', 'info']);
 
   const app = {
     lang: 'en', // until the first state arrives (the transport decides: English by default)
@@ -304,6 +319,14 @@
     error: ['M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z', 'M12 7.5v6', 'M12 16.5h.01'],
     external: ['M14 4h6v6', 'M20 4l-9 9', 'M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'],
     lock: ['M7 11V8a5 5 0 0 1 10 0v3', 'M5 11h14v10H5z', 'M12 15v3'],
+    // Journal row kinds (what a row is about): scroll, pouch, ring, petal, chest, sword, lantern.
+    quest: ['M7 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7', 'M7 4a2 2 0 0 0-2 2v10a2 2 0 0 1-2 2h4', 'M7 4v14a2 2 0 0 1-2 2', 'M10 9h6', 'M10 13h6'],
+    item: ['M8 7h8l3 4v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7l3-4z', 'M9 7a3 3 0 0 1 6 0', 'M5 11h14'],
+    accessory: ['M12 9a6 6 0 1 0 0 12a6 6 0 1 0 0-12z', 'M9.5 9.6 8 5.5h8l-1.5 4.1', 'M8 5.5 12 3l4 2.5'],
+    flower: ['M12 21c-4-3-6-6-6-9a6 6 0 0 1 12 0c0 3-2 6-6 9z', 'M12 21V9', 'M12 13c1.5-1 3-1.2 4.5-.5', 'M12 16.5c-1.5-1-3-1.2-4.5-.5'],
+    chest: ['M4 10h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9z', 'M4 10a8 4 0 0 1 16 0', 'M10 13h4v3h-4z'],
+    weapon: ['M14.5 4 20 9.5 10.5 19 5 13.5 14.5 4z', 'M8 16l-4 4', 'M6 11l7 7'],
+    hint: ['M9 3h6', 'M12 3v2', 'M8 5h8l1.5 3-1.5 9a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3L6.5 8 8 5z', 'M9 21h6', 'M10 10c1 1 3 1 4 0'],
   };
   function icon(name, cls) {
     const svg = document.createElementNS(SVG_NS, 'svg');
@@ -608,13 +631,13 @@
       }
       out.push(h('section', { class: 'jsection' }, h('h2', { class: 'jsection-title', text: sec.title || '' }), rows.length ? list : null));
     }
-    const plain = (title, lines) => {
+    const plain = (title, lines, kind) => {
       const list = h('ul', { class: 'jrows' });
-      for (const line of lines) { list.append(h('li', null, journalRow({ name: line }, true))); total++; }
+      for (const line of lines) { list.append(h('li', null, journalRow({ name: line, kind }, true))); total++; }
       out.push(h('section', { class: 'jsection' }, h('h2', { class: 'jsection-title', text: title }), list));
     };
-    if (info.length) plain(t('journal.info'), info);
-    if (changes.length) plain(t('journal.changes'), changes);
+    if (info.length) plain(t('journal.info'), info, 'info');
+    if (changes.length) plain(t('journal.changes'), changes, null);
 
     if (!total) out.push(h('p', { class: 'muted', text: t('journal.empty') }));
     if (j.legend) out.push(h('p', { class: 'legend', text: j.legend }));
@@ -638,6 +661,10 @@
     const text = h('span', { class: 'jtext' + (nameBlur ? ' blur' : '') },
       h('span', { class: 'jname', text: r.name || '' }), detail);
     const children = [];
+    // What the row is about (docs/ui-api.md rows[].kind; info rows are 'info'): a small icon with a title, never
+    // blurred (it names a kind, not the thing). Rows without a kind (changes) leave the column out.
+    const kind = KINDS.has(r.kind) ? r.kind : null;
+    const kindEl = kind ? h('span', { class: 'jkind jkind-' + kind, attrs: { role: 'img', 'aria-label': t('kind.' + kind), title: t('kind.' + kind) } }, icon(kind === 'info' ? 'hint' : kind)) : null;
     const blurred = nameBlur ? [text] : (detail && detailBlur ? [detail] : []);
     if (!plain) {
       // The badge belongs to the "whole row": blurred (in a neutral colour, see style.css) with the name.
@@ -648,9 +675,10 @@
     }
     for (const el of blurred) el.setAttribute('aria-hidden', 'true');
     const sr = blurred.length ? h('span', { class: 'sr-only jhidden', text: t(nameBlur ? 'journal.hidden' : 'journal.detailsHidden') }) : null;
+    if (kindEl) children.push(kindEl);
     children.push(text, sr);
     return h('button', {
-      class: 'jrow' + (plain ? ' jrow-plain' : ''),
+      class: 'jrow' + (plain ? ' jrow-plain' : '') + (kind ? '' : ' jrow-nokind'),
       attrs: { type: 'button', 'aria-pressed': 'false' },
       on: { click: (e) => setRowRevealed(e.currentTarget, !e.currentTarget.classList.contains('revealed')) },
     }, ...children);

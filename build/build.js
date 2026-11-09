@@ -72,7 +72,7 @@ function webIndex(html) {
   swap('<meta name="google" content="notranslate">', [
     '<meta name="google" content="notranslate">',
     '<meta name="description" content="Spoiler-safe, read-only missables tracker for Phantom Blade Zero. Runs entirely in your browser; nothing is uploaded.">',
-    '<meta name="theme-color" content="#1b1b1d">',
+    '<meta name="theme-color" content="#1d1915">',
     '<link rel="manifest" href="manifest.webmanifest">',
   ].join('\n'));
   swap('<link rel="stylesheet" href="/style.css">', '<link rel="stylesheet" href="style.css">');
@@ -97,8 +97,8 @@ function buildWeb() {
       start_url: './',
       scope: './',
       display: 'standalone',
-      background_color: '#121212',
-      theme_color: '#1b1b1d',
+      background_color: '#15120f',
+      theme_color: '#1d1915',
       icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
     }, null, 2)}\n`,
   };

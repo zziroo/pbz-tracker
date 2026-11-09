@@ -118,6 +118,12 @@ interface State {
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
       rows: Array<{
         name: string; status: Status; statusText: string; progress: string | null; note: string | null;
+        kind: 'quest' | 'item' | 'accessory' | 'flower' | 'chest' | 'weapon';
+                               // what the row is about (lib/report.js kindOf): a quest, or for a rule without a quest the
+                               // thing its doneWhen looks for (an AC_* accessory, a memory-flower petal, a saved chest actor, a
+                               // weapon id, else a generic item). The page shows a small icon with a title; never blurred
+                               // (it names a kind, not the thing). Missing (older transport) → 'quest'. Journal info rows are
+                               // shown with the 'info' icon by the page itself (they are plain strings).
         nameBlur: boolean;     // false = status done or missed (any row, guesses * included), or the quest is in the player's journal (in the save,
                                // status open, not a guess): name readable. true = not started, unknown, open guess (*) or an item rule
                                // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
@@ -216,5 +222,9 @@ interface About {
   Click a row → every part of that row unblurs. "Show all" asks for confirmation. Leaving the tab, `Esc` or any
   new `state` re-blurs everything.
 - Language toggle (TR/EN) top right.
-- Dark theme, system fonts (Segoe UI; Cascadia Mono/Consolas for numbers), no external resources, no emoji
-  (inline SVG if an icon is needed). Works at 1100×760 and narrower (down to ~720 px wide).
+- Dark "ink and paper" theme (wuxia): paper grain, brush-stroke dividers and card edges, red seal marks (the brand,
+  the current region's heading, the active tab) and a serif stack for headings — all drawn with CSS and inline SVG data
+  URIs coloured through CSS masks (`ui/style.css` `:root`); system fonts only (Georgia/Noto Serif for headings, Segoe UI
+  for text, Cascadia Mono/Consolas for numbers), no external resources, no emoji (inline SVG if an icon is needed).
+  Status badges are stamp-like (uppercase; "missed" is a filled red seal). Journal rows carry a kind icon
+  (`rows[].kind`; info rows a lantern). Works at 1100×760 and down to phone width (375 px) without horizontal scrolling.
