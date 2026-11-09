@@ -2,11 +2,12 @@
 # Guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
 # Title: pbz-tracker: a seatbelt for blind playthroughs
 # Steam guides are edited per section; each top-level "[h1]" block below is one section (title + body).
-# Images were uploaded in the Steam editor (re-uploaded 2026-11-06 with the region-grouped layout;
+# Images were uploaded in the Steam editor (re-uploaded 2026-11-09 with the v0.7.0 ink-and-paper theme;
 # a file with the same name overwrites the old one, so the preview ids stayed the same):
 #   IMG1 = previewimg 48488276 (docs/screenshots/web-warnings.png)
 #   IMG2 = previewimg 48488277 (docs/screenshots/web-journal.png)
 #   IMG3 = previewimg 48488278 (docs/screenshots/web-setup.png)
+#   IMG4 = previewimg 48563063 (docs/screenshots/web-maps.png, new in v0.7.0)
 # Section ids in the editor (editguidesubsection/?id=<guide>&sectionid=<id>):
 #   9469022 Not a guide. A seatbelt. / 9469030 Spoiler policy / 9469035 How to use / 9469036 Safety, limits, sources, feedback
 # ----------------------------------------------------------------------------
@@ -41,11 +42,16 @@ A guide has to tell you what's ahead to be of any use, and that's the exact thin
 [*]Open [url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] in Chrome or Edge.
 [*]Click Choose game folder and pick the game folder (or your whole Steam library folder, that works too). The browser asks for read access, allow it. Next time it's one click, "Continue with PBZ".
 [*]Leave it open next to the game. Second monitor, or just alt-tab now and then. You can also install it as an app if you want it in its own window. Every time the game saves (the bell, autosave) it refreshes by itself.
-[*]Tabs: Warnings (default, only what you're about to lose, grouped by region), Journal (quest status, step counters, missed items, blurred), Settings (language, refresh interval, game folder), About.
+[*]Tabs: Warnings (default, only what you're about to lose, grouped by region), Journal (quest status, step counters, missed items, blurred; a small icon says whether a row is a quest, an item, an accessory, a petal, a chest, a weapon or a tip), Settings (language, refresh interval, game folder), About, Maps (see below).
 [*]Firefox/Safari: drag and drop your save onto the page (and PBZ.exe, once). Works, but there's no auto refresh, so you have to drop the save again after the game saves.
 [/olist]
 
 [previewimg=48488278;sizeFull,inline;web-setup.png][/previewimg]
+
+[h1]Maps tab[/h1]
+The Maps tab recomputes the game's own map completion from your save, with the same rules the game uses: per region the percentage, the counts per category (bells, Sha-Chi amber, blackstone, memory flowers, weapons, Phantom Edges, accessories, medicines, challenge locations) and the list of what's still missing. Only regions you've reached are listed. Missing entries stay blurred until you click them, and the nearest bell is only named if you turn on "exact names" in Settings. Handy when a region sits at 94% and you'd like to know what kind of thing you're missing without being told where it is.
+
+[previewimg=48563063;sizeFull,inline;web-maps.png][/previewimg]
 
 [h1]Languages[/h1]
 English and Turkish (TR/EN switch). If you have a community text patch installed (the Turkish one for example), quest names get read from it automatically, otherwise it falls back to the English name tables. Other languages can be added with a JSON table, contributions welcome.
@@ -62,8 +68,7 @@ English and Turkish (TR/EN switch). If you have a community text patch installed
 [h1]Known limits[/h1]
 [list]
 [*]Some of the later story cutoffs can't be detected from the save yet. Warnings there go by quest state only.
-[*]Some quest-ID mappings are educated guesses. Those are marked with *.
-[*]A few items just can't be detected from the save at all.
+[*]A few cutoff mappings are still educated guesses. Those are marked with *.
 [*]The rules come from guides and player reports, and those don't always agree with each other.
 [*]This is new and I built it fast, so expect rough edges. If it flags something wrong, tell me.
 [/list]
@@ -74,6 +79,7 @@ Every rule cites its sources in the [url=https://github.com/zziroo/pbz-tracker/b
 [*][b]Guides:[/b] [url=https://game8.co/games/Phantom-Blade-Zero/archives/634952]Game8[/url] (missables, choices, boss pages), [url=https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap]PowerPyx[/url] (trophy roadmap and per-region collectibles, comment threads included), [url=https://allthings.how/phantom-blade-zero-missables/]allthings.how[/url] (missables, choices, tale walkthroughs), [url=https://www.keengamer.com/articles/guides/phantom-blade-zero-all-33-tales-and-side-quests-walkthrough/]KeenGamer[/url] (all tales), [url=https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html]DTGRE[/url] (Bai Chilian cutoff, purple quests), [url=https://news.17173.com/content/11032026/170457976.shtml]17173[/url] and [url=https://www.gamersky.com/handbook/202610/2236093_21.shtml]GamerSky[/url] (Chinese guides), [url=https://criticalhits.com.br/dicas/phantom-blade-zero-voce-deve-acusar-ju-de-matar-a-irma/]Critical Hits[/url], [url=https://gameshorizon.com/?p=81096]GamesHorizon[/url].
 [*][b]Steam Community guides:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829266508]CZYHAXJ's full walkthrough (CN)[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829258710]Lankec's achievement guide (CN)[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829337248]Nero's 100% guide[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829452257]Zayfer's guide (PT-BR)[/url] (some of these are hidden by the community right now).
 [*][b]Steam forum threads:[/b] [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/]is Mirage Estate the point of no return?[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679173080075229/]the Crimson Forest boss changes the camps[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124412203/]Baishan Sect body / save lock[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679810651832913/]Red on the pigeon tower[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679917415745269/]missable flowers (kneeling NPCs)[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124298019/]Memory Flower of the Mandate Leaders[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679810651843977/]Illusory Pipa needs the Yubi fight[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124200331/]Mu Xiaokui's third phase[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124241367/]Heart of the Banyan bug[/url] and more; each thread is linked from the rule it supports.
+[*][b]The game's own data:[/b] item, weapon, Phantom Edge, accessory, bell and quest names come from the game's data tables, not from guides, and the Maps tab uses the game's own completion rules.
 [*][b]Real saves:[/b] rules are re-checked against my own save files as I play (the --archive option keeps every save the tool reads).
 [*][b]Save decompression:[/b] a port of [url=https://github.com/powzix/ooz]ooz by Powzix[/url] (Oodle).
 [/list]

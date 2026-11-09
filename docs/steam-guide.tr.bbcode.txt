@@ -2,11 +2,12 @@
 # Guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834117803
 # Title: pbz-tracker: rehbersiz oyna, hiçbir şeyi kaçırma
 # Steam guides are edited per section; each top-level "[h1]" block below is one section (title + body).
-# Images were uploaded in the Steam editor (re-uploaded 2026-11-06 with the region-grouped layout;
+# Images were uploaded in the Steam editor (re-uploaded 2026-11-09 with the v0.7.0 ink-and-paper theme;
 # a file with the same name overwrites the old one, so the preview ids stayed the same):
 #   IMG1 = previewimg 48488383 (docs/screenshots/web-tr-warnings.png)
 #   IMG2 = previewimg 48488384 (docs/screenshots/web-tr-journal.png)
 #   IMG3 = previewimg 48488385 (docs/screenshots/web-setup.png)
+#   IMG4 = previewimg 48563066 (docs/screenshots/web-tr-maps.png, new in v0.7.0)
 #   (48488386 window-tr-warnings.png is an old, unused upload)
 # Section ids in the editor (editguidesubsection/?id=<guide>&sectionid=<id>):
 #   9469049 Rehber değil... / 9469052 Spoiler kuralları / 9469058 Nasıl kullanılır? / 9469061 Güvenlik, eksikler, kaynaklar, geri bildirim
@@ -48,11 +49,16 @@ Bir rehber işe yarasın diye sana ileride ne olduğunu anlatmak zorunda; kör o
 [*][url=https://zziroo.github.io/pbz-tracker/]https://zziroo.github.io/pbz-tracker/[/url] adresini Chrome ya da Edge'de aç.
 [*]"Oyun klasörünü seç"e tıkla, oyunun klasörünü (ya da Steam kütüphane klasörünü) seç. Tarayıcı okuma izni istiyor, izin ver. Sonraki girişlerde "PBZ ile devam et"e bir tık yetiyor.
 [*]Sayfayı oyunun yanında açık bırak (ikinci monitör ya da ara sıra alt-tab; kendi penceresinde dursun istersen uygulama olarak da kurabilirsin). Oyun her kayıt yaptığında (çan, otomatik kayıt) kendi kendine yenileniyor.
-[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında.
+[*]Sekmeler: Uyarılar (varsayılan; sadece kaçırmak üzere olduğun şeyler, bölgeye göre gruplu), Günlük (görev durumu, adım sayaçları, kaçırılan eşyalar; bulanık; küçük bir simge satırın görev mi, eşya mı, aksesuar mı, anı yaprağı mı, sandık mı, silah mı, ipucu mu olduğunu gösteriyor), Ayarlar (dil, yenileme aralığı, oyun klasörü), Hakkında, Haritalar (aşağıda).
 [*]Firefox/Safari: save dosyanı (ve bir kereliğine PBZ.exe'yi) sayfaya sürükleyip bırak. Çalışıyor ama otomatik yenileme yok; oyun kayıt yaptıktan sonra save'i tekrar bırakman gerekiyor.
 [/olist]
 
 [previewimg=48488385;sizeFull,inline;web-setup.png][/previewimg]
+
+[h1]Haritalar sekmesi[/h1]
+Haritalar sekmesi, oyunun kendi harita tamamlanma sayımını kaydından oyunla aynı kurallarla yeniden hesaplıyor: bölge başına yüzde, kategori sayaçları (çanlar, Sha-Chi kehribarı, karataş, anı çiçekleri, silahlar, Phantom Edge'ler, aksesuarlar, ilaçlar, sınav noktaları) ve hâlâ eksik olanların listesi. Yalnız ulaştığın bölgeler listeleniyor. Eksikler tıklayana kadar bulanık; en yakın çanın adı ancak Ayarlar'da "tam adlar"ı açarsan görünüyor. Bir bölge %94'te takılı kaldığında, nerede olduğunu öğrenmeden ne tür bir şey eksik olduğunu görmek için işe yarıyor.
+
+[previewimg=48563066;sizeFull,inline;web-tr-maps.png][/previewimg]
 
 [h1]Türkçe yama ve dil[/h1]
 Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlarını doğrudan yamadan okuyor; yani adlar oyunda gördüğünle birebir aynı oluyor, ayar yapmana gerek yok. Yama yoksa resmi İngilizce adlar kullanılıyor. Arayüz Türkçe ve İngilizce (TR/EN geçişi var).
@@ -69,8 +75,7 @@ Türkçe topluluk yaması kuruluysa araç bunu kendi fark ediyor ve görev adlar
 [h1]Bilinen eksikler[/h1]
 [list]
 [*]Hikâyenin ileri kısımlarındaki bazı geri dönüşsüz noktalar save'den henüz tespit edilemiyor; oralardaki uyarılar sadece görev durumuna dayanıyor.
-[*]Bazı görev ID eşleştirmeleri tahmine dayalı; bunlar * ile işaretli.
-[*]Birkaç eşya save'den hiç tespit edilemiyor.
+[*]Birkaç kesim noktası eşleştirmesi hâlâ tahmine dayalı; bunlar * ile işaretli.
 [*]Kurallar rehberlerden ve oyuncu raporlarından geliyor; bunlar da her zaman birbirini tutmuyor.
 [*]Hızlı yapıldı ve daha yeni; pürüz olabilir, kusursuz değil. Yanlış bir şey işaretlerse bana söyle.
 [/list]
@@ -81,6 +86,7 @@ Her kural, kaynağını [url=https://github.com/zziroo/pbz-tracker/blob/main/dat
 [*][b]Rehberler:[/b] [url=https://game8.co/games/Phantom-Blade-Zero/archives/634952]Game8[/url] (kaçırılabilirler, seçimler, boss sayfaları), [url=https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap]PowerPyx[/url] (başarım yol haritası ve bölge bölge toplanabilirler, yorumlar dahil), [url=https://allthings.how/phantom-blade-zero-missables/]allthings.how[/url] (kaçırılabilirler, seçimler, görev yürüyüşleri), [url=https://www.keengamer.com/articles/guides/phantom-blade-zero-all-33-tales-and-side-quests-walkthrough/]KeenGamer[/url] (tüm hikâyeler), [url=https://www.dtgre.com/2026/10/phantom-blade-zero-bai-chilian-missable-quests.html]DTGRE[/url] (Bai Chilian kesim noktası, mor görevler), [url=https://news.17173.com/content/11032026/170457976.shtml]17173[/url] ve [url=https://www.gamersky.com/handbook/202610/2236093_21.shtml]GamerSky[/url] (Çince rehberler), [url=https://criticalhits.com.br/dicas/phantom-blade-zero-voce-deve-acusar-ju-de-matar-a-irma/]Critical Hits[/url], [url=https://gameshorizon.com/?p=81096]GamesHorizon[/url].
 [*][b]Steam Topluluğu rehberleri:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829266508]CZYHAXJ'nin tam yürüyüşü (CN)[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829258710]Lankec'in başarım rehberi (CN)[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829337248]Nero'nun %100 rehberi[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829452257]Zayfer'in rehberi (PT-BR)[/url] (bazıları şu an toplulukta gizli).
 [*][b]Steam forum başlıkları:[/b] [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/]Mirage Estate dönüşü olmayan nokta mı?[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679173080075229/]Kızıl Orman boss'u kampları değiştiriyor[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124412203/]Baishan ceset / kayıt kilidi[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679810651832913/]güvercin kulesindeki Red[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679917415745269/]kaçırılabilir çiçekler (diz çöken NPC'ler)[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124298019/]Ferman Liderlerinin Anı Çiçeği[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679810651843977/]Hayali Pipa için Yubi dövüşü[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124200331/]Mu Xiaokui'nin üçüncü fazı[/url], [url=https://steamcommunity.com/app/4115450/discussions/0/572679490124241367/]Banyan'ın Kalbi hatası[/url] ve daha fazlası; her başlık desteklediği kuraldan bağlantılı.
+[*][b]Oyunun kendi verisi:[/b] eşya, silah, Phantom Edge, aksesuar, çan ve görev adları rehberlerden değil oyunun veri tablolarından geliyor; Haritalar sekmesi de oyunun kendi tamamlanma kurallarını kullanıyor.
 [*][b]Gerçek kayıtlar:[/b] kurallar oynadıkça kendi save dosyalarımla yeniden kontrol ediliyor (--archive seçeneği aracın okuduğu her save'i saklıyor).
 [*][b]Save açma:[/b] Powzix'in [url=https://github.com/powzix/ooz]ooz[/url]'unun (Oodle) bir portu.
 [/list]
