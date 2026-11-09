@@ -1,6 +1,6 @@
 # Yayınlama
 
-## Durum (v0.6.0)
+## Durum (v0.7.0)
 
 Araç yalnız web sürümü olarak dağıtılıyor:
 

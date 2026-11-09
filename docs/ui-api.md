@@ -220,7 +220,7 @@ interface ItemRecord {         // an item code that appeared in the save's Inven
 }
 
 interface About {
-  version: string;             // "0.6.0"
+  version: string;             // "0.7.0"
   testedBuilds: string[];
   license: string;             // "GPL-3.0-or-later"
   repoUrl: string | null;      // null → no link
