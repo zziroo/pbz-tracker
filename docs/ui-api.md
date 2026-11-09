@@ -118,10 +118,10 @@ interface State {
       title: string;           // localized, e.g. "Missables", "True ending: purple quests — found 8, finished 2", "Other side quests"
       rows: Array<{
         name: string; status: Status; statusText: string; progress: string | null; note: string | null;
-        nameBlur: boolean;     // false = status done (any row except guesses *), or the quest is in the player's journal (in the save, status open/done/missed,
-                               // not a guess): name readable. true = not started, unknown, guess (*) or an item rule
+        nameBlur: boolean;     // false = status done or missed (any row, guesses * included), or the quest is in the player's journal (in the save,
+                               // status open, not a guess): name readable. true = not started, unknown, open guess (*) or an item rule
                                // without a quest: the whole row (badge, name, details) is blurred. Missing → true.
-        detailBlur: boolean;   // progress + note blurred (currently always true). Missing → true.
+        detailBlur: boolean;   // progress + note blurred: true while the row is open/not started/unknown, false once done or missed. Missing → true.
       }>;
     }>;
     info: string[];            // named info texts (hidden layer; always blurred as a whole)
@@ -210,7 +210,7 @@ interface About {
   quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
   Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.
 - Journal rows: blurred per row part (`filter: blur`, class `.blur` + `aria-hidden` on each blurred part):
-  `nameBlur: false` → status badge and name readable, step counter and note blurred (`detailBlur`); `nameBlur: true`
+  `nameBlur: false` → status badge and name readable, step counter and note blurred while `detailBlur` (open rows; finished rows are fully readable); `nameBlur: true`
   → badge, name and details blurred together (the badge in a neutral colour until revealed). Info and change rows
   are always blurred as a whole. Section titles and their counts are never blurred.
   Click a row → every part of that row unblurs. "Show all" asks for confirmation. Leaving the tab, `Esc` or any
