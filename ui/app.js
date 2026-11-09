@@ -3,7 +3,7 @@
 // Strict CSP: no inline scripts/styles, no style attributes. All transport strings go through textContent.
 
 (() => {
-  const TABS = ['warnings', 'journal', 'settings', 'about', 'maps'];
+  const TABS = ['warnings', 'journal', 'maps', 'settings', 'about'];
 
   // ---- Chrome strings (content strings come localized from the transport) ----
   const I18N = {

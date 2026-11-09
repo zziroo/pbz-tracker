@@ -34,9 +34,9 @@ Sayfayı oyunun yanında açık bırak. Save'i 3 saniyede bir kontrol eder (Ayar
 
 - **Uyarılar** (varsayılan sekme): yalnız kaçırmak üzere olduğun şeyler, ya da "Şu an kaçırma riski yok."
 - **Günlük**: günlüğündeki görevlerin durumu, aşama sayaçları, kaçanlar ve mor görev sayımı. Satırlar bulanıktır, tıklayınca açılır (günlükte zaten başladığın görevlerin adı ve durumu açık kalır); her yenilemede yeniden bulanıklaşır. Küçük bir simge satırın neyle ilgili olduğunu söyler (görev, eşya, aksesuar, anı çiçeği yaprağı, sandık, silah, ipucu).
+- **Haritalar**: ulaştığın her bölge için oyunun kendi harita tamamlanma hesabı: oyun içi harita panelindeki yüzde ve sayaç, kategori başına dağılım (çanlar, silahlar, Phantom Edge'ler, aksesuarlar, ilaçlar, sınav noktaları, Sha-Chi kehribarı ve karataş parçaları, anı çiçekleri) ve eksik kalemler; eksikler tıklayana kadar bulanıktır. "Yer ve boss adlarını göster" açıkken her eksik kalemin yanında en yakın çanın adı da yazar. Ulaşmadığın bölgeler listelenmez.
 - **Ayarlar**: dil (TR/EN), ad kaynağı, yenileme aralığı, dosya erişimi, oyun klasörü / save dosyası (seç ya da unut).
 - **Hakkında**: sürüm, doğrulanan oyun build'i, lisans, rehber bağlantıları.
-- **Haritalar**: ulaştığın her bölge için oyunun kendi harita tamamlanma hesabı: oyun içi harita panelindeki yüzde ve sayaç, kategori başına dağılım (çanlar, silahlar, Phantom Edge'ler, aksesuarlar, ilaçlar, sınav noktaları, Sha-Chi kehribarı ve karataş parçaları, anı çiçekleri) ve eksik kalemler; eksikler tıklayana kadar bulanıktır. "Yer ve boss adlarını göster" açıkken her eksik kalemin yanında en yakın çanın adı da yazar. Ulaşmadığın bölgeler listelenmez.
 
 ![Günlük sekmesi, bulanık](docs/screenshots/web-tr-journal.png)
 

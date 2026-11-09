@@ -232,7 +232,7 @@ interface About {
 
 ## Page behaviour (summary)
 
-- Tabs: **Warnings** (default), **Journal**, **Settings**, **About**, **Maps**. Keys `1`-`5` switch tabs, `Esc` re-blurs the journal or the maps.
+- Tabs: **Warnings** (default), **Journal**, **Maps**, **Settings**, **About** (the three content tabs first, the two tool tabs last). Keys `1`-`5` switch tabs in that order, `Esc` re-blurs the journal or the maps.
 - Maps: one card per reached region (`State.maps`): name, percentage, count, a `<progress>` bar (value/max attributes, no inline
   style), category chips and the missing entries as blurred rows with a category icon (the icon stays readable: it names a
   kind, not the thing). Click a row → it unblurs; `Esc`, leaving the tab or a new `state` blurs everything again.

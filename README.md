@@ -34,9 +34,9 @@ Leave the page open next to the game. It checks the save every 3 seconds (Settin
 
 - **Warnings** (default tab): only what you are about to lose, or "No risk of missing anything right now."
 - **Journal**: status of the quests in your journal, step counters, missed items and the purple-quest tally. Rows are blurred until you click them (quests already in your journal keep their name and status readable); any refresh blurs them again. A small icon says what a row is about (quest, item, accessory, memory-flower petal, chest, weapon, tip).
+- **Maps**: the game's own map completion for every region you have reached: percentage and count as the in-game map panel shows them, the tally per category (bells, weapons, Phantom Edges, accessories, medicines, challenge locations, Sha-Chi amber and blackstone shards, memory flowers) and the missing entries, blurred until you click them. With "Show place and boss names" on, each missing entry also names the nearest bell. Regions you have not reached are not listed.
 - **Settings**: language (TR/EN), name source, refresh interval, file access, and the game folder / save file (choose or forget).
 - **About**: version, tested game build, license, guide links.
-- **Maps**: the game's own map completion for every region you have reached: percentage and count as the in-game map panel shows them, the tally per category (bells, weapons, Phantom Edges, accessories, medicines, challenge locations, Sha-Chi amber and blackstone shards, memory flowers) and the missing entries, blurred until you click them. With "Show place and boss names" on, each missing entry also names the nearest bell. Regions you have not reached are not listed.
 
 ![Journal tab, blurred](docs/screenshots/web-journal.png)
 
