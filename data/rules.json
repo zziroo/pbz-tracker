@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-09.4",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları. levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
+  "rulesVersion": "2026-11-09.5",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
     "game8": {
@@ -724,7 +724,7 @@
       "region": "crimson-forest",
       "quest": null,
       "names": {
-        "tr": "Boulderguard",
+        "tr": "Kayakoruyan",
         "en": "Boulderguard"
       },
       "cutoff": "chilian",
@@ -735,8 +735,7 @@
         "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
         "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
       },
-      "detect": false,
-      "_note": "Görev değil, aksesuar (Item_Accessory_006); kayıttaki AC_* kimliği bilinmiyor.",
+      "_note": "Aksesuar (Item_Accessory_006); kayıt kodu AC_ResistNonBreak (oyun verisi 2026-11-09, data/game/accessories.json). Oyunun harita kaydında XiGu (Ağlayan Dere) altında, akış düğümü BPF_FuLaoDa_FenMu (Fu Laoda'nın mezarı); NPC adımları Kızıl Orman'da.",
       "source": {
         "ids": [
           "game8",
@@ -746,7 +745,10 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Steps: after Peng Meng dies, talk to the hiding disciple again, then the grave north of the Axemaster's Holding Cell. Before leaving the Crimson Forest chapter."
+      "note": "Steps: after Peng Meng dies, talk to the hiding disciple again, then the grave north of the Axemaster's Holding Cell. Before leaving the Crimson Forest chapter.",
+      "doneWhen": {
+        "itemSeen": "AC_ResistNonBreak"
+      }
     },
     {
       "id": "healers-mercy",
@@ -1084,7 +1086,6 @@
         "en": "Crimson Forest: last petal of the first memory flower"
       },
       "cutoff": "chilian",
-      "detect": false,
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
       },
@@ -1092,13 +1093,16 @@
         "tr": "Bu bölgedeki küçük koruluğun sonundaki anı yaprağını al; sonra oraya dönülemiyor.",
         "en": "Pick up the memory petal at the end of the small grove in this area; you cannot return there later."
       },
-      "note": "Mirrorwood: the last Inanis petal before Bai Chilian; the grove cannot be re-entered (two reports).",
+      "note": "Mirrorwood: the last Inanis petal before Bai Chilian; the grove cannot be re-entered (two reports). Game data 2026-11-09: the Inanis flower is FJZL_MEM_Inanis1-6 (F_02051..F_02056); the last petal is F_02056 \"VI. New Life\".",
       "source": {
         "ids": [
           "steam-mirrorwood",
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "doneWhen": {
+        "itemSeen": "F_02056"
       }
     },
     {
@@ -1333,11 +1337,10 @@
       "region": "village-of-lu",
       "quest": null,
       "names": {
-        "tr": "Köy arenası: amber sandığı",
-        "en": "Village arena: amber chest"
+        "tr": "Köy: asansör öncesi amber sandıkları",
+        "en": "Village: amber chests before the lift"
       },
       "cutoff": "lu-elevator",
-      "detect": false,
       "visibleWhen": {
         "mapUnlocked": "LuJiaCun"
       },
@@ -1345,7 +1348,7 @@
         "tr": "Asansörden önce arenanın yakınındaki amber sandığını al; sonra dönülemiyor.",
         "en": "Before the lift, take the amber chest near the arena; there is no way back."
       },
-      "note": "Sha-Chi amber chest before the lift. Cannot be detected yet: its contents have no known save code (no Inventory entry mapped to it).",
+      "note": "Sha-Chi amber chest before the lift. Game data 2026-11-09 (DT_MapItemData, LuJiaCun amber list): two amber chests, actors …7CF402_1801325181 at (-593,1030) and …78F402_1496811455 at (-349,1272); which one the guide means is not known, so the rule asks for both (opened chests appear in LevelActorManager with SwitchState true).",
       "source": {
         "ids": [
           "steam-guide-lankec",
@@ -1353,6 +1356,16 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "doneWhen": {
+        "all": [
+          {
+            "actorSeen": "PBZ_Zhengdaodaying_WP-BP_Chest_C_UAID_74563C6BC2BD7CF402_1801325181"
+          },
+          {
+            "actorSeen": "PBZ_Zhengdaodaying_WP-BP_Chest_C_UAID_74563C6BC2BD78F402_1496811455"
+          }
+        ]
       }
     },
     {

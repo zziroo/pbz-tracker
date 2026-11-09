@@ -358,6 +358,11 @@ async function main() {
     check(evI({ itemSeen: 'HeldSword' }) === true && evI({ itemSeen: 'UsedKey' }) === false && evI({ itemSeen: 'Nope' }) === false
       && evI({ not: { itemSeen: 'Nope' } }) === true && makeEval(empty, rules)({ itemSeen: 'HeldSword' }) === null,
       'itemSeen (synthetic): held → true, used up / absent → false, no item tables → unknown');
+    // actorSeen: a LevelActorManager key → true, absent → false, no actor set → unknown; a bare key is rejected.
+    const evA = makeEval({ ...empty, actors: new Set(['PBZ_X_WP-BP_Chest_C_UAID_1']) }, rules);
+    check(evA({ actorSeen: 'PBZ_X_WP-BP_Chest_C_UAID_1' }) === true && evA({ actorSeen: 'PBZ_X_WP-BP_Chest_C_UAID_2' }) === false
+      && makeEval(empty, rules)({ actorSeen: 'PBZ_X_WP-BP_Chest_C_UAID_1' }) === null && rejects(withCut({ exactWhen: { actorSeen: '' } })),
+      'actorSeen (synthetic): present → true, absent → false, no actor set → unknown, empty key rejected');
 
     // Item rule, info rule with doneWhen, missable activeWhen (a small rules file of their own).
     const mini = validateRules({
