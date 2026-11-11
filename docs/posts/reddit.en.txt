@@ -1,19 +1,8 @@
-I wanted to play blind and still get the true ending, so I made a tool that warns you before a point of no return (free, open source, no spoilers, runs in your browser)
+Made a spoiler-free missables tracker so I could play blind
 
-I didn't want to read a missables guide because it spoils everything. But I also didn't want to get to the end and find out some side quest had locked me out of the true ending.
+It reads your save and only speaks up when you're about to pass a point of no return with something still open. Otherwise it just says you're fine. No boss names, nothing from areas you haven't reached.
 
-So I made pbz-tracker. It's not a guide. It reads your save (read-only), and if you're about to hit a point of no return with a missable quest or item still open, it warns you. Otherwise it just says "No risk of missing anything right now."
+Runs in the browser (Chrome/Edge), read-only, nothing gets uploaded. Got the true ending and 66/66 with it. If a rule is wrong, tell me and I'll fix it.
 
-Warnings only tell you where to stop ("before this area's final fight"). No boss names, no future areas, no story. Quest names only show up if the quest is already in your journal. The Journal tab is blurred and a row only opens when you click it, so you won't see anything by accident. If you have a community text patch installed (the Turkish one, say), quest names come from it automatically. The UI has a TR/EN switch.
-
-It's a web page now. Click the link, choose your game folder, done. Nothing is downloaded, no file is uploaded, it all runs in your browser, and it refreshes by itself every time the game saves. You need Chrome or Edge for the folder access. In Firefox/Safari you can drag & drop the save, you just don't get the auto refresh. It never writes to your save or game folder or touches the game.
-
-It's v0.6.0 and it's not perfect. Some later cutoffs can't be detected from the save yet, a few quest mappings are guesses (marked with *), a few items can't be read from the save at all, and the rules come from guides and player reports. If it gets something wrong, tell me and I'll fix it.
-
-The rules are based on Game8, PowerPyx, DTGRE, the Steam Community guides and player reports from the Steam forums. All credited in the repo.
-
-[OPTIONAL: AI line] I wrote a lot of it with AI help (Claude Code), figured I should say so.
-
-Web version: https://zziroo.github.io/pbz-tracker/
-Steam guide: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
-Source / issues: https://github.com/zziroo/pbz-tracker
+Open it: https://zziroo.github.io/pbz-tracker/
+Setup guide with screenshots: https://steamcommunity.com/sharedfiles/filedetails/?id=3834114512
