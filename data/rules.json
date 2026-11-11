@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-09.5",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (yalnız type=info): adlı metin, yalnız gizli bölümde. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
+  "rulesVersion": "2026-11-11.1",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (type=info): adlı metin, gizli bölümde; exactWhen doğruysa tam adlar modunda varsayılan görünümde de. Kaçırılabilirlerde warnNamed / hintStartedNamed / hintNotStartedNamed: warn / hintStarted / hintNotStarted metninin adlı hâli, yalnız tam adlar açıkken ve kuralın exactWhen koşulu doğruyken (metindeki her yere ulaşıldıysa) kullanılır; gizli bölümde ipucu gösterilmez. Varsayılan metinler (where, warn, hint*) ulaşılmamış yer, boss, NPC akıbeti ya da gelecek dövüş söylemez. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
     "game8": {
@@ -708,8 +708,8 @@
         "mapUnlocked": "FuJiZhiLin"
       },
       "hintNotStarted": {
-        "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
-        "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
+        "tr": "Çevik Hırsız'ın mektubunu bul (rehbere göre Haydut Tuzağı çanının yanındaki mağaranın ötesinde) ve Hırsızlar Kampı'ndaki kardeşi Nazik Hırsız'a götür; sorularını mektupta vurgulanan sözlerle cevapla.",
+        "en": "Find the Nimble Thief's letter (per a guide, past the cave next to the Outlaw Trap bell) and take it to his brother, the Gentle Thief, at the Thieves' Camp; answer his questions with the words the letter highlights."
       },
       "source": {
         "ids": [
@@ -717,7 +717,8 @@
           "dtgre-chilian"
         ],
         "checked": "unverified"
-      }
+      },
+      "note": "Game data: quest DaoYiYouDao (QuestRumor_029), task \"Deliver the Nimble Thief's blood letter to his brother, the Gentle Thief\"; the letter (Reading_FJZL_Letter_012) highlights the answers. Letter spot (past the cave by the Outlaw Trap bell, an enemy by a campfire) and the three questions from DTGRE; Game8 puts the Nimble Thief in the Thieves' Camp. The rule still has quest null (the save id is known from game data but was never seen in a save)."
     },
     {
       "id": "boulderguard",
@@ -732,8 +733,8 @@
         "mapUnlocked": "FuJiZhiLin"
       },
       "hintNotStarted": {
-        "tr": "Karakoldaki (Outpost) ve haydut kampındaki (Thieves' Camp) NPC'lerden henüz konuşmadığın biri var.",
-        "en": "Someone at the Outpost or the Thieves' Camp you have not talked to yet."
+        "tr": "Karakolda yaşlı okçunun yanındaki kulübede taş kesilmiş Ferman müridiyle konuş; vadideki önceki boss dövüşünden sonra onunla bir kez daha konuş, sonra hücre çanının kuzeyindeki mezarı incele.",
+        "en": "Talk to the petrified Mandate disciple in the hut next to the old archer at the Outpost, and again after the boss fight earlier in the valley; then examine the grave north of the holding-cell bell."
       },
       "_note": "Aksesuar (Item_Accessory_006); kayıt kodu AC_ResistNonBreak (oyun verisi 2026-11-09, data/game/accessories.json). Oyunun harita kaydında XiGu (Ağlayan Dere) altında, akış düğümü BPF_FuLaoDa_FenMu (Fu Laoda'nın mezarı); NPC adımları Kızıl Orman'da.",
       "source": {
@@ -745,9 +746,16 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Steps: after Peng Meng dies, talk to the hiding disciple again, then the grave north of the Axemaster's Holding Cell. Before leaving the Crimson Forest chapter.",
+      "note": "Steps: after Peng Meng dies, talk to the hiding disciple again, then the grave north of the Axemaster's Holding Cell. Before leaving the Crimson Forest chapter. Hints (2026-11-11): the anonymous text avoids the boss epithet (\"Axemaster\") and the bell names that carry it; hintNotStartedNamed names those Weeping Creek Valley bells once BP_Monster_PengMeng_Axe has a kill (exactWhen), the closest available condition: bellPrefix matches \"Bell_<prefix>_\" so it cannot test the single bells Bell_NLES_011 / Bell_NLES_023, and after the kill the epithet and the \"Fall\" are no longer a spoiler.",
       "doneWhen": {
         "itemSeen": "AC_ResistNonBreak"
+      },
+      "hintNotStartedNamed": {
+        "tr": "Karakolda yaşlı okçunun yanındaki kulübede taş kesilmiş Ferman müridiyle konuş (Balta Ustasının Düşüşü çanındaki dövüşten sonra bir kez daha), sonra Balta Ustasının Hücresi çanının kuzeyindeki mezarı incele.",
+        "en": "Talk to the petrified Mandate disciple in the hut next to the old archer at the Outpost (again after the fight at the Axemaster's Fall bell), then examine the grave north of the Axemaster's Holding Cell bell."
+      },
+      "exactWhen": {
+        "bossKilled": "BP_Monster_PengMeng_Axe"
       }
     },
     {
@@ -764,7 +772,16 @@
           "dtgre-chilian"
         ],
         "checked": "unverified"
-      }
+      },
+      "hintNotStarted": {
+        "tr": "Hırsızlar Kampı çanının yakınında Yu'er yaralı hırsızları bulmanı isterse işi al ve dördünü de tedavi et.",
+        "en": "When Yu'er, near the Thieves' Camp bell, asks you to find wounded thieves, take the task and treat all four."
+      },
+      "hintStarted": {
+        "tr": "Yu'er'in hapını dört yaralı hırsızın hepsine ver: Haydut Tuzağı çanının yanındaki iki mağara, Yamaç Kulübesi'nin mahzeni (zindan anahtarı orada) ve Hırsızlar Kampı zindanı. Sonra Hırsızlar Kampı'nda Yu'er'e haber ver.",
+        "en": "Give Yu'er's pill to all four wounded thieves: two caves next to the Outlaw Trap bell, the cellar under the Cliffside Lodge (the dungeon key is there) and the Thieves' Camp dungeon. Then tell Yu'er at the Thieves' Camp."
+      },
+      "note": "Game data: tasks \"Go to the location marked in Record of the Lost Thieves and treat their wounds\" / \"Inform Yu'er that the thieves have been found and treated\"; four thieves swallow Yu'er's Life-Saving Pill (Dlg_FJZL_ZhongShangFeiZei_*). Thief locations and the Thieves' Camp hand-in from DTGRE (page, 2026-11-11). Reward Calming Gourd. Steam: the last thief despawns at Bai Chilian and the quest fails."
     },
     {
       "id": "purge-the-sect",
@@ -780,7 +797,16 @@
           "dtgre-chilian"
         ],
         "checked": "unverified"
-      }
+      },
+      "hintNotStarted": {
+        "tr": "Vadideki karakolda oturan yaşlı okçunun yozlaşmış müritleriyle ilgili bir işi var: Acımasız Okçu Kampı'ndaki müritleri yen ve kırık yayı ona götür.",
+        "en": "The old archer at the valley's Outpost has a task about his corrupted disciples: defeat them at the Ruthless Archer Camp and bring him the broken bow."
+      },
+      "hintStarted": {
+        "tr": "Vadideki Acımasız Okçu Kampı'nda yaşlı okçunun yozlaşmış müritlerini yen, sonra Kırık Kirişli Tüy Yay'ı karakoldaki yaşlı okçuya götür.",
+        "en": "Defeat the old archer's corrupted disciples at the Ruthless Archer Camp in the valley, then bring the Broken-String Feather Bow to the old archer at the Outpost."
+      },
+      "note": "Game data: tasks \"Eliminate the Old Archer's corrupted disciples at the Ruthless Archer Camp\" / \"Give the Broken-String Feather Bow to the Old Archer at the outpost\" (Ruthless Archer Camp and Outpost are Weeping Creek Valley bells). DTGRE: he restrings it (Feathered Bow). How the quest starts is not confirmed."
     },
     {
       "id": "festering-secret",
@@ -799,7 +825,15 @@
         ],
         "checked": "unverified"
       },
-      "note": "Reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile (PT-BR guide)."
+      "note": "Reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile (PT-BR guide). Hints (2026-11-11) from the game's own task texts (QuestRumorDes_024_*): chain-sealed courtyard at the outpost → captain's order to the lieutenant at the Sha-Chi Tower outskirts (which tower is not stated) → evidence of Gu Lingran's crimes.",
+      "hintNotStarted": {
+        "tr": "Vadideki karakolun zincirlerle mühürlü avlusunu araştır; orada başlayan görev bu dövüşte kapanır.",
+        "en": "Investigate the chain-sealed courtyard at the valley's Outpost; the quest it starts closes at this fight."
+      },
+      "hintStarted": {
+        "tr": "Karakolun zincirli avlusundan başlayan iz: yüzbaşının emrini Sha-Chi Kulesi eteklerindeki teğmenine ilet, sonra topladığın kanıtları yüzbaşıya göster. Bu bölgenin son dövüşünden önce bitir.",
+        "en": "The trail from the Outpost's chain-sealed courtyard: deliver the captain's order to his lieutenant on the Sha-Chi Tower outskirts, then show the captain the evidence you gathered. Finish before this area's final fight."
+      }
     },
     {
       "id": "flesh-lily-delivery",
@@ -832,7 +866,15 @@
         ],
         "checked": "search-snippet"
       },
-      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley."
+      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley.",
+      "hintNotStarted": {
+        "tr": "Yu'er nadir bir çiçek arıyor; bul ve bu dövüşten önce ona ver.",
+        "en": "Yu'er is looking for a rare flower; find it and give it to her before this fight."
+      },
+      "hintStarted": {
+        "tr": "Et Zambağı'nı vadideki Sha-Chi Kulesi'nin altındaki Et Zambağı Tarlaları'ndan al (zorlu bir dövüş bekliyor) ve Yu'er'e ver (rehberlere göre karakolda).",
+        "en": "Get the Flesh Lily from the Flesh Lily Fields below the valley's Sha-Chi Tower (a tough fight guards it) and hand it to Yu'er (guides: at the Outpost)."
+      }
     },
     {
       "id": "lake-secrets",
@@ -857,8 +899,28 @@
       },
       "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure. Steps (PowerUp Gaming / KeenGamer): 6 Firefly's Memory Flowers in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (Yanru fire, Lei Ting lightning, Guhe poison, Hansui ice in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet, Mountain of Imprisonment; Yang: Hansui drop) → Four Guardians' Mirror (Bell_LYZ_011, frozen NW shore of Meigu Lake, map MeiGuHu) → Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells) → Blizzard Blademaster at Whiteshadow's Fall (Bell_LYZ_014) → red statue, insert both eyes → Heart of the Lake ritual → Inanis. Save 2026-11-08: S1/S2/S4 Completed, S3 + branch 3 Activating while inside the realm (last bell Bell_LYZ_013).",
       "hintStarted": {
-        "tr": "Sıra: Lu Köyü'nde Ateşböceği anı çiçekleri (6) → Alacakaranlık (Kukla Ustası) → dört Mürit maskesi (ateş, yıldırım, zehir; buz olan Kızıl Malikâne'de Hansui) → iki Kristal Kukla Gözü (Yin: Hapis Dağı'ndaki asılı kukla; Yang: Hansui) → Meigu Gölü'nün kuzeybatı donmuş kıyısındaki Dört Muhafızın Aynası → Uyumsuzluk alemi → Beyazgölge'nin Düşüşü'nde Tipi Kılıç Ustası → kırmızı heykele iki gözü tak → Gölün Kalbi'nde ayini durdur. Hepsi Mirage Estate köprüsünden önce.",
-        "en": "Order: Firefly's Memory Flowers (6) in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (fire, lightning, poison; the ice one is Hansui in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet in Mountain of Imprisonment; Yang: Hansui) → Four Guardians' Mirror on the frozen NW shore of Meigu Lake → Discordance realm → Blizzard Blademaster at Whiteshadow's Fall → put both eyes in the red statue → stop the ritual at the Heart of the Lake. All before the Mirage Estate bridge."
+        "tr": "Günlükteki adımları sırayla izle: Ateşböceği'nin altı anı çiçeğiyle başlıyor ve birkaç bölgeden geçiyor, bunların bir kısmına hikâyede daha sonra ulaşacaksın; yukarıda yazan noktadan önce bitir.",
+        "en": "Follow the journal step by step: it starts with Firefly's six memory flowers and leads through several areas, some of which you reach later in the story; finish it before the point named above."
+      },
+      "hintStartedNamed": {
+        "tr": "Sıra: Lu Köyü'nde Ateşböceği anı çiçekleri (6) → Alacakaranlık (Kukla Ustası) → dört Mürit maskesi (ateş, yıldırım, zehir; buz olan Kızıl Malikâne'de Hansui) → iki Kristal Kukla Gözü (Yin: Hapis Dağı'ndaki asılı kukla; Yang: Hansui) → Meigu Gölü'nün kuzeybatı donmuş kıyısındaki Dört Muhafızın Aynası → Uyumsuzluk alemi → Beyazgölge'nin Düşüşü'nde Tipi Kılıç Ustası → kırmızı heykele iki gözü tak → Gölün Kalbi'nde ayini durdur. Hepsi, oyunun seni uyardığı Pangzhen çıkışındaki köprüden önce.",
+        "en": "Order: Firefly's Memory Flowers (6) in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (fire, lightning, poison; the ice one is Hansui in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet in Mountain of Imprisonment; Yang: Hansui) → Four Guardians' Mirror on the frozen NW shore of Meigu Lake → Discordance realm → Blizzard Blademaster at Whiteshadow's Fall → put both eyes in the red statue → stop the ritual at the Heart of the Lake. All before the bridge out of Pangzhen where the game warns you."
+      },
+      "exactWhen": {
+        "all": [
+          {
+            "bellPrefix": "MGH"
+          },
+          {
+            "bellPrefix": "DDSD"
+          },
+          {
+            "bellPrefix": "LYZ"
+          },
+          {
+            "bellPrefix": "SZ"
+          }
+        ]
       }
     },
     {
@@ -980,8 +1042,8 @@
         ]
       },
       "warn": {
-        "tr": "Bu kamptaki kule çatısında bir kadın kılıç ustasıyla dövüş başlarsa onu yenme; canı bitmeden arena kenarındaki zincirle çatıdan ayrıl. Yenersen bir kolye, bir anı çiçeği ve hikâyesinin devamı kaçar; sağ kalırsa sonraki bir boss dövüşünde tekrar çıkar.",
-        "en": "If a fight with a swordswoman starts on a tower roof in this camp, do not defeat her; leave the roof by the chain at the arena edge before her health runs out. Beating her loses a pendant, a memory flower and the rest of her story; alive, she returns in a later boss fight."
+        "tr": "Bu kamptaki kule çatısında bir kadın kılıç ustasıyla dövüş başlarsa onu yenme; canı bitmeden arena kenarındaki zincirle çatıdan ayrıl. Yenersen bir kolye, bir anı çiçeği ve hikâyesinin devamı kaçar; hepsini almanın tek yolu onu bırakmak.",
+        "en": "If a fight with a swordswoman starts on a tower roof in this camp, do not defeat her; leave the roof by the chain at the arena edge before her health runs out. Beating her loses a pendant, a memory flower and the rest of her story; sparing her is the only way to get them all."
       },
       "activeWhen": {
         "all": [
@@ -1073,8 +1135,18 @@
       },
       "note": "Region: mount-soulrend = the final cutoff; the quest's own steps span earlier areas (not mapped). Five Lóng Pillar trials (PowerUp Gaming): Weeping Creek Valley (Rusted Loong Key, east caves), Crimson Forest (after Iron Fever, chain-sickle gap), Meigu Lake east (Midlake Long Pillar Dock, boat), Meigu Lake west (Discordance realm, Dread Axe), and the fifth past the Green Serpent House near the Covered Corridor bell (right path, chain-sickle down to a hidden platform) — that one must be done before the Mount Soulrend finale. Save 2026-11-08 16:48: tasks 11011 with Tutorial_Longzhu1-4 all done, so the open task is the Covered Corridor pillar.",
       "hintStarted": {
-        "tr": "Beşinci Lóng Sütunu Yeşil Yılan Evi geçidinden sonra, Kapalı Koridor çanından sağdaki yolda: aşağıdaki kanca noktasına zincir orakla in, gizli platform batı yakadaki sütuna çıkar. Ruhyaran Dağı'ndaki final dizisinden önce bitir; ilk dört sütun sonradan da yapılabilir.",
-        "en": "The fifth Lóng Pillar is past the Green Serpent House gate, on the right path from the Covered Corridor bell: use the chain sickle on the grapple point below, the hidden platform leads to the west-side pillar. Finish it before the Mount Soulrend finale; the first four pillars can be done later."
+        "tr": "Bulduğun her Lóng Sütunu'nun sınavını tamamla. İlk dördü bekleyebilir; beşincisi geç bir bölgede, ana yoldan biraz sapınca. Oyunun son uyarı çanından önce bitir.",
+        "en": "Clear the trial at every Lóng Pillar you find. The first four can wait; the fifth is in a late area, a little off the main path. Finish it before the game's final warning bell."
+      },
+      "hintStartedNamed": {
+        "tr": "Beşinci Lóng Sütunu Serap Malikânesi'nde, Kapalı Koridor çanından sağdaki yolda: aşağıdaki kanca noktasına zincir orakla in, gizli platform batı yakadaki sütuna çıkar. Oyunun son uyarı çanından önce bitir; ilk dört sütun sonradan da yapılabilir.",
+        "en": "The fifth Lóng Pillar is in Mirage Estate, on the right path from the Covered Corridor bell: use the chain sickle on the grapple point below, the hidden platform leads to the west-side pillar. Finish it before the game's final warning bell; the first four pillars can be done later."
+      },
+      "exactWhen": {
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
       }
     },
     {
@@ -1152,6 +1224,10 @@
           "steam-research-note"
         ],
         "checked": "unverified"
+      },
+      "hintStarted": {
+        "tr": "Yu'er'in reçetesindeki üç otu bu vadide topla ve ona götür.",
+        "en": "Gather the three herbs from Yu'er's recipe in this valley and bring them to her."
       }
     },
     {
@@ -1282,12 +1358,12 @@
         ]
       },
       "warn": {
-        "tr": "Bu malikânenin sonunda bir duvardan son bölgeye geçilir; bir kaynağa göre sonra diğer bölgelere dönülemez. Geçmeden önce başka bölgelerde kalan işleri bitir.",
-        "en": "At the end of this estate a wall leads to the final region; one source says you cannot return to the other regions afterwards. Finish work left in other regions before crossing."
+        "tr": "Bu malikânenin sonunda bir duvardan bir sonraki bölgeye geçilir; bir kaynağa göre sonra diğer bölgelere dönülemez. Geçmeden önce başka bölgelerde kalan işleri bitir.",
+        "en": "At the end of this estate a wall leads to the next region; one source says you cannot return to the other regions afterwards. Finish work left in other regions before crossing."
       },
       "warnNamed": {
-        "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → Ruhyaran Dağı: PowerPyx'e göre geçince diğer bölgelere dönüş kapanır (Steam raporları asıl son noktanın Ezici ve Testere sonrası \"Last Chance\" çanı olduğunu söylüyor; güvenli tarafta kal). Geçmeden önce: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (ödül Gökgürültüsü Ayı Feneri olmalı; gerçek bir kayıtta malikâne sığınağındaki teslim fener yerine ikinci bir Çabuk El'in El Kitabı verdi ve oyun verisine göre fener (AC_Electrified) Serap Malikânesi sayımına DAHİL, akış düğümü BPF_XiaoZhang_XMSZ = sığınaktaki Zhang; fener gelmediyse Zhang ile tekrar konuş); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi ve kule çatısı (Kızıl Orman Sha-Chi Kulesi: anahtar Kule Tabanı çanının yanındaki ocağın dibinde, 6. kattaki asansörün yanındaki kapıyı açar; çatıda Demir İblis → Yumruğun Kalbi, Mu Xiaokui → Yüce Teşkilat Nişanı, \"Onlara Karşı Kullan\" idmanı → İblis Testereleri malzemesi); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği Ruhyaran ziyaretinden sonra çıkabiliyor.",
-        "en": "The wall near the Mourning Hall bell → Mount Soulrend: PowerPyx says you cannot return to the other regions after it (Steam reports put the real point of no return at the \"Last Chance\" bell after the Crusher and the Saw; stay on the safe side). Before crossing: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (the reward should be the Thundermoon Lantern; on a real save the hand-in at the estate hideout gave a second Quick Hand's Manual instead and per game data the lantern (AC_Electrified) IS part of the Mirage Estate count, flow node BPF_XiaoZhang_XMSZ = Zhang in the sanctuary; if it did not drop, talk to Zhang there again); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist and the tower roof (Crimson Forest Sha-Chi Tower: the key lies by the furnace next to the Tower Base bell and opens the door by the 6th-floor lift; on the roof Iron Fiend → Heart of the Fist, Mu Xiaokui → Supreme Order Token, the \"Use It Against Them\" spar → Fiend Saws material); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting Mount Soulrend."
+        "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → bir sonraki bölge: PowerPyx'e göre geçince diğer bölgelere dönüş kapanır (Steam raporları asıl son noktanın oyunun sona yakın bir çanda verdiği uyarı olduğunu söylüyor; güvenli tarafta kal). Geçmeden önce: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (ödül Gökgürültüsü Ayı Feneri olmalı; gerçek bir kayıtta malikâne sığınağındaki teslim fener yerine ikinci bir Çabuk El'in El Kitabı verdi ve oyun verisine göre fener (AC_Electrified) Serap Malikânesi sayımına DAHİL, akış düğümü BPF_XiaoZhang_XMSZ = sığınaktaki Zhang; fener gelmediyse Zhang ile tekrar konuş); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi ve kule çatısı (Kızıl Orman Sha-Chi Kulesi: anahtar Kule Tabanı çanının yanındaki ocağın dibinde, 6. kattaki asansörün yanındaki kapıyı açar; çatıda Demir İblis → Yumruğun Kalbi, Mu Xiaokui → Yüce Teşkilat Nişanı, \"Onlara Karşı Kullan\" idmanı → İblis Testereleri malzemesi); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği bir sonraki bölgeye gittikten sonra çıkabiliyor.",
+        "en": "The wall near the Mourning Hall bell → the next region: PowerPyx says you cannot return to the other regions after it (Steam reports put the real point of no return at a last bell near the end, where the game warns you; stay on the safe side). Before crossing: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (the reward should be the Thundermoon Lantern; on a real save the hand-in at the estate hideout gave a second Quick Hand's Manual instead and per game data the lantern (AC_Electrified) IS part of the Mirage Estate count, flow node BPF_XiaoZhang_XMSZ = Zhang in the sanctuary; if it did not drop, talk to Zhang there again); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist and the tower roof (Crimson Forest Sha-Chi Tower: the key lies by the furnace next to the Tower Base bell and opens the door by the 6th-floor lift; on the roof Iron Fiend → Heart of the Fist, Mu Xiaokui → Supreme Order Token, the \"Use It Against Them\" spar → Fiend Saws material); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting the next region."
       },
       "note": "PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26). Crimson Forest Sha-Chi Tower key = Item_Key_XSSL_001 (save door lock needs K_13001 on PBZ_Fujizhilin_WP); KeenGamer: by the furnace near the Tower Base bell, opens the door by the 6th-floor lift to the rooftop. Done once a DH (Mount Soulrend) bell is lit. Real save 2026-11-09 02:08: Bell_DH_001/002/003/006 + LYZ_008 lit, XiaoCui Succeded before entering (branch 5 completed on Mountain of Imprisonment, Lu Jieyuan step), MainCh3-PoJu Succeded. 2026-11-09: Mirage hand-in at Bell_XM_XiaoZhang_005 (21:28) yielded Maintenance Oil + a duplicate Quick Hand's Manual (Flying Dagger was already tempered), no Thundermoon Lantern; Pangzhen map accessories+remedies = 22 without it.",
       "source": {
@@ -1377,8 +1453,8 @@
         "questSeen": "ShaoZhu"
       },
       "warn": {
-        "tr": "Beş kurdeleyi kuyuya inmeden önce topla; yoksa bir boss'un gizli aşaması ve ödülleri kaçar.",
-        "en": "Collect all five ribbons before going down the well; otherwise a boss's hidden phase and its rewards are missed."
+        "tr": "Beş kurdeleyi kuyuya inmeden önce topla; yoksa bu köydeki ek ödüller kaçar.",
+        "en": "Collect all five ribbons before going down the well; otherwise extra rewards in this village are missed."
       },
       "note": "5 ribbons before the well/lift and before Yuzan → hidden third phase of Mu Xiaokui; rewards Fiend Saws + Fist Core Fragment.",
       "source": {
@@ -1389,6 +1465,13 @@
           "game8-ribbons"
         ],
         "checked": "search-snippet"
+      },
+      "warnNamed": {
+        "tr": "Beş kurdeleyi kuyuya inmeden ve Yuzan dövüşünden önce topla; yoksa Mu Xiaokui'nin gizli üçüncü aşaması ve ödülleri (İblis Testereleri, Yumruk Parçası: Çekirdek) kaçar.",
+        "en": "Collect all five ribbons before going down the well and before the Yuzan fight; otherwise Mu Xiaokui's hidden third phase and its rewards (Fiend Saws, Fist Fragment: Core) are missed."
+      },
+      "exactWhen": {
+        "mapUnlocked": "LuJiaCun"
       }
     },
     {
@@ -1410,6 +1493,10 @@
       "doneWhen": {
         "questBranch": "LanJiaGongZi",
         "branch": "2"
+      },
+      "hintStarted": {
+        "tr": "Kaçakçı geçidini temizle, sonra bir sonraki kasabaya geçmeden Lan Shaodi'ye yolun temiz olduğunu söyle.",
+        "en": "Clear the smugglers' passage, then tell Lan Shaodi the path is clear before going on to the next town."
       }
     },
     {
@@ -1448,6 +1535,10 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
+      },
+      "hintStarted": {
+        "tr": "Bu vadideki İlkel Taş'ı bul ve vadiden ayrılmadan buradaki dost Gölge Muhafızı'na ver.",
+        "en": "Find the Primal Stone in this valley and give it to the friendly Shadow Warden here before you leave the valley."
       }
     },
     {
@@ -1474,8 +1565,15 @@
         "checked": "page"
       },
       "hintStarted": {
-        "tr": "Bi Feng alanından ayrılmadan Köksüz Çiy'i al (kırmızı köşkün ötesindeki kayalar). Komutan Platformu'ndaki arka kapıyı aç ve Lu Sanqian'la konuş; Kui Yanyan sonrası asılı kafes odasında kafesini indirip çiyi ver; Ezici ve Testere'den önce Ruhyaran Dağı'ndaki anne-babaya kurdele ve mektubu götür.",
-        "en": "Take the Rootless Dew before leaving Bi Feng's arena (rocks past the red pavilion). Open the rear door at Commander's Platform and talk to Lu Sanqian; after Kui Yanyan lower his cage in the hanging-cage room and give him the dew; bring the ribbon and letter to Cui's parents on Mount Soulrend before the Crusher and the Saw."
+        "tr": "Bu öykü ileride bir bölgede devam ediyor; orada günlüğü izle ve oyunun son uyarı çanından önce bitir.",
+        "en": "The rest of this tale continues in a later area; follow the journal there and finish it before the game's final warning bell."
+      },
+      "hintStartedNamed": {
+        "tr": "Bi Feng alanından ayrılmadan Köksüz Çiy'i al (kırmızı köşkün ötesindeki kayalar). Komutan Platformu'ndaki arka kapıyı aç ve Lu Sanqian'la konuş; Kui Yanyan sonrası asılı kafes odasında kafesini indirip çiyi ver; sonra Cui'nin anne babasını bulup kurdeleyle mektubu ver (gerçek bir kayıtta bu adım bu dağda bitti; bir rehber son bölgeye koyuyor). Oyunun son uyarı çanından önce bitir.",
+        "en": "Take the Rootless Dew before leaving Bi Feng's arena (rocks past the red pavilion). Open the rear door at Commander's Platform and talk to Lu Sanqian; after Kui Yanyan lower his cage in the hanging-cage room and give him the dew; then find Cui's parents and hand over the ribbon and letter (on a real save this step finished on this mountain; one guide puts it in the final area). Finish before the game's final warning bell."
+      },
+      "exactWhen": {
+        "bellPrefix": "DDSD"
       }
     },
     {
@@ -1495,8 +1593,15 @@
         "checked": "search-snippet"
       },
       "hintStarted": {
+        "tr": "Zhou Ping'in son mektubunu Pangzhen Pazar Yeri çanının doğusundaki binada, üst kattaki Yuling'e ver (giriş, gereken Phantom Edge'e sahip olana kadar kapalı).",
+        "en": "Hand Zhou Ping's last letter to Yuling on the upper floor of the building east of the Pangzhen Marketplace bell (its entrance stays shut until you have the Phantom Edge it needs)."
+      },
+      "hintStartedNamed": {
         "tr": "Zhou Ping'in son mektubunu Pangzhen Pazar Yeri çanının doğusundaki binada, üst kattaki Yuling'e ver (giriş Hayali Pipa ile açılır).",
         "en": "Hand Zhou Ping's last letter to Yuling on the upper floor of the building east of the Pangzhen Marketplace bell (the entrance opens with the Illusory Pipa)."
+      },
+      "exactWhen": {
+        "questSeen": "HuanShuPiPa"
       }
     },
     {
@@ -1534,6 +1639,10 @@
           "allthings-missables"
         ],
         "checked": "page"
+      },
+      "hintStarted": {
+        "tr": "Yapraklar, dövüşten sonra diz çöküp öldürülmeyi isteyen dost savaşçılardan düşer; dönüşmeden vur. Görev için 6 yapraktan 4'ü yeter.",
+        "en": "Petals drop from allied fighters who kneel after their fight and ask to be killed; strike before they transform. 4 of the 6 petals finish the quest."
       }
     },
     {
@@ -1586,18 +1695,22 @@
         ]
       },
       "exactWhen": {
-        "any": [
+        "all": [
           {
             "bellPrefix": "SZ"
           },
           {
-            "bellPrefix": "YXZR",
-            "except": [
-              "Bell_YXZR_018"
+            "any": [
+              {
+                "bellPrefix": "YXZR",
+                "except": [
+                  "Bell_YXZR_018"
+                ]
+              },
+              {
+                "bellPrefix": "ZDDY"
+              }
             ]
-          },
-          {
-            "bellPrefix": "ZDDY"
           }
         ]
       },
@@ -1650,11 +1763,18 @@
         ]
       },
       "exactWhen": {
-        "bellPrefix": "SZ"
+        "all": [
+          {
+            "bellPrefix": "SZ"
+          },
+          {
+            "bellPrefix": "MGH"
+          }
+        ]
       },
       "warn": {
-        "tr": "Bu kasabanın hanından bir ev anahtarı alıp o evin üst kat yatak odasındaki anı çiçeğini almadan göle açılma; göldeki iskele boss'unu önce öldürürsen bir görev kilitleniyor.",
-        "en": "Get the house key from this town's tavern and pick up the memory flower in that house's upstairs bedroom before heading out onto the lake; killing the dock boss on the lake first locks a quest."
+        "tr": "Bu kasabanın hanından bir ev anahtarı alıp o evin üst kat yatak odasındaki anı çiçeğini almadan göle açılma; önce gölde ilerlersen bir görev kilitlenebilir.",
+        "en": "Get the house key from this town's tavern and pick up the memory flower in that house's upstairs bedroom before you go out onto the lake; doing the lake first can lock a quest."
       },
       "warnNamed": {
         "tr": "Yeniden Kardeş (A Brother Once More): Myst'in Hanı'nda Niu'dan Huang konağı anahtarını al, Huang konağı önündeki kavşak çanından konağın 2. kat yatak odasındaki anı çiçeğini al (görev başlar). Meigu Gölü'ndeki Lu köyü sığlığı iskelesinde Jin'i bundan önce öldürürsen görev kilitleniyor (Steam, 2 oyuncu).",
@@ -1699,8 +1819,8 @@
         "bellPrefix": "DDSD"
       },
       "warn": {
-        "tr": "Sonraki dağ bölgesinde bir maskeli, kayıp defterini bulmanı isterse: defteri getirince \"bırak gitsin\" deme; onunla yüzleş (dövüş). Bırakırsan ardındaki kuklayı öldürüyor ve bir görev ile bir aksesuar kaçıyor (tartışmalı, güvenli tarafta kal).",
-        "en": "In the next mountain area, if a masked man asks you to find his lost ledger: when you bring it back, do not let him go; confront him (fight). Letting him go makes him kill the puppet behind him, costing a quest and an accessory (disputed, stay on the safe side)."
+        "tr": "Sonraki dağ bölgesinde bir maskeli, kayıp defterini bulmanı isterse: defteri getirince \"bırak gitsin\" deme, onunla yüzleşmeyi seç. Bırakırsan bir görev ve bir aksesuar kaçabilir (tartışmalı, güvenli tarafta kal).",
+        "en": "In the next mountain area, if a masked man asks you to find his lost ledger: when you bring it back, do not let him go; choose to confront him. Letting him go can cost a quest and an accessory (disputed, stay on the safe side)."
       },
       "warnNamed": {
         "tr": "Kefaret Defteri (Hapis Dağı, Chen Zhu): sonunda \"This won't absolve you of your sins\" seç. \"Leave him be\" dersen Game8/PowerPyx'e göre Bai Xue görevi, Snow and Blood aksesuarı ve 2 anı çiçeği kaçıyor; allthings.how kaçmaz diyor.",
@@ -1972,8 +2092,8 @@
         "en": "If an old man hiding in this village asks for help, agree both times; refusing can cost a quest chain later."
       },
       "warnNamed": {
-        "tr": "Eve Yolculuk (Lu Köyü, Old Man Gen'in sığınağı): iki soruda da kabul et (Brass Key). Görev ilk adımındayken Pangzhen arka sokağına gidersen War Wagon Phantom Edge, Gen'in anı çiçeği ve Together Till the End başarımı kaçar.",
-        "en": "The Journey Home (Village of Lu, Old Man Gen's hideout): agree both times (Brass Key). Reaching the Pangzhen backstreet while the quest is on its first step loses the War Wagon Phantom Edge, Gen's memory flower and the Together Till the End achievement."
+        "tr": "Eve Yolculuk (Lu Köyü, Old Man Gen'in sığınağı): iki soruda da kabul et (Brass Key). Görev ilk adımındayken bir sonraki kasabanın arka sokağına gidersen War Wagon Phantom Edge, Gen'in anı çiçeği ve Together Till the End başarımı kaçar.",
+        "en": "The Journey Home (Village of Lu, Old Man Gen's hideout): agree both times (Brass Key). Reaching the next town's backstreet while the quest is on its first step loses the War Wagon Phantom Edge, Gen's memory flower and the Together Till the End achievement."
       },
       "source": {
         "ids": [
@@ -2009,12 +2129,12 @@
         "mapUnlocked": "LuJiaCun"
       },
       "warn": {
-        "tr": "Bu köyde, tünel girişindeki çanın yanındaki kapının dibinde yaralı bir adam varsa elindeki kitabı ona ver; bölgede ilerleyince ölüyor.",
-        "en": "In this village, if a wounded man lies by the door next to the bell at the tunnel entrance, give him the book you carry; he dies as you progress through the area."
+        "tr": "Bu köyde, tünel girişindeki çanın yanındaki kapının dibinde yaralı bir adam varsa elindeki kitabı ona ver; orada uzun süre kalmayacak, erken ver.",
+        "en": "In this village, if a wounded man lies by the door next to the bell at the tunnel entrance, give him the book you carry; he won't stay there for long, so do it early."
       },
       "warnNamed": {
-        "tr": "Yaralı Hırsız (Lu Köyü, Smuggler's Tunnel girişindeki çanın yanındaki kapı): Thief's Manual'ı ona ver → Arrowward (aksesuar). Bölgede fazla ilerleyince ölüyor; tetikleyicisi bilinmiyor, erken ver.",
-        "en": "Wounded Thief (Village of Lu, by the door next to the Smuggler's Tunnel entrance bell): give him the Thief's Manual → Arrowward (accessory). He dies once you progress far enough into the area; the trigger is unknown, so do it early."
+        "tr": "Yaralı Hırsız (Lu Köyü, Smuggler's Tunnel girişindeki çanın yanındaki kapı): Thief's Manual'ı ona ver → Arrowward (aksesuar). Orada uzun süre kalmıyor (ne zaman gittiği bilinmiyor), erken ver.",
+        "en": "Wounded Thief (Village of Lu, by the door next to the Smuggler's Tunnel entrance bell): give him the Thief's Manual → Arrowward (accessory). He won't stay there for long (what moves him on is unknown), so do it early."
       },
       "source": {
         "ids": [
@@ -2151,10 +2271,10 @@
         "en": "If someone in this village asks for help clearing a tunnel, say you're interested; refusing means the quest never starts."
       },
       "warnNamed": {
-        "tr": "Genç Efendi Lan (Lu Köyü): Smuggler's Tunnel sorusuna 'Interested' de ve ilk adımı Pangzhen'den önce bitir; 'Not Interested' Lan Manor Key, Crimson Resolve ve A Wanderer's Honor başarımını kaçırır. Not: bir kaynağa göre bu görevde Lan ölüyor.",
-        "en": "Young Master Lan (Village of Lu): answer 'Interested' to the Smuggler's Tunnel question and finish the first step before Pangzhen; 'Not Interested' loses the Lan Manor Key, Crimson Resolve and the A Wanderer's Honor achievement. Note: one source says Lan dies in this quest."
+        "tr": "Genç Efendi Lan (Lu Köyü): Smuggler's Tunnel sorusuna 'Interested' de ve ilk adımı bir sonraki kasabadan önce bitir; 'Not Interested' Lan Manor Key, Crimson Resolve ve A Wanderer's Honor başarımını kaçırır.",
+        "en": "Young Master Lan (Village of Lu): answer 'Interested' to the Smuggler's Tunnel question and finish the first step before the next town; 'Not Interested' loses the Lan Manor Key, Crimson Resolve and the A Wanderer's Honor achievement."
       },
-      "note": "The start choice is from Game8 only; the achievement and the Pangzhen cutoff are confirmed by PowerPyx and KeenGamer.",
+      "note": "The start choice is from Game8 only; the achievement and the Pangzhen cutoff are confirmed by PowerPyx and KeenGamer. One source says Lan dies in this quest (kept out of the texts: NPC fate).",
       "source": {
         "ids": [
           "game8-choices",

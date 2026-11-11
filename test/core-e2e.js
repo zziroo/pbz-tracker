@@ -495,6 +495,26 @@ async function main() {
     check(lateItem?.hint === 'finish the letter' && rowOf(b4, 'late').hint === 'finish the letter' && rowOf(bDone, 'late').status === 'done' && rowOf(bDone, 'late').hint === undefined,
       `hintStarted: named open item carries hint "${lateItem?.hint}"; done → none`);
 
+    // Named hint / warn variants (ruleText): only exact mode AND a true exactWhen switch to them. A named
+    // variant without exactWhen or without its anonymous text is rejected at load.
+    const miniN = validateRules({
+      schemaVersion: 1, rulesVersion: 'test',
+      cutoffs: { c: { where: { en: 'Before X', tr: 'X' }, label: { en: 'X', tr: 'X' }, passedWhen: { mapUnlocked: 'Passed' } } },
+      missables: [
+        { id: 'open', quest: 'Q', cutoff: 'c', visibleWhen: { questSeen: 'Q' }, exactWhen: { mapUnlocked: 'Far' },
+          warn: { en: 'w anon', tr: 'x' }, warnNamed: { en: 'w Far', tr: 'x' }, hintStarted: { en: 'h anon', tr: 'x' }, hintStartedNamed: { en: 'h Far', tr: 'x' } },
+        { id: 'todo', quest: 'R', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, exactWhen: { mapUnlocked: 'Far' },
+          hintNotStarted: { en: 'n anon', tr: 'x' }, hintNotStartedNamed: { en: 'n Far', tr: 'x' } },
+      ],
+    }, 'miniN.json');
+    const textsOf = (b) => { const it = b.warnings.flatMap((w) => w.named).find((x) => x.key === 'open') || {}; return [it.warn, it.hint, b.warnings.some((w) => w.hints.has('n Far')) ? 'n Far' : b.warnings.some((w) => w.hints.has('n anon')) ? 'n anon' : '-'].join('|'); };
+    const near = { ...base, maps: new Set(['A']) }, far = { ...base, maps: new Set(['A', 'Far']) };
+    const tAnon = textsOf(build(far, miniN, namesK)), tExactNear = textsOf(build(near, miniN, namesK, { exact: true })), tExactFar = textsOf(build(far, miniN, namesK, { exact: true }));
+    const badNamed = (patch) => rejects({ ...miniN, missables: [{ ...miniN.missables[0], ...patch }] });
+    check(tAnon === 'w anon|h anon|n anon' && tExactNear === 'w anon|h anon|n anon' && tExactFar === 'w Far|h Far|n Far'
+      && badNamed({ exactWhen: undefined }) && badNamed({ hintStarted: undefined }) && badNamed({ hintNotStartedNamed: { en: '', tr: '' }, hintNotStarted: { en: 'n', tr: 'n' } }),
+      `named variants: default ${tAnon}; exact, area not reached ${tExactNear}; exact, reached ${tExactFar}; schema rejects a named text without exactWhen / anonymous text, or empty`);
+
     // Mandate Encampment (real rules): the outer-gate bell lit on the way to the Village of Lu does not count.
     const encSt = (bells, lastBell) => ({ ...empty, maps: new Set(['XiGu', 'FuJiZhiLin', 'LuJiaCun']), levels: new Set(['zhengdaodaying']), currentLevel: 'Zhengdaodaying',
       bells: new Set(bells), lastBell, quests: new Map([['BaiShanMiWen', { id: 'BaiShanMiWen', folder: 'Branch', completion: 'Started', branches: {}, progress: null }]]) });
