@@ -78,11 +78,17 @@ interface State {
   noRiskText: string;
   warnings: Array<{
     where: string;             // positional cutoff text, e.g. "Before this area's final fight"
-    items: Array<{ text: string; note: string | null; hint?: string | null }>;  // named started quests, location hints, counts
+    items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[] }>;  // named started quests, location hints, counts
                                // hint: only on a named started quest whose rule has `hintStarted` (what is left to
                                // do, localized); the page shows it as a muted sub-line under the name. Missing → none.
+                               // stakes: what missing it costs (rules.json `stakes`, true ending derived), in display
+                               // order; [] when nothing is recorded, and for the purple-quest count (its text says so). Missing → no labels.
   }>;
   info: string[];              // anonymous info warnings (e.g. the camp warning)
+  infoStakes?: Stake[][];      // the labels of info[i] at the same index ([] = none). Missing → no labels.
+  // Stake = { id: 'trueEnding' | 'achievement' | 'phantomEdge' | 'weapon' | 'accessory' | 'flower' | 'medicine' |
+  //   'material' | 'amber' | 'item' | 'sideQuest'; text: string }  // text localized ("true ending", "accessory", …);
+  //   never the achievement's or the item's name. 'sideQuest' ("side quest only") is never next to another label.
   groups: Array<{              // the same warnings + info, grouped by game region (rules.json `regions`); only
                                // non-empty groups, in order: the region the player is in, other reached regions
                                // in story order, then at most ONE 'endgame' group (region.endgame: true) holding
@@ -98,8 +104,9 @@ interface State {
                                // 'later' or when nothing names it. endgame = true only for the 'endgame' group
                                // (current and reached are false there).
     title: string;             // localized heading: "Now: Pangzhen" / the region name / "Until the final bell" / "Later"
-    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null; hint?: string | null }> }>;  // as `warnings`
+    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[] }> }>;  // as `warnings`
     info: string[];            // as `info`
+    infoStakes?: Stake[][];    // as `infoStakes`
   }>;
   mapLocks?: Array<{           // map locks still closed in regions the player has reached (save MapSubsystem lock
                                // arrays minus EndedLockObjGuids; a region is reached when its map is unlocked, one of

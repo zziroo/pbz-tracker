@@ -46,6 +46,7 @@
       'kind.chest': 'Sandık',
       'kind.weapon': 'Silah',
       'kind.info': 'İpucu',
+      'stakes.sr': 'Kaçırırsan kaybedeceğin:',
       'maps.notice': 'Oyunun harita tamamlanma sayımı. Eksik kalemler bulanık; satıra tıklayınca açılır.',
       'maps.empty': 'Henüz ulaşılan bir harita yok.',
       'maps.missing': 'Eksik ({n})',
@@ -178,6 +179,7 @@
       'kind.chest': 'Chest',
       'kind.weapon': 'Weapon',
       'kind.info': 'Tip',
+      'stakes.sr': 'If missed, you lose:',
       'maps.notice': 'The game\'s own map completion count. Missing entries are blurred; click a row to reveal it.',
       'maps.empty': 'No map reached yet.',
       'maps.missing': 'Missing ({n})',
@@ -547,6 +549,16 @@
       out.push(h('div', { class: 'norisk' }, icon('check', 'icon-xl'), h('p', { class: 'norisk-text', text: s.noRiskText || '' })));
     }
 
+    // "What you lose" labels of an item (State items[].stakes / infoStakes[i]: { id, text }, already localized): small
+    // quiet chips; the true-ending one in the accent colour. Missing or empty (older transport) → nothing. For screen
+    // readers a labelled list ("If missed, you lose: list, 2 items, achievement, accessory"), so the chips are never
+    // read run together.
+    const stakeChips = (list) => {
+      const l = Array.isArray(list) ? list.filter((x) => x && x.text) : [];
+      if (!l.length) return null;
+      return h('span', { class: 'stakes', attrs: { role: 'list', 'aria-label': t('stakes.sr') } },
+        ...l.map((x) => h('span', { class: 'stake stake-' + String(x.id || '').replace(/[^\w-]/g, ''), attrs: { role: 'listitem' }, text: x.text })));
+    };
     // Per-cutoff cards and info rows; `titleTag` is h3 inside a region group (whose heading is the h2).
     const warnCards = (list, titleTag) => {
       const grid = h('div', { class: 'cards' });
@@ -556,6 +568,7 @@
         for (const it of items) {
           ul.append(h('li', { class: 'card-item' },
             h('span', { class: 'item-text', text: it.text || '' }),
+            stakeChips(it.stakes),
             it.note ? h('span', { class: 'item-note', text: it.note }) : null,
             it.hint ? h('span', { class: 'item-hint', text: it.hint }) : null));
         }
@@ -565,9 +578,10 @@
       }
       return grid;
     };
-    const infoCards = (list) => {
+    const infoCards = (list, stakes) => {
       const grid = h('div', { class: 'cards cards-info' });
-      for (const line of list) grid.append(h('div', { class: 'card card-info' }, icon('info'), h('p', { class: 'info-text', text: line })));
+      list.forEach((line, i) => grid.append(h('div', { class: 'card card-info' }, icon('info'),
+        h('div', { class: 'info-body' }, h('p', { class: 'info-text', text: line }), stakeChips(Array.isArray(stakes) ? stakes[i] : null)))));
       return grid;
     };
 
@@ -582,12 +596,12 @@
         const sec = h('section', { class: 'group group-' + kind },
           h('h2', { class: 'group-title' }, h('span', { class: 'group-dot', attrs: { 'aria-hidden': 'true' } }), h('span', { text: g.title || '' })));
         if (Array.isArray(g.warnings) && g.warnings.length) sec.append(warnCards(g.warnings, 'h3'));
-        if (Array.isArray(g.info) && g.info.length) sec.append(infoCards(g.info));
+        if (Array.isArray(g.info) && g.info.length) sec.append(infoCards(g.info, g.infoStakes));
         out.push(sec);
       }
     } else {
       if (warnings.length) out.push(warnCards(warnings, 'h2'));
-      if (info.length) out.push(infoCards(info));
+      if (info.length) out.push(infoCards(info, s.infoStakes));
     }
 
     // Map locks still closed in reached regions (State.mapLocks): one small card, a line per region, texts

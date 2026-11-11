@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-11.1",
-  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (type=info): adlı metin, gizli bölümde; exactWhen doğruysa tam adlar modunda varsayılan görünümde de. Kaçırılabilirlerde warnNamed / hintStartedNamed / hintNotStartedNamed: warn / hintStarted / hintNotStarted metninin adlı hâli, yalnız tam adlar açıkken ve kuralın exactWhen koşulu doğruyken (metindeki her yere ulaşıldıysa) kullanılır; gizli bölümde ipucu gösterilmez. Varsayılan metinler (where, warn, hint*) ulaşılmamış yer, boss, NPC akıbeti ya da gelecek dövüş söylemez. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
+  "rulesVersion": "2026-11-11.2",
+  "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (type=info): adlı metin, gizli bölümde; exactWhen doğruysa tam adlar modunda varsayılan görünümde de. Kaçırılabilirlerde warnNamed / hintStartedNamed / hintNotStartedNamed: warn / hintStarted / hintNotStarted metninin adlı hâli, yalnız tam adlar açıkken ve kuralın exactWhen koşulu doğruyken (metindeki her yere ulaşıldıysa) kullanılır; gizli bölümde ipucu gösterilmez. Varsayılan metinler (where, warn, hint*) ulaşılmamış yer, boss, NPC akıbeti ya da gelecek dövüş söylemez. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). stakes: kaçarsa ne kaybedilir (varsayılan görünümdeki küçük etiketler): trueEnding, achievement, phantomEdge, weapon, accessory, flower, medicine, material, amber, item, sideQuest; gerçek son, görev trueEnding.quests içindeyse kendiliğinden eklenir; doğrulanmış giriş yoksa eşya kuralı türünü kindOf'tan alır; sideQuest yalnız açıkça yazılırsa, hiçbir şey kayıtlı değilse etiket yok. {kind, unverified: true} doğrulanmamış (gösterilmez). stakesNote: kaynak notu (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
     "game8": {
@@ -718,6 +718,10 @@
         ],
         "checked": "unverified"
       },
+      "stakes": [
+        "sideQuest"
+      ],
+      "stakesNote": "No achievement names this quest (data/game/raw/loc/en-US.json Achievement_Des_1..66) and no reward item is mapped to it in data/game; the guides (Game8, DTGRE) name no reward either.",
       "note": "Game data: quest DaoYiYouDao (QuestRumor_029), task \"Deliver the Nimble Thief's blood letter to his brother, the Gentle Thief\"; the letter (Reading_FJZL_Letter_012) highlights the answers. Letter spot (past the cave by the Outlaw Trap bell, an enemy by a campfire) and the three questions from DTGRE; Game8 puts the Nimble Thief in the Thieves' Camp. The rule still has quest null (the save id is known from game data but was never seen in a save)."
     },
     {
@@ -773,6 +777,11 @@
         ],
         "checked": "unverified"
       },
+      "stakes": [
+        "achievement",
+        "accessory"
+      ],
+      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (A Healer's Mercy before Bai Chilian). Accessory: Calming Gourd = AC_BreakDrink (data/game/accessories.json).",
       "hintNotStarted": {
         "tr": "Hırsızlar Kampı çanının yakınında Yu'er yaralı hırsızları bulmanı isterse işi al ve dördünü de tedavi et.",
         "en": "When Yu'er, near the Thieves' Camp bell, asks you to find wounded thieves, take the task and treat all four."
@@ -798,6 +807,10 @@
         ],
         "checked": "unverified"
       },
+      "stakes": [
+        "phantomEdge"
+      ],
+      "stakesNote": "Feather Bow = UnnamedBow in data/game/phantom-edges.json (DTGRE: the old archer restrings the broken bow). No achievement names this quest.",
       "hintNotStarted": {
         "tr": "Vadideki karakolda oturan yaşlı okçunun yozlaşmış müritleriyle ilgili bir işi var: Acımasız Okçu Kampı'ndaki müritleri yen ve kırık yayı ona götür.",
         "en": "The old archer at the valley's Outpost has a task about his corrupted disciples: defeat them at the Ruthless Archer Camp and bring him the broken bow."
@@ -825,6 +838,14 @@
         ],
         "checked": "unverified"
       },
+      "stakes": [
+        {
+          "kind": "item",
+          "unverified": true,
+          "note": "File 6 of Four Fierce Axes (PT-BR guide \"Arquivo 6\"): a reading of the Four Fierce Axes (XiongFu) case files; game data has Book_XiongFu / Reading_XiongFu_Book_07 \"The 'Four Axes' Case Files\" but nothing ties a file to this quest."
+        }
+      ],
+      "stakesNote": "The PT-BR guide says the reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile; not confirmed by game data, so no label is shown. No achievement names this quest.",
       "note": "Reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile (PT-BR guide). Hints (2026-11-11) from the game's own task texts (QuestRumorDes_024_*): chain-sealed courtyard at the outpost → captain's order to the lieutenant at the Sha-Chi Tower outskirts (which tower is not stated) → evidence of Gu Lingran's crimes.",
       "hintNotStarted": {
         "tr": "Vadideki karakolun zincirlerle mühürlü avlusunu araştır; orada başlayan görev bu dövüşte kapanır.",
@@ -866,6 +887,15 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement",
+        {
+          "kind": "accessory",
+          "unverified": true,
+          "note": "Blessed instead of Tarnished Jade Pendant: allthings.how only (flesh-lily-give), pages partly contradict each other."
+        }
+      ],
+      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (give the Flesh Lily to Yu'er before Bai Chilian).",
       "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley.",
       "hintNotStarted": {
         "tr": "Yu'er nadir bir çiçek arıyor; bul ve bu dövüşten önce ona ver.",
@@ -897,6 +927,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "achievement"
+      ],
+      "stakesNote": "Achievement: game data ACH_032 \"Complete [Secrets at the Heart of the Lake]\" (data/game/raw/loc/en-US.json Achievement_Des_32); PowerPyx trophy guide (page, 2026-11-11) lists it as missable. True ending is derived (HuXinMiMi is in trueEnding.quests).",
       "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure. Steps (PowerUp Gaming / KeenGamer): 6 Firefly's Memory Flowers in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (Yanru fire, Lei Ting lightning, Guhe poison, Hansui ice in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet, Mountain of Imprisonment; Yang: Hansui drop) → Four Guardians' Mirror (Bell_LYZ_011, frozen NW shore of Meigu Lake, map MeiGuHu) → Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells) → Blizzard Blademaster at Whiteshadow's Fall (Bell_LYZ_014) → red statue, insert both eyes → Heart of the Lake ritual → Inanis. Save 2026-11-08: S1/S2/S4 Completed, S3 + branch 3 Activating while inside the realm (last bell Bell_LYZ_013).",
       "hintStarted": {
         "tr": "Günlükteki adımları sırayla izle: Ateşböceği'nin altı anı çiçeğiyle başlıyor ve birkaç bölgeden geçiyor, bunların bir kısmına hikâyede daha sonra ulaşacaksın; yukarıda yazan noktadan önce bitir.",
@@ -1006,6 +1040,12 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement",
+        "phantomEdge",
+        "flower"
+      ],
+      "stakesNote": "Achievement: game data ACH_035 \"Complete [The Journey Home]\" (data/game/raw/loc/en-US.json Achievement_Des_35); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (first objective before entering Pangzhen). War Wagon = NiTouChe (data/game/phantom-edges.json) and Gen's memory flower: allthings.how choices, KeenGamer tales (journey-home-start-choice).",
       "warn": {
         "tr": "Geçidi açtıktan sonra yeni kasabaya gitmeden bu iki görevin sahiplerine haber ver.",
         "en": "After opening it, report to these two quest givers before going to the new town."
@@ -1086,6 +1126,11 @@
         ],
         "checked": "page-read"
       },
+      "stakes": [
+        "accessory",
+        "flower"
+      ],
+      "stakesNote": "Twin Fish Pendant = AC_LowShachi (data/game/accessories.json) (Game8 Red page) and a memory flower (Steam thread: defeating her loses an item and a memory flower). No achievement names her tale.",
       "note": "Confirmed by a Steam thread (the boss is referred to as \"her\"; killing her on the pigeon tower loses an item + a memory flower). The name \"Daughter of the Dark Sect\" appears in no source: unverified. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen: the last bell used is an encampment bell. Update 2026-11-06: the tale is MoJiaoZhiNv (QuestRumor_015 \"KARANLIK TARİKATIN KIZI\" = Daughter of the Dark Sect), seen in a save when the player met Red, so the name is verified; the warning stops once that tale is done. Update 2026-11-07: Game8 read in full: \"Do not defeat Red during your first encounter, or you will miss the Twin Fish Pendant\"; \"use the nearby chain to exit the arena\"; \"Leaving her alive forces her to appear alongside the Chief Disciple of the Seven-Stars later\" (harder, \"the only way to secure all possible rewards\"). Matches the Steam thread (defeat = item + flower lost). One Steam player claims fleeing cost map 100% (likely the boss entry until she returns); guides still recommend sparing. guess removed. Real-save check 2026-11-07 00:11: Red is BP_Monster_EMei_Sword_Top (AttemptCount 1, no KillCount after leaving by the chain); MoJiaoZhiNv branch S1 Activating → branch \"1\" Activating at 00:09:06, item R_03026 four seconds later. doneWhen = branch 1 reached (Activating or Completed) or tale done; activeWhen also stops once the boss has a kill.",
       "exactWhen": {
         "any": [
@@ -1133,6 +1178,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "achievement"
+      ],
+      "stakesNote": "Achievement: game data ACH_033 \"Complete [Bloodline Awakening]\" (data/game/raw/loc/en-US.json Achievement_Des_33) (PowerPyx lists it, not as missable). True ending is derived (XueMaiJueXing).",
       "note": "Region: mount-soulrend = the final cutoff; the quest's own steps span earlier areas (not mapped). Five Lóng Pillar trials (PowerUp Gaming): Weeping Creek Valley (Rusted Loong Key, east caves), Crimson Forest (after Iron Fever, chain-sickle gap), Meigu Lake east (Midlake Long Pillar Dock, boat), Meigu Lake west (Discordance realm, Dread Axe), and the fifth past the Green Serpent House near the Covered Corridor bell (right path, chain-sickle down to a hidden platform) — that one must be done before the Mount Soulrend finale. Save 2026-11-08 16:48: tasks 11011 with Tutorial_Longzhu1-4 all done, so the open task is the Covered Corridor pillar.",
       "hintStarted": {
         "tr": "Bulduğun her Lóng Sütunu'nun sınavını tamamla. İlk dördü bekleyebilir; beşincisi geç bir bölgede, ana yoldan biraz sapınca. Oyunun son uyarı çanından önce bitir.",
@@ -1225,6 +1274,10 @@
         ],
         "checked": "unverified"
       },
+      "stakes": [
+        "achievement"
+      ],
+      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (Apprentice Healer before Jing Ye).",
       "hintStarted": {
         "tr": "Yu'er'in reçetesindeki üç otu bu vadide topla ve ona götür.",
         "en": "Gather the three herbs from Yu'er's recipe in this valley and bring them to her."
@@ -1268,6 +1321,15 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement",
+        {
+          "kind": "trueEnding",
+          "unverified": true,
+          "note": "Yubi → Illusory Pipa back plate chain (pipa-dependency): one Steam thread, search snippet only."
+        }
+      ],
+      "stakesNote": "Achievement: game data ACH_034 \"Complete [Secrets of the Baishan Sect]\" (data/game/raw/loc/en-US.json Achievement_Des_34); PowerPyx trophy guide (page, 2026-11-11) lists it as missable.",
       "activeWhen": {
         "any": [
           {
@@ -1310,6 +1372,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "trueEnding"
+      ],
+      "stakesNote": "Illusory Pipa (HuanShuPiPa) is in trueEnding.quests; written out because this info rule has no quest id. The rule never reaches the default view (no activeWhen).",
       "note": "Region: mandate-encampment (the Yubi fight); a guess, the rule has no activeWhen so it never reaches the default view."
     },
     {
@@ -1334,7 +1400,12 @@
           "steam-research-note"
         ],
         "checked": "unverified"
-      }
+      },
+      "stakes": [
+        "trueEnding",
+        "achievement"
+      ],
+      "stakesNote": "Quick Hand's Request (MiaoShouKongKong) is in trueEnding.quests; Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39). The rule is unverified, so it never reaches the default view."
     },
     {
       "type": "info",
@@ -1375,6 +1446,11 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "trueEnding",
+        "achievement"
+      ],
+      "stakesNote": "The work it lists includes true-ending quests (Quick Hand's Request, the 5th Lóng Pillar of Bloodline Awakening) and achievement quests (ACH_037 A Severed Mindseal, ACH_039 Quick Hand's Requests, ACH_033 Bloodline Awakening; data/game/raw/loc/en-US.json).",
       "doneWhen": {
         "bellPrefix": "DH"
       }
@@ -1433,6 +1509,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "amber"
+      ],
+      "stakesNote": "Sha-Chi amber chests (DT_MapItemData LuJiaCun amber list); kindOf would only say \"chest\".",
       "doneWhen": {
         "all": [
           {
@@ -1466,6 +1546,12 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "weapon",
+        "material",
+        "achievement"
+      ],
+      "stakesNote": "Fiend Saws = YuuBlade (data/game/weapons.json); Fist Fragment: Core = TU_02002, a tempering material (data/game/items.json). Fiend Saws is also needed for ACH_058 \"Delayed Blast\" (Use Fiend Saws to trigger [Fiend-Aura Erosion], data/game/raw/loc/en-US.json Achievement_Des_58); its only known source is the BPF_MuXiaoKuiDeath flow event (data/game/map-items.json weapons, LuJiaCun). The achievement for Mu Xiaokui herself (ACH_019 \"Defeat ...\") does not depend on the ribbons.",
       "warnNamed": {
         "tr": "Beş kurdeleyi kuyuya inmeden ve Yuzan dövüşünden önce topla; yoksa Mu Xiaokui'nin gizli üçüncü aşaması ve ödülleri (İblis Testereleri, Yumruk Parçası: Çekirdek) kaçar.",
         "en": "Collect all five ribbons before going down the well and before the Yuzan fight; otherwise Mu Xiaokui's hidden third phase and its rewards (Fiend Saws, Fist Fragment: Core) are missed."
@@ -1490,6 +1576,11 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement",
+        "accessory"
+      ],
+      "stakesNote": "Achievement: game data ACH_036 \"Complete [Young Master Lan]\" (data/game/raw/loc/en-US.json Achievement_Des_36); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (first objective before entering Pangzhen). Crimson Resolve = AC_Combo (data/game/accessories.json), per young-master-lan-start-choice (Game8, PowerPyx, KeenGamer).",
       "doneWhen": {
         "questBranch": "LanJiaGongZi",
         "branch": "2"
@@ -1536,6 +1627,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement"
+      ],
+      "stakesNote": "Achievement: game data ACH_037 \"Complete [A Severed Mindseal]\" (data/game/raw/loc/en-US.json Achievement_Des_37); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (first objective before leaving Weeping Creek Valley).",
       "hintStarted": {
         "tr": "Bu vadideki İlkel Taş'ı bul ve vadiden ayrılmadan buradaki dost Gölge Muhafızı'na ver.",
         "en": "Find the Primal Stone in this valley and give it to the friendly Shadow Warden here before you leave the valley."
@@ -1564,6 +1659,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "accessory"
+      ],
+      "stakesNote": "Crude Radiant Heart = AC_MartialWeapon (data/game/accessories.json), from Lu Sanqian at the shrine step (gamingdeputy FR, playnews; see notes). No achievement names this tale.",
       "hintStarted": {
         "tr": "Bu öykü ileride bir bölgede devam ediyor; orada günlüğü izle ve oyunun son uyarı çanından önce bitir.",
         "en": "The rest of this tale continues in a later area; follow the journal there and finish it before the game's final warning bell."
@@ -1592,6 +1691,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "sideQuest"
+      ],
+      "stakesNote": "No achievement names this quest (data/game/raw/loc/en-US.json Achievement_Des_1..66) and no reward item is mapped to it in data/game; KeenGamer (Tale 23) names no reward either.",
       "hintStarted": {
         "tr": "Zhou Ping'in son mektubunu Pangzhen Pazar Yeri çanının doğusundaki binada, üst kattaki Yuling'e ver (giriş, gereken Phantom Edge'e sahip olana kadar kapalı).",
         "en": "Hand Zhou Ping's last letter to Yuling on the upper floor of the building east of the Pangzhen Marketplace bell (its entrance stays shut until you have the Phantom Edge it needs)."
@@ -1640,6 +1743,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "flower"
+      ],
+      "stakesNote": "Memory-flower petals from the kneeling Mandate leaders (4/6 for the quest, 6/6 for the HP bonus). No achievement names this quest.",
       "hintStarted": {
         "tr": "Yapraklar, dövüşten sonra diz çöküp öldürülmeyi isteyen dost savaşçılardan düşer; dönüşmeden vur. Görev için 6 yapraktan 4'ü yeter.",
         "en": "Petals drop from allied fighters who kneel after their fight and ask to be killed; strike before they transform. 4 of the 6 petals finish the quest."
@@ -1732,6 +1839,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "flower"
+      ],
+      "stakesNote": "Same petals as mandate-leaders-flower.",
       "note": "Companion of mandate-leaders-flower (detect:false): the actionable warning in the default view. Steam thread 2026-11-06 (6 players agree); allthings.how: ~10 s kneel, three failed releases fail the quest. 17173 (2026-11-03): 2 in Pangzhen (Pond of Fading Song area after the Flaming Mane; Slums bell, down the stairs), 4 at the Mandate Encampment; light-blue HP bar. PowerPyx comments (2026-10-30/31): the dropped flower only shows a text prompt until the Shattered Hero's Courage is obtained; then it can be collected (player confirmed). Region: pangzhen + mandate-encampment (first = primary); grouped under whichever the player is in."
     },
     {
@@ -1787,6 +1898,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "sideQuest"
+      ],
+      "stakesNote": "Locks A Brother Once More (ZaiHuiXiongZhang); no achievement names it, reward not mapped.",
       "note": "Quest id ZaiHuiXiongZhang (QuestRumor_010) seen in a save 2026-11-06; the warning stops once the quest is in the save. Trigger per GamerSky; lockout per one Steam thread (OP + one \"same here\"), so guess:true."
     },
     {
@@ -1834,6 +1949,11 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "accessory",
+        "flower"
+      ],
+      "stakesNote": "Per Game8 / PowerPyx: Snow and Blood = AC_Bleed (data/game/accessories.json) and 2 memory flowers (with the Bai Xue tale); disputed by allthings.how, like the rule itself (guess).",
       "note": "Disputed: Game8 (2026-11-05) and PowerPyx say the peaceful option kills the female puppet and locks Bai Xue; allthings.how (2026-11-01) says both paths keep Bai Xue. Fight is safe in every source. Mountain of Imprisonment bell prefix unknown, so visible from Pangzhen on. 2026-11-08: Hapis Dağı çan öneki DDSD bilindiğinden kural dağda da etkin (activeWhen SZ|DDSD); exactWhen DDSD. Real save 2026-11-09 01:17: the fight option was taken (IronMaskMan_Boss killed, Backstreet Courtyard Key + amber fragment), BaiXue and YongShengDaoZhu (Ledger) both Succeded; doneWhen = BaiXue seen or the Ledger quest done.",
       "doneWhen": {
         "any": [
@@ -1871,6 +1991,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "material"
+      ],
+      "stakesNote": "Chaos Iron Fragment II = TU_150022, a tempering material (data/game/items.json); real save 2026-11-08: without the Blazing Edge it does not drop. No achievement names Triple Threat.",
       "note": "Details (spoilers): the 3 Three-Faced Chaos flowers are in Mirage Estate; Yucong's third phase is triggered with the Blazing Edge (CN guide). Quest tasks (QuestMazeDes_017): S2 Mirrorwood entrance, S3 flowers in Mirage Estate, S4 \"equip the Soul-Tempered Sanguine Reach\", S5 deeper into the Mirrorwood, 1 \"use the Blazing Edge to defeat the Three-Faced Puppet that fled to the Mirrorwood\", S7 \"return to Weeping Creek Valley, the Rift inside the Lady's statue\". Blazing Edge = Soul Tempered Sanguine Reach (WeaponDes_UI_014; Gfinity). Save 2026-11-08 21:35: S1-S3,S5 Completed, S6 + branch 1 Activating at Bell_FJZL_GP_002 (unnamed). Real save 2026-11-08 22:43: BP_Monster_YuCong_P1 and BP_Monster_YuCong killed first try, CiGuHunDun (Freezing Chaos) added, no new tempering item, quest QC_Failed with branch 1 (\"use the Blazing Edge\") still Activating; The Four Freed unlocked on Steam. The Rift fight at the start is BP_Monster_MBoss (BossName_051_2 Aberrant Three-Faced Puppet). Tracker shows the quest as \"kaçtı — oyun başarısız saydı\". Redo 2026-11-08 23:19 after restoring the 22:21 save: with the Blazing Edge equipped the quest went QC_Succeded (branch 1 Completed) and the save recorded the three split copies BP_Monster_YuCong_WuLi / _HunDun / _Bing besides _P1 and YuCong; Chaos Iron Fragment II arrived (TU_150022, merged with TU_150021 into TU_15002). The failed run had only _P1 and YuCong, so the three extra boss records are the marker of the real third phase.",
       "hintStarted": {
         "tr": "Ayna Korusu'na girmeden önce Pangzhen'de Myst'e uğrayıp Sanguine Erişim'i Ruh Tavlaması ile Alevli Kılıç yap; Yucong'un son aşaması onsuz tetiklenmiyor. Sonra Ağlayan Dere Vadisi'nde Hanımın heykelindeki Yarık.",
@@ -1900,6 +2024,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "achievement"
+      ],
+      "stakesNote": "Achievement: game data ACH_040 \"Complete [Heart of the Banyan]\" (data/game/raw/loc/en-US.json Achievement_Des_40). The rule never reaches the default view (no activeWhen).",
       "note": "Region: pangzhen is a guess (the banyan encounters are not mapped); the rule has no activeWhen so it never reaches the default view."
     },
     {
@@ -2007,7 +2135,11 @@
           "allthings-missables"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        "accessory"
+      ],
+      "stakesNote": "Agarwood Prayer Beads = AC_BreakRecover (data/game/accessories.json)."
     },
     {
       "type": "info",
@@ -2062,7 +2194,20 @@
           "steam-research-note"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        {
+          "kind": "accessory",
+          "unverified": true,
+          "note": "Seal of Dugu (AC_HeavyAttackShachi): real save 2026-11-09 shows the mourning choice only delays it."
+        },
+        {
+          "kind": "achievement",
+          "unverified": true,
+          "note": "Whether the choice can stop ACH_034 (Secrets of the Baishan Sect) is not known."
+        }
+      ],
+      "stakesNote": "No confirmed stake: the default view shows the tip without a label."
     },
     {
       "type": "info",
@@ -2102,7 +2247,13 @@
           "keengamer-tales"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        "achievement",
+        "phantomEdge",
+        "flower"
+      ],
+      "stakesNote": "Achievement: game data ACH_035 \"Complete [The Journey Home]\" (data/game/raw/loc/en-US.json Achievement_Des_35); PowerPyx trophy guide (page, 2026-11-11) lists it as missable. War Wagon = NiTouChe (data/game/phantom-edges.json), Gen's memory flower (allthings.how choices, KeenGamer tales)."
     },
     {
       "type": "info",
@@ -2142,6 +2293,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "accessory"
+      ],
+      "stakesNote": "Arrowward = AC_ResistRanged (data/game/accessories.json), PowerPyx Village of Lu #41.",
       "note": "PowerPyx Village of Lu #41 Arrowward, marked missable: he dies when progressing too far into the region, trigger unknown. Unverified: the exact spot (door next to the Smuggler's Tunnel entrance bell) comes from the hand-over, not from the PowerPyx text; activeWhen ends with the village chapter quest (MainCh1-ShiXinCun) done, a guess (he may die earlier). doneWhen: Arrowward = AC_ResistRanged (Inventory.AccessoryInfos), verified by timing on a real save; once it is in the save the warning leaves the default view.",
       "doneWhen": {
         "itemSeen": "AC_ResistRanged"
@@ -2196,7 +2351,12 @@
           "keengamer-zhang"
         ],
         "checked": "unverified"
-      }
+      },
+      "stakes": [
+        "trueEnding",
+        "achievement"
+      ],
+      "stakesNote": "Starts Quick Hand's Request (MiaoShouKongKong, in trueEnding.quests; the rule has no quest id, so it is written out); Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39)."
     },
     {
       "type": "info",
@@ -2236,6 +2396,12 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "trueEnding",
+        "achievement",
+        "accessory"
+      ],
+      "stakesNote": "A stage of Quick Hand's Request (MiaoShouKongKong branch 3, in trueEnding.quests); Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39); Fine Thread = AC_Control (data/game/accessories.json). The deadline itself stays unverified (guess).",
       "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003). Verified 2026-11-06: the Village of Lu hand-in completes MiaoShouKongKong branch 3 (and 3-1); T_05001..3 drop to 0; Fine Thread is probably AC_Control (acquired 03:46).",
       "doneWhen": {
         "questBranch": "MiaoShouKongKong",
@@ -2282,7 +2448,12 @@
           "keengamer-tales"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        "achievement",
+        "accessory"
+      ],
+      "stakesNote": "Achievement: game data ACH_036 \"Complete [Young Master Lan]\" (data/game/raw/loc/en-US.json Achievement_Des_36); PowerPyx trophy guide (page, 2026-11-11) lists it as missable. Crimson Resolve = AC_Combo (data/game/accessories.json)."
     },
     {
       "type": "info",
@@ -2308,6 +2479,10 @@
         ],
         "checked": "search-snippet"
       },
+      "stakes": [
+        "trueEnding"
+      ],
+      "stakesNote": "An unfinished lake quest (HuXinMiMi, in trueEnding.quests) leads to the non-true ending (allthings.how choices).",
       "activeWhen": {
         "all": [
           {
@@ -2386,7 +2561,16 @@
           "allthings-choices"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        "achievement",
+        {
+          "kind": "accessory",
+          "unverified": true,
+          "note": "Blessed instead of Tarnished Jade Pendant: allthings.how only, pages partly contradict each other."
+        }
+      ],
+      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (give the Flesh Lily to Yu'er before Bai Chilian)."
     },
     {
       "type": "info",
@@ -2430,7 +2614,13 @@
           "game8-choices"
         ],
         "checked": "search-snippet"
-      }
+      },
+      "stakes": [
+        "trueEnding",
+        "achievement",
+        "accessory"
+      ],
+      "stakesNote": "Game8 choices: 'Leave' may lose the Quick Hand Pendant (AC_Tang, data/game/accessories.json), his shop and both questlines, one of them Quick Hand's Request (in trueEnding.quests; Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39)). The consequence itself is a guess, like the rule."
     },
     {
       "type": "info",
@@ -2463,6 +2653,10 @@
         ],
         "checked": "page"
       },
+      "stakes": [
+        "accessory"
+      ],
+      "stakesNote": "Crude Radiant Heart = AC_MartialWeapon (data/game/accessories.json).",
       "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Save code of the dew unknown, so detect stays off. Triggers added 2026-11-08 once the DDSD prefix was known. doneWhen: XiaoCui branch 4-A reached (Activating or Completed). On the real save (2026-11-08 04:14:28) branch 3 completed and 4-A activated at the same second right after the second rescue in the hanging-cage room, and Yusuf reported giving the dew; 4-B stayed None. Reading: 4-A = \"Lu Sanqian drank the Rootless Dew\" (QuestDes_01-DDSD_012), 4-B = \"his days are numbered\" (DDSD_013, dew not given). Branch meaning inferred from one save, not from the quest asset.",
       "activeWhen": {
         "lastBellPrefix": "DDSD"

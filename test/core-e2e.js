@@ -515,6 +515,80 @@ async function main() {
       && badNamed({ exactWhen: undefined }) && badNamed({ hintStarted: undefined }) && badNamed({ hintNotStartedNamed: { en: '', tr: '' }, hintNotStarted: { en: 'n', tr: 'n' } }),
       `named variants: default ${tAnon}; exact, area not reached ${tExactNear}; exact, reached ${tExactFar}; schema rejects a named text without exactWhen / anonymous text, or empty`);
 
+    // Stakes ("what you lose" labels): trueEnding derived from trueEnding.quests (never written in the rule), the rule's
+    // own `stakes` added, an item rule's kind from its doneWhen code when no verified entry is recorded (none, or only
+    // unverified ones), 'sideQuest' only when written; nothing recorded → no label (a sidecar rule without stakes);
+    // unverified entries never shown; hints merge labels (a merged "side quest only" next to an unlabelled rule is
+    // dropped), the not-started count carries their union; info tips carry their own. Terminal:
+    // bracketed tags; viewmodel: { id, text } per item and infoStakes for the info lines.
+    {
+      const { render, stakesOf, trueEndingQuests } = sb.require('./lib/report');
+      const { toState } = sb.require('./lib/viewmodel');
+      const miniS = validateRules({
+        schemaVersion: 1, rulesVersion: 'test',
+        cutoffs: { c: { where: { en: 'Before X', tr: 'X' }, label: { en: 'X', tr: 'X' }, passedWhen: { mapUnlocked: 'Passed' } } },
+        missables: [
+          { id: 'purple', quest: 'P', cutoff: 'c', visibleWhen: { questSeen: 'P' }, stakes: ['accessory'] },
+          { id: 'purple-bare', quest: 'P2', cutoff: 'c', visibleWhen: { questSeen: 'P2' } },
+          { id: 'side', quest: 'Q', cutoff: 'c', visibleWhen: { questSeen: 'Q' } },
+          { id: 'side-said', quest: 'S', cutoff: 'c', visibleWhen: { questSeen: 'S' }, stakes: ['sideQuest'] },
+          { id: 'ring2', quest: null, names: { en: 'Ring 2', tr: 'x' }, cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'AC_Ring2' }, hintNotStarted: { en: 'take the second ring', tr: 'x' }, stakes: [{ kind: 'achievement', unverified: true }] },
+          { id: 'amberchest', quest: null, names: { en: 'Chest', tr: 'x' }, cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'AC_Z' }, hintNotStarted: { en: 'open the chest', tr: 'x' }, stakes: ['amber'] },
+          { id: 'shared-a', quest: 'SA', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, hintNotStarted: { en: 'shared', tr: 'x' }, stakes: ['sideQuest'] },
+          { id: 'shared-b', quest: 'SB', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, hintNotStarted: { en: 'shared', tr: 'x' } },
+          { id: 'ach', quest: 'A', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, hintNotStarted: { en: 'start it', tr: 'x' }, stakes: ['achievement', { kind: 'trueEnding', unverified: true, note: 'one thread' }] },
+          { id: 'ring', quest: null, names: { en: 'Ring', tr: 'Yüzük' }, cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, doneWhen: { itemSeen: 'AC_Ring' }, hintNotStarted: { en: 'take the ring', tr: 'x' } },
+          { id: 'count1', quest: 'C1', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, stakes: ['weapon'] },
+          { id: 'count2', quest: 'C2', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' } },
+          { id: 'tip', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, warn: { en: 'a tip', tr: 'x' }, stakes: ['flower', { kind: 'achievement', unverified: true }] },
+          { id: 'tip-bare', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, warn: { en: 'plain tip', tr: 'x' } },
+        ],
+        trueEnding: { cutoff: 'c', quests: [{ quest: 'P', en: 'Purple' }, { quest: 'P2', en: 'Purple 2' }, { quest: 'P3', en: 'Purple 3' }] },
+      }, 'miniS.json');
+      const stS = { ...base, maps: new Set(['A']), quests: new Map([quest('P'), quest('P2'), quest('P3'), quest('Q'), quest('S')]), items: new Map() };
+      const bS = build(stS, miniS, namesK);
+      const te = trueEndingQuests(miniS);
+      const named = Object.fromEntries(bS.warnings.flatMap((w) => w.named).map((it) => [it.key, (it.stakes || []).join('+')]));
+      const w0 = bS.warnings[0] || { hintStakes: new Map(), unnamedStakes: new Set() };
+      const info = Object.fromEntries(bS.infoNow.map((i) => [i.key, (i.stakes || []).join('+')]));
+      const hs = (h) => (w0.hintStakes.get(h) || []).join('+');
+      check(named.purple === 'trueEnding+accessory' && named['purple-bare'] === 'trueEnding' && named.side === '' && named['side-said'] === 'sideQuest'
+        && hs('start it') === 'achievement' && hs('take the ring') === 'accessory' && hs('take the second ring') === 'accessory' && hs('open the chest') === 'amber'
+        && w0.hints.has('shared') && hs('shared') === ''
+        && w0.unnamed === 2 && [...w0.unnamedStakes].sort().join('+') === 'weapon'
+        && info.tip === 'flower' && info['tip-bare'] === '' && !JSON.stringify(miniS.missables.find((m) => m.id === 'purple')).includes('trueEnding')
+        && stakesOf({ quest: 'P', stakes: ['sideQuest'] }, te).join() === 'trueEnding',
+        `stakes (synthetic): trueEnding derived (${named.purple}, ${named['purple-bare']}), no stakes → none ("${named.side}"), written sideQuest → ${named['side-said']}, hint ${hs('start it')} (unverified dropped), item kind ${hs('take the ring')} / all-unverified ${hs('take the second ring')} / verified wins ${hs('open the chest')}, merged sideQuest + unlabelled → "${hs('shared')}", count union ${[...w0.unnamedStakes].join('+')}, info ${info.tip} / none`);
+      i18n.setLang('en');
+      const textS = render({ st: stS, result: bS, names: namesK, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false });
+      const vmS = toState({ ok: true, error: null, readAt: 'x', view: { st: stS, result: bS, names: namesK, build: null, data: null, changes: [] } });
+      const vItems = vmS.warnings[0].items;
+      const vOf = (text) => (vItems.find((x) => x.text === text)?.stakes || []).map((x) => `${x.id}:${x.text}`).join('|');
+      check(/• P \[true ending\] \[accessory\]$/m.test(textS) && /• Q$/m.test(textS) && /• S \[side quest only\]$/m.test(textS) && /• shared$/m.test(textS),
+        `stakes: terminal tag after the name: ${(textS.split('\n').find((l) => /\[true ending\] \[accessory\]/.test(l)) || '-').trim()}`);
+      check(/• take the ring \[accessory\]$/m.test(textS) && /• There are 2 missable quests .* \[weapon\]$/m.test(textS) && /▶ a tip \[memory-flower petal\]$/m.test(textS) && /▶ plain tip$/m.test(textS)
+        && /• 1 purple quest needed for the true ending is still open\.$/m.test(textS),
+        'stakes: terminal tags on hints, the count (an unlabelled rule adds nothing) and info; plain tip unlabelled; purple count says true ending');
+      check(vOf('start it') === 'achievement:achievement' && vOf('take the ring') === 'accessory:accessory' && vItems.some((x) => /true ending/.test(x.text) && Array.isArray(x.stakes) && x.stakes.length === 0)
+        && Array.isArray(vmS.infoStakes) && vmS.infoStakes.length === vmS.info.length && vmS.infoStakes[vmS.info.indexOf('a tip')].map((x) => x.id).join() === 'flower'
+        && vmS.infoStakes[vmS.info.indexOf('plain tip')].length === 0,
+        'stakes: viewmodel items[].stakes ({ id, text }) and infoStakes aligned with info');
+      // Schema: stakes must be an array of known ids; an object entry is { kind, unverified: true, note? }; no repeats;
+      // 'sideQuest' alone. The real rules file passes, and every real missable (not info) was reviewed: it has a label, or
+      // its `stakes` records why not (only unverified entries).
+      const withStakes = (stakes) => ({ ...miniS, missables: [{ ...miniS.missables[0], stakes }] });
+      check(rejects(withStakes('accessory')) && rejects(withStakes(['jewel'])) && rejects(withStakes(['accessory', 'accessory'])) && rejects(withStakes(['sideQuest', 'achievement']))
+        && rejects(withStakes([{ kind: 'achievement' }])) && rejects(withStakes([{ kind: 'nope', unverified: true }])) && rejects(withStakes([{ kind: 'flower', unverified: true, extra: 1 }]))
+        && !rejects(withStakes([])) && !rejects(withStakes(['sideQuest', { kind: 'achievement', unverified: true }])) && !rejects(rules),
+        'rules schema: stakes must be known ids (no repeats, sideQuest alone, objects only as unverified entries)');
+      const teReal = trueEndingQuests(rules);
+      const bare = rules.missables.filter((m) => m.type !== 'info' && stakesOf(m, teReal).length === 0);
+      const unreviewed = bare.filter((m) => !Array.isArray(m.stakes) || m.stakes.length === 0).map((m) => m.id);
+      const lake = rules.missables.find((m) => m.id === 'lake-secrets');
+      check(unreviewed.length === 0 && stakesOf(lake, teReal)[0] === 'trueEnding' && !(lake.stakes || []).includes('trueEnding'),
+        `stakes (real rules): every missable has a label or recorded unverified stakes (no label: ${bare.map((m) => m.id).join(', ') || 'none'}${unreviewed.length ? `; nothing recorded: ${unreviewed.join(', ')}` : ''}); lake-secrets gets trueEnding by derivation`);
+    }
+
     // Mandate Encampment (real rules): the outer-gate bell lit on the way to the Village of Lu does not count.
     const encSt = (bells, lastBell) => ({ ...empty, maps: new Set(['XiGu', 'FuJiZhiLin', 'LuJiaCun']), levels: new Set(['zhengdaodaying']), currentLevel: 'Zhengdaodaying',
       bells: new Set(bells), lastBell, quests: new Map([['BaiShanMiWen', { id: 'BaiShanMiWen', folder: 'Branch', completion: 'Started', branches: {}, progress: null }]]) });
@@ -636,7 +710,7 @@ async function main() {
     const bMini = build(base, mini, namesK);
     const textMini = render({ st: base, result: bMini, names: namesK, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false });
     const flatLine = textMini.split('\n').find((l) => l.includes('Before X'));
-    check(Array.isArray(bMini.groups) && bMini.groups.length === 0 && bMini.warnings.length === 1 && flatLine === '  ▶ Before X:' && /^      • take the sword$/m.test(textMini) && !/Later/.test(textMini),
+    check(Array.isArray(bMini.groups) && bMini.groups.length === 0 && bMini.warnings.length === 1 && flatLine === '  ▶ Before X:' && /^      • take the sword \[weapon\]$/m.test(textMini) && !/Later/.test(textMini),
       'no regions table: groups is empty and the terminal report prints the flat layout');
     // The ids 'later' and 'endgame' are reserved for the regions table.
     const withLater = JSON.parse(JSON.stringify(rules)); withLater.regions.later = { order: 99, mapCodes: [], bellPrefixes: [] };
