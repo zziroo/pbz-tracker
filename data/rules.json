@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "rulesVersion": "2026-11-11.2",
+  "rulesVersion": "2026-11-11.3",
   "_comment": "SPOILER İÇERİR. Kural tablosu. Metinler {tr, en}. 'where' = kesim noktasının konumla anlatımı (varsayılan görünüm), 'label' = adıyla (yalnız gizli bölümde, nokta geçildikten sonra). 'whereExact' = aynı cümle yer/boss adlarıyla (yalnız 'tam adlar' ayarı açıkken ve 'exactWhen' koşulu doğruyken, yani oyuncu o bölgeye ulaştıysa; yoksa 'where'). guess=true doğrulanmamış tahmin. Görev adları data/names.json + Türkçe yamadan gelir. warnNamed (type=info): adlı metin, gizli bölümde; exactWhen doğruysa tam adlar modunda varsayılan görünümde de. Kaçırılabilirlerde warnNamed / hintStartedNamed / hintNotStartedNamed: warn / hintStarted / hintNotStarted metninin adlı hâli, yalnız tam adlar açıkken ve kuralın exactWhen koşulu doğruyken (metindeki her yere ulaşıldıysa) kullanılır; gizli bölümde ipucu gösterilmez. Varsayılan metinler (where, warn, hint*) ulaşılmamış yer, boss, NPC akıbeti ya da gelecek dövüş söylemez. activeWhen: uyarı varsayılan görünümde ne zaman dursun (type=info) / ne zaman başlasın (kaçırılabilir). doneWhen type=info için de geçerli: doğruysa uyarı varsayılan görünümden çıkar. itemSeen: data/items.json kodları (tam liste data/game/code-index.json); actorSeen: kayıttaki LevelActorManager anahtarı, ör. açılmış sandık (data/game/map-items.json SaveGuid). levelVisited/currentLevel birden çok bölgeyi kapsayabilir (Zhengdaodaying = Ferman Ordugâhı + Lu Köyü); bölge için mapUnlocked/bellPrefix kullan. source: {ids (sources anahtarları), checked}. Rule syntax / koşul dili: README.md \"Rule syntax\", README.tr.md \"Kural tablosu\". schemaVersion: dosya biçimi (araç uyuşmazsa reddeder). rulesVersion: kural içeriğinin sürümü (her düzeltmede artır, başlıkta görünür). Exe'nin yanına konan rules.json gömülü olanın yerine geçer. unverified=true: tek kaynak / tartışmalı; varsayılan görünümde uyarı üretmez, yalnız gizli bölümde \"doğrulanmamış\" notuyla görünür. claim: kurala dönüşmeyen iddia (yalnız kayıt). stakes: kaçarsa ne kaybedilir (varsayılan görünümdeki küçük etiketler): trueEnding, achievement, phantomEdge, weapon, accessory, flower, medicine, material, amber, item, sideQuest; gerçek son, görev trueEnding.quests içindeyse kendiliğinden eklenir; doğrulanmış giriş yoksa eşya kuralı türünü kindOf'tan alır; sideQuest yalnız açıkça yazılırsa, hiçbir şey kayıtlı değilse etiket yok. {kind, unverified: true} doğrulanmamış (gösterilmez). stakesNote: kaynak notu (yalnız kayıt). regions: oyun bölgeleri (hikâye sırası, harita kodları, çan önekleri); her cutoff ve missable bir region taşır (işin yapıldığı bölge; dizi ise ilki birincil), uyarılar buna göre gruplanır (lib/report.js build → groups).",
   "sources": {
     "_comment": "Kural kaynakları. url=null: adres doğrulanamadı (eklenmeli). Kurallardaki source.checked: 'unverified' = kural-kaynak eşleşmesi devir notundaki genel listeden, sayfada kontrol edilmedi; 'search-snippet' = arama sonucunun özetinde bu kuralın o kaynakta geçtiği görüldü, sayfa açılmadı. 'page' = kaynak sayfası açılıp (özet aracıyla) kuralın orada geçtiği görüldü.",
@@ -22,7 +22,8 @@
     },
     "allthings": {
       "name": "allthings.how — Phantom Blade Zero missables",
-      "url": null
+      "url": "https://allthings.how/phantom-blade-zero-missables/",
+      "note": "Same page as allthings-missables (URL found 2026-11-11; page updated 2026-11-07)."
     },
     "showgamer": {
       "name": "Showgamer — Phantom Blade Zero missables",
@@ -247,6 +248,55 @@
     "keengamer-cf-tower": {
       "name": "KeenGamer — how to reach Sha-Chi Tower in Crimson Forest",
       "url": "https://www.keengamer.com/articles/guides/phantom-blade-zero-how-to-reach-sha-chi-tower-in-crimson-forest/"
+    },
+    "gmtreks": {
+      "name": "gmtreks — Phantom Blade Zero missables",
+      "url": "https://gmtreks.com/phantom-blade-zero/page/01M6DA4QWM8DK50AA0896TWN72",
+      "note": "Updated 2026-11-10; cites PC Gamer for the Opera House treasure (first pass only)."
+    },
+    "dtgre-cutoffs": {
+      "name": "DTGRE — missable quests and boss cutoffs",
+      "url": "https://www.dtgre.com/2026/10/phantom-blade-zero-missable-quests-boss-cutoffs.html"
+    },
+    "powerpyx-true-ending": {
+      "name": "PowerPyx — Phantom Blade Zero true ending guide",
+      "url": "https://powerpyx.com/phantom-blade-zero-true-ending-guide"
+    },
+    "gamesgg-true-ending": {
+      "name": "games.gg — true ending guide (all requirements)",
+      "url": "https://games.gg/phantom-blade-0/guides/phantom-blade-zero-true-ending-guide-all-requirements/"
+    },
+    "steam-missable-quests": {
+      "name": "Steam discussion — \"Missable quests\" (Jing Ye fails Apprentice Healer; Bai Chilian closes Yu'er's line)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572680221973625527/"
+    },
+    "steam-honor-thieves": {
+      "name": "Steam discussion (CN, NG+) — Honor Among Thieves: talking to the camp thief before holding the letter breaks the quest (dev acknowledged)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415984972/"
+    },
+    "steam-cui-cage-1": {
+      "name": "Steam discussion — Lu Sanqian left hanging after the cage was lowered without the dew",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679810651832392/"
+    },
+    "steam-cui-cage-2": {
+      "name": "Steam discussion — the freed old man is gone after opening the door he named",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415800074/"
+    },
+    "steam-cui-cage-3": {
+      "name": "Steam discussion — Lu Sanqian dead / suspended after a late cage lowering",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415967109/"
+    },
+    "steam-cui-cage-4": {
+      "name": "Steam discussion — Lu Jieyuan stays seated, Cui quest failed (dev forwarded)",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415889024/"
+    },
+    "steam-quickhand-order": {
+      "name": "Steam discussion (CN) — accepting Zhang's Mirage Estate task before the Pangzhen hand-in blocks it",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415913399/"
+    },
+    "steam-quickhand-hideout": {
+      "name": "Steam discussion — Quick Hand treasures delivered at the wrong hideout give the wrong reward",
+      "url": "https://steamcommunity.com/app/4115450/discussions/0/572679917415917006/"
     }
   },
   "bosses": {
@@ -470,11 +520,14 @@
           "steam-mirage-warning",
           "steam-guide-czyhaxj",
           "steam-guide-lankec",
-          "steam-research-note"
+          "steam-research-note",
+          "game8",
+          "gmtreks",
+          "dtgre-cutoffs"
         ],
         "checked": "search-snippet"
       },
-      "note": "Conditional, disputed: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (some items may be lost; unlock the Estate Back Gate bell and clear first). No source says Mountain of Imprisonment closes. CN guide: finish Secrets at the Heart of the Lake before entering; a Steam player says it can be done later. exactWhen: a Pangzhen bell (Bell_SZ_…) was used — the Pangzhen map code was not in the save yet on 2026-11-06. passedWhen: a Mirage Estate bell (Bell_XM_…) other than Bell_XM_015 was used; XM_015 is the Pangzhen-side bell named \"Mirage Estate\" (touched 2026-11-07 15:59 with the serpent gate still shut, Four Serpent Houses at 2/3). Map code still unknown."
+      "note": "Conditional: at the Green Serpent House gate the game asks (\"pursue?\") if purple tales are unfinished; after continuing, the Crimson Forest from Mirrorwood Entrance to the Bai Chilian arena is replaced by a snow version (unlock the Estate Back Gate bell and clear first). Guides (2026-11-11 scan): Game8 says the Meigu Lake quests and the Mountain of Imprisonment lock on entry; allthings.how says crossing blocks two Whence the Weeping steps; DTGRE, PowerPyx and gmtreks put all purple quests before entry; CN guide: Secrets at the Heart of the Lake before entering, a Steam player says it can be done later. Real saves contradict the broad claim: the first Mirage save (2026-11-08 18:12, the last one before at 18:08 in the Pangzhen backstreet) changed only the main quests (MainCh2-SiDaSheWu and MainCh2-XinZhiZongJi Succeded, MainCh3-PoJu started); no quest failed or disappeared, and the six side quests open at entry (SanMianHunDun, GeJueXieZi, XueMaiJueXing, JiaoTuSanKu, XiaoCui on the Mountain of Imprisonment, MiaoShouKongKong) all succeeded later. Game data: only QiShengHeLai (Whence the Weeping) and the text-less GuYouDeRenWu listen to the entry tag quest.任务中断.进入青蛇屋外围; HuXinMiMi does not. The lake quest was done before entry, so its case is untested; the cutoff stays strict for it and for Whence the Weeping, marked guess. exactWhen: a Pangzhen bell (Bell_SZ_…). passedWhen: a Mirage Estate bell (Bell_XM_…) other than Bell_XM_015, the Pangzhen-side bell named \"Mirage Estate\" (touched 2026-11-07 15:59 with the serpent gate still shut, Four Serpent Houses at 2/3). Map code XiMeng (seen 2026-11-08 18:15)."
     },
     "final": {
       "where": {
@@ -533,27 +586,20 @@
     },
     "jingye": {
       "where": {
-        "tr": "Bu bölgenin haydut liderine karşı dövüşten önce",
-        "en": "Before the fight against this area's outlaw leader"
+        "tr": "Bir haydut liderine karşı dövüşten önce (oyun uyarmaz; bağlı görev sessizce kapanır)",
+        "en": "Before the fight against an outlaw leader (the game gives no warning; the linked quest fails silently)"
       },
       "label": {
         "tr": "Jing Ye'yi yenmek",
         "en": "Defeating Jing Ye"
       },
-      "region": "weeping-creek-valley",
+      "region": "crimson-forest",
       "whereExact": {
-        "tr": "Haydut Jing Ye'ye karşı dövüşten önce",
-        "en": "Before the fight against Jing Ye, the outlaw"
+        "tr": "Kızıl Orman'da haydut lideri Jing Ye'ye karşı dövüşten önce (oyun uyarmaz; bağlı görev sessizce kapanır)",
+        "en": "Before the fight against the outlaw leader Jing Ye in the Crimson Forest (the game gives no warning; the linked quest fails silently)"
       },
       "exactWhen": {
-        "any": [
-          {
-            "mapUnlocked": "XiGu"
-          },
-          {
-            "mapUnlocked": "FuJiZhiLin"
-          }
-        ]
+        "mapUnlocked": "FuJiZhiLin"
       },
       "passedWhen": {
         "bossKilled": "BP_Monster_JingYe"
@@ -561,10 +607,12 @@
       "source": {
         "ids": [
           "steam-guide-nero",
+          "steam-missable-quests",
           "steam-research-note"
         ],
-        "checked": "unverified"
-      }
+        "checked": "page"
+      },
+      "note": "Jing Ye (BP_Monster_JingYe) is a Crimson Forest boss: his cave switch tags are fjzl.开关.荆野洞穴开关* (fjzl = Crimson Forest; game data / real save, 2026-11-11 scan). Steam thread 572680221973625527 (2026-11-09, first-hand): beating Jing Ye failed Apprentice Healer. Until rules 2026-11-11.2 the cutoff sat in the valley and said \"this area's outlaw leader\"."
     },
     "baishan-body": {
       "where": {
@@ -664,65 +712,39 @@
         ],
         "checked": "search-snippet"
       }
-    },
-    "leave-valley": {
-      "where": {
-        "tr": "Bu vadiden bir sonraki bölgeye geçmeden önce",
-        "en": "Before leaving this valley for the next area"
-      },
-      "label": {
-        "tr": "Weeping Creek Valley'den çıkmak",
-        "en": "Leaving Weeping Creek Valley"
-      },
-      "region": "weeping-creek-valley",
-      "whereExact": {
-        "tr": "Ağlayan Dere Vadisi'nden bir sonraki bölgeye geçmeden önce",
-        "en": "Before leaving Weeping Creek Valley for the next area"
-      },
-      "exactWhen": {
-        "mapUnlocked": "XiGu"
-      },
-      "passedWhen": {
-        "mapUnlocked": "FuJiZhiLin"
-      },
-      "source": {
-        "ids": [
-          "steam-guide-czyhaxj",
-          "steam-research-note"
-        ],
-        "checked": "search-snippet"
-      }
     }
   },
   "missables": [
     {
       "id": "honor-among-thieves",
       "region": "crimson-forest",
-      "quest": null,
-      "names": {
-        "tr": "Honor Among Thieves",
-        "en": "Honor Among Thieves"
-      },
+      "quest": "DaoYiYouDao",
       "cutoff": "chilian",
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
       },
       "hintNotStarted": {
-        "tr": "Çevik Hırsız'ın mektubunu bul (rehbere göre Haydut Tuzağı çanının yanındaki mağaranın ötesinde) ve Hırsızlar Kampı'ndaki kardeşi Nazik Hırsız'a götür; sorularını mektupta vurgulanan sözlerle cevapla.",
-        "en": "Find the Nimble Thief's letter (per a guide, past the cave next to the Outlaw Trap bell) and take it to his brother, the Gentle Thief, at the Thieves' Camp; answer his questions with the words the letter highlights."
+        "tr": "Çevik Hırsız'ın mektubunu bul (rehbere göre Haydut Tuzağı çanının yanındaki mağaranın ötesinde) ve Hırsızlar Kampı'ndaki kardeşi Nazik Hırsız'a götür; sorularını mektupta vurgulanan sözlerle cevapla. Mektup elinde olmadan kamptaki hırsızla konuşma: tek bir oyuncu raporuna göre önce konuşmak görevi kilitleyebiliyor.",
+        "en": "Find the Nimble Thief's letter (per a guide, past the cave next to the Outlaw Trap bell) and take it to his brother, the Gentle Thief, at the Thieves' Camp; answer his questions with the words the letter highlights. Don't talk to the thief at the camp before you have the letter: per a single player report, talking first can lock the quest."
+      },
+      "hintStarted": {
+        "tr": "Çevik Hırsız'ın mektubunu Hırsızlar Kampı'ndaki Nazik Hırsız'a götür ve sorularını mektupta vurgulanan sözlerle cevapla; bu bölgenin son dövüşünden önce bitir.",
+        "en": "Take the Nimble Thief's letter to the Gentle Thief at the Thieves' Camp and answer his questions with the words the letter highlights; finish before this area's final fight."
       },
       "source": {
         "ids": [
           "game8",
-          "dtgre-chilian"
+          "dtgre-chilian",
+          "allthings",
+          "steam-honor-thieves"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
       "stakes": [
-        "sideQuest"
+        "accessory"
       ],
-      "stakesNote": "No achievement names this quest (data/game/raw/loc/en-US.json Achievement_Des_1..66) and no reward item is mapped to it in data/game; the guides (Game8, DTGRE) name no reward either.",
-      "note": "Game data: quest DaoYiYouDao (QuestRumor_029), task \"Deliver the Nimble Thief's blood letter to his brother, the Gentle Thief\"; the letter (Reading_FJZL_Letter_012) highlights the answers. Letter spot (past the cave by the Outlaw Trap bell, an enemy by a campfire) and the three questions from DTGRE; Game8 puts the Nimble Thief in the Thieves' Camp. The rule still has quest null (the save id is known from game data but was never seen in a save)."
+      "stakesNote": "Silent Wrap = AC_Stealth (Item_Accessory_016, data/game/accessories.json), named as the reward by Game8, DTGRE (Bai Chilian page) and allthings.how (pages, 2026-11-11 guide scan); the real run that never started this quest still misses Silent Wrap on its map count. No achievement names this quest (Achievement_Des_1..66).",
+      "note": "Game data: quest DaoYiYouDao (QuestRumor_029), one task \"Deliver the Nimble Thief's blood letter to his brother, the Gentle Thief\" (QuestRumorDes_029_01); the letter is R_02012 BLOOD LETTER FROM THE NIMBLE THIEF (Reading_FJZL_Letter_012 highlights the answers). Its quest blueprint listens to the camp-turns-hostile tag quest.一个不留.营地变怪 (set right after the Bai Chilian kill), which backs the chilian cutoff; Game8, DTGRE and allthings.how agree. Never seen in a save (the real run never picked up the letter, so the quest never started); the id comes from game data and judge() treats an absent quest as not started / never started. Letter spot (past the cave by the Outlaw Trap bell, an enemy by a campfire) and the three questions from DTGRE; Game8 puts the Nimble Thief in the Thieves' Camp. Order trap, single report (Steam, CN, NG+, 2026-11-08, dev acknowledged): talking to the thief at the camp before holding the letter plays the hand-in dialogue without the quest; once the letter is fetched the NPC cannot be talked to and the quest cannot finish."
     },
     {
       "id": "boulderguard",
@@ -842,11 +864,11 @@
         {
           "kind": "item",
           "unverified": true,
-          "note": "File 6 of Four Fierce Axes (PT-BR guide \"Arquivo 6\"): a reading of the Four Fierce Axes (XiongFu) case files; game data has Book_XiongFu / Reading_XiongFu_Book_07 \"The 'Four Axes' Case Files\" but nothing ties a file to this quest."
+          "note": "Gu Lingran's Letter to Sect Leader Ming (R_01014), one of the seven \"Four Axes\" case files (Book_XiongFu). Real save: it arrived 2026-11-04 13:53:43, two seconds before quest step 4 (deliver the captain's order to the lieutenant) completed. Whether it is lost when the outpost turns is untested."
         }
       ],
-      "stakesNote": "The PT-BR guide says the reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile; not confirmed by game data, so no label is shown. No achievement names this quest.",
-      "note": "Reward File 6 of Four Fierce Axes is lost when the Outpost turns hostile (PT-BR guide). Hints (2026-11-11) from the game's own task texts (QuestRumorDes_024_*): chain-sealed courtyard at the outpost → captain's order to the lieutenant at the Sha-Chi Tower outskirts (which tower is not stated) → evidence of Gu Lingran's crimes.",
+      "stakesNote": "Game8 (\"6th Four Axes Case File\") and the PT-BR guide (\"Arquivo 6\") number the reward as file 6; the game's own collection tags (quest.凶斧收集物.1..7) number the files differently (R_01008 is a valley pickup taken an hour before this quest began), so no number is asserted here. Four Fierce Axes (XiongFu) needs all seven files. The loss is not confirmed, so no label is shown. No achievement names this quest.",
+      "note": "Reward per guides: a Four Axes case file, lost when the Outpost turns hostile (Game8, PT-BR guide). Game data / real save: the file this quest hands over is Gu Lingran's Letter to Sect Leader Ming (R_01014), given by the lieutenant at step 4. Hints (2026-11-11) from the game's own task texts (QuestRumorDes_024_*): chain-sealed courtyard at the outpost → captain's order to the lieutenant at the Sha-Chi Tower outskirts (which tower is not stated) → evidence of Gu Lingran's crimes.",
       "hintNotStarted": {
         "tr": "Vadideki karakolun zincirlerle mühürlü avlusunu araştır; orada başlayan görev bu dövüşte kapanır.",
         "en": "Investigate the chain-sealed courtyard at the valley's Outpost; the quest it starts closes at this fight."
@@ -868,7 +890,7 @@
       "guess": true,
       "doneWhen": {
         "questBranch": "XueRouHua",
-        "branch": "1"
+        "branch": "S2"
       },
       "visibleWhen": {
         "mapUnlocked": "FuJiZhiLin"
@@ -895,8 +917,8 @@
           "note": "Blessed instead of Tarnished Jade Pendant: allthings.how only (flesh-lily-give), pages partly contradict each other."
         }
       ],
-      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (give the Flesh Lily to Yu'er before Bai Chilian).",
-      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley.",
+      "stakesNote": "Achievement: game data ACH_038 \"Complete [Flesh Lily], [Apprentice Healer] and [A Healer's Mercy]\" (data/game/raw/loc/en-US.json Achievement_Des_38); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (give the Flesh Lily to Yu'er before Bai Chilian). Game data also sets an ending-condition tag for Flesh Lily (dhy.结局条件.血肉之花) when the quest completes (real save 2026-11-07 05:34); what it changes is unknown (see trueEnding.note).",
+      "note": "Part 2 (hand-in to the father in Pangzhen after Chang Hong; Blessed Jade Pendant) is not tied to this cutoff. If part 1 was skipped, the Pangzhen hand-in marker may look empty (single report, unverified). Region: crimson-forest, where the part-1 hand-in (the Outpost) happens; the quest itself starts in the Weeping Creek Valley. doneWhen: branch S2 = \"Hand the Flesh Lily to Yu'er\" (QuestMazeDes_002_S2); branch 1 = \"Find the Flesh Lily for Yu'er\" is only the pickup (pairing from the quest blueprint). Real save: Twin Flesh Lilies I_01001 → branch 1 → Flesh Lily I_01003 → S2 within three minutes (tags xg.玉儿.获得血肉花 … xg.玉儿.给玉儿血肉花, valley tags). Until rules 2026-11-11.2 doneWhen was branch 1.",
       "hintNotStarted": {
         "tr": "Yu'er nadir bir çiçek arıyor; bul ve bu dövüşten önce ona ver.",
         "en": "Yu'er is looking for a rare flower; find it and give it to her before this fight."
@@ -923,7 +945,10 @@
           "allthings",
           "dtgre-purple",
           "powerupgaming-lake",
-          "keengamer-acolytes"
+          "keengamer-acolytes",
+          "game8",
+          "gmtreks",
+          "powerpyx-true-ending"
         ],
         "checked": "page"
       },
@@ -931,7 +956,7 @@
         "achievement"
       ],
       "stakesNote": "Achievement: game data ACH_032 \"Complete [Secrets at the Heart of the Lake]\" (data/game/raw/loc/en-US.json Achievement_Des_32); PowerPyx trophy guide (page, 2026-11-11) lists it as missable. True ending is derived (HuXinMiMi is in trueEnding.quests).",
-      "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure. Steps (PowerUp Gaming / KeenGamer): 6 Firefly's Memory Flowers in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (Yanru fire, Lei Ting lightning, Guhe poison, Hansui ice in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet, Mountain of Imprisonment; Yang: Hansui drop) → Four Guardians' Mirror (Bell_LYZ_011, frozen NW shore of Meigu Lake, map MeiGuHu) → Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells) → Blizzard Blademaster at Whiteshadow's Fall (Bell_LYZ_014) → red statue, insert both eyes → Heart of the Lake ritual → Inanis. Save 2026-11-08: S1/S2/S4 Completed, S3 + branch 3 Activating while inside the realm (last bell Bell_LYZ_013).",
+      "note": "Region: pangzhen first (the quest is in the journal before any lake map is seen and the gate is there), meigu-lake as the likely place of its steps (CN guide); unsure. Steps (PowerUp Gaming / KeenGamer): 6 Firefly's Memory Flowers in the Village of Lu → Dusk the Puppeteer → four Acolyte masks (Yanru fire, Lei Ting lightning, Guhe poison, Hansui ice in Crimson Manor) → two Crystal Puppet Eyes (Yin: hanging puppet, Mountain of Imprisonment; Yang: Hansui drop) → Four Guardians' Mirror (Bell_LYZ_011, frozen NW shore of Meigu Lake, map MeiGuHu) → Discordance realm / Phantom Illusionist Ruins (level PBZ_Huanshuyiji2_WP, LYZ bells) → Blizzard Blademaster at Whiteshadow's Fall (Bell_LYZ_014) → red statue, insert both eyes → Heart of the Lake ritual → Inanis. Save 2026-11-08: S1/S2/S4 Completed, S3 + branch 3 Activating while inside the realm (last bell Bell_LYZ_013). Mirage cutoff (2026-11-11 scan): no save shows the gate closing this quest: it was already Succeded at 2026-11-08 16:47, before entry at 18:12, and its quest blueprint does not listen to the entry tag. Guides (allthings.how, DTGRE, PowerPyx, gmtreks, Game8) still say before Mirage Estate, so the strict cutoff stays (guess). The game sets an ending-condition tag for it (dhy.结局条件.湖心秘密).",
       "hintStarted": {
         "tr": "Günlükteki adımları sırayla izle: Ateşböceği'nin altı anı çiçeğiyle başlıyor ve birkaç bölgeden geçiyor, bunların bir kısmına hikâyede daha sonra ulaşacaksın; yukarıda yazan noktadan önce bitir.",
         "en": "Follow the journal step by step: it starts with Firefly's six memory flowers and leads through several areas, some of which you reach later in the story; finish it before the point named above."
@@ -956,6 +981,50 @@
           }
         ]
       }
+    },
+    {
+      "id": "whence-the-weeping-mirage",
+      "region": [
+        "mountain-of-imprisonment",
+        "pangzhen"
+      ],
+      "quest": "QiShengHeLai",
+      "cutoff": "mirage",
+      "guess": true,
+      "visibleWhen": {
+        "questSeen": "QiShengHeLai"
+      },
+      "activeWhen": {
+        "bellPrefix": "SZ"
+      },
+      "hintStarted": {
+        "tr": "Bu öykünün kalan adımlarını yukarıda yazan noktadan önce bitir: tek bir rehbere göre o noktadan sonra iki adımı engelleniyor (oyun verisi de öykünün o noktayı izlediğini gösteriyor; etkisi doğrulanmadı).",
+        "en": "Finish the rest of this tale before the point named above: per a single guide, two of its steps are blocked after it (the game data also shows the tale watching that point; the effect is not verified)."
+      },
+      "hintStartedNamed": {
+        "tr": "Ağlayış Nereden Gelir: Hapis Dağı'ndaki tapınakta kalan iki adımı Serap Malikânesi'ne geçmeden bitir (allthings.how; oyun verisinde bu öykü malikâneye giriş etiketini dinliyor; gerçek kayıtta öykü girişten önce bitmişti, etkisi doğrulanmadı).",
+        "en": "Whence the Weeping: finish the two steps at the Mountain of Imprisonment shrine before crossing into Mirage Estate (allthings.how; in game data this tale listens to the estate-entry tag; on the real save it was done before entry, so the effect is unverified)."
+      },
+      "exactWhen": {
+        "all": [
+          {
+            "bellPrefix": "DDSD"
+          },
+          {
+            "bellPrefix": "SZ"
+          }
+        ]
+      },
+      "source": {
+        "ids": [
+          "allthings",
+          "allthings-choices",
+          "steam-research-note"
+        ],
+        "checked": "page"
+      },
+      "stakesNote": "True ending is derived (QiShengHeLai is in trueEnding.quests). No achievement names this tale (Achievement_Des_1..66).",
+      "note": "Game data (2026-11-11 scan): of the quest blueprints only QiShengHeLai (Whence the Weeping, QuestMaze_001) and the text-less GuYouDeRenWu listen to the Mirage Estate entry tag quest.任务中断.进入青蛇屋外围 (\"quest interrupted: entering the Green Serpent House outskirts\"); an interrupt can also be a pause (Flesh Lily listens to the Village of Lu one and finished later). allthings.how (2026-11-07): crossing the bridge blocks two Whence the Weeping steps at the Mountain of Imprisonment shrine. Real save: the tale was Succeded 2026-11-08 04:54 (Bell_DDSD_008), before entry at 18:12, so the effect is untested: guess. Region: the shrine steps (Mountain of Imprisonment) first, Pangzhen (the gate) second. activeWhen: a Pangzhen bell, so the warning does not show from the valley on (the tale starts there)."
     },
     {
       "type": "info",
@@ -1265,14 +1334,15 @@
         "tr": "Bu bölgede bir şifacının ot toplama işi var; otları toplamadan önce işi kabul et.",
         "en": "A healer in this area needs herbs; accept the task before gathering them."
       },
-      "note": "Accept before gathering the herbs; gathering first may leave the quest unobtainable (single comment, unverified). Region: weeping-creek-valley (the quest is visible with XiGu); the cutoff boss may be met from the Crimson Forest too (exactWhen).",
+      "note": "Accept before gathering the herbs; gathering first may leave the quest unobtainable (single comment, unverified). Region: weeping-creek-valley (herbs and Yu'er); the cutoff boss Jing Ye is in the Crimson Forest (cutoffs.jingye). Steam thread 572680221973625527 (2026-11-09, first-hand): beating Jing Ye failed this quest. The quest blueprint also listens to fjzl.营地玉儿.到达营地 (Yu'er reaches the Crimson Forest camp); whether that event alone closes it is unknown. Real save: done 2026-11-04 15:39.",
       "source": {
         "ids": [
           "steam-guide-nero",
           "steam-guide-lankec",
+          "steam-missable-quests",
           "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
       "stakes": [
         "achievement"
@@ -1309,15 +1379,16 @@
         ]
       },
       "warn": {
-        "tr": "Yakındaki cesedi hemen incele; önce kaydedersen görev kilitlenebilir.",
-        "en": "Inspect the nearby body right away; saving first can lock the quest."
+        "tr": "Bu kamptaki dövüşten sonra görevin seni yönlendirdiği yeri hemen, ilerlemeden önce incele; önce kaydedersen ya da ilerlersen görev kilitlenebilir.",
+        "en": "After the fight in this camp, examine what the quest points you to right away, before moving on; saving or moving on first can lock the quest."
       },
-      "note": "Mandate Encampment: after Wu Lengshuang, inspect Bi Taotao's body immediately (no bell, no rest, do not open the Training Grounds gate), then Yubi. Lanlan being found dead is not a failure (single source). Still bugged after patch 1.0302256. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen keeps the default-view warning back until the encampment is reached (the quest itself starts earlier). Real-save check 2026-11-07 02:25: Wu Lengshuang = BP_Monster_WuLengShuang (killed, 2 attempts); right after the fight the player inspected the body without a bell, and BaiShanMiWen went 1:Activating → 1:Completed 2:Completed 3:Activating. doneWhen = branch 2 Completed (the body step); branch 3 = Yubi. The cutoff stays undetectable (a save after the kill without branch 2 would suggest the lock, but no failure is asserted).",
+      "note": "Mandate Encampment: after Wu Lengshuang, inspect Bi Taotao's body immediately (no bell, no rest, do not open the Training Grounds gate), then Yubi. Lanlan being found dead is not a failure (single source). Still bugged after patch 1.0302256. Region: the level PBZ_Zhengdaodaying_WP also holds the Village of Lu, so levelVisited/currentLevel are not used; reached = an encampment bell (Bell_YXZR_*, Bell_ZDDY_*) other than Bell_YXZR_018 (outer gate, lit on the way to Lu). Temporary approach: bellPrefix YXZR (except Bell_YXZR_018) / ZDDY; switch to mapUnlocked with the real map code once the Mandate Encampment is reached (the code is in no save yet). activeWhen keeps the default-view warning back until the encampment is reached (the quest itself starts earlier). Real-save check 2026-11-07 02:25: Wu Lengshuang = BP_Monster_WuLengShuang (killed, 2 attempts); right after the fight the player inspected the body without a bell, and BaiShanMiWen went 1:Activating → 1:Completed 2:Completed 3:Activating. doneWhen = branch 2 Completed (the body step); branch 3 = Yubi. The cutoff stays undetectable (a save after the kill without branch 2 would suggest the lock, but no failure is asserted). 2026-11-11.3: \"Broken Vessel\" (allthings.how) is not a quest: it is the accessory AC_HeavyAttackDamage (Item_Accessory_039, \"Kırık Taşıyıcı\"), received with the tale's completion on the real save. Game data: task QuestRumorDes_003_04 \"Defeat Bi Taotao's puppet form\" = Yubi (BossName_016_02 \"Yubi, No. 21 Swordfighter Puppet\", described with Bi Taotao's face); tags bsmw.剑偶.死亡无任务 / 死亡有任务 (puppet dies without / with the quest) and bsmw.毕桃桃.提前死亡 show a failure path. allthings.how (single source): killing Yubi before that objective fails the tale. warnNamed added; its exactWhen needs the Wu Lengshuang kill (BP_Monster_WuLengShuang) as well as an encampment bell, because the journal only shows the body and puppet tasks after that kill (real save 2026-11-07 02:21-02:25); the default warn names no body or puppet.",
       "source": {
         "ids": [
           "steam-baishan",
           "steam-guide-lankec",
-          "steam-research-note"
+          "steam-research-note",
+          "allthings"
         ],
         "checked": "search-snippet"
       },
@@ -1327,6 +1398,11 @@
           "kind": "trueEnding",
           "unverified": true,
           "note": "Yubi → Illusory Pipa back plate chain (pipa-dependency): one Steam thread, search snippet only."
+        },
+        {
+          "kind": "accessory",
+          "unverified": true,
+          "note": "Broken Vessel (AC_HeavyAttackDamage, Item_Accessory_039): on the real save it arrived in the same save as BaiShanMiWen Succeded (2026-11-07 03:11, with BaiShanShuangJian), so it is the tale's reward or Yubi's drop; allthings.how only says the tale fails."
         }
       ],
       "stakesNote": "Achievement: game data ACH_034 \"Complete [Secrets of the Baishan Sect]\" (data/game/raw/loc/en-US.json Achievement_Des_34); PowerPyx trophy guide (page, 2026-11-11) lists it as missable.",
@@ -1346,6 +1422,30 @@
       "doneWhen": {
         "questBranch": "BaiShanMiWen",
         "branch": "2"
+      },
+      "warnNamed": {
+        "tr": "Wu Lengshuang'dan sonra Bi Taotao'nun cesedini hemen incele (çan, dinlenme, kaydetme yok; Eğitim Alanı kapısını açma). Yubi (Bi Taotao'nun kukla hâli) ceset incelenmeden ölürse öykü kapanıyor (allthings.how, tek kaynak; oyun verisinde \"görev olmadan ölüm\" etiketi var).",
+        "en": "After Wu Lengshuang, inspect Bi Taotao's body at once (no bell, no rest, no save; don't open the Training Grounds gate). If Yubi (Bi Taotao's puppet form) dies before the body is inspected, the tale fails (allthings.how, single source; the game data has a \"puppet dies without the quest\" tag)."
+      },
+      "exactWhen": {
+        "all": [
+          {
+            "bossKilled": "BP_Monster_WuLengShuang"
+          },
+          {
+            "any": [
+              {
+                "bellPrefix": "YXZR",
+                "except": [
+                  "Bell_YXZR_018"
+                ]
+              },
+              {
+                "bellPrefix": "ZDDY"
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -1376,43 +1476,75 @@
         "trueEnding"
       ],
       "stakesNote": "Illusory Pipa (HuanShuPiPa) is in trueEnding.quests; written out because this info rule has no quest id. The rule never reaches the default view (no activeWhen).",
-      "note": "Region: mandate-encampment (the Yubi fight); a guess, the rule has no activeWhen so it never reaches the default view."
+      "note": "Region: mandate-encampment (the Yubi fight); a guess, the rule has no activeWhen so it never reaches the default view. Yubi is Bi Taotao's puppet form (BossName_016_02; Secrets of the Baishan Sect task 04 \"Defeat Bi Taotao's puppet form\"); see baishan-body."
     },
     {
+      "type": "info",
+      "quest": null,
       "id": "opera-house-treasure",
       "region": "mirage-estate",
-      "quest": null,
-      "unverified": true,
       "names": {
-        "tr": "Opera binası hazinesi (ilk girişte)",
-        "en": "Opera House treasure (first visit)"
+        "tr": "Opera binası hazinesi (yalnız ilk geçişte)",
+        "en": "Opera House treasure (first pass only)"
       },
-      "cutoff": "mirage",
-      "detect": false,
       "visibleWhen": {
-        "unknown": "bölge kodu bilinmiyor"
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
       },
-      "note": "Mirage Estate Opera House: take the Quick Hand treasure (Gold-and-Silver Sachet) on the first visit; it may close later (single player + CN guide).",
+      "activeWhen": {
+        "lastBellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
+      },
+      "exactWhen": {
+        "bellPrefix": "XM",
+        "except": [
+          "Bell_XM_015"
+        ]
+      },
+      "doneWhen": {
+        "any": [
+          {
+            "itemSeen": "T_12002"
+          },
+          {
+            "questBranch": "MiaoShouKongKong",
+            "branch": "6"
+          }
+        ]
+      },
+      "warn": {
+        "tr": "Bu malikânede hazine meraklısı için olan hazineleri ilk geçişinde topla; biri sonradan dönülemeyen bir bölümde.",
+        "en": "In this estate, collect the treasure lover's treasures on your first pass; one of them is in a part you cannot return to later."
+      },
+      "warnNamed": {
+        "tr": "Serap Malikânesi, Opera Binası: Çabuk El hazinesi Altın ve Gümüş Kese'yi ilk geçişte al; sonra o bölüme dönülemiyor (bir Steam oyuncusu ve bir CN rehberi; gmtreks de PC Gamer'a dayanarak Zhang'ın opera binasındaki yeşim sandığının yalnız ilk geçişte alınabildiğini söylüyor). Seti malikânedeki Zhang sığınağında teslim et.",
+        "en": "Mirage Estate, Opera House: take the Quick Hand treasure Gold-and-Silver Sachet on your first pass; that part cannot be revisited later (a Steam player and a CN guide; gmtreks, citing PC Gamer, also says Zhang's Opera House jade chest is first-pass only). Hand the set in at Zhang's hideout in the estate."
+      },
+      "note": "Item T_12002 GOLD-AND-SILVER SACHET (data/game/items.json). Real save 2026-11-08: picked up 20:15:32 on the first visit, MiaoShouKongKong branch 6 (\"Collect all the treasures in Mirage Estate\") 21:28:22, 6-1 (hand-in) completed 21:29:53 at Zhang's Pangzhen hideout (Bell_PZ_XiaoZhang_003); after the hand-in the sachet's CurrentAmount is 0, so doneWhen also accepts branch 6. Until 2026-11-11.2 this was an unverified missable on the mirage cutoff, which is passed on entering the estate and so could never warn for an item inside it; now an info tip shown while the last bell is a Mirage Estate bell (Bell_XM_015 is on the Pangzhen map, excluded). What closes the Opera House is not known. Attribution: the sachet as the first-visit item comes from a Steam player and the CN guide (docs/research/steam-oyuncu-raporlari.md); gmtreks (citing PC Gamer) speaks of Zhang's Opera House \"jade chest\" being first-pass only, and that it is the same treasure is not confirmed.",
       "source": {
         "ids": [
+          "gmtreks",
           "steam-nowarning",
           "steam-guide-czyhaxj",
           "steam-research-note"
         ],
-        "checked": "unverified"
+        "checked": "page"
       },
       "stakes": [
         "trueEnding",
         "achievement"
       ],
-      "stakesNote": "Quick Hand's Request (MiaoShouKongKong) is in trueEnding.quests; Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39). The rule is unverified, so it never reaches the default view."
+      "stakesNote": "Quick Hand's Request (MiaoShouKongKong) is in trueEnding.quests; written out because this info rule has no quest id. Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39)."
     },
     {
       "type": "info",
       "quest": null,
       "id": "soulrend-wall-prep",
       "region": "mirage-estate",
-      "guess": true,
       "visibleWhen": {
         "questSeen": "MainCh2-SiDaSheWu"
       },
@@ -1429,14 +1561,14 @@
         ]
       },
       "warn": {
-        "tr": "Bu malikânenin sonunda bir duvardan bir sonraki bölgeye geçilir; bir kaynağa göre sonra diğer bölgelere dönülemez. Geçmeden önce başka bölgelerde kalan işleri bitir.",
-        "en": "At the end of this estate a wall leads to the next region; one source says you cannot return to the other regions afterwards. Finish work left in other regions before crossing."
+        "tr": "Bu malikânenin sonundaki bir duvar seni bir sonraki bölgeye geçirir. Bir rehber sonra diğer bölgelere dönülemeyeceğini söylüyor, ama gerçek bir kayıtta geçtikten sonra diğer bölgelere geri dönüldü; asıl geri dönüşsüz nokta, oyunun sona yakın bir çanda verdiği açık uyarı. Başka bölgelerde kalan işleri en geç oraya kadar bitir.",
+        "en": "A wall at the end of this estate leads to the next region. One guide says you cannot return to the other regions afterwards, but on a real save the player went back to other regions after crossing; the real point of no return is the explicit warning the game gives at a last bell near the end. Finish work left in other regions by then at the latest."
       },
       "warnNamed": {
-        "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → bir sonraki bölge: PowerPyx'e göre geçince diğer bölgelere dönüş kapanır (Steam raporları asıl son noktanın oyunun sona yakın bir çanda verdiği uyarı olduğunu söylüyor; güvenli tarafta kal). Geçmeden önce: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (ödül Gökgürültüsü Ayı Feneri olmalı; gerçek bir kayıtta malikâne sığınağındaki teslim fener yerine ikinci bir Çabuk El'in El Kitabı verdi ve oyun verisine göre fener (AC_Electrified) Serap Malikânesi sayımına DAHİL, akış düğümü BPF_XiaoZhang_XMSZ = sığınaktaki Zhang; fener gelmediyse Zhang ile tekrar konuş); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi ve kule çatısı (Kızıl Orman Sha-Chi Kulesi: anahtar Kule Tabanı çanının yanındaki ocağın dibinde, 6. kattaki asansörün yanındaki kapıyı açar; çatıda Demir İblis → Yumruğun Kalbi, Mu Xiaokui → Yüce Teşkilat Nişanı, \"Onlara Karşı Kullan\" idmanı → İblis Testereleri malzemesi); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği bir sonraki bölgeye gittikten sonra çıkabiliyor.",
-        "en": "The wall near the Mourning Hall bell → the next region: PowerPyx says you cannot return to the other regions after it (Steam reports put the real point of no return at a last bell near the end, where the game warns you; stay on the safe side). Before crossing: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (the reward should be the Thundermoon Lantern; on a real save the hand-in at the estate hideout gave a second Quick Hand's Manual instead and per game data the lantern (AC_Electrified) IS part of the Mirage Estate count, flow node BPF_XiaoZhang_XMSZ = Zhang in the sanctuary; if it did not drop, talk to Zhang there again); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist and the tower roof (Crimson Forest Sha-Chi Tower: the key lies by the furnace next to the Tower Base bell and opens the door by the 6th-floor lift; on the roof Iron Fiend → Heart of the Fist, Mu Xiaokui → Supreme Order Token, the \"Use It Against Them\" spar → Fiend Saws material); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting the next region."
+        "tr": "Yas Salonu (Mourning Hall) çanı yakınındaki duvar → bir sonraki bölge: PowerPyx'e göre geçince diğer bölgelere dönüş kapanıyor, ama gerçek bir kayıtta (2026-11-09) geçtikten sonra Kızıl Orman, Ağlayan Dere Vadisi ve Pangzhen'e dönüldü; asıl son nokta, oyunun sona yakın bir çanda verdiği uyarı (Steam raporlarıyla aynı). O uyarıdan önce bitir: Çabuk El'in göl hazineleri ve Serap Malikânesi hazineleri, teslim Zhang'ın Serap sığınağında (ödül Gökgürültüsü Ayı Feneri olmalı; gerçek bir kayıtta Serap Malikânesi seti Pangzhen'deki sığınakta tamamlandı ve fener görülmedi; oyun verisine göre fener (AC_Electrified) Serap Malikânesi sayımına DAHİL, akış düğümü BPF_XiaoZhang_XMSZ = malikânedeki sığınakta Zhang; seti eşleşen sığınakta, yani malikânedekinde teslim et, fener gelmediyse Zhang ile orada tekrar konuş); Kızıl Orman'da yeni açılan donmuş Aynalı Koru: Üçlü Tehdit (3 çiçek Serap'ta, sonra Yucong, Alevli Keskin ile), Kopmuş Zihin Mührü'nün son taşı (donmuş kule), Yumruğun Kalbi ve kule çatısı (Kızıl Orman Sha-Chi Kulesi: anahtar Kule Tabanı çanının yanındaki ocağın dibinde, 6. kattaki asansörün yanındaki kapıyı açar; çatıda Demir İblis → Yumruğun Kalbi, Mu Xiaokui → Yüce Teşkilat Nişanı, \"Onlara Karşı Kullan\" idmanı → İblis Testereleri malzemesi); Kefaret Defteri (Hapis Dağı); 5. Lóng Sütunu (Kapalı Koridor çanı); Nuo Maskesi parçaları Keder/Öfke/Neşe → Nuo Maske Sunağı'ndaki Yaşlı Dilenci. Kaplan Topu (Lei Dang) sonrası çıkmayan anı çiçeği bir sonraki bölgeye gittikten sonra çıkabiliyor.",
+        "en": "The wall near the Mourning Hall bell → the next region: PowerPyx says you cannot return to the other regions after it, but on a real save (2026-11-09) the player went back to the Crimson Forest, Weeping Creek Valley and Pangzhen after crossing; the real point of no return is the warning the game gives at a last bell near the end (as Steam reports say). Finish before that warning: Quick Hand's lake and Mirage Estate treasures, handed in at Zhang's Mirage Estate hideout (the reward should be the Thundermoon Lantern; on a real save the Mirage Estate set ended up completing at the Pangzhen hideout and the Thundermoon Lantern was not seen; per game data the lantern (AC_Electrified) IS part of the Mirage Estate count, flow node BPF_XiaoZhang_XMSZ = Zhang at the estate hideout; hand the set in at the matching hideout, the estate one, and if the lantern did not drop, talk to Zhang there again); the newly opened frozen Mirrorwood in Crimson Forest: Triple Threat (3 flowers in the estate, then Yucong with the Blazing Edge), the last Severed Mindseal stone (frozen tower), Heart of the Fist and the tower roof (Crimson Forest Sha-Chi Tower: the key lies by the furnace next to the Tower Base bell and opens the door by the 6th-floor lift; on the roof Iron Fiend → Heart of the Fist, Mu Xiaokui → Supreme Order Token, the \"Use It Against Them\" spar → Fiend Saws material); Ledger of Atonement (Mountain of Imprisonment); the 5th Lóng Pillar (Covered Corridor bell); Nuo Mask pieces Sorrow/Wrath/Joy → the Old Beggar at the Nuo Mask Altar. A memory flower that does not appear after the Tiger Cannon (Lei Dang) may show up after visiting the next region."
       },
-      "note": "PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26). Crimson Forest Sha-Chi Tower key = Item_Key_XSSL_001 (save door lock needs K_13001 on PBZ_Fujizhilin_WP); KeenGamer: by the furnace near the Tower Base bell, opens the door by the 6th-floor lift to the rooftop. Done once a DH (Mount Soulrend) bell is lit. Real save 2026-11-09 02:08: Bell_DH_001/002/003/006 + LYZ_008 lit, XiaoCui Succeded before entering (branch 5 completed on Mountain of Imprisonment, Lu Jieyuan step), MainCh3-PoJu Succeded. 2026-11-09: Mirage hand-in at Bell_XM_XiaoZhang_005 (21:28) yielded Maintenance Oil + a duplicate Quick Hand's Manual (Flying Dagger was already tempered), no Thundermoon Lantern; Pangzhen map accessories+remedies = 22 without it.",
+      "note": "Real save 2026-11-09 settles the wall: Mount Soulrend (DuanHunYa) entered 01:42:21, then the Crimson Forest 02:14:55 (Ju fight, Seal of Dugu 02:15), Weeping Creek Valley 03:05:12, Pangzhen 03:09:47, then Mirage Estate itself 03:24:58 and the Pangzhen backstreet 03:34:45 (three other regions: Crimson Forest, the valley, Pangzhen). So the wall is not a point of no return; the final cutoff (Last Chance bell) is. guess removed and wording softened in 2026-11-11.3; the tip stays as a reminder of the work list. PowerPyx Mirage Estate walkthrough: \"Going to the next region through the wall near the Morning Hall Bell will make it so you cannot return to other regions in the game.\" Conflicts with the Steam reports behind the final cutoff (Last Chance bell after Crusher & Saw, Mountain of Imprisonment stays open). Kept as an info rule on the estate until a save shows what the wall does; Bell_XM_015 (named \"Mirage Estate\", on the Pangzhen map) is excluded. Map code of the estate still unknown (not in RecentlyInteractedAtByMap as of 2026-11-08 17:26). Crimson Forest Sha-Chi Tower key = Item_Key_XSSL_001 (save door lock needs K_13001 on PBZ_Fujizhilin_WP); KeenGamer: by the furnace near the Tower Base bell, opens the door by the 6th-floor lift to the rooftop. Done once a DH (Mount Soulrend) bell is lit. Real save 2026-11-09 02:08: Bell_DH_001/002/003/006 + LYZ_008 lit, XiaoCui Succeded before entering (branch 5 completed on Mountain of Imprisonment, Lu Jieyuan step), MainCh3-PoJu Succeded. Real save 2026-11-08: MiaoShouKongKong branch 6 (Mirage Estate treasures collected) completed in Mirage Estate before 21:28:37, and branch 6-1 (hand-in) completed at 21:29:53 in the Pangzhen backstreet with the last bell Bell_PZ_XiaoZhang_003 (Zhang's Pangzhen hideout): the Mirage Estate set ended up completing at the Pangzhen hideout and the Thundermoon Lantern was not seen. A duplicate Quick Hand's Manual and Maintenance Oil appeared around then, but which hand-in produced them cannot be proven; Pangzhen map accessories+remedies = 22 without it.",
       "source": {
         "ids": [
           "powerpyx-mirage",
@@ -1591,18 +1723,13 @@
       }
     },
     {
+      "type": "info",
+      "quest": null,
       "id": "severed-mindseal-first",
       "region": "weeping-creek-valley",
-      "quest": "GeJueXieZi",
-      "cutoff": "leave-valley",
-      "guess": true,
-      "suffix": {
-        "tr": "ilk taş",
-        "en": "first stone"
-      },
-      "doneWhen": {
-        "questBranch": "GeJueXieZi",
-        "branch": "1-1"
+      "names": {
+        "tr": "Kopmuş Zihin Mührü: ilk taş",
+        "en": "A Severed Mindseal: first stone"
       },
       "visibleWhen": {
         "any": [
@@ -1614,11 +1741,48 @@
           }
         ]
       },
-      "hintNotStarted": {
-        "tr": "Bu vadide bulduğun işaretli taşı, vadiden çıkmadan önce sahibine teslim et.",
-        "en": "Hand the marked stone you find in this valley to its keeper before leaving the valley."
+      "activeWhen": {
+        "all": [
+          {
+            "any": [
+              {
+                "lastBellPrefix": "NLES"
+              },
+              {
+                "lastBellPrefix": "XG"
+              },
+              {
+                "lastBellPrefix": "FJZL"
+              },
+              {
+                "lastBellPrefix": "LZSJ"
+              }
+            ]
+          },
+          {
+            "not": {
+              "questBranch": "GeJueXieZi",
+              "branch": "1-1"
+            }
+          }
+        ]
       },
-      "note": "Deliver the Weeping Creek Valley stone to the Shadow Warden before leaving; the last stone is in the frozen Crimson Forest tower after Mirage Estate. doneWhen (branch 1-1) is a guess.",
+      "exactWhen": {
+        "mapUnlocked": "XiGu"
+      },
+      "doneWhen": {
+        "questBranch": "GeJueXieZi",
+        "branch": "1-1"
+      },
+      "warn": {
+        "tr": "Bu vadide bulduğun işaretli taşı vadideki sahibine erken teslim et. Kesin bir son tarihi bilinmiyor (gerçek bir kayıtta bir sonraki bölgeye geçip dönünce de teslim edildi), ama erken vermek daha güvenli.",
+        "en": "Hand the marked stone you find in this valley to its keeper in the valley early. No firm deadline is known (on a real save it was handed in after visiting the next area and coming back), but earlier is safer."
+      },
+      "warnNamed": {
+        "tr": "Kopmuş Zihin Mührü, ilk taş: bu vadideki İlkel Taş'ı vadideki dost Gölge Muhafızı'na ver. Kesin son tarih bilinmiyor; gerçek bir kayıtta bir sonraki bölgeye geçip döndükten sonra teslim edildi. Başarım için diğer taşlar da gerekiyor.",
+        "en": "A Severed Mindseal, first stone: give the Primal Stone from this valley to the friendly Shadow Warden in the valley. No firm deadline is known; on a real save it was handed in after visiting the next area and coming back. The achievement also needs the other stones."
+      },
+      "note": "Was a missable on the leave-valley cutoff (PowerPyx: first objective before leaving Weeping Creek Valley). Contradicted by the real save: in the first save's GlobalTags, 180 xg.初次传送.进伏击之林 (first teleport into the Crimson Forest) and 181-186 Crimson Forest tags come before 189 (Primal Stone I_01002, 2026-11-04 13:46:25) and 191 (stone given, branch 1-1 at 13:48:19). Now an early-is-safer tip (2026-11-11.3), the leave-valley cutoff is gone. Unknown: whether a later event removes the Warden (xg.老乞丐.消失 came right after the delivery). The last stone is in the frozen Crimson Forest tower after Mirage Estate (quest done 2026-11-08 22:21). activeWhen: the last bell is a valley or Crimson Forest bell and the first stone is not given; doneWhen: branch 1-1 (give the valley stone, from the quest blueprint pairing).",
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
@@ -1630,11 +1794,7 @@
       "stakes": [
         "achievement"
       ],
-      "stakesNote": "Achievement: game data ACH_037 \"Complete [A Severed Mindseal]\" (data/game/raw/loc/en-US.json Achievement_Des_37); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (first objective before leaving Weeping Creek Valley).",
-      "hintStarted": {
-        "tr": "Bu vadideki İlkel Taş'ı bul ve vadiden ayrılmadan buradaki dost Gölge Muhafızı'na ver.",
-        "en": "Find the Primal Stone in this valley and give it to the friendly Shadow Warden here before you leave the valley."
-      }
+      "stakesNote": "Achievement: game data ACH_037 \"Complete [A Severed Mindseal]\" (data/game/raw/loc/en-US.json Achievement_Des_37); PowerPyx trophy guide (page, 2026-11-11) lists it as missable (first objective before leaving Weeping Creek Valley)."
     },
     {
       "id": "xiaocui",
@@ -1674,6 +1834,38 @@
       "exactWhen": {
         "bellPrefix": "DDSD"
       }
+    },
+    {
+      "id": "heros-lament",
+      "region": "mountain-of-imprisonment",
+      "quest": "LiuYi",
+      "cutoff": "final",
+      "visibleWhen": {
+        "questSeen": "LiuYi"
+      },
+      "hintStarted": {
+        "tr": "Bu öyküyü günlükteki adımları izleyerek bitir; iki rehbere göre başarısız olursa ödülü kaçıyor. Oyunun son uyarı çanından önce bitir.",
+        "en": "Follow the journal to finish this tale; per two guides, if it fails its reward is lost. Finish it before the game's final warning bell."
+      },
+      "hintStartedNamed": {
+        "tr": "Kahramanın Ağıdı: Moji'nin kalıntısını bul, kanlı kılıcı Liu Yi'ye götür, sonra Moji'nin kılıcını çek. Liu Yi ölürse öykü başarısız olur ve Mürekkep Kesiği (Ink Cut) Phantom Edge'i kaçar (Game8, allthings.how).",
+        "en": "Hero's Lament: find Moji's relic, bring the bloodstained blade to Liu Yi, then pull out Moji's sword. If Liu Yi dies the tale fails and the Ink Cut Phantom Edge is lost (Game8, allthings.how)."
+      },
+      "exactWhen": {
+        "bellPrefix": "DDSD"
+      },
+      "source": {
+        "ids": [
+          "game8",
+          "allthings"
+        ],
+        "checked": "page"
+      },
+      "stakes": [
+        "phantomEdge"
+      ],
+      "stakesNote": "Ink Cut = Mojian (PhantomEdges_018, data/game/phantom-edges.json); real save: LiuYi Succeded 2026-11-08 04:17:40 in the same save that added MoJian. No achievement names this tale (Achievement_Des_1..66).",
+      "note": "Hero's Lament = LiuYi (QuestRumor_020), tasks QuestRumorDes_020_01..03: find Moji's relic → bring Moji's bloodstained blade to Liu Yi → pull out Moji's sword. Starts from the imprisoned NPC in Hanging Cage Cavern (names.json). Game8 + allthings.how (2026-11-11 guide scan): Liu Yi dying fails the tale and loses Ink Cut; what kills him is not stated, so the default hint stays generic (no NPC fate). Real save: Started 2026-11-08 03:38 (Bell_DDSD_004), Succeded 04:17. Cutoff final (ordinary tale, no earlier lock known), like xiaocui."
     },
     {
       "id": "dont-forget-me",
@@ -1850,7 +2042,6 @@
       "region": "pangzhen",
       "type": "info",
       "quest": null,
-      "guess": true,
       "visibleWhen": {
         "any": [
           {
@@ -1888,8 +2079,8 @@
         "en": "Get the house key from this town's tavern and pick up the memory flower in that house's upstairs bedroom before you go out onto the lake; doing the lake first can lock a quest."
       },
       "warnNamed": {
-        "tr": "Yeniden Kardeş (A Brother Once More): Myst'in Hanı'nda Niu'dan Huang konağı anahtarını al, Huang konağı önündeki kavşak çanından konağın 2. kat yatak odasındaki anı çiçeğini al (görev başlar). Meigu Gölü'ndeki Lu köyü sığlığı iskelesinde Jin'i bundan önce öldürürsen görev kilitleniyor (Steam, 2 oyuncu).",
-        "en": "A Brother Once More: take the Huang residence key from Niu at Myst's Tavern, then pick up the memory flower in the residence's upstairs bedroom (quest starts). Killing Jin at the Lu village shallows dock on Meigu Lake before that locks the quest (Steam, 2 players)."
+        "tr": "Yeniden Kardeş (A Brother Once More): Myst'in Hanı'nda Niu'dan Huang konağı anahtarını al, Huang konağı önündeki kavşak çanından konağın 2. kat yatak odasındaki anı çiçeğini al (görev başlar). Meigu Gölü'ndeki Lu köyü sığlığı iskelesinde Jin'i bundan önce öldürürsen görev kilitleniyor (Steam, 3 oyuncu).",
+        "en": "A Brother Once More: take the Huang residence key from Niu at Myst's Tavern, then pick up the memory flower in the residence's upstairs bedroom (quest starts). Killing Jin at the Lu village shallows dock on Meigu Lake before that locks the quest (Steam, 3 players)."
       },
       "source": {
         "ids": [
@@ -1902,7 +2093,7 @@
         "sideQuest"
       ],
       "stakesNote": "Locks A Brother Once More (ZaiHuiXiongZhang); no achievement names it, reward not mapped.",
-      "note": "Quest id ZaiHuiXiongZhang (QuestRumor_010) seen in a save 2026-11-06; the warning stops once the quest is in the save. Trigger per GamerSky; lockout per one Steam thread (OP + one \"same here\"), so guess:true."
+      "note": "Quest id ZaiHuiXiongZhang (QuestRumor_010) seen in a save 2026-11-06; the warning stops once the quest is in the save. Trigger per GamerSky; lockout per one Steam thread (572679917415773000): the OP plus two players now (Baelfyr: if the flower on the dock only says \"buzz buzz psst psst\" you may be locked out), so guess removed in 2026-11-11.3."
     },
     {
       "id": "ledger-of-atonement-choice",
@@ -2145,8 +2336,7 @@
       "type": "info",
       "quest": null,
       "id": "baishan-ju-choice",
-      "region": "mandate-encampment",
-      "guess": true,
+      "region": "crimson-forest",
       "visibleWhen": {
         "questSeen": "BaiShanMiWen"
       },
@@ -2156,37 +2346,40 @@
             "questSeen": "BaiShanMiWen"
           },
           {
-            "not": {
-              "questDone": "BaiShanMiWen"
-            }
-          },
-          {
             "any": [
               {
-                "bellPrefix": "YXZR",
-                "except": [
-                  "Bell_YXZR_018"
-                ]
+                "lastBellPrefix": "FJZL"
               },
               {
-                "bellPrefix": "ZDDY"
+                "lastBellPrefix": "LZSJ"
               }
             ]
           }
         ]
       },
       "exactWhen": {
-        "mapUnlocked": "FuJiZhiLin"
+        "all": [
+          {
+            "mapUnlocked": "FuJiZhiLin"
+          },
+          {
+            "questBranch": "BaiShanMiWen",
+            "branch": "S1"
+          }
+        ]
+      },
+      "doneWhen": {
+        "itemSeen": "AC_HeavyAttackShachi"
       },
       "warn": {
-        "tr": "Baishan Tarikatının Sırları: bu görevde bir konuşmada iki seçenek sunulursa suçlayan cevabı seç; diğeri bir aksesuarı kaçırabilir (kaynaklar tartışmalı).",
-        "en": "Secrets of the Baishan Sect: if a conversation in this quest offers two answers, pick the accusing one; the other may lose an accessory (sources disagree)."
+        "tr": "Baishan Tarikatının Sırları: görevin başındaki bir konuşma iki cevap sunarsa, yüzleşen cevap bir aksesuarı hemen verir; diğeri onu yalnız geciktirir (sonra yine alınabiliyor). Görev ve başarımı iki durumda da etkilenmez.",
+        "en": "Secrets of the Baishan Sect: if a conversation early in this quest offers two answers, the confronting one gives an accessory now; the other only delays it (it can still be obtained later). The quest and its achievement are unaffected either way."
       },
       "warnNamed": {
-        "tr": "Baishan Tarikatının Sırları (Kızıl Orman, Thieves' Camp yakınındaki köprü): Ju ile konuşmada \"It was you who killed her!\" diye suçla, sonra Ju'yu yen; \"Mourn, and let go\" seçersen Dugu Mührü o an gelmez, ama kalıcı kaçmaz: 3. bölümde Hırsızlar Kampı köprüsüne dönünce Ju dönüşmüş bir Baishan müridi olarak orada bekliyor, yenince mühür düşüyor (gerçek kayıt, 2026-11-09).",
-        "en": "Secrets of the Baishan Sect (Crimson Forest, bridge near the Thieves' Camp): accuse Ju (\"It was you who killed her!\") and defeat her; Choosing \"Mourn, and let go\" delays the Seal of Dugu but does not lose it: in chapter 3 Ju waits on the Thieves' Camp bridge as a transformed Baishan disciple and drops the seal when defeated (real save, 2026-11-09)."
+        "tr": "Baishan Tarikatının Sırları (Kızıl Orman, dağ kulübesindeki adımdan hemen sonra): Ju'yu suçlarsan (\"It was you who killed her!\") ve yenersen Dugu Mührü hemen gelir. \"Mourn, and let go\" onu yalnız geciktirir: daha sonra Ju dönüşmüş bir Baishan müridi olarak Hırsızlar Kampı köprüsünde bekliyor ve yenince mührü düşürüyor (gerçek kayıt: seçim 2026-11-04, mühür 2026-11-09). Görev ve başarımı etkilenmez.",
+        "en": "Secrets of the Baishan Sect (Crimson Forest, right after the mountain-lodge step): accuse Ju (\"It was you who killed her!\") and defeat her to get the Seal of Dugu now. \"Mourn, and let go\" only delays it: later Ju waits on the Thieves' Camp bridge as a transformed Baishan disciple and drops the seal when defeated (real save: choice 2026-11-04, seal 2026-11-09). The quest and its achievement are not affected."
       },
-      "note": "Disputed: criticalhits/xboxplay say mourning loses the Seal of Dugu for good; allthings says it only delays the fight until the Ambush Forest step. Gated on the encampment bells (2026-11-06): the choice is the quest's last step, back at the bridge; showing it in the Village of Lu confused the user. Confirmed 2026-11-09 ~02:xx on a real save: the mourning choice was taken on 11-04; the player returned to the bridge in chapter 3 and got the Seal of Dugu from the transformed Ju (matches the GameSpot/PowerPyx-comment reports).",
+      "note": "Real save timeline (2026-11-11 scan): BaiShanMiWen S1 (\"Find Junior Sister Meng at the mountain lodge\") completed 2026-11-04 18:43 in the Crimson Forest, and the tag fjzl.营地.小菊变怪 (Ju turns) follows right after, before the first Healer's Mercy thief: the choice sits at the start of the quest in the Crimson Forest, not at its end at the encampment (the old gating on encampment bells fired days too late). The mourning choice was taken; the quest still went on and succeeded (2026-11-07 03:11, branches 1-3, PBZQuestBranch_4 unused), so ACH_034 was not blocked. The Seal of Dugu (AC_HeavyAttackShachi) arrived 2026-11-09 02:15 at the Thieves' Camp bell in the same save as the Ju kill tag (fjzl.击杀.小菊), after Mirage Estate and after Mount Soulrend was first entered. So accusing gives the seal now and mourning only delays it; the late fight's own deadline is unknown (at worst the final cutoff). Contrary claims: xboxplay (2026-11-01) and criticalhits say mourning loses the seal permanently; allthings says it only delays the fight. activeWhen: the quest is in the save and the last bell is a Crimson Forest bell (FJZL/LZSJ); doneWhen: the seal is in the save. guess removed 2026-11-11.3. exactWhen (review of 2026-11-11.3): the named text only once branch S1 (the mountain-lodge step) is Completed, i.e. at the conversation; before that it would reveal the quest's turn.",
       "source": {
         "ids": [
           "criticalhits-ju",
@@ -2199,15 +2392,10 @@
         {
           "kind": "accessory",
           "unverified": true,
-          "note": "Seal of Dugu (AC_HeavyAttackShachi): real save 2026-11-09 shows the mourning choice only delays it."
-        },
-        {
-          "kind": "achievement",
-          "unverified": true,
-          "note": "Whether the choice can stop ACH_034 (Secrets of the Baishan Sect) is not known."
+          "note": "Seal of Dugu (AC_HeavyAttackShachi): accusing gives it at once; on a real save the mourning choice only delayed it (2026-11-04 → 2026-11-09). xboxplay says mourning loses it for good."
         }
       ],
-      "stakesNote": "No confirmed stake: the default view shows the tip without a label."
+      "stakesNote": "No confirmed stake: the seal is delayed, not lost (real save), and the quest plus ACH_034 (Complete [Secrets of the Baishan Sect]) succeeded after the mourning choice, so the default view shows the tip without a label."
     },
     {
       "type": "info",
@@ -2297,7 +2485,7 @@
         "accessory"
       ],
       "stakesNote": "Arrowward = AC_ResistRanged (data/game/accessories.json), PowerPyx Village of Lu #41.",
-      "note": "PowerPyx Village of Lu #41 Arrowward, marked missable: he dies when progressing too far into the region, trigger unknown. Unverified: the exact spot (door next to the Smuggler's Tunnel entrance bell) comes from the hand-over, not from the PowerPyx text; activeWhen ends with the village chapter quest (MainCh1-ShiXinCun) done, a guess (he may die earlier). doneWhen: Arrowward = AC_ResistRanged (Inventory.AccessoryInfos), verified by timing on a real save; once it is in the save the warning leaves the default view.",
+      "note": "PowerPyx Village of Lu #41 Arrowward, marked missable: he dies when progressing too far into the region, trigger unknown. Unverified: the exact spot (door next to the Smuggler's Tunnel entrance bell) comes from the hand-over, not from the PowerPyx text; activeWhen ends with the village chapter quest (MainCh1-ShiXinCun) done, a guess (he may die earlier). doneWhen: Arrowward = AC_ResistRanged (Inventory.AccessoryInfos), verified by timing on a real save; once it is in the save the warning leaves the default view. Quest: the wounded thief is a step of Leave None Alive (YiGeBuLiu, QuestRumor_022): the Thief's Manual I_02002 arrived 2026-11-05 03:24:51 with YiGeBuLiu branch 1 (03:24:55); the hand-in completed branch 3 (2026-11-06 00:35:03), Arrowward 00:35:33, branch 3-1 00:35:38. doneWhen stays the item (a save without Inventory keeps the tip open).",
       "doneWhen": {
         "itemSeen": "AC_ResistRanged"
       }
@@ -2305,11 +2493,11 @@
     {
       "id": "quickhand-request-start",
       "region": "crimson-forest",
-      "quest": null,
+      "quest": "MiaoShouKongKong",
       "guess": true,
-      "names": {
-        "tr": "Çabuk El'in İsteği'ni başlat: Kızıl Orman'ın üç hazinesini Thieves' Camp yanındaki sığınakta Quick Hand Zhang'a teslim et (mor görev, gerçek son)",
-        "en": "Start Quick Hand's Request: hand the three Crimson Forest treasures to Quick Hand Zhang at the hideout next to the Thieves' Camp (purple quest, true ending)"
+      "suffix": {
+        "tr": "Kızıl Orman teslimi",
+        "en": "Crimson Forest hand-in"
       },
       "cutoff": "mirage",
       "visibleWhen": {
@@ -2325,12 +2513,6 @@
           },
           {
             "itemSeen": "T_02003"
-          },
-          {
-            "not": {
-              "questBranch": "JiaoTuSanKu",
-              "branch": "1"
-            }
           }
         ]
       },
@@ -2338,25 +2520,30 @@
         "mapUnlocked": "FuJiZhiLin"
       },
       "doneWhen": {
-        "questBranch": "JiaoTuSanKu",
-        "branch": "1"
+        "questBranch": "MiaoShouKongKong",
+        "branch": "1-1"
       },
       "hintNotStarted": {
         "tr": "Bir hazine avcısı için topladığın üç eşyayı, ilk tanıştığın bölgedeki sığınağına teslim et; bu, gerçek sona bağlı bir görevi başlatıyor.",
         "en": "Hand the three items you collected for a treasure hunter to his hideout in the area where you first met him; this starts a quest tied to the true ending."
       },
-      "note": "Quick Hand's Request (QuestCollect_003, purple, true ending; pinyin unknown, so no questSeen) starts by delivering the Crimson Forest treasures (InventoryInfos T_02001-T_02003) to Quick Hand Zhang at his hideout next to the Thieves' Camp (QuestCollectDes_003_02), then the Village of Lu, Pangzhen, Meigu Lake and Mirage Estate treasures. Seen on a real save: all three Crimson Forest treasures held, The Wily Hare's Three Dens (JiaoTuSanKu) branch 1 ('find Zhang's hidden treasure') still Activating, Quick Hand's Request not started, and Zhang not at the Village of Lu hideout. Guesses: doneWhen (JiaoTuSanKu branch 1 Completed = treasures delivered), that the chain is sequential, and the cutoff (mirage: the Crimson Forest is overwritten by snow after Mirage Estate). activeWhen: only while the three treasures are held and not yet delivered.",
+      "hintStarted": {
+        "tr": "Bu bölgede topladığın üç hazineyi, hazine avcısının Hırsızlar Kampı yanındaki sığınağına teslim et.",
+        "en": "Hand the three treasures you collected in this area to the treasure hunter at his hideout next to the Thieves' Camp."
+      },
+      "note": "Quick Hand's Request = MiaoShouKongKong (QuestCollect_003, purple, true ending). The quest blueprint pairs branch 1 with \"Collect all the treasures in the Crimson Forest\" and 1-1 with \"Deliver all the treasures from the Crimson Forest to Quick Hand Zhang\" (QuestCollectDes_003_01/02), then 3/3-1 Village of Lu, 4/4-1 Pangzhen, 5/5-1 Meigu Lake, 6/6-1 Mirage Estate. Real save: branch 1 / 1-1 at 2026-11-06 03:39:14 / 03:40:55, after Bai Chilian and the Village of Lu chapter (JiaoTuSanKu 1 at 03:39:59), so the Crimson Forest hand-in is not tied to the chilian cutoff. Before the hand-in the quest is not in the save (seen: all three treasures T_02001-T_02003 held, quest absent, Zhang not at the Village of Lu hideout), so it shows as not started. Until 2026-11-11.2 the rule had no quest id and used JiaoTuSanKu branch 1 as doneWhen. Guesses: that the chain is sequential, and the cutoff (mirage: the Crimson Forest is overwritten by snow after Mirage Estate). activeWhen: only while the three treasures are held. Single reports (Steam, 2026-11-07): delivering a set at another hideout than the one Zhang asked for gave the wrong reward (572679917415917006); accepting Zhang's Mirage Estate task before handing in the Pangzhen treasures blocked the Pangzhen hand-in (CN, 572679917415913399); see lu-quick-hand-treasures.",
       "source": {
         "ids": [
-          "keengamer-zhang"
+          "keengamer-zhang",
+          "steam-quickhand-hideout",
+          "steam-quickhand-order"
         ],
         "checked": "unverified"
       },
       "stakes": [
-        "trueEnding",
         "achievement"
       ],
-      "stakesNote": "Starts Quick Hand's Request (MiaoShouKongKong, in trueEnding.quests; the rule has no quest id, so it is written out); Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39)."
+      "stakesNote": "Starts Quick Hand's Request (MiaoShouKongKong, in trueEnding.quests, so the true-ending label is derived); Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39)."
     },
     {
       "type": "info",
@@ -2383,16 +2570,18 @@
         "mapUnlocked": "LuJiaCun"
       },
       "warn": {
-        "tr": "Bu köyde bulduğun üç hazineyi, güvenli tarafta kalmak için asansörden önce hazine meraklısının saklandığı yere götür.",
-        "en": "To be safe, bring the three treasures you find in this village to the treasure lover's hiding place before taking the lift."
+        "tr": "Bu köyde bulduğun üç hazineyi, güvenli tarafta kalmak için asansörden önce hazine meraklısının saklandığı yere götür. Sonraki hazineleri de hep onun istediği sığınağa götür ve yeni bir işini kabul etmeden önce elindekileri teslim et (tek tük oyuncu raporları: başka sığınakta teslim yanlış ödül verdi, sıra bozulunca bir teslim kapandı).",
+        "en": "To be safe, bring the three treasures you find in this village to the treasure lover's hiding place before taking the lift. Later, too, always deliver at the hideout he asks for, and hand in what you hold before accepting his next task (single player reports: delivering elsewhere gave the wrong reward; doing it out of order closed a hand-in)."
       },
       "warnNamed": {
-        "tr": "Quick Hand Zhang'ın üç hazinesi (Lu Köyü): Düğün Mumları (Wedding Candles), Açığa Çıkan Heykel (Unveiled Statue) ve Beyaz Yeşim İkizler (White Jade Twins). Üçünü Zhang's Hideout çanında Quick Hand Zhang'a götür → Fine Thread. Asansörden önce yap (son tarih doğrulanmadı).",
-        "en": "Quick Hand Zhang's three treasures (Village of Lu): Wedding Candles, Unveiled Statue and White Jade Twins. Bring all three to Quick Hand Zhang at the Zhang's Hideout bell → Fine Thread. Do it before the lift (the deadline is not verified)."
+        "tr": "Quick Hand Zhang'ın üç hazinesi (Lu Köyü): Düğün Mumları (Wedding Candles), Açığa Çıkan Heykel (Unveiled Statue) ve Beyaz Yeşim İkizler (White Jade Twins). Üçünü Zhang's Hideout çanında Quick Hand Zhang'a götür → Fine Thread. Asansörden önce yap (son tarih doğrulanmadı). Sonraki aşamalar (tek oyuncu raporları, Steam 2026-11-07): her seti Zhang'ın istediği sığınakta teslim et, başka sığınak yanlış ödül verdi; bir sonraki bölgenin hazinelerini teslim etmeden Zhang'ın yeni işini kabul etmek o teslimi kapattı.",
+        "en": "Quick Hand Zhang's three treasures (Village of Lu): Wedding Candles, Unveiled Statue and White Jade Twins. Bring all three to Quick Hand Zhang at the Zhang's Hideout bell → Fine Thread. Do it before the lift (the deadline is not verified). Later stages (single player reports, Steam 2026-11-07): deliver each set at the hideout Zhang asks for, another hideout gave the wrong reward; accepting Zhang's next task before handing in the next area's treasures closed that hand-in."
       },
       "source": {
         "ids": [
-          "powerpyx-lu"
+          "powerpyx-lu",
+          "steam-quickhand-hideout",
+          "steam-quickhand-order"
         ],
         "checked": "page"
       },
@@ -2402,7 +2591,7 @@
         "accessory"
       ],
       "stakesNote": "A stage of Quick Hand's Request (MiaoShouKongKong branch 3, in trueEnding.quests); Achievement: game data ACH_039 \"Complete All [Quick Hand's Requests]\" (data/game/raw/loc/en-US.json Achievement_Des_39); Fine Thread = AC_Control (data/game/accessories.json). The deadline itself stays unverified (guess).",
-      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003). Verified 2026-11-06: the Village of Lu hand-in completes MiaoShouKongKong branch 3 (and 3-1); T_05001..3 drop to 0; Fine Thread is probably AC_Control (acquired 03:46).",
+      "note": "PowerPyx Village of Lu #58 Fine Thread (treasures #23, #36, #57). PowerPyx gives no deadline and does not mark it missable. Unverified: the 'before the lift' cutoff (activeWhen ends with MainCh1-ShiXinCun done, the same stand-in as the lu-elevator cutoff's passedWhen) and whether the hand-in can be missed at all. Likely depends on Quick Hand's Request having started (rule quickhand-request-start): Zhang may not appear at the Village of Lu hideout until the Crimson Forest treasures are delivered at his Crimson Forest hideout (sequential chain; guess). Patch name of Unveiled Statue: Peçesiz Heykel (Item_Treasure_LJC_003). Verified 2026-11-06: the Village of Lu hand-in completes MiaoShouKongKong branch 3 (and 3-1); T_05001..3 drop to 0; Fine Thread is probably AC_Control (acquired 03:46). Order traps, single reports (Steam, 2026-11-07): 572679917415917006 delivered at the wrong hideout and got the wrong reward for Zhang's final mission (\"always deliver at the location he asked\"); 572679917415913399 (CN) accepted Zhang's Mirage Estate task before handing in the Pangzhen treasures, after which the Pangzhen hand-in was gone (got the pistol tempering material but not the pistol, no in-game warning). Folded into this tip because no rule covers the Pangzhen stage.",
       "doneWhen": {
         "questBranch": "MiaoShouKongKong",
         "branch": "3"
@@ -2526,7 +2715,7 @@
           {
             "not": {
               "questBranch": "XueRouHua",
-              "branch": "1"
+              "branch": "S2"
             }
           },
           {
@@ -2554,7 +2743,7 @@
         "tr": "Et Zambağı (Ağlayan Dere Vadisi): Flesh Lily'yi Yu'er'e ver, \"gerçek\" ikiz çiçeği geri verir. Onsuz Pangzhen'deki The Heart's Trail'de babası ölür ve Blessed Jade Pendant yerine Tarnished Jade Pendant alırsın. Teslim, Bai Chilian'dan önce yapılmalı.",
         "en": "Flesh Lily (Weeping Creek Valley): give the Flesh Lily to Yu'er; she gives back the twin \"real\" one. Without it her father dies in The Heart's Trail (Pangzhen) and you get the Tarnished instead of the Blessed Jade Pendant. Hand it in before Bai Chilian."
       },
-      "note": "Give option from Game8; the pendant outcome from allthings only (its pages partly contradict each other).",
+      "note": "Give option from Game8; the pendant outcome from allthings only (its pages partly contradict each other). activeWhen: branch S2 (the hand-in), not branch 1 (the pickup; fixed in 2026-11-11.3).",
       "source": {
         "ids": [
           "game8-choices",
@@ -2639,17 +2828,21 @@
         ]
       },
       "warn": {
-        "tr": "Kafesteki bir yaşlıyı ikinci kez kurtarırken bir dövüş alanında bulduğun çiyi ona ver.",
-        "en": "When freeing a caged old man a second time, give him the dew found in a fight arena."
+        "tr": "Kafesteki bir yaşlıyı ikinci kez kurtarırken bir dövüş alanında bulduğun çiyi ona ver. Çiyi kafesini indirmeden önce al ve indirince hemen ver; kafesi indirip çiysiz ayrılmak ya da o bölgeyi önceden keşfetmek görevi kapatabilir (birkaç oyuncu raporu).",
+        "en": "When freeing a caged old man a second time, give him the dew found in a fight arena. Have the dew before you lower his cage and give it right away; lowering the cage and leaving without it, or exploring that area first, can fail the quest (several player reports)."
       },
       "warnNamed": {
-        "tr": "Lu Sanqian / Cui (Mountain of Imprisonment): ikinci kafesten kurtarırken Rootless Dew'i ver (Bi Feng arenasındaki kırmızı köşk); vermezsen The Lady's Shrine'a ulaşmaz ve Crude Radiant Heart kaçar.",
-        "en": "Lu Sanqian / Cui (Mountain of Imprisonment): give the Rootless Dew when freeing him from the second cage (red gazebo in Bi Feng's arena); otherwise he never reaches The Lady's Shrine and the Crude Radiant Heart is lost."
+        "tr": "Lu Sanqian / Cui (Mountain of Imprisonment): Köksüz Çiy'i (Bi Feng arenasındaki kırmızı köşk) kafesini indirmeden önce al ve ikinci kafesten kurtarırken hemen ver; vermezsen The Lady's Shrine'a ulaşmaz ve Crude Radiant Heart kaçar. Steam'de 4 başlık: kafesi indirip çiysiz ayrılan ya da kafes bölgesini önceden keşfeden oyuncularda Lu Sanqian havada asılı kaldı ya da kayboldu ve görev başarısız oldu; tek çare yakın tarihli bir kaydı yüklemek.",
+        "en": "Lu Sanqian / Cui (Mountain of Imprisonment): take the Rootless Dew (red gazebo in Bi Feng's arena) before lowering his cage and give it at once when freeing him from the second cage; otherwise he never reaches The Lady's Shrine and the Crude Radiant Heart is lost. 4 Steam threads: players who lowered the cage and left without the dew, or explored the cage area first, found Lu Sanqian hanging mid-air or gone and the quest failed; the only fix was loading a recent save."
       },
       "source": {
         "ids": [
           "steam-guide-czyhaxj",
-          "steam-research-note"
+          "steam-research-note",
+          "steam-cui-cage-1",
+          "steam-cui-cage-2",
+          "steam-cui-cage-3",
+          "steam-cui-cage-4"
         ],
         "checked": "page"
       },
@@ -2657,7 +2850,7 @@
         "accessory"
       ],
       "stakesNote": "Crude Radiant Heart = AC_MartialWeapon (data/game/accessories.json).",
-      "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Save code of the dew unknown, so detect stays off. Triggers added 2026-11-08 once the DDSD prefix was known. doneWhen: XiaoCui branch 4-A reached (Activating or Completed). On the real save (2026-11-08 04:14:28) branch 3 completed and 4-A activated at the same second right after the second rescue in the hanging-cage room, and Yusuf reported giving the dew; 4-B stayed None. Reading: 4-A = \"Lu Sanqian drank the Rootless Dew\" (QuestDes_01-DDSD_012), 4-B = \"his days are numbered\" (DDSD_013, dew not given). Branch meaning inferred from one save, not from the quest asset.",
+      "note": "Cui quest = XiaoCui (QuestRumor_018). Rootless Dew (Other_All_Item_valuables_001 \"Köksüz Çiy\") lies on the rocks beyond the big red pavilion in Bi Feng's arena (Cavern Passage); give it to Lu Sanqian at the second rescue (hanging-cage room below Shrine Outer Gate, after Kui Yanyan). Without it he never reaches The Lady's Shrine and Crude Radiant Heart is lost (gamingdeputy FR walkthrough; playnews). Rootless Dew = I_10001 (data/game/items.json; real save: picked up 2026-11-08 04:03 at Bell_DDSD_006, CurrentAmount 0 after the hand-in, so the item itself cannot mark the step done); Crude Radiant Heart AC_MartialWeapon arrived 04:31 with 4-A Completed and 5 Activating. Triggers added 2026-11-08 once the DDSD prefix was known. doneWhen: XiaoCui branch 4-A reached (Activating or Completed). On the real save (2026-11-08 04:14:28) branch 3 completed and 4-A activated at the same second right after the second rescue in the hanging-cage room, and Yusuf reported giving the dew; 4-B stayed None. Reading: 4-A = \"Lu Sanqian drank the Rootless Dew\" (QuestDes_01-DDSD_012), 4-B = \"his days are numbered\" (DDSD_013, dew not given). Branch meaning inferred from one save, not from the quest asset. Steam (2026-11-04..08, 3 players + 1 dev-acknowledged report): lowering the cage and leaving without the dew left Lu Sanqian hanging mid-air with no interaction (572679810651832392); freeing him and opening the door he named, he was gone, two more players \"progressed too far / opened the gate after lowering cages\" (572679917415800074); not rescued at once, later he was dead/suspended (572679917415967109); Lu Jieyuan stayed seated, quest failed, no reward (572679917415889024, dev forwarded). Standard answer: reload a recent save. Hence the order hint in warn (2026-11-11.3).",
       "activeWhen": {
         "lastBellPrefix": "DDSD"
       },
@@ -2742,11 +2935,13 @@
         "maxroll",
         "powerpyx",
         "dtgre-purple",
-        "steam-guides"
+        "steam-guides",
+        "powerpyx-true-ending",
+        "gamesgg-true-ending"
       ],
       "checked": "unverified"
     },
-    "note": "Some guides (a Steam 100% achievements guide, since removed from the Steam community; a true-ending checklist) also list defeating two optional blade-master bosses as a true-ending requirement. Unverified and not tracked yet; verify from the save when those areas are reached.",
-    "claim": "Unverified claim (single Steam guide, Nero): the two blade masters (Zhu Yuan, Bi Feng) are required for the true ending. PowerPyx does not say so; the CN guide lists them only under an achievement. Not tracked."
+    "note": "Some guides list defeating two optional blade-master bosses as a true-ending requirement; see claim (most likely not required). Game data (2026-11-11 scan): the tag table defines exactly four ending-condition tags (dhy.结局条件.*): Flesh Lily (XueRouHua), Heart of the Lake (HuXinMiMi), Bloodline Awakening (XueMaiJueXing) and one for GuYouDeRenWu (QuestMaze_014, no text in any language, never in a save, likely cut). The real run set the first three, never the fourth, and got Ending 3 (CycleRecords). Flesh Lily is not in this list: no guide in the 2026-11-11 scan lists it as a true-ending requirement (it is not a purple tale), so it is recorded here only; what its tag changes is unknown.",
+    "claim": "Disputed claim: the two blade masters (Zhu Yuan, Bi Feng) are required for the true ending (Nero's Steam guide, PowerPyx trophy guide, DTGRE purple page, gmtreks). Most likely not required (not proven: the ending logic was not parsed): none of the four ending-condition tags is about them (weak evidence: those tags also leave out most purple quests); most ending guides (PowerPyx true-ending guide, games.gg, Game Informer, gameriv, Game8) do not list them; a PowerPyx reader reports the true ending without them. On the real save both were dead before the ending anyway (Zhu Yuan 2026-11-07, Bi Feng 2026-11-08). Not tracked."
   }
 }

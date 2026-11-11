@@ -521,13 +521,6 @@
   },
   "unmappedMissables": {
     "_comment": "Kayıttaki pinyin kodu bilinmeyen kaçırılabilirler. Anahtar: rules.json missables[].id.",
-    "honor-among-thieves": {
-      "pinyin": "unknown",
-      "kind": "quest",
-      "locres": "QuestRumor_029",
-      "guessKey": false,
-      "guessEn": false
-    },
     "boulderguard": {
       "pinyin": "unknown",
       "kind": "item",

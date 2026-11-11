@@ -132,9 +132,9 @@ Conditions are three-valued (true / false / unknown): `mapUnlocked`, `levelVisit
 ## Known limits
 
 - Some later cutoffs cannot be detected from the save yet; their warnings rely on quest state and positional wording.
-- Guides disagree on one story cutoff: some say entering a later story area closes certain lake-side quests, while players on the Steam forum report that the real point of no return comes near the end, with an explicit in-game warning. The tool keeps the stricter rule, marked as a guess, until it can be checked from a save.
-- Some guides also list two optional boss fights as true-ending requirements. They are not tracked yet (unverified).
-- A few quest-name mappings are inferred and marked `*`; one warning's wording (the camp warning) is unverified.
+- One story cutoff is disputed: some guides say entering a later story area closes certain quests, while players on the Steam forum report that the real point of no return comes near the end, with an explicit in-game warning. The saves of one full playthrough side with the players: no quest that was still open closed at that point. The tool keeps the stricter rule, marked as a guess, only for the few quests that guides or the game data still tie to it; none of them could be tested (they were finished before that point).
+- Some guides list two optional boss fights as true-ending requirements. Most ending guides leave them out and a player reports the true ending without them, so they are most likely not required (not proven). They are not tracked.
+- Rules marked `*` are guesses: their deadline or trigger is not confirmed. All quest ids come from the game's own data. One warning's wording (the camp warning) is unverified.
 
 ## License
 
@@ -148,7 +148,11 @@ Missable rules were compiled from public guides. Each rule's `source` in `data/r
 - PowerPyx — trophy guide & roadmap: https://powerpyx.com/phantom-blade-zero-trophy-guide-roadmap
 - DTGRE (https://www.dtgre.com) — missable quests and true ending guides. Exact page URLs are only in `data/rules.json`, because the addresses themselves contain spoilers.
 - Steam Community — Phantom Blade Zero guides: https://steamcommunity.com/app/4115450/guides/ and the forum thread on the point of no return: https://steamcommunity.com/app/4115450/discussions/0/572679490124259489/
-- Maxroll (true ending), allthings.how (missables), Showgamer (missables): URLs to be added.
+- allthings.how — missables: https://allthings.how/phantom-blade-zero-missables/
+- gmtreks — missables: https://gmtreks.com/phantom-blade-zero/page/01M6DA4QWM8DK50AA0896TWN72
+- PowerPyx — true ending guide: https://powerpyx.com/phantom-blade-zero-true-ending-guide
+- games.gg — true ending guide: https://games.gg/phantom-blade-0/guides/phantom-blade-zero-true-ending-guide-all-requirements/
+- Maxroll (true ending), Showgamer (missables): URLs to be added.
 
 Technical:
 
