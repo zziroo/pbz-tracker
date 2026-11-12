@@ -195,16 +195,20 @@ async function main() {
       keyMap: require('../data/names.json'), namesSource: names.source, patches: [], build: { id: buildId, tested: true }, st, result: plain, ok: true, timeline: null });
     console.log(formatDiagnostics(real).trimEnd().split('\n').map((l) => `      | ${l}`).join('\n'));
 
-    // Items on the real save: the four Inventory tables, table + time + held only; itemSeen.
+    // Items on the real save: the four Inventory tables, table + time + held only; itemSeen. In New Game+ only the
+    // entries acquired in this cycle are items (checked against the raw tables), so a table may have none yet.
     const TIME = /^\d{4}\.\d{2}\.\d{2}-\d{2}\.\d{2}\.\d{2}$/;
     const tables = new Set([...st.items.values()].map((v) => v.table));
-    check(['mainWeapon', 'shaChiWeapon', 'accessory', 'inventory'].every((x) => tables.has(x))
-      && [...st.items.values()].every((v) => Object.keys(v).sort().join() === 'held,table,time' && (v.time === null || TIME.test(v.time))),
-      `items: ${st.items.size} codes from MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (table, time, held only)`);
+    const rawInv = latest.data.Inventory || {};
+    const rawOf = (code) => ['MainWeaponInfos', 'ShaChiWeaponInfo', 'AccessoryInfos', 'InventoryInfos'].map((f) => rawInv[f] && rawInv[f][code]).find(Boolean);
+    check((st.cycle > 0 || ['mainWeapon', 'shaChiWeapon', 'accessory', 'inventory'].every((x) => tables.has(x)))
+      && [...st.items.values()].every((v) => Object.keys(v).sort().join() === 'held,table,time' && (v.time === null || TIME.test(v.time)))
+      && [...st.items.keys()].every((code) => { const a = rawOf(code)?.AcquiredCycle; return (typeof a === 'number' ? a : 0) === st.cycle; }),
+      `items: ${st.items.size} codes from MainWeaponInfos / ShaChiWeaponInfo / AccessoryInfos / InventoryInfos (table, time, held only; cycle ${st.cycle}, AcquiredCycle matches)`);
     const evR = makeEval(st, rules);
     const held = [...st.items].find(([, v]) => v.held), usedUp = [...st.items].find(([, v]) => !v.held);
-    check(evR({ itemSeen: held[0] }) === true && (!usedUp || evR({ itemSeen: usedUp[0] }) === false) && evR({ itemSeen: 'NoSuchItem_000' }) === false,
-      `itemSeen on the real save: held → true, used up (CurrentAmount 0${usedUp ? `, e.g. ${usedUp[0]}` : ', none here'}) → false, absent → false`);
+    check((!held || evR({ itemSeen: held[0] }) === true) && (!usedUp || evR({ itemSeen: usedUp[0] }) === false) && evR({ itemSeen: 'NoSuchItem_000' }) === false,
+      `itemSeen on the real save: held → true${held ? '' : ' (none here)'}, used up (CurrentAmount 0${usedUp ? `, e.g. ${usedUp[0]}` : ', none here'}) → false, absent → false`);
     // Header area: from the region maps (last bell used), never from the level name.
     // The expected map is computed here independently: the newest RecentlyInteractedAtByMap entry.
     const loc = regionLine(st, names);
@@ -215,7 +219,8 @@ async function main() {
 
     // A save without Inventory: items unknown → the sword rule is "unknown" (never "missed") even with the
     // lift cutoff passed, and the timeline logs no items and keeps its stored item snapshot.
-    const passLift = (s) => ({ ...s, quests: new Map([...s.quests, ['MainCh1-ShiXinCun', { id: 'MainCh1-ShiXinCun', folder: 'Main', completion: 'Succeded', branches: {}, progress: null }]]) });
+    // (The village map is added too, so the sword rule is visible on any save, e.g. early in New Game+.)
+    const passLift = (s) => ({ ...s, maps: new Set([...s.maps, 'LuJiaCun']), quests: new Map([...s.quests, ['MainCh1-ShiXinCun', { id: 'MainCh1-ShiXinCun', folder: 'Main', completion: 'Succeded', branches: {}, progress: null }]]) });
     const stNoInv = extract({ ...latest.data, Inventory: null });
     const swordOf = (s) => build(s, rules, names).closed.find((x) => x.key === 'lu-elevator-sword') || {};
     const thiefOf = (s) => build(s, rules, names).infoLater.concat(build(s, rules, names).infoNow).find((x) => x.key === 'lu-wounded-thief-manual') || {};
@@ -226,7 +231,7 @@ async function main() {
     const storedItems = JSON.stringify(nStore.items);
     const n2 = await ntl.record(stNoInv, 'n2');
     const n3 = await ntl.record(st, 'n3');
-    check(stNoInv.items === null && noInvSword.status === 'unknown' && emptySword.status === 'missed' && thiefOf(stNoInv).done === false
+    check(stNoInv.items === null && noInvSword.status === 'unknown' && emptySword.status === 'missed' && thiefOf(passLift(stNoInv)).done === false
       && !n2.some((r) => r.kind === 'item') && !n3.some((r) => r.kind === 'item') && JSON.stringify(nStore.items) === storedItems,
       `save without Inventory: sword rule ${noInvSword.status} with the cutoff passed (empty item tables → ${emptySword.status}); thief info not done; timeline items ${n2.length}/${n3.length}, snapshot kept`);
     const dNoInv = collectDiagnostics({ st: stNoInv, ok: true });
@@ -253,9 +258,10 @@ async function main() {
     check(first.length === st.quests.size && again.length === 0 && third.length === 1 && third[0].from === 'Started' && third[0].to === 'Succeded' && afterRestart.length === 0,
       `timeline: baseline ${first.length}, re-read 0, one change → ${third.length} record, restart → ${afterRestart.length}`);
     let capStore = null;
-    const capped = createTimeline({ load: () => null, save: (x) => { capStore = x; }, cap: 5 });
+    const capN = Math.max(1, Math.min(5, st.quests.size - 1)); // below the quest count (an early save has few quests)
+    const capped = createTimeline({ load: () => null, save: (x) => { capStore = x; }, cap: capN });
     await capped.record(st, 'x');
-    check(capStore.records.length === 5 && capStore.records[4].questId === [...st.quests.keys()].pop(), 'timeline: capped, oldest records dropped');
+    check(capStore.records.length === capN && capStore.records[capN - 1].questId === [...st.quests.keys()].pop(), `timeline: capped at ${capN} of ${st.quests.size}, oldest records dropped`);
     let warned = 0;
     const failing = createTimeline({ load: () => null, save: () => { throw Object.assign(new Error('nope'), { code: 'EACCES' }); }, warn: () => { warned++; } });
     const r1 = await failing.record(st, 'x'); await failing.record(st2, 'y');
@@ -409,6 +415,84 @@ async function main() {
     const kinds = new Set(jr.map((r) => r.kind));
     check(jr.length > 0 && jr.every((r) => ['quest', 'item', 'accessory', 'flower', 'chest', 'weapon'].includes(r.kind)) && kinds.has('quest'),
       `journal rows carry a kind (${[...kinds].join(', ')})`);
+  }
+
+  // ---- New Game+: only the current cycle's boss records and items count (browser sandbox) ----
+  // NG+ saves (2026-11-12): the game keeps BossRecord ("<cycle>_<difficulty>" keys) and most of the Inventory of the
+  // earlier cycles; a re-found item gets AcquiredCycle = the current cycle. Checked on the real save moved one cycle
+  // ahead (everything it holds becomes "an earlier cycle") and on synthetic records.
+  {
+    const sb = loadSandbox();
+    const core = sb.require('./lib/core');
+    const i18n = sb.require('./lib/i18n');
+    const { extract, itemsOf, bossesOf, cycleFromOf } = sb.require('./lib/state');
+    const { build, render, makeEval, cycleText } = sb.require('./lib/report');
+    const { toState } = sb.require('./lib/viewmodel');
+    const rules = rulesInfo.rules;
+    i18n.setLang('en');
+    const names = core.createNamesFrom({ uiLang: 'en', tables: nameTables.tables });
+    const { latest } = await core.decodeSave(saveBytes, key);
+    const sys = latest.data.PBZGameSystem || {};
+    const c0 = Number.isInteger(sys.CycleCount) && sys.CycleCount > 0 ? sys.CycleCount : 0;
+    const cur = extract(latest.data);
+    // The next cycle as the game starts it: the world is reset (quests, level actors, bells, maps, locks, flow nodes,
+    // the NG+ saves of 2026-11-12), BossRecord and Inventory are kept as they are.
+    const next = extract({ ...latest.data, PBZGameSystem: { ...sys, CycleCount: c0 + 1, CurrentCycleGameTime: 60, CompleteAddItemMobDomainNames: [] },
+      Narrative: { NarrativeSavedQuests: [] }, LevelActorManager: {}, BellManager: {}, MapSubsystem: {}, EventPipeline: { ExecuteNodeGuid: {}, GlobalTags: [] } });
+    const ev = makeEval(next, rules);
+    const kills = [...cur.bosses.values()].filter((b) => b.kills > 0).length;
+    check(next.cycle === c0 + 1 && next.bosses.size === cur.bosses.size && [...next.bosses.values()].every((b) => b.kills === 0 && b.attempts === 0)
+      && Object.keys(rules.bosses || {}).every((id) => ev({ bossKilled: id }) === false)
+      && next.items !== null && next.items.size === 0,
+      `NG+ (real save moved one cycle ahead): ${cur.bosses.size} boss records, ${kills} with kills now → none, every bossKilled false; ${cur.items.size} items → ${next.items ? next.items.size : '-'} (carried over, not found in this run)`);
+    // No cutoff counts as passed from the earlier run (chilian / jingye are passed by a boss kill), on the real save
+    // moved ahead with the world reset and also with the save's own bells and maps kept (regions reached again).
+    const nextReached = extract({ ...latest.data, PBZGameSystem: { ...sys, CycleCount: c0 + 1, CurrentCycleGameTime: 60 } });
+    const passedFrom = (s) => Object.entries(rules.cutoffs).filter(([, c]) => c.passedWhen && makeEval(s, rules)(c.passedWhen) === true).map(([id]) => id);
+    const bossCut = Object.entries(rules.cutoffs).filter(([, c]) => /"bossKilled"/.test(JSON.stringify(c.passedWhen || null))).map(([id]) => id);
+    check(passedFrom(next).length === 0 && bossCut.length > 0 && bossCut.every((id) => !passedFrom(nextReached).includes(id)),
+      `NG+ (real save moved one cycle ahead): no cutoff passed after the reset; boss cutoffs (${bossCut.join(', ')}) not passed by earlier kills`);
+    const bNext = build(next, rules, names);
+    const missed = bNext.closed.filter((x) => x.status === 'missed').map((x) => x.key);
+    const doneInfo = bNext.infoLater.concat(bNext.infoNow).filter((i) => i.done).map((i) => i.key);
+    check(missed.length === 0 && doneInfo.length === 0,
+      `NG+ (real save moved one cycle ahead): nothing "missed" or "done" from the earlier run${missed.length + doneInfo.length ? ` — ${missed.concat(doneInfo).join(', ')}` : ''}`);
+
+    // Synthetic boss records: other cycles left out, the current one summed, a key of another shape counted.
+    const recs = { A: { Records: { '0_3': { AttemptCount: 14, KillCount: 1 }, '1_3': { AttemptCount: 2, KillCount: 0 }, '1_1': { AttemptCount: 1, KillCount: 1 } } }, B: { Records: { odd: { AttemptCount: 1, KillCount: 1 } } }, C: {} };
+    const b0 = bossesOf(recs, 0), b1 = bossesOf(recs, 1), b2 = bossesOf(recs, 2);
+    check(b0.get('A').kills === 1 && b0.get('A').attempts === 14 && b1.get('A').kills === 1 && b1.get('A').attempts === 3
+      && b2.get('A').kills === 0 && b2.get('A').attempts === 0 && b2.get('B').kills === 1 && b2.get('C').attempts === 0,
+      'NG+ boss records: "<cycle>_<difficulty>" keys of other cycles left out, other key shapes counted');
+
+    // Synthetic Inventory: the AcquiredCycle filter and the NG+ time rule (a time is kept only from the cycle start bound on).
+    const inv = {
+      MainWeaponInfos: { Old: { DateTime: '2026.11.04-02.34.04', AcquiredCycle: 0 }, Dup: { DateTime: '2026.11.04-02.34.04', AcquiredCycle: 0 }, Refound: { DateTime: '2026.11.04-02.34.04', AcquiredCycle: 1 } },
+      AccessoryInfos: { AC_New: { DirtyTime: '2026.11.12-18.35.00', AcquiredCycle: 1 }, AC_NoCycle: { DirtyTime: '2026.11.04-01.00.00' }, Dup: { DirtyTime: '2026.11.12-18.36.00', AcquiredCycle: 1 } },
+      InventoryInfos: {
+        K_New: { FirstAddTime: '2026.11.12-18.32.55', CurrentAmount: 1, AcquiredCycle: 1 },
+        K_Used: { FirstAddTime: '2026.11.12-18.33.00', CurrentAmount: 0, AcquiredCycle: 1 },
+        K_Old: { FirstAddTime: '2026.11.05-10.00.00', CurrentAmount: 1, AcquiredCycle: 0 },
+      },
+    };
+    const from = cycleFromOf({ DateTimeString: '2026.11.12-18.40.25', CurrentCycleGameTime: 1178 }); // bound 18:20:47
+    const i0 = itemsOf(inv, 0), i1 = itemsOf(inv, 1, from), i1x = itemsOf(inv, 1, null);
+    const keys = (m) => [...m.keys()].sort().join();
+    check(keys(i0) === 'AC_NoCycle,Dup,K_Old,Old' && keys(i1) === 'AC_New,K_New,K_Used,Refound' && i0.get('Dup').table === 'mainWeapon'
+      && i0.get('Old').time === '2026.11.04-02.34.04' && i1.get('Refound').time === null && i1.get('AC_New').time === '2026.11.12-18.35.00'
+      && i1.get('K_New').time === '2026.11.12-18.32.55' && i1.get('K_Used').held === false
+      && i1x.get('K_New').time === null && cycleFromOf({ DateTimeString: 'x', CurrentCycleGameTime: 5 }) === null
+      && cycleFromOf({ DateTimeString: '2026.11.12-18.40.25' }) === null,
+      'NG+ items: only AcquiredCycle = current cycle (none = 0), the first table decides a code, times before the cycle start bound dropped, no bound → no times');
+
+    // Header: the run label ("NG+", "NG+2"), terminal and viewmodel; none on the first run.
+    const stN = (n) => ({ ...cur, cycle: n });
+    const hdr = (s) => render({ st: s, result: build(s, rules, names), names, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false }).split('\n')[1];
+    const vmOf = (s) => toState({ ok: true, error: null, readAt: 'x', view: { st: s, result: build(s, rules, names), names, build: null, data: null, changes: [] } }).header;
+    check(cycleText(stN(0)) === null && cycleText(stN(1)) === 'NG+' && cycleText(stN(2)) === 'NG+2' && cycleText({}) === null
+      && !/NG\+/.test(hdr(stN(0))) && / · NG\+( ·|$)/.test(hdr(stN(1))) && / · NG\+2( ·|$)/.test(hdr(stN(2)))
+      && vmOf(stN(0)).cycle === null && vmOf(stN(1)).cycle === 'NG+' && vmOf(stN(2)).cycle === 'NG+2',
+      `header run label: none on the first run, "NG+", "NG+2" (terminal: "${hdr(stN(1))}")`);
   }
 
   // ---- save-independent checks (synthetic state, rules file only) ----

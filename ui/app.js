@@ -628,6 +628,10 @@
       if (hd.saveTime) first.append(h('span', { class: 'sep', text: ' · ' }));
       first.append(t('hdr.play') + ' ', h('span', { class: 'mono', text: hd.playTime }));
     }
+    if (hd.cycle) {
+      if (first.childNodes.length) first.append(h('span', { class: 'sep', text: ' · ' }));
+      first.append(h('span', { class: 'hdr-strong', text: hd.cycle }));
+    }
     if (first.childNodes.length) box.append(first);
     if (hd.location) box.append(h('p', { class: 'hdr-line' }, t('hdr.location') + ': ', h('span', { class: 'hdr-strong', text: hd.location }),
       hd.locationNote ? h('span', { class: 'muted', text: ' (' + hd.locationNote + ')' }) : null));
