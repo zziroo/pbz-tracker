@@ -90,6 +90,8 @@ interface State {
   // Stake = { id: 'trueEnding' | 'achievement' | 'phantomEdge' | 'weapon' | 'accessory' | 'flower' | 'medicine' |
   //   'material' | 'amber' | 'item' | 'sideQuest'; text: string }  // text localized ("true ending", "accessory", …);
   //   never the achievement's or the item's name. 'sideQuest' ("side quest only") is never next to another label.
+  //   NG+: 'weaponPlus' / 'accessoryPlus' ("weapon +1") replace 'weapon' / 'accessory' when that item is held from an
+  //   earlier run and only its stronger copy of this run is at stake.
   groups: Array<{              // the same warnings + info, grouped by game region (rules.json `regions`); only
                                // non-empty groups, in order: the region the player is in, other reached regions
                                // in story order, then at most ONE 'endgame' group (region.endgame: true) holding

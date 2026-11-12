@@ -425,8 +425,8 @@ async function main() {
     const sb = loadSandbox();
     const core = sb.require('./lib/core');
     const i18n = sb.require('./lib/i18n');
-    const { extract, itemsOf, bossesOf, cycleFromOf } = sb.require('./lib/state');
-    const { build, render, makeEval, cycleText } = sb.require('./lib/report');
+    const { extract, itemsOf, priorItemsOf, bossesOf, cycleFromOf } = sb.require('./lib/state');
+    const { build, render, makeEval, priorEval, cycleText } = sb.require('./lib/report');
     const { toState } = sb.require('./lib/viewmodel');
     const rules = rulesInfo.rules;
     i18n.setLang('en');
@@ -458,6 +458,43 @@ async function main() {
     check(missed.length === 0 && doneInfo.length === 0,
       `NG+ (real save moved one cycle ahead): nothing "missed" or "done" from the earlier run${missed.length + doneInfo.length ? ` — ${missed.concat(doneInfo).join(', ')}` : ''}`);
 
+    // Items held from the earlier run (the real save moved ahead, its maps and bells kept so the item rules are
+    // visible): a memory flower held → done ("held from an earlier run"); a weapon / accessory held → judged as usual
+    // but named "(+1)" and labelled with the "+1" stake. Each rule is checked only when the save holds its item.
+    {
+      const bR = build(nextReached, rules, names);
+      const row = (id) => bR.closed.find((x) => x.key === id);
+      const info = (id) => bR.infoNow.concat(bR.infoLater).find((x) => x.key === id);
+      const held = (code) => nextReached.priorItems && nextReached.priorItems.has(code);
+      const out = [], bad = [];
+      const flower = row('mirrorwood-memory-flower');
+      if (held('F_02056') && flower) { out.push('flower'); if (!(flower.status === 'done' && flower.note === i18n.t('note.priorCycle'))) bad.push(`flower ${flower.status}/${flower.note}`); }
+      const sword = row('lu-elevator-sword');
+      if (held('LuanYing') && sword) {
+        out.push('sword');
+        if (!(sword.status !== 'done' && sword.name.endsWith(i18n.t('name.plus')) && sword.stakes.includes('weaponPlus') && !sword.stakes.includes('weapon')
+          && sword.note.includes(i18n.t('note.plusCopy')))) bad.push(`sword ${sword.status}/${sword.name}/${sword.stakes}/${sword.note}`);
+      }
+      const manual = info('lu-wounded-thief-manual');
+      if (held('AC_ResistRanged') && manual) { out.push('manual'); if (!(manual.done === false && manual.stakes.includes('accessoryPlus') && !manual.stakes.includes('accessory'))) bad.push(`manual ${manual.done}/${manual.stakes}`); }
+      // The first run never has carried-over items.
+      const first = extract({ ...latest.data, PBZGameSystem: { ...sys, CycleCount: 0 } });
+      check(bad.length === 0 && first.priorItems === null,
+        `NG+ items held from the earlier run: flower done, weapon / accessory as their "+1" copy (${out.join(', ') || 'none here'})${bad.length ? ' — ' + bad.join('; ') : ''}`);
+    }
+
+    // priorEval: a condition true only through carried-over items → 'have' (nothing to gain) or 'plus' (weapon /
+    // accessory), any / all / not as usual; a condition already true, or never true, → null.
+    {
+      const base = { items: new Map([['Wn', { table: 'mainWeapon', time: null, held: true }]]), priorItems: new Map([['F', { table: 'inventory', plus: false }], ['W', { table: 'mainWeapon', plus: true }]]) };
+      const p = priorEval(base, rules, makeEval(base, rules));
+      const none = priorEval({ items: new Map(), priorItems: null }, rules, makeEval({ items: new Map() }, rules));
+      check(p({ itemSeen: 'F' }) === 'have' && p({ itemSeen: 'W' }) === 'plus' && p({ any: [{ itemSeen: 'F' }, { itemSeen: 'W' }] }) === 'have'
+        && p({ all: [{ itemSeen: 'F' }, { itemSeen: 'W' }] }) === 'plus' && p({ not: { itemSeen: 'F' } }) === null && p({ itemSeen: 'X' }) === null
+        && p({ itemSeen: 'Wn' }) === null && p(undefined) === null && none({ itemSeen: 'F' }) === null,
+        'NG+ priorEval: carried-over items → "have" / "plus" only when they make the condition true');
+    }
+
     // Synthetic boss records: other cycles left out, the current one summed, a key of another shape counted.
     const recs = { A: { Records: { '0_3': { AttemptCount: 14, KillCount: 1 }, '1_3': { AttemptCount: 2, KillCount: 0 }, '1_1': { AttemptCount: 1, KillCount: 1 } } }, B: { Records: { odd: { AttemptCount: 1, KillCount: 1 } } }, C: {} };
     const b0 = bossesOf(recs, 0), b1 = bossesOf(recs, 1), b2 = bossesOf(recs, 2);
@@ -484,6 +521,12 @@ async function main() {
       && i1x.get('K_New').time === null && cycleFromOf({ DateTimeString: 'x', CurrentCycleGameTime: 5 }) === null
       && cycleFromOf({ DateTimeString: '2026.11.12-18.40.25' }) === null,
       'NG+ items: only AcquiredCycle = current cycle (none = 0), the first table decides a code, times before the cycle start bound dropped, no bound → no times');
+    const p1 = priorItemsOf(inv, 1);
+    const used = priorItemsOf({ InventoryInfos: { K_Gone: { CurrentAmount: 0, AcquiredCycle: 0 }, K_Kept: { CurrentAmount: 2 } } }, 1);
+    check(priorItemsOf(inv, 0) === null && priorItemsOf({}, 1) === null && keys(p1) === 'AC_NoCycle,Dup,K_Old,Old'
+      && p1.get('Old').plus === true && p1.get('Dup').table === 'mainWeapon' && p1.get('AC_NoCycle').plus === true && p1.get('K_Old').plus === false
+      && keys(used) === 'K_Kept',
+      'NG+ items held from an earlier cycle: AcquiredCycle below the current one (none = 0), weapons / accessories "plus", used-up inventory left out');
 
     // Header: the run label ("NG+", "NG+2"), terminal and viewmodel; none on the first run.
     const stN = (n) => ({ ...cur, cycle: n });
