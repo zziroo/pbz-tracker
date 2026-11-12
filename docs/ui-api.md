@@ -87,8 +87,8 @@ interface State {
   }>;
   info: string[];              // anonymous info warnings (e.g. the camp warning)
   infoStakes?: Stake[][];      // the labels of info[i] at the same index ([] = none). Missing → no labels.
-  // Stake = { id: 'trueEnding' | 'achievement' | 'phantomEdge' | 'weapon' | 'accessory' | 'flower' | 'medicine' |
-  //   'material' | 'amber' | 'item' | 'sideQuest'; text: string }  // text localized ("true ending", "accessory", …);
+  // Stake = { id: 'trueEnding' | 'achievement' | 'phantomEdge' | 'weapon' | 'weaponPlus' | 'accessory' | 'accessoryPlus' |
+  //   'flower' | 'medicine' | 'material' | 'amber' | 'item' | 'sideQuest'; text: string }  // text localized ("true ending", "accessory", …);
   //   never the achievement's or the item's name. 'sideQuest' ("side quest only") is never next to another label.
   //   NG+: 'weaponPlus' / 'accessoryPlus' ("weapon +1") replace 'weapon' / 'accessory' when that item is held from an
   //   earlier run and only its stronger copy of this run is at stake.
