@@ -960,7 +960,14 @@ async function main() {
   try { await core0.decodeSave(saveBytes.subarray(0, 100), key); check(false, 'truncated save throws'); } catch (e) {
     check(e instanceof core0.TransientError, `truncated save → TransientError (${e.message})`);
   }
-  const bad = saveBytes.slice(); bad[Math.floor(bad.length / 2)] ^= 0xFF; // flip a byte inside a slot's ciphertext (the last byte may be padding)
+  // Flip a byte in the middle of a game slot's ciphertext (behind the 36-byte block header). The middle of the file
+  // is no good: in an NG+ save it lies in the EndingReturn_ snapshot, which decodeSave does not read.
+  const bad = saveBytes.slice();
+  {
+    const slotEntry = (await core0.parseContainer(saveBytes, await core0.importKey(key))).entries.find((e) => /^(AutoSave|ManualSave|NightmareRun)\d+$/.test(e.name));
+    const dirLen = new DataView(saveBytes.buffer, saveBytes.byteOffset, saveBytes.byteLength).getUint32(8, true);
+    bad[12 + dirLen + slotEntry.off + 36 + Math.floor((slotEntry.size - 36) / 2)] ^= 0xFF;
+  }
   try { await core0.decodeSave(bad, key); check(false, 'corrupted save throws'); } catch (e) {
     check(e instanceof core0.TransientError, `corrupted block → TransientError (${e.message})`);
   }
