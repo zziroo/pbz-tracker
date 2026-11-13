@@ -529,13 +529,35 @@ async function main() {
       'NG+ items held from an earlier cycle: AcquiredCycle below the current one (none = 0), weapons / accessories "plus", used-up inventory left out');
 
     // Header: the run label ("NG+", "NG+2"), terminal and viewmodel; none on the first run.
-    const stN = (n) => ({ ...cur, cycle: n });
+    const stN = (n, sixtySixDays = false) => ({ ...cur, cycle: n, sixtySixDays });
     const hdr = (s) => render({ st: s, result: build(s, rules, names), names, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false }).split('\n')[1];
     const vmOf = (s) => toState({ ok: true, error: null, readAt: 'x', view: { st: s, result: build(s, rules, names), names, build: null, data: null, changes: [] } }).header;
     check(cycleText(stN(0)) === null && cycleText(stN(1)) === 'NG+' && cycleText(stN(2)) === 'NG+2' && cycleText({}) === null
       && !/NG\+/.test(hdr(stN(0))) && / · NG\+( ·|$)/.test(hdr(stN(1))) && / · NG\+2( ·|$)/.test(hdr(stN(2)))
       && vmOf(stN(0)).cycle === null && vmOf(stN(1)).cycle === 'NG+' && vmOf(stN(2)).cycle === 'NG+2',
       `header run label: none on the first run, "NG+", "NG+2" (terminal: "${hdr(stN(1))}")`);
+
+    // 66 Days mode (save of 2026-11-13): the run lives in a NightmareRun<n> slot only, bound to it by
+    // NightmareSlotIndex (-1 elsewhere) with DifficultModeByte 4; the header names the mode next to the run label.
+    const sixty = (s) => extract({ ...latest.data, PBZGameSystem: { ...sys, ...s } }).sixtySixDays;
+    check(sixty({ NightmareSlotIndex: 0, DifficultModeByte: 4 }) === true && sixty({ NightmareSlotIndex: -1, DifficultModeByte: 3 }) === false
+      && sixty({ NightmareSlotIndex: undefined, DifficultModeByte: undefined }) === false && sixty({ NightmareSlotIndex: 2, DifficultModeByte: 3 }) === true
+      && sixty({ NightmareSlotIndex: -1, DifficultModeByte: 4 }) === true
+      && cycleText(stN(1, true)) === 'NG+ · 66 Days' && cycleText(stN(0, true)) === '66 Days' && cycleText(stN(2, true)) === 'NG+2 · 66 Days'
+      && / · NG\+ · 66 Days( ·|$)/.test(hdr(stN(1, true))) && vmOf(stN(1, true)).cycle === 'NG+ · 66 Days' && vmOf(stN(0, true)).cycle === '66 Days',
+      `66 Days mode: found by its slot index / difficulty, header "NG+ · 66 Days" (terminal: "${hdr(stN(1, true))}")`);
+
+    // Slots: autosaves, manual saves and 66 Days runs are read, the newest of them all is the latest; the game's own
+    // snapshots (EndingReturn_, NightmareCycleStart_, NightmareLineStart_) and the __…__ entries are not slots.
+    const { slots, latest: newest } = await core.decodeSave(saveBytes, key);
+    const entries = (await core.parseContainer(saveBytes, await core.importKey(key))).entries.map((e) => e.name);
+    const wantSlots = entries.filter((n) => /^(AutoSave|ManualSave|NightmareRun)\d+$/.test(n)).sort();
+    const digits = (s) => String(s || '').replace(/\D/g, '');
+    const runs = slots.filter((s) => /^NightmareRun/.test(s.name));
+    check(JSON.stringify(slots.map((s) => s.name).sort()) === JSON.stringify(wantSlots)
+      && slots.every((s) => digits(newest.dateTime) >= digits(s.dateTime)) && newest === slots[0] && newest.name === latest.name
+      && runs.every((s) => extract(s.data).sixtySixDays === true) && slots.filter((s) => !runs.includes(s)).every((s) => extract(s.data).sixtySixDays === false),
+      `slots: ${slots.length} of ${entries.length} entries (${runs.length} 66 Days run${runs.length === 1 ? '' : 's'}: ${runs.map((s) => s.name).join(', ') || 'none in this save'}), latest ${newest.name}; snapshots left out`);
   }
 
   // ---- save-independent checks (synthetic state, rules file only) ----

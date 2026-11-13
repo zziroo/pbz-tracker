@@ -66,6 +66,7 @@ interface State {
     saveTime: string;          // "05.11.2026 03:37" (game save time)
     playTime: string;          // "12:01"
     cycle?: string | null;     // run label: null on the first run, "NG+" in New Game+ (CycleCount 1), "NG+2" … after it
+                               // a 66 Days mode run adds its name: "NG+ · 66 Days" ("66 Days" alone on a first run)
     location: string | null;   // localized region name or null: the region map of the last bell used (else the last map
                                // unlocked); if that map code has no name yet, the region whose bell prefix
                                // (names.json regions[].bellPrefixes, Bell_<prefix>_…) matches the last bell used.
