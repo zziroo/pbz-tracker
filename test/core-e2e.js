@@ -143,7 +143,10 @@ async function main() {
     const st = extract(latest.data);
     const names = core.createNamesFrom({ uiLang: 'en', tables: nameTables.tables });
 
-    // Exact mode: whereExact only where exactWhen is true; the default build is unchanged.
+    // Exact mode: whereExact only where exactWhen is true; the default build is unchanged. In New Game+ (st.cycle > 0)
+    // the map state is reset and the player has finished the game once: every cutoff that has an exactWhen is named.
+    const ngPlus = st.cycle > 0;
+    const gateOpen = (c) => !!c && c.exactWhen !== undefined && (ngPlus || makeEval(st, rules)(c.exactWhen) === true);
     const plain = build(st, rules, names);
     const exact = build(st, rules, names, { exact: true });
     const pickEn = (v) => (typeof v === 'string' ? v : v?.en);
@@ -154,13 +157,14 @@ async function main() {
       const [id, c] = cutoffOf(w.where) || [];
       const reached = !!c?.whereExact && c.exactWhen && !('unknown' in c.exactWhen);
       if (pickEn(c?.whereExact) === w.where) named++; else vague++;
-      // A cutoff whose exactWhen is unknown (no region code yet) or false for this save must keep the vague text.
-      const exactOk = c ? makeEval(st, rules)(c.exactWhen) === true : false;
-      if (c && !exactOk) check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (area not reached / code unknown)`);
+      // A cutoff whose exactWhen is unknown (no region code yet) or false for this save must keep the vague text
+      // (first run); in New Game+ a cutoff with a whereExact and an exactWhen must be named.
+      if (c && !gateOpen(c)) check(w.where === pickEn(c.where), `exact mode: ${id} keeps its vague text (area not reached / code unknown)`);
+      else if (c && ngPlus && c.whereExact) check(w.where === pickEn(c.whereExact), `exact mode in New Game+ (cycle ${st.cycle}): ${id} is named → ${w.where}`);
       else if (reached && id) console.log(`      exact: ${id} → ${w.where}`);
     }
     // The live save may have no open warning left on a reached cutoff (e.g. the lake quest done): then nothing can be named.
-    const nameable = exact.warnings.some((w) => { const [, c] = cutoffOf(w.where) || []; return !!c?.whereExact && makeEval(st, rules)(c.exactWhen) === true; });
+    const nameable = exact.warnings.some((w) => { const [, c] = cutoffOf(w.where) || []; return !!c?.whereExact && gateOpen(c); });
     check(named > 0 || !nameable, `exact mode names ${named} warning(s), ${vague} stay vague${nameable ? "" : " (no reachable cutoff warning in this save)"}`);
 
     // Diagnostics: no personal data, even with hostile inputs (full paths where only names belong).
@@ -663,6 +667,69 @@ async function main() {
     check(tAnon === 'w anon|h anon|n anon' && tExactNear === 'w anon|h anon|n anon' && tExactFar === 'w Far|h Far|n Far'
       && badNamed({ exactWhen: undefined }) && badNamed({ hintStarted: undefined }) && badNamed({ hintNotStartedNamed: { en: '', tr: '' }, hintNotStarted: { en: 'n', tr: 'n' } }),
       `named variants: default ${tAnon}; exact, area not reached ${tExactNear}; exact, reached ${tExactFar}; schema rejects a named text without exactWhen / anonymous text, or empty`);
+
+    // Exact mode in New Game+ (cycle > 0): every exactWhen gate counts as true, so all areas are named although the
+    // new cycle's map state is empty; exact mode off and the first run are unchanged; a missing gate, an empty named
+    // text and an info rule without exactWhen stay vague.
+    {
+      const { toState } = sb.require('./lib/viewmodel');
+      const { render } = sb.require('./lib/report');
+      const miniR = validateRules({
+        schemaVersion: 1, rulesVersion: 'test',
+        regions: { r1: { order: 1, mapCodes: ['A'] } },
+        cutoffs: { c: { region: 'r1', where: { en: 'Before X', tr: 'X' }, whereExact: { en: 'Before X in Far', tr: 'x' }, exactWhen: { mapUnlocked: 'Far' }, label: { en: 'X', tr: 'X' }, passedWhen: { mapUnlocked: 'Passed' } } },
+        missables: [
+          ...miniN.missables,
+          { id: 'same-a', quest: 'SA', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, exactWhen: { mapUnlocked: 'Far' }, hintNotStarted: { en: 'shared', tr: 'x' }, hintNotStartedNamed: { en: 'shared Far', tr: 'x' } },
+          { id: 'same-b', quest: 'SB', cutoff: 'c', visibleWhen: { mapUnlocked: 'A' }, hintNotStarted: { en: 'shared', tr: 'x' } },
+          { id: 'tip-gated', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, exactWhen: { mapUnlocked: 'Far' }, warn: { en: 'tip anon', tr: 'x' }, warnNamed: { en: 'tip Far', tr: 'x' } },
+          { id: 'tip-open', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, warn: { en: 'tip2 anon', tr: 'x' }, warnNamed: { en: 'tip2 hidden', tr: 'x' } },
+          { id: 'tip-plain', type: 'info', quest: null, visibleWhen: { mapUnlocked: 'A' }, activeWhen: { mapUnlocked: 'A' }, warn: { en: 'tip3', tr: 'x' } },
+        ].map((m) => ({ ...m, region: 'r1' })),
+      }, 'miniR.json');
+      const all = (b) => [b.warnings[0]?.where, textsOf(b), b.infoNow.map((i) => i.warn).join('+')].join(' / ');
+      const VAGUE = 'Before X / w anon|h anon|n anon / tip anon+tip2 anon+tip3', NAMED = 'Before X in Far / w Far|h Far|n Far / tip Far+tip2 anon+tip3';
+      const ng = { ...near, cycle: 1 }, ng2 = { ...near, cycle: 2 };
+      const aFirst = all(build(near, miniR, namesK, { exact: true })), aNg = all(build(ng, miniR, namesK, { exact: true })), aNg2 = all(build(ng2, miniR, namesK, { exact: true })),
+        aNgOff = all(build(ng, miniR, namesK)), aFar = all(build(far, miniR, namesK, { exact: true }));
+      const evNear = makeEval(near, miniR);
+      const cut = { where: { en: 'vague', tr: 'vague' }, whereExact: { en: 'named', tr: 'named' } };
+      check(aFirst === VAGUE && aNgOff === VAGUE && aNg === NAMED && aNg2 === NAMED && aFar === NAMED
+        && whereText({ ...cut, exactWhen: { mapUnlocked: 'Far' } }, evNear, true, true) === 'named' && whereText({ ...cut, exactWhen: { unknown: 'no code yet' } }, evNear, true, true) === 'named'
+        && whereText({ ...cut, exactWhen: { mapUnlocked: 'Far' } }, evNear, true) === 'vague' && whereText({ ...cut, exactWhen: { mapUnlocked: 'Far' } }, evNear, false, true) === 'vague'
+        && whereText(cut, evNear, true, true) === 'vague' && whereText({ ...cut, whereExact: { en: '', tr: '' }, exactWhen: { mapUnlocked: 'Far' } }, evNear, true, true) === 'vague',
+        `exact mode in New Game+: first run, area not reached "${aFirst}"; NG+ without exact unchanged; NG+ with exact "${aNg}" (the info rule without exactWhen keeps its text); a missing gate or an empty named text stays vague`);
+      // The real rules: with nothing reached but a cycle > 0, exact mode names every cutoff that has a whereExact and a gate.
+      const ngEmpty = { ...empty, cycle: 1 };
+      const evNg = makeEval(ngEmpty, rules);
+      const gated = Object.entries(rules.cutoffs).filter(([id, c]) => !id.startsWith('_') && c.whereExact && c.exactWhen !== undefined);
+      const notNamed = gated.filter(([, c]) => whereText(c, evNg, true, true) !== i18n.pick(c.whereExact) || whereText(c, evNg, true, false) !== i18n.pick(c.where));
+      const bNg = build(ngEmpty, rules, names, { exact: true }); // must not throw on the real rules
+      check(gated.length > 0 && notNamed.length === 0 && Array.isArray(bNg.warnings),`exact mode in New Game+ (real rules, nothing reached): ${gated.length} gated cutoffs are all named${notNamed.length ? `; not: ${notNamed.map(([id]) => id).join(', ')}` : ''}`);
+
+      // Named variants for the page's click-to-reveal (layer 2 of the warnings): carried by the build result and the
+      // State whenever a named text exists and differs from the text shown, whatever exact mode and the gates say;
+      // never printed by the terminal report. A bullet merged from rules whose named variants differ keeps none.
+      const vmOf = (st2, opts) => { const b = build(st2, miniR, namesK, opts); return { b, vm: toState({ ok: true, error: null, readAt: 'x', view: { st: st2, result: b, names: namesK, build: null, data: null, changes: [] } }) }; };
+      const v = vmOf(near), vx = vmOf(far, { exact: true });
+      const wv = v.vm.warnings[0], gv = v.vm.groups.flatMap((g) => g.warnings)[0];
+      const itemOf = (w, text) => w.items.find((x) => x.text === text) || {};
+      const openRow = wv.items.find((x) => x.note === 'w anon') || {};
+      const namedKeys = (o) => JSON.stringify(o).match(/"(whereNamed|textNamed|noteNamed|hintNamed)"/g) || [];
+      const textV = render({ st: near, result: v.b, names: namesK, build: null, data: null, color: false, show: false, changes: [], hiddenKey: false });
+      check(wv.where === 'Before X' && wv.whereNamed === 'Before X in Far' && openRow.noteNamed === 'w Far' && openRow.hint === 'h anon' && openRow.hintNamed === 'h Far' && !('textNamed' in openRow)
+        && itemOf(wv, 'n anon').textNamed === 'n Far' && 'shared' === itemOf(wv, 'shared').text && !('textNamed' in itemOf(wv, 'shared'))
+        && JSON.stringify(gv) === JSON.stringify(wv)
+        && v.vm.info.join('+') === 'tip anon+tip2 anon+tip3' && JSON.stringify(v.vm.infoNamed) === JSON.stringify(['tip Far', 'tip2 hidden', null])
+        && v.vm.groups.length === 1 && JSON.stringify(v.vm.groups[0].infoNamed) === JSON.stringify(v.vm.infoNamed)
+        && /Before X:/.test(textV) && /n anon/.test(textV) && !/Far|tip2 hidden/.test(textV),
+        `named variants in the State (exact off): whereNamed "${wv.whereNamed}", noteNamed "${openRow.noteNamed}", hintNamed "${openRow.hintNamed}", textNamed "${itemOf(wv, 'n anon').textNamed}", merged bullet none, infoNamed ${JSON.stringify(v.vm.infoNamed)}; the terminal default view prints none of them`);
+      const wx = vx.vm.warnings[0];
+      const vmNone = toState({ ok: false, error: 'e', readAt: null, view: null });
+      check(wx.where === 'Before X in Far' && namedKeys(vx.vm.warnings).length === 0 && namedKeys(vx.vm.groups).length === 0
+        && JSON.stringify(vx.vm.infoNamed) === JSON.stringify([null, 'tip2 hidden', null]) && Array.isArray(vmNone.infoNamed) && vmNone.infoNamed.length === 0,
+        `named variants in the State (exact on, area reached): the named texts are shown, so no …Named field is left (infoNamed ${JSON.stringify(vx.vm.infoNamed)}: only the rule without exactWhen)`);
+    }
 
     // Stakes ("what you lose" labels): trueEnding derived from trueEnding.quests (never written in the rule), the rule's
     // own `stakes` added, an item rule's kind from its doneWhen code when no verified entry is recorded (none, or only

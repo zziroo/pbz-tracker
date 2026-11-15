@@ -426,6 +426,26 @@ button, input, select { font: inherit; color: inherit; }
 .info-body { min-width: 0; }
 /* hintStarted of a started quest: what is left to do, under its name. */
 .item-hint { display: block; margin-top: 2px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+/* Click-to-reveal of a warning card's place and boss names (a card that has a named variant): the whole card takes
+   the click, the small text button at its lower right is the keyboard control. The vague text is never blurred;
+   the named text is put into the card only while it is revealed (ui/app.js revealable). */
+.card-revealable { cursor: pointer; }
+.card-revealable:hover { border-color: var(--border-strong); }
+.card-reveal {
+  display: block;
+  margin: 8px 0 0 auto;
+  padding: 0 0 1px;
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted var(--border-strong);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.card-revealable:hover .card-reveal, .card-reveal:hover { color: var(--text-soft); border-bottom-color: var(--muted); }
+.card-revealable.revealed, .card-revealable.revealed:hover { border-color: var(--accent-line); }
+.card-revealable.revealed .card-reveal { color: var(--accent); border-bottom-color: var(--accent-line); }
 
 /* Region groups of the warnings: the player's current region, other reached regions, "until the final bell", then "later". */
 .group { margin-bottom: 24px; }

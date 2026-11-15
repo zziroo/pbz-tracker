@@ -32,7 +32,7 @@ Promise unless noted.
 | `getState()` | `State` | The current state (first paint). |
 | `subscribe(onState)` | – | Calls `onState(State)` whenever the save or the settings change. |
 | `getSettings()` | `Settings` | |
-| `postSettings(patch)` | `Settings` | `patch`: `{ uiLang?: 'tr'\|'en', names?: string, interval?: number, exact?: boolean, timeline?: boolean, [extraField id]?: string }`. Rejects on an invalid value. `exact` re-evaluates the last read (warnings name places and bosses for areas already reached; `exactWhen` in `data/rules.json`) and delivers a new state; `timeline` takes effect with the next read. |
+| `postSettings(patch)` | `Settings` | `patch`: `{ uiLang?: 'tr'\|'en', names?: string, interval?: number, exact?: boolean, timeline?: boolean, [extraField id]?: string }`. Rejects on an invalid value. `exact` re-evaluates the last read (warnings name places and bosses for areas already reached, in New Game+ for every area; `exactWhen` in `data/rules.json`) and delivers a new state; `timeline` takes effect with the next read. |
 | `pick(what)` | `{ ok: boolean, path: string \| null, error: string \| null }` | `what` is a path row id (`Settings.paths[].what`); `path` is the chosen file or folder name. `ok: false` with `error: null` = cancelled. |
 | `forget(what)` | `Settings` | A path row id, or `'all'` (also deletes the quest timeline). |
 | `openUrl(url)` | – | Opens the URL in a new tab. Only the allow-list (`lib/links.js` `allowedUrls`: the repository URL and the `About.links` URLs) is accepted; anything else rejects. |
@@ -79,15 +79,28 @@ interface State {
   noRisk: boolean;             // true → big calm "no risk right now" text (`noRiskText`)
   noRiskText: string;
   warnings: Array<{
-    where: string;             // positional cutoff text, e.g. "Before this area's final fight"
-    items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[] }>;  // named started quests, location hints, counts
+    where: string;             // positional cutoff text, e.g. "Before this area's final fight" (exact mode: the named
+                               // text for a reached area; in New Game+ for every area)
+    whereNamed?: string;       // named variant of `where` (rules.json `whereExact`), see "Named variants" below
+    items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[];
+                   textNamed?: string; noteNamed?: string; hintNamed?: string }>;  // named started quests, location hints, counts
                                // hint: only on a named started quest whose rule has `hintStarted` (what is left to
                                // do, localized); the page shows it as a muted sub-line under the name. Missing → none.
                                // stakes: what missing it costs (rules.json `stakes`, true ending derived), in display
                                // order; [] when nothing is recorded, and for the purple-quest count (its text says so). Missing → no labels.
+                               // textNamed: named variant of a location hint's `text` (`hintNotStartedNamed`); noteNamed: of
+                               // `note` (`warnNamed`); hintNamed: of `hint` (`hintStartedNamed`). See "Named variants".
   }>;
+  // Named variants (whereNamed, textNamed, noteNamed, hintNamed, infoNamed): layer 2 inside the warnings. The text with
+  //   place and boss names behind a vague text, present only when a non-empty named text exists and differs from the
+  //   text already shown; independent of Settings.exact and of the rule's `exactWhen` (so also for areas not reached).
+  //   The page never shows it by itself: it swaps it in after a click on that card and drops it again on a new state,
+  //   Esc or leaving the tab ("Warning cards" below); it must not be in the Warnings panel's DOM before that (an info text is also a blurred Journal row). A hint bullet merged from
+  //   several rules whose named variants differ has none. Missing field (older transport) or null → no named variant.
   info: string[];              // anonymous info warnings (e.g. the camp warning)
   infoStakes?: Stake[][];      // the labels of info[i] at the same index ([] = none). Missing → no labels.
+  infoNamed?: Array<string | null>;  // the named variant of info[i] at the same index (rules.json `warnNamed` of an info rule;
+                               // null = none). Missing → none.
   // Stake = { id: 'trueEnding' | 'achievement' | 'phantomEdge' | 'weapon' | 'weaponPlus' | 'accessory' | 'accessoryPlus' |
   //   'flower' | 'medicine' | 'material' | 'amber' | 'item' | 'sideQuest'; text: string }  // text localized ("true ending", "accessory", …);
   //   never the achievement's or the item's name. 'sideQuest' ("side quest only") is never next to another label.
@@ -108,9 +121,11 @@ interface State {
                                // 'later' or when nothing names it. endgame = true only for the 'endgame' group
                                // (current and reached are false there).
     title: string;             // localized heading: "Now: Pangzhen" / the region name / "Until the final bell" / "Later"
-    warnings: Array<{ where: string; items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[] }> }>;  // as `warnings`
+    warnings: Array<{ where: string; whereNamed?: string; items: Array<{ text: string; note: string | null; hint?: string | null; stakes?: Stake[];
+                      textNamed?: string; noteNamed?: string; hintNamed?: string }> }>;  // as `warnings`
     info: string[];            // as `info`
     infoStakes?: Stake[][];    // as `infoStakes`
+    infoNamed?: Array<string | null>;  // as `infoNamed`
   }>;
   mapLocks?: Array<{           // map locks still closed in regions the player has reached (save MapSubsystem lock
                                // arrays minus EndedLockObjGuids; a region is reached when its map is unlocked, one of
@@ -187,7 +202,8 @@ interface Settings {
   rules: { source: 'embedded' | 'sidecar' | 'explicit'; file: string | null; version: string | number };
   configPath: string;          // where the settings are kept (web: a description of the browser storage)
   configLabel?: string;        // label for configPath (default "Config file")
-  exact: boolean;              // "Show place and boss names in warnings" (default false)
+  exact: boolean;              // "Show place and boss names in warnings" (default false): for areas already reached; in
+                               // New Game+ (the save's cycle > 0) for every area
   timeline: boolean;           // record the quest timeline (default true)
   timelineHint?: string;       // hint under the timeline switch
 }
@@ -243,10 +259,17 @@ interface About {
 
 ## Page behaviour (summary)
 
-- Tabs: **Warnings** (default), **Journal**, **Maps**, **Settings**, **About** (the three content tabs first, the two tool tabs last). Keys `1`-`5` switch tabs in that order, `Esc` re-blurs the journal or the maps.
+- Tabs: **Warnings** (default), **Journal**, **Maps**, **Settings**, **About** (the three content tabs first, the two tool tabs last). Keys `1`-`5` switch tabs in that order, `Esc` re-blurs the journal or the maps and hides the names revealed in the warnings.
 - Maps: one card per reached region (`State.maps`): name, percentage, count, a `<progress>` bar (value/max attributes, no inline
   style), category chips and the missing entries as blurred rows with a category icon (the icon stays readable: it names a
   kind, not the thing). Click a row → it unblurs; `Esc`, leaving the tab or a new `state` blurs everything again.
+- Warning cards: a cutoff card (`warnings[]`) or an info card (`info[i]`) that has at least one named variant (`whereNamed`,
+  `items[].textNamed` / `noteNamed` / `hintNamed`, `infoNamed[i]`) is clickable and carries a small text button ("show names" /
+  "hide names", a real `<button>` with `aria-expanded`: Enter / Space). The vague texts are shown as they are (not blurred).
+  Click the card or its button → the texts of that one card are replaced by their named variants; click again → vague again.
+  The named strings are kept in script memory and are written into the card only while it is revealed (never hidden in
+  the DOM). No confirmation. Leaving the tab, `Esc` or any new `state` shows the vague texts again. A card without a
+  named variant is the plain card (no button, not clickable).
 - Settings: General has the "exact names" checkbox; a collapsible **Diagnostics** panel at the bottom (count of unmatched
   quests on its header) with **Copy report**, the timeline switch, its record count, **Export timeline**, **Copy timeline** and **Delete timeline** (asks first).
   Clipboard: `navigator.clipboard.writeText`, else a hidden textarea and `execCommand('copy')`.

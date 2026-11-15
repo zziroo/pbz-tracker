@@ -28,6 +28,8 @@
       'hdr.location': 'Bölge',
       'warn.label': 'Uyarı',
       'info.label': 'Bilgi',
+      'warn.showNames': 'adları göster',
+      'warn.hideNames': 'adları gizle',
       'locks.title': 'Haritada açık kilitler',
       'journal.notice': 'Spoiler içerebilir. Satıra tıklayınca o satır açılır.',
       'journal.showAll': 'Tümünü göster',
@@ -91,10 +93,10 @@
       'about.openFailed': 'Bağlantı açılamadı.',
       'about.loadFailed': 'Bilgiler alınamadı.',
       'about.keys': 'Kısayollar',
-      'about.keysText': '1–5: sekmeler · Esc: günlüğü ve haritaları yeniden gizle',
+      'about.keysText': '1–5: sekmeler · Esc: günlüğü, haritaları ve uyarılardaki adları yeniden gizle',
       'about.readOnly': 'Salt okunur: save dosyasına, oyuna ya da yamalara hiçbir şey yazmaz.',
       'set.exact': 'Uyarılarda yer ve boss adlarını göster',
-      'set.exactHint': 'Ulaştığın bölgelerde yer ve boss adlarını yazar.',
+      'set.exactHint': 'Ulaştığın bölgelerde yer ve boss adlarını yazar. Oyunu bir kez bitirdikten sonra (New Game+) bu turda henüz ulaşmadığın bölgeler de adlarıyla yazılır.',
       'diag.title': 'Tanılama',
       'diag.countTitle': 'Eşleşmemiş görev sayısı',
       'diag.loadFailed': 'Tanılama bilgisi alınamadı.',
@@ -161,6 +163,8 @@
       'hdr.location': 'Area',
       'warn.label': 'Warning',
       'info.label': 'Info',
+      'warn.showNames': 'show names',
+      'warn.hideNames': 'hide names',
       'locks.title': 'Open map locks',
       'journal.notice': 'May contain spoilers. Click a row to reveal it.',
       'journal.showAll': 'Show all',
@@ -224,10 +228,10 @@
       'about.openFailed': 'Could not open the link.',
       'about.loadFailed': 'Could not load this page.',
       'about.keys': 'Shortcuts',
-      'about.keysText': '1–5: tabs · Esc: hide the journal and the maps again',
+      'about.keysText': '1–5: tabs · Esc: hide the journal, the maps and the names in the warnings again',
       'about.readOnly': 'Read-only: never writes to your save, the game or any patch.',
       'set.exact': 'Show place and boss names in warnings',
-      'set.exactHint': 'Names places and bosses only in areas you have reached.',
+      'set.exactHint': 'Names places and bosses only in areas you have reached. After you have finished the game once (New Game+), areas you have not reached in the new run are named too.',
       'diag.title': 'Diagnostics',
       'diag.countTitle': 'Unmatched quests',
       'diag.loadFailed': 'Could not load the diagnostics.',
@@ -468,6 +472,7 @@
   function setTab(name, focusTab) {
     if (!TABS.includes(name)) return;
     const prev = app.tab;
+    if (prev === 'warnings' && name !== 'warnings') hideWarningNames();
     if (prev === 'journal' && name !== 'journal') reblurJournal();
     if (prev === 'maps' && name !== 'maps') reblurMaps();
     if (prev === 'settings' && name !== 'settings') { app.pickMsg = null; app.settingsMsg = null; }
@@ -560,28 +565,43 @@
         ...l.map((x) => h('span', { class: 'stake stake-' + String(x.id || '').replace(/[^\w-]/g, ''), attrs: { role: 'listitem' }, text: x.text })));
     };
     // Per-cutoff cards and info rows; `titleTag` is h3 inside a region group (whose heading is the h2).
+    // Named variants (State whereNamed / items[].textNamed, noteNamed, hintNamed / infoNamed[i]): the card shows its
+    // vague texts; a card with at least one named variant can be clicked to swap them in (revealable below). A
+    // missing field (older transport) = no named variant: the card is exactly the plain one.
     const warnCards = (list, titleTag) => {
       const grid = h('div', { class: 'cards' });
       for (const w of list) {
         const items = Array.isArray(w.items) ? w.items : [];
+        const swaps = [];
+        // A text element; with a named variant that differs from it, the pair is noted for the card's reveal.
+        const span = (cls, vague, named) => {
+          const el = h('span', { class: cls, text: vague });
+          if (typeof named === 'string' && named && named !== vague) swaps.push({ el, vague, named });
+          return el;
+        };
+        const title = h(titleTag, { class: 'card-title' }, icon('warn'), span(null, w.where || '', w.whereNamed));
         const ul = h('ul', { class: 'card-items' });
         for (const it of items) {
           ul.append(h('li', { class: 'card-item' },
-            h('span', { class: 'item-text', text: it.text || '' }),
+            span('item-text', it.text || '', it.textNamed),
             stakeChips(it.stakes),
-            it.note ? h('span', { class: 'item-note', text: it.note }) : null,
-            it.hint ? h('span', { class: 'item-hint', text: it.hint }) : null));
+            it.note ? span('item-note', it.note, it.noteNamed) : null,
+            it.hint ? span('item-hint', it.hint, it.hintNamed) : null));
         }
-        grid.append(h('article', { class: 'card card-warn' },
-          h(titleTag, { class: 'card-title' }, icon('warn'), h('span', { text: w.where || '' })),
-          items.length ? ul : null));
+        const card = h('article', { class: 'card card-warn' }, title, items.length ? ul : null);
+        grid.append(revealable(card, card, swaps));
       }
       return grid;
     };
-    const infoCards = (list, stakes) => {
+    const infoCards = (list, stakes, named) => {
       const grid = h('div', { class: 'cards cards-info' });
-      list.forEach((line, i) => grid.append(h('div', { class: 'card card-info' }, icon('info'),
-        h('div', { class: 'info-body' }, h('p', { class: 'info-text', text: line }), stakeChips(Array.isArray(stakes) ? stakes[i] : null)))));
+      list.forEach((line, i) => {
+        const text = h('p', { class: 'info-text', text: line });
+        const body = h('div', { class: 'info-body' }, text, stakeChips(Array.isArray(stakes) ? stakes[i] : null));
+        const n = Array.isArray(named) ? named[i] : null;
+        grid.append(revealable(h('div', { class: 'card card-info' }, icon('info'), body), body,
+          typeof n === 'string' && n && n !== line ? [{ el: text, vague: line, named: n }] : []));
+      });
       return grid;
     };
 
@@ -596,12 +616,12 @@
         const sec = h('section', { class: 'group group-' + kind },
           h('h2', { class: 'group-title' }, h('span', { class: 'group-dot', attrs: { 'aria-hidden': 'true' } }), h('span', { text: g.title || '' })));
         if (Array.isArray(g.warnings) && g.warnings.length) sec.append(warnCards(g.warnings, 'h3'));
-        if (Array.isArray(g.info) && g.info.length) sec.append(infoCards(g.info, g.infoStakes));
+        if (Array.isArray(g.info) && g.info.length) sec.append(infoCards(g.info, g.infoStakes, g.infoNamed));
         out.push(sec);
       }
     } else {
       if (warnings.length) out.push(warnCards(warnings, 'h2'));
-      if (info.length) out.push(infoCards(info, s.infoStakes));
+      if (info.length) out.push(infoCards(info, s.infoStakes, s.infoNamed));
     }
 
     // Map locks still closed in reached regions (State.mapLocks): one small card, a line per region, texts
@@ -618,6 +638,42 @@
     }
 
     p.replaceChildren(...out);
+  }
+
+  // Click-to-reveal of a warning card's place and boss names (docs/ui-api.md, "Warning cards"). `swaps` lists the
+  // card's text elements that have a named variant: { el, vague, named }. The named strings are kept here, in
+  // script memory only: they are not in the DOM (not even hidden) until the card is revealed, and revealing swaps
+  // the elements' textContent; the vague text is never blurred. The whole card takes the click; its small text
+  // button (appended to `host`) is the keyboard control (Enter / Space) and carries aria-expanded. A card without
+  // a named variant is returned untouched. A new state re-creates the cards (vague again); Esc and leaving the tab
+  // call hideWarningNames. No confirmation.
+  const REVEAL = new WeakMap(); // card → { swaps, btn }
+  function revealable(card, host, swaps) {
+    if (!swaps.length) return card;
+    const btn = h('button', { class: 'card-reveal', attrs: { type: 'button', 'aria-expanded': 'false' }, text: t('warn.showNames') });
+    host.append(btn);
+    card.classList.add('card-revealable');
+    REVEAL.set(card, { swaps, btn });
+    card.addEventListener('click', (e) => {
+      // A click that ends a text selection inside the card is not a toggle: the texts stay copyable.
+      const sel = window.getSelection ? window.getSelection() : null;
+      if (!btn.contains(e.target) && sel && !sel.isCollapsed && card.contains(sel.anchorNode)) return;
+      setCardRevealed(card, !card.classList.contains('revealed'));
+    });
+    return card;
+  }
+
+  function setCardRevealed(card, on) {
+    const r = REVEAL.get(card);
+    if (!r) return;
+    card.classList.toggle('revealed', on);
+    for (const x of r.swaps) x.el.textContent = on ? x.named : x.vague;
+    r.btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    r.btn.textContent = t(on ? 'warn.hideNames' : 'warn.showNames');
+  }
+
+  function hideWarningNames() {
+    for (const c of panel('warnings').querySelectorAll('.card-revealable.revealed')) setCardRevealed(c, false);
   }
 
   function renderHeader(hd) {
@@ -1184,6 +1240,7 @@
   // ---- Events ----
   function onKeyDown(e) {
     if (e.key === 'Escape') {
+      if (app.tab === 'warnings') hideWarningNames();
       if (app.tab === 'journal') reblurJournal();
       if (app.tab === 'maps') reblurMaps();
       return;
