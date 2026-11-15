@@ -88,7 +88,7 @@ map panel `UI/Widget/Foundation/MapItemCompletion.js`. Per map (merge groups `pa
 | bells (deduplicated) | id in `BellManager.ActivateBellIDs` |
 | weapons (not `zimingjian`), phantom edges, accessories, medicines | present in the save's `*Infos` with `AcquiredCycle == CycleCount` |
 | challenges (RongShu / LongZhu / DaoCaoRen) | any `NodeGuids` entry is a key of `EventPipeline.ExecuteNodeGuid` |
-| domain items (the two chest/mob-domain lists: amber, blackstone) | `SaveGuid` has `LevelActorManager` data, or `MobDomainName` ∈ `PBZGameSystem.CompleteAddItemMobDomainNames`, or any node executed |
+| domain items (the two chest/mob-domain lists: A = blackstone, B = amber) | `SaveGuid` has `LevelActorManager` data, or `MobDomainName` ∈ `PBZGameSystem.CompleteAddItemMobDomainNames`, or any node executed |
 | memory flowers | item in `InventoryInfos` this cycle; whole-flower `FA_*` entries with more than one petal are skipped (petals count individually) |
 
 `percent = floor(current / total * 100)`. `build.js --save` prints the recomputation and the missing entries with

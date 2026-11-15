@@ -9,7 +9,7 @@
    "tr": "Turkish patch locres (ProjectPBZ-Windows_C.pak), empty when the patch is not installed"
   }
  },
- "_note": "Per-map collectible registry behind the game's map completion panel. Locations are FIntVector world coordinates (cm). domainItemsA/B are the two chest + mob-domain lists (amber / blackstone drops) counted together as \"domain items\". Completion algorithm: README.md.",
+ "_note": "Per-map collectible registry behind the game's map completion panel. Locations are FIntVector world coordinates (cm). domainItemsA/B are the two chest + mob-domain lists (A = blackstone, B = amber drops) counted together as \"domain items\". Completion algorithm: README.md.",
  "excludedFromTotalCompletion": [
   "test",
   "huanshushi",

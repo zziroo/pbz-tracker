@@ -368,7 +368,7 @@ async function main() {
       for (const id of ids) {
         const mm = mapItems.maps[id];
         for (const l of ['rongShu', 'longZhu', 'daoCaoRen']) mm[l].forEach((e) => tick(anyNode(e.NodeGuids), 'challenge ' + (e.FlowEvent || '')));
-        for (const l of ['domainItemsA', 'domainItemsB']) mm[l].forEach((e) => tick(hasActor(e.SaveGuid) || (e.MobDomainName && mobs.has(e.MobDomainName.toLowerCase())) || anyNode(e.NodeGuids), (l === 'domainItemsA' ? 'amber ' : 'blackstone ') + (e.SaveGuid || e.MobDomainName || e.FlowEvent || '')));
+        for (const l of ['domainItemsA', 'domainItemsB']) mm[l].forEach((e) => tick(hasActor(e.SaveGuid) || (e.MobDomainName && mobs.has(e.MobDomainName.toLowerCase())) || anyNode(e.NodeGuids), (l === 'domainItemsA' ? 'blackstone ' : 'amber ') + (e.SaveGuid || e.MobDomainName || e.FlowEvent || '')));
         mm.memoryFlowers.forEach((e) => { const id2 = e.ItemID; if (!id2) return; if (/^FA_/.test(id2) && petals(id2) > 1) return; tick(got(inv.InventoryInfos, id2), 'flower ' + id2); });
       }
       return { percent: tot ? Math.floor((cur / tot) * 100) : 0, current: cur, total: tot, missing: miss.sort() };
